@@ -306,6 +306,7 @@ section {
 
 .section-bg {
     background: #f5f8fd;
+    /* background: #525e6d; */
 }
 
 .section-title {
@@ -1132,6 +1133,9 @@ section {
     }
 }
 
+
+/* ===================== Skills ==================== */
+
 .skillsGrid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -1234,7 +1238,7 @@ section {
 @media screen and (min-width: 1080px) {
     .skillsGrid {
         display: grid;
-        grid-template-columns: repeat(8, 1fr);
+        grid-template-columns: repeat(11, 1fr);
         gap: 50px;
         grid-auto-rows: auto;
         height: auto
@@ -1273,6 +1277,9 @@ section {
     width: 100%;
     height: auto;
     padding: 1%;
+    justify-content: center;
+    margin-left: 15px;
+    margin-right: 15px;
     /* box-shadow: 0px 0 50px rgba(5, 13, 24, 0.08); */
     /* position: relative; */
 }
@@ -1360,3 +1367,511 @@ section {
         padding-bottom: 0;
     }
 }
+
+
+/* ==================== Grid Container =================== */
+
+.grid-container {
+    columns: 4 250px;
+    column-gap: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.grid-container div {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    border: solid 2px black;
+    padding: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: all 0.25s ease-in-out;
+}
+
+.grid-container div:hover img {
+    filter: grayscale(0);
+}
+
+.grid-container div:hover {
+    border-color: coral;
+}
+
+.grid-container div img {
+    width: 100%;
+    filter: grayscale(100%);
+    border-radius: 5px;
+    transition: all 0.25s ease-in-out;
+}
+
+.grid-container div p {
+    margin: 5px 0;
+    padding: 0;
+    text-align: center;
+    font-style: italic;
+}
+
+
+/* ================= Pixworm Images ================= */
+
+.pixworm-container {
+    columns: 3 350px;
+    column-gap: 1.5rem;
+    width: 95%;
+    margin: 0 auto;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.pixworm-container div {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    border: solid 2px black;
+    padding: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: all 0.25s ease-in-out;
+}
+
+.pixworm-container div:hover img {
+    filter: grayscale(0);
+}
+
+.pixworm-container div:hover {
+    border-color: coral;
+}
+
+.pixworm-container div img {
+    width: 100%;
+    /* filter: grayscale(50%); */
+    border-radius: 5px;
+    transition: all 0.25s ease-in-out;
+}
+
+.pixworm-container div p {
+    margin: 5px 0;
+    padding: 0;
+    text-align: center;
+    font-style: italic;
+}
+
+
+/* =========== Gallery ============*/
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Position the image container (needed to position the left and right arrows) */
+
+.container3 {
+    position: relative;
+}
+
+
+/* Hide the images by default */
+
+.mySlides {
+    display: none;
+}
+
+
+/* Add a pointer when hovering over the thumbnail images */
+
+.cursor {
+    cursor: pointer;
+}
+
+
+/* Next & previous buttons */
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/* Position the "next button" to the right */
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+
+/* On hover, add a black background color with a little bit see-through */
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Number text (1/3 etc) */
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+
+/* Container for image text */
+
+.caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Six columns side by side */
+
+.column {
+    float: left;
+    width: 16.66%;
+}
+
+
+/* Add a transparency effect for thumnbail images */
+
+.demo {
+    opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+    opacity: 1;
+}
+
+
+/* ====================== Pixworm Header Grid ===================== */
+
+h6,
+p {
+    font-family: sans-serif;
+}
+
+.c-heroImageGrid {
+    position: relative;
+    overflow: hidden;
+    height: 50vw;
+    background: #fff;
+    margin-bottom: 40px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.c-heroImageGrid .container4 {
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    top: -20vw;
+    left: -8vw;
+    right: 10vw;
+    transform: rotateZ(45deg);
+    height: 100vw;
+    width: 107vw;
+}
+
+.c-heroImageGrid .container4 .column {
+    overflow: hidden;
+    position: relative;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(1) {
+    border-right: 8px solid white;
+    width: 25%;
+    height: 66vw;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(1):hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(1):before {
+    position: absolute;
+    top: 8.4vw;
+    left: 8.1vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotateZ(-45deg);
+    content: "";
+    width: 37vw;
+    height: 38vw;
+    background-image: url(https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?cs=srgb&dl=beach-blur-boardwalk-132037.jpg&fm=jpg);
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 75%;
+    height: 109.1vw;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row {
+    border-top: 8px solid #fff;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(1) {
+    position: relative;
+    overflow: hidden;
+    height: 50vw;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(1):hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(1):before {
+    position: absolute;
+    top: -10.1vw;
+    left: -14.3vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotateZ(-45deg);
+    content: "";
+    width: 65vw;
+    height: 39vw;
+    background-image: url(https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?cs=srgb&dl=arch-bridge-clouds-814499.jpg&fm=jpg);
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) {
+    display: flex;
+    height: 40.5vw;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(3) {
+    border-top: none;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) div:nth-of-type(1) {
+    overflow: hidden;
+    width: 30%;
+    /* background-color: #8B8B8A; */
+    background-color: #272626;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) div:nth-of-type(1) .text {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform: rotateZ(-45deg);
+    position: relative;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) div:nth-of-type(1) .text h6 {
+    position: absolute;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.35vw;
+    width: 20vw;
+    top: 16vw;
+    left: 7vw;
+    line-height: 1.55vw;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) div:nth-of-type(1) .text p {
+    text-align: right;
+    position: absolute;
+    color: #fff;
+    font-size: 0.9vw;
+    width: 18vw;
+    top: 23.5vw;
+    left: -3.5vw;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) div:nth-of-type(2) {
+    position: relative;
+    width: 70%;
+    border-left: 8px solid white;
+    overflow: hidden;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) div:nth-of-type(2):hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(2) div:nth-of-type(2):before {
+    position: absolute;
+    top: 0;
+    left: -40vw;
+    width: 110.1vw;
+    height: 110vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotateZ(-45deg);
+    content: "";
+    background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?cs=srgb&dl=adventure-calm-clouds-414171.jpg&fm=jpg);
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(3) {
+    position: relative;
+    height: 18.6vw;
+    overflow: hidden;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(3):hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.c-heroImageGrid .container4 .column:nth-of-type(2) .row:nth-of-type(3):before {
+    position: absolute;
+    top: 7.5vw;
+    left: 25vw;
+    width: 33vw;
+    height: 27vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotateZ(-45deg);
+    content: "";
+    background-image: url(https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);
+}
+
+
+/* ================== Image Grid ======================== */
+
+.imgGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* gap: 10em; */
+    gap: 50px;
+    grid-auto-rows: auto;
+    height: 200vh;
+}
+
+.imgGrid img {
+    height: auto;
+    width: auto\9;
+}
+
+.imgGrid2 h2 {
+    margin-bottom: 2em;
+}
+
+.imgGrid2 {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Small Screens max width 640px */
+
+@media screen and (max-width: 640px) {
+    .imgGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        grid-auto-rows: auto;
+        height: auto;
+    }
+    .imgGrid img {
+        height: auto;
+        width: auto\9;
+    }
+    .imgGrid2 {
+        background-color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/* Medium Screens min width 641px change to 4 columns */
+
+@media screen and (min-width: 641px) {
+    .imgGrid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 20px;
+        grid-auto-rows: auto;
+        height: auto;
+    }
+    .imgGrid img {
+        height: auto;
+        width: auto\9;
+    }
+    .imgGrid2 {
+        background-color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/* Large Screens min width 1080px change to 8 columns */
+
+@media screen and (min-width: 1080px) {
+    .imgGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+        grid-auto-rows: auto;
+        height: auto
+    }
+    .imgGrid img {
+        /* height: 300px; */
+        /* width: 300px; */
+        height: 300px;
+        width: auto;
+    }
+    .imgGrid2 {
+        background-color: #37b3ed;
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+}
+
+
+/* ===================================== */
