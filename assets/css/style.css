@@ -2109,7 +2109,7 @@ p {
 }
 
 .album:hover img {
-    filter: blur(0px);
+    filter: blur(15px);
 }
 
 
@@ -2117,7 +2117,7 @@ p {
     width: 100%;
     height: auto;
     border-radius: 8px 8px 0 0;
-    filter: blur(3px);
+    /* filter: blur(3px); */
 }
 
 .overlay {
@@ -2155,7 +2155,6 @@ p {
 .finger-symbol {
     margin-right: 5px;
     cursor: pointer;
-    color: blue; /* Change the color to blue */
 }
 
 .album-caption {
