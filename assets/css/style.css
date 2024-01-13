@@ -2085,7 +2085,7 @@ p {
 
 .album-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 20px;
     justify-content: center;
@@ -2093,9 +2093,10 @@ p {
 
 .album {
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     overflow: hidden;
     border-radius: 8px;
+    border: 1px solid black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
 }
@@ -2108,7 +2109,7 @@ p {
 }
 
 .album:hover img {
-    filter: blur(8px); /* Apply blur effect on hover */
+    filter: blur(0px);
 }
 
 
@@ -2116,6 +2117,7 @@ p {
     width: 100%;
     height: auto;
     border-radius: 8px 8px 0 0;
+    filter: blur(3px);
 }
 
 .overlay {
