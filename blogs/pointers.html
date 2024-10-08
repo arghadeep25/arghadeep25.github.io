@@ -44,7 +44,7 @@
     <header id="header">
         <div class="d-flex flex-column">
             <div class="profile">
-                <img src="https://lh3.googleusercontent.com/pw/ABLVV84DCcepw_aFk_VNKp_uUChoupJP8OKlE-UAgc2z4J2u3EJ4HiS8Vy3VQ49M4H3Yu0Z-IpJ64e6TSDalcNFDQWLmMnTLMtw_bcCvh19wUru5hiMEOJY=w2400"
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczOpO2LwpkkiEIh-X0qUCwO2Ritg3Y7c8gHbTKIHBMP3XeI7kYxt6CvtRyKpL96LtgYLDDBqDDDZHLDjQ9EDP0THCNsK5bGSMS8SKXB14k45ujKyWrGr=w2400"
                     alt="" class="img-fluid rounded-circle">
                 <h1 class="text-light text-center"><a href="index.html">Arghadeep Mazumder</a></h1>
                 <div class="social-links mt-3 text-center">
@@ -139,19 +139,20 @@ int *p = NULL; // C++ 98</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
-                    <li>Easy to check against before dereferencing, preventing accidental access to invalid memory.</li>
+                    <li>Easy to check against before dereferencing, preventing accidental access to invalid memory.
+                    </li>
                     <li>Useful for indicating that a pointer does not point to any valid object.</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>Dereferencing a null pointer results in undefined behavior.</li>
                     <li>Requires careful initialization and checking.</li>
                 </ul>
 
-                <h4>Use</h4>
+                <h5>Use</h5>
                 <ul>
                     <li>To initialize pointers that are not yet assigned a valid memory address.</li>
                     <li>To signify the end of a data structure (e.g., linked lists).</li>
@@ -169,19 +170,19 @@ ptr = &x; // ptr points to an int</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
                     <li>Can point to any data type, providing flexibility in handling different types.</li>
                     <li>Useful for implementing generic functions.</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>Cannot be dereferenced directly; requires casting to a specific pointer type first.</li>
                     <li>Can lead to type safety issues if misused.</li>
                 </ul>
 
-                <h4>Use</h4>
+                <h5>Use</h5>
                 <ul>
                     <li>In functions that need to accept parameters of any type (e.g., qsort).</li>
                     <li>In generic data structures (e.g., linked lists or stacks).</li>
@@ -197,19 +198,19 @@ ptr = &x; // ptr points to an int</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
                     <li>Allows for multi-level indirection, useful in dynamic memory management.</li>
                     <li>Facilitates managing arrays of pointers (e.g., 2D arrays).</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>More complex syntax can lead to confusion.</li>
                     <li>Requires careful memory management to avoid memory leaks.</li>
                 </ul>
 
-                <h4>Use</h4>
+                <h5>Use</h5>
                 <ul>
                     <li>When you need to modify a pointer in a function.</li>
                     <li>In dynamic memory allocation for multi-dimensional arrays.</li>
@@ -225,19 +226,19 @@ ptr = &x; // ptr points to an int</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
                     <li>Enables dynamic function calls and callbacks, enhancing flexibility.</li>
                     <li>Facilitates implementing function tables or dispatch mechanisms.</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>Complexity in managing the function signature and pointer.</li>
                     <li>Increased risk of runtime errors if the wrong function is called.</li>
                 </ul>
 
-                <h4>Use</h4>
+                <h5>Use</h5>
                 <ul>
                     <li>To implement callbacks or event handling mechanisms.</li>
                     <li>In situations requiring dynamic function selection at runtime.</li>
@@ -254,19 +255,19 @@ int* ptr = arr; // ptr points to the first element of arr</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
                     <li>Simplifies accessing elements of an array through pointer arithmetic.</li>
                     <li>Can be used interchangeably with regular array notation.</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>Can lead to out-of-bounds access if not handled carefully.</li>
                     <li>Syntax can be confusing for beginners.</li>
                 </ul>
 
-                <h4>Use</h4>
+                <h5>Use</h5>
                 <ul>
                     <li>For iterating over arrays and performing operations on their elements.
                     </li>
@@ -283,19 +284,19 @@ int* ptr = arr; // ptr points to the first element of arr</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
                     <li>Ensures that the value being pointed to cannot be changed through the pointer.</li>
                     <li>Enhances code safety by preventing unintended modifications.</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>If the data type changes, the const pointer must be updated to reflect the new type.</li>
                     <li>Still allows reassignment of the pointer itself unless combined with const.</li>
                 </ul>
 
-                <h4>Use</h4>
+                <h5>Use</h5>
                 <ul>
                     <li>When passing pointers to functions where the function should not modify the pointed-to value.
                     </li>
@@ -312,20 +313,20 @@ int* ptr = arr; // ptr points to the first element of arr</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
                     <li>Prevents modification of the pointed-to data, ensuring data integrity.</li>
                     <li>Useful in function arguments to ensure that the original data remains unchanged.</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>Can cause confusion regarding what is modifiable versus what is not.</li>
                     <li>Requires more careful design when passing data to functions.
                     </li>
                 </ul>
 
-                <h4>Use</h4>
+                <h5>Use</h5>
                 <ul>
                     <li>In function parameters where the original data should remain unchanged.</li>
                     <li>In contexts where you want to ensure the constancy of the data being accessed.</li>
@@ -344,14 +345,14 @@ std::cout << "Value of a: " << *p << std::endl;</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
 
-                <h4>Advantages</h4>
+                <h5>Advantages</h5>
                 <ul>
                     <li>Simple and easy to understand.</li>
                     <li>Direct access to memory addresses.</li>
                     <li>Efficient in terms of performance.</li>
                 </ul>
 
-                <h4>Disadvantages</h4>
+                <h5>Disadvantages</h5>
                 <ul>
                     <li>Manual memory management is required, increasing the risk of memory leaks.</li>
                     <li>Pointer arithmetic can lead to errors.</li>
