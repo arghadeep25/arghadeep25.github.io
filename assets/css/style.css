@@ -1377,14 +1377,41 @@ section {
 
 /* ============================ */
 
-.header-container {
+/* .header-container {
     margin-bottom: 0;
     font-size: 1.6vw;
     z-index: 1000;
-    /* border-bottom: 1px solid #EAEAEA; */
     position: relative;
     width: 100%;
+} */
+
+
+/* Styling for when the image is present */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
 }
+
+.header-image {
+    max-width: 50%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Hide the image when src is empty */
+.header-image[src=""] {
+    display: none;
+}
+
+/* Add extra padding if there's no visible image */
+.header-container .header-image[src=""]+.header-post-title-banner {
+    padding: 50px 0;
+}
+
+
 
 .helper-box {
     z-index: 2;
@@ -1411,9 +1438,9 @@ section {
 }
 
 .header-image {
-    margin: 0 2%;
+    margin: 0.2%;
     float: left;
-    max-width: 5%;
+    max-width: 40%;
     height: auto;
     width: auto\9;
 }
@@ -2354,5 +2381,90 @@ p {
     }
 }
 
+/* Blog Grid Layout */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Responsive columns */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-/* ===================================== */
+.blog-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.blog-item:hover {
+    transform: translateY(-10px);
+}
+
+/* Blog Image */
+.blog-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Blog Title */
+.blog-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Blog Description */
+.blog-description {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+/* Read More Link */
+.blog-link {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.blog-link:hover {
+    text-decoration: underline;
+}
+
+/* Ensure the header-container has proper padding or height */
+.blog-header-container {
+    background-color: #f4f4f4;
+    /* Add a background color to the banner */
+    padding: 50px 20px;
+    /* Add padding to give it height */
+    text-align: center;
+    /* Center the title */
+    border-bottom: 2px solid #ddd;
+    /* Optional: add a bottom border for visual separation */
+}
+
+/* Style the banner title */
+.header-post-title-banner {
+    font-size: 2rem;
+    /* Adjust font size as needed */
+    color: #333;
+    /* Set text color */
+    margin: 0;
+    /* Remove any default margins */
+}
+
+/* Optional: If you need a specific height for the banner */
+.blog-header-container {
+    height: 200px;
+    /* Set a fixed height if necessary */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
