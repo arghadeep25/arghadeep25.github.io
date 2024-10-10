@@ -84,6 +84,16 @@
         </section>
 
         <article class="content">
+            <section id="content-pointer">
+                <header>
+                    <h1>Content</h1>
+                    <ul>
+                        <li><a href="#what-is-a-pointer">What is a Pointer</a></li>
+                        <li><a href="#types-of-pointers">Types of Pointers</a></li>
+                    </ul>
+                </header>
+            </section>
+
             <header>
                 <!-- <h1>Difference Between Different Pointers in C++</h1> -->
                 <p>The first thing comes to mind when we hear about pointers in C++ is</p>
@@ -93,25 +103,78 @@
                     snippets.</p>
             </header>
 
-            <ul>
-                <li><a href="#what-is-a-pointer">What is a Pointer</a></li>
-                <li><a href="#types-of-pointers">Types of Pointers</a></li>
-            </ul>
-
             <section id="what-is-a-pointer">
                 <header>
                     <h1>What is a Pointer?</h1>
-                    <p>The first thing comes to mind when we hear about pointers in C++ is</p>
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOkTT6vMwqV1vgsFavk2YEvFNt9cDClbBaSDCM182yJ_t5tOMAD0vXjhuZp2maRiadS0zzlLHSA2SEGUueUEmXqD9LMraX01kxP4rw-vdrqUj4gN4yD=w2400"
-                        alt="Address" class="image">
-                    <p>In this blog, we will discuss raw pointers, smart pointers, and their differences with C++ code
-                        snippets.</p>
+                    <p>So according to Wikipedia, <i>"a pointer is an object in many programming
+                            languages that stores a memory address"</i></p>
+                    <p>Let's understand it simply with some real world analogy.</p>
+
+                    <p>Imagine you have a house and you want to tell your friend the address of your house. You will
+                        simply give him the address, right? Similarly, a pointer is like an address that points to a
+                        memory location.</p>
+
+                    <h5>Home Address</h5>
+                    <ul>
+                        <li><b>House</b>: This is where you live, containing all your belongings</li>
+                        <li><b>Address</b>: A unique location that identifies your house</li>
+                        <li><b>Address Note</b>: If you want to tell someone where your home is, you write down your
+                            home’s
+                            address on a note and hand it to them. This note doesn’t contain your home or belongings but
+                            simply the location of your home</Address>
+                        </li>
+                    </ul>
+
+                    <h5>Pointer</h5>
+                    <ul>
+                        <li><b>Variable (Home)</b> In C++, a variable holds data, similar to how your home holds
+                            belongings.
+                            For example, an int x = 5 is like the contents of your home.</li>
+                        <li><b>Memory Address (Home Address)</b>: Every variable in memory has an address. This is like
+                            how
+                            every home has a unique address.</li>
+                        <li><b>Pointer (Address Note)</b>: A pointer stores the memory address of a variable. It doesn’t
+                            hold
+                            the actual value of the variable but just its location (just like the note with the home
+                            address doesn’t contain the home but shows where to find it).</li>
+
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczOkTT6vMwqV1vgsFavk2YEvFNt9cDClbBaSDCM182yJ_t5tOMAD0vXjhuZp2maRiadS0zzlLHSA2SEGUueUEmXqD9LMraX01kxP4rw-vdrqUj4gN4yD=w2400"
+                            alt="Address" class="image">
+                        <p></p>
+
+                        <p>Just like you can give your home address to multiple friends, you can have multiple pointers
+                            pointing to the same memory location. This is useful for sharing data between different
+                            parts
+                            of a program.</p>
+
+                        <p>However, if you lose the note with your home address, you won’t be able to find your home.
+                            Similarly, if you lose track of a pointer, you won’t be able to access the data it points
+                            to.
+                        </p>
+
+                        <ul>
+                            <b>
+                                <li>Home = Variable</li>
+                                <li>Address = Memory Address</li>
+                                <li>Address Note = Pointer</li>
+                                <li>Visiting the Home = Dereferencing the Pointer</li>
+                                <li>Changing Items in the Home = Modifying the Variable through the Pointer</li>
+                            </b>
+                        </ul>
+                        <p></p>
+                        <p>Pointers are a powerful feature of C++ that allow for dynamic memory allocation, data
+                            manipulation, and more. However, they require careful handling to avoid memory leaks and
+                            undefined behavior.</p>
+
+
                 </header>
             </section>
 
             <section id="types-of-pointers">
                 <header>
                     <h1>Types of Pointers</h1>
+                    <p>Now that we understand the basics of pointers, let’s explore the different types of pointers
+                        in C++.</p>
                     <p>The following types of pointers are commonly used in C++:</p>
                     <ul>
                         <li><a href="#null-pointer">Raw Pointer</a></li>
@@ -123,7 +186,7 @@
                         <li><a href="#pointer-to-const">Pointer to Constant</a></li>
                         <li><a href="#smart-pointers">Smart Pointer</a></li>
                     </ul>
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMdsa9gLycM7VLrvYByeVtN_mPRC85rLBrnGGwkGX4pSs9GcZx1lwN_SI44ulWoAaFExXCcZBkiPesbNrrTMninUJuZW6-XV0-NwTOXUJa9LySWMJBg=w2400"
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMO81lOB8lM1APj3qoWipxRbUDti5bCh2TrDRa2L4bG9DOQhSxED7hhe8Dci81NZobkbzY9HN1odxc7ropsLluE9vSK0nVcUySBEL5KEGLbtlTZNLn5=w2400"
                         alt="Address" class="image">
                     <p>In this blog, we will discuss raw pointers, smart pointers, and their differences with C++ code
                         snippets.</p>
