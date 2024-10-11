@@ -21,18 +21,23 @@
     <link href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/swiper@8.4.3/swiper-bundle.min.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="../assets/css/blog_style.css" rel="stylesheet">
+    <!-- <link href="../assets/css/blog_style.css" rel="stylesheet"> -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/css/themes/splide-skyblue.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
 
     <link rel="stylesheet" href="./../assets/css/code_style.css">
-    <link rel="stylesheet" href="./../assets/css/prism-atom-dark.css">
+    <!-- <link rel="stylesheet" href="./../assets/css/prism-atom-dark.css"> -->
 
     <!-- Prism.js for Syntax Highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-atom-dark.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-cpp.min.js"></script>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-atom-dark.min.css" rel="stylesheet" /> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-cpp.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai-sublime.min.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -84,7 +89,7 @@
         </section>
 
         <article class="content">
-            <section id="content-pointer">
+            <section class="blog-section" id="content-pointer">
                 <header>
                     <h1>Content</h1>
                     <ul>
@@ -97,13 +102,13 @@
             <header>
                 <!-- <h1>Difference Between Different Pointers in C++</h1> -->
                 <p>The first thing comes to mind when we hear about pointers in C++ is</p>
-                <img src="https://i.pinimg.com/originals/af/b4/a8/afb4a86cf357fcbe2a372be2b5e46172.gif" alt="Pointer"
-                    class="image" style="width: 40%; display: block; margin: 0 auto;">
+                <img src="https://i.pinimg.com/originals/af/b4/a8/afb4a86cf357fcbe2a372be2b5e46172.gif" alt=""
+                    class="content-image" style="width: 40%; display: block; margin: 0 auto;">
                 <p>In this blog, we will discuss raw pointers, smart pointers, and their differences with C++ code
                     snippets.</p>
             </header>
 
-            <section id="what-is-a-pointer">
+            <section class="blog-section" id="what-is-a-pointer">
                 <header>
                     <h1>What is a Pointer?</h1>
                     <p>So according to Wikipedia, <i>"a pointer is an object in many programming
@@ -137,40 +142,43 @@
                             hold
                             the actual value of the variable but just its location (just like the note with the home
                             address doesn’t contain the home but shows where to find it).</li>
+                    </ul>
 
-                        <img src="https://lh3.googleusercontent.com/pw/AP1GczOkTT6vMwqV1vgsFavk2YEvFNt9cDClbBaSDCM182yJ_t5tOMAD0vXjhuZp2maRiadS0zzlLHSA2SEGUueUEmXqD9LMraX01kxP4rw-vdrqUj4gN4yD=w2400"
-                            alt="Address" class="image">
-                        <p></p>
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOkTT6vMwqV1vgsFavk2YEvFNt9cDClbBaSDCM182yJ_t5tOMAD0vXjhuZp2maRiadS0zzlLHSA2SEGUueUEmXqD9LMraX01kxP4rw-vdrqUj4gN4yD=w2400"
+                        alt="" class="content-image">
+                    <p></p>
 
-                        <p>Just like you can give your home address to multiple friends, you can have multiple pointers
-                            pointing to the same memory location. This is useful for sharing data between different
-                            parts
-                            of a program.</p>
+                    <p>Just like you can give your home address to multiple friends, you can have multiple pointers
+                        pointing to the same memory location. This is useful for sharing data between different
+                        parts
+                        of a program.</p>
 
-                        <p>However, if you lose the note with your home address, you won’t be able to find your home.
-                            Similarly, if you lose track of a pointer, you won’t be able to access the data it points
-                            to.
-                        </p>
+                    <p>However, if you lose the note with your home address, you won’t be able to find your home.
+                        Similarly, if you lose track of a pointer, you won’t be able to access the data it points
+                        to.
+                    </p>
 
-                        <ul>
-                            <b>
-                                <li>Home = Variable</li>
-                                <li>Address = Memory Address</li>
-                                <li>Address Note = Pointer</li>
-                                <li>Visiting the Home = Dereferencing the Pointer</li>
-                                <li>Changing Items in the Home = Modifying the Variable through the Pointer</li>
-                            </b>
-                        </ul>
-                        <p></p>
-                        <p>Pointers are a powerful feature of C++ that allow for dynamic memory allocation, data
-                            manipulation, and more. However, they require careful handling to avoid memory leaks and
-                            undefined behavior.</p>
+                    <ul>
+                        <b>
+                            <li>Home = Variable</li>
+                            <li>Address = Memory Address</li>
+                            <li>Address Note = Pointer</li>
+                            <li>Visiting the Home = Dereferencing the Pointer</li>
+                            <li>Changing Items in the Home = Modifying the Variable through the Pointer</li>
+                        </b>
+                    </ul>
+                    <p></p>
 
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNcSemPoYSAJxj7UnuYTQWXjPsjSCuSGibUhEMh43132LpsEMlN-9YM50Gnws3c4cMIzVgEl0RVKT8lf-bg_lINe8uF47beI2_7yPf26XHSSP9eBncv=w2400"
+                        alt="" class="content-image">
 
+                    <p>Pointers are a powerful feature of C++ that allow for dynamic memory allocation, data
+                        manipulation, and more. However, they require careful handling to avoid memory leaks and
+                        undefined behavior.</p>
                 </header>
             </section>
 
-            <section id="types-of-pointers">
+            <section class="blog-section" id="types-of-pointers">
                 <header>
                     <h1>Types of Pointers</h1>
                     <p>Now that we understand the basics of pointers, let’s explore the different types of pointers
@@ -187,17 +195,17 @@
                         <li><a href="#smart-pointers">Smart Pointer</a></li>
                     </ul>
                     <img src="https://lh3.googleusercontent.com/pw/AP1GczMO81lOB8lM1APj3qoWipxRbUDti5bCh2TrDRa2L4bG9DOQhSxED7hhe8Dci81NZobkbzY9HN1odxc7ropsLluE9vSK0nVcUySBEL5KEGLbtlTZNLn5=w2400"
-                        alt="Address" class="image">
+                        alt="Address" class="content-image">
                     <p>In this blog, we will discuss raw pointers, smart pointers, and their differences with C++ code
                         snippets.</p>
                 </header>
             </section>
 
-            <section id="null-pointer">
+            <section class="blog-section" id="null-pointer">
                 <h2>Null Pointer</h2>
                 <p>A null pointer is a pointer that does not point to any object or function.</p>
                 <div class="code-snippet">
-                    <pre><code class="language-cpp">int* p = nullptr; // C++ 11
+                    <pre><code class="theme-atom-one-dark">int* p = nullptr; // C++ 11
 int *p = NULL; // C++ 98</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
                 </div>
@@ -222,12 +230,12 @@ int *p = NULL; // C++ 98</code></pre>
                 </ul>
             </section>
 
-            <section id="void-pointer">
+            <section class="blog-section" id="void-pointer">
                 <h2>Void Pointer</h2>
                 <p>A pointer that can point to any data type but cannot be dereferenced directly without casting. It is
                     often used for generic programming.</p>
                 <div class="code-snippet">
-                    <pre><code class="language-cpp">void* ptr;
+                    <pre><code class="cpp">void* ptr;
 int x = 10;
 ptr = &x; // ptr points to an int</code></pre>
                     <button class="copy-button" aria-label="Copy code">Copy</button>
@@ -252,7 +260,7 @@ ptr = &x; // ptr points to an int</code></pre>
                 </ul>
             </section>
 
-            <section id="pointer-to-pointer">
+            <section class="blog-section" id="pointer-to-pointer">
                 <h2>Pointer to Pointer</h2>
                 <p>A pointer that holds the address of another pointer. This is useful for dynamic memory allocation and
                     multi-dimensional arrays.</p>
@@ -280,13 +288,13 @@ ptr = &x; // ptr points to an int</code></pre>
                 </ul>
             </section>
 
-            <section id="function-pointer">
+            <section class="blog-section" id="function-pointer">
                 <h2>Function Pointer</h2>
                 <p> A pointer that points to a function instead of a variable. It allows you to call functions
                     dynamically.</p>
                 <div class="code-snippet">
-                    <pre><code class="language-cpp">void (*funcPtr)(int); // pointer to a function taking an int argument</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
+                    <pre><code class="theme-one-dark-atom language-cpp">void (*funcPtr)(int); // pointer to a function taking an int argument</code></pre>
+                    <button class="copy-button">Copy</button>
                 </div>
 
                 <h5>Advantages</h5>
@@ -308,7 +316,7 @@ ptr = &x; // ptr points to an int</code></pre>
                 </ul>
             </section>
 
-            <section id="array-pointer">
+            <section class="blog-section" id="array-pointer">
                 <h2>Array Pointer</h2>
                 <p> A pointer that points to the first element of an array. It is commonly used for iterating through
                     arrays.</p>
@@ -338,7 +346,7 @@ int* ptr = arr; // ptr points to the first element of arr</code></pre>
                 </ul>
             </section>
 
-            <section id="const-pointer">
+            <section class="blog-section" id="const-pointer">
                 <h2>Const Pointer</h2>
                 <p> A pointer that points to a constant value. The value it points to cannot be modified through the
                     pointer.</p>
@@ -367,7 +375,7 @@ int* ptr = arr; // ptr points to the first element of arr</code></pre>
                 </ul>
             </section>
 
-            <section id="pointer-to-const">
+            <section class="blog-section" id="pointer-to-const">
                 <h2>Pointer to Constant</h2>
                 <p> A constant pointer that cannot be reassigned to point to another memory address after its
                     initialization.</p>
@@ -397,7 +405,7 @@ int* ptr = arr; // ptr points to the first element of arr</code></pre>
             </section>
 
 
-            <section id="raw-pointers">
+            <section class="blog-section" id="raw-pointers">
                 <h2>Raw Pointers</h2>
                 <p>Raw pointers are the simplest form of pointers in C++. Here's an example:</p>
                 <div class="code-snippet">
@@ -424,7 +432,7 @@ std::cout << "Value of a: " << *p << std::endl;</code></pre>
             </section>
 
 
-            <section id="smart-pointers">
+            <section class="blog-section" id="smart-pointers">
                 <h2>Smart Pointers</h2>
                 <p>Smart pointers are objects that act like pointers but provide automatic memory management.</p>
                 <div class="code-snippet">
@@ -437,7 +445,7 @@ std::cout << "Value: " << *p << std::endl;</code></pre>
                 </div>
             </section>
 
-            <section id="shared-pointers">
+            <section class="blog-section" id="shared-pointers">
                 <h2>Shared Pointers</h2>
                 <p>Shared pointers allow multiple pointers to share ownership of an object.</p>
                 <div class="code-snippet">
@@ -451,7 +459,7 @@ std::cout << "Value: " << *p1 << std::endl;</code></pre>
                 </div>
             </section>
 
-            <section id="weak-pointers">
+            <section class="blog-section" id="weak-pointers">
                 <h2>Weak Pointers</h2>
                 <p>Weak pointers provide a way to reference an object without affecting its lifetime.</p>
                 <div class="code-snippet">
@@ -487,6 +495,7 @@ if (auto sp = p2.lock()) { // check if p1 is still valid
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/js/splide.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>
