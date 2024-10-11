@@ -187,7 +187,7 @@ footer,
 header,
 nav,
 section {
-    display: block
+    display: block;
 }
 
 h1 {
