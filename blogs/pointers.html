@@ -34,8 +34,8 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-cpp.min.js"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai-sublime.min.css" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai-sublime.min.css" rel="stylesheet"> -->
 
 
 </head>
@@ -94,6 +94,7 @@
                     <h1>Content</h1>
                     <ul>
                         <li><a href="#what-is-a-pointer">What is a Pointer</a></li>
+                        <li><a href="#why-pointers">Why Use Pointers</a></li>
                         <li><a href="#types-of-pointers">Types of Pointers</a></li>
                     </ul>
                 </header>
@@ -170,11 +171,33 @@
                     <p></p>
 
                     <img src="https://lh3.googleusercontent.com/pw/AP1GczNcSemPoYSAJxj7UnuYTQWXjPsjSCuSGibUhEMh43132LpsEMlN-9YM50Gnws3c4cMIzVgEl0RVKT8lf-bg_lINe8uF47beI2_7yPf26XHSSP9eBncv=w2400"
-                        alt="" class="content-image">
+                        alt="" class="content-image" style="width: 75%; display: block; margin: 0 auto;">
 
                     <p>Pointers are a powerful feature of C++ that allow for dynamic memory allocation, data
                         manipulation, and more. However, they require careful handling to avoid memory leaks and
                         undefined behavior.</p>
+                </header>
+            </section>
+
+            <section class="blog-section" id="why-pointers">
+                <header>
+                    <h1>Why Use Pointers?</h1>
+                    <p>Pointers are a fundamental concept in C++ and are used for various reasons:</p>
+                    <ul>
+                        <li><b>Dynamic Memory Allocation</b>: Pointers allow you to allocate memory dynamically at
+                            runtime, enabling flexible memory management.</li>
+                        <li><b>Passing Parameters by Reference</b>: Pointers can be used to pass parameters by
+                            reference, allowing functions to modify the original data.</li>
+                        <li><b>Efficient Data Access</b>: Pointers provide direct access to memory locations, enabling
+                            efficient data manipulation.</li>
+                        <li><b>Pointer Arithmetic</b>: Pointers support arithmetic operations, such as incrementing and
+                            decrementing, for navigating through data structures.</li>
+                        <li><b>Function Pointers</b>: Pointers can point to functions, enabling dynamic function calls
+                            and callbacks.</li>
+                    </ul>
+                    <p>While pointers offer powerful capabilities, they also come with risks such as memory leaks,
+                        dangling pointers, and undefined behavior. It is essential to use pointers carefully and
+                        follow best practices to avoid common pitfalls.</p>
                 </header>
             </section>
 
@@ -495,7 +518,7 @@ if (auto sp = p2.lock()) { // check if p1 is still valid
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/js/splide.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
 </body>
 
 </html>
