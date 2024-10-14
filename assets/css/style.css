@@ -2392,12 +2392,20 @@ p {
     border: #000000;
 }
 
+
+
 .blog-item {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    display: flex;
+    /* Use flexbox */
+    flex-direction: column;
+    /* Stack content vertically */
+    align-items: center;
+    /* Horizontally center all content (including the image) */
 }
 
 .blog-item:hover {
@@ -2411,7 +2419,7 @@ p {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
-    
+    display: block;
 }
 
 /* Blog Title */
@@ -2426,6 +2434,28 @@ p {
     font-size: 1rem;
     margin-bottom: 15px;
     color: #666;
+}
+
+@media screen and (max-width: 640px) {
+    .blog-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        max-width: 640px;
+        margin: 10 auto;
+    }
+
+    .blog-title {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    /* Blog Description */
+    .blog-description {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+        color: #666;
+    }
 }
 
 /* Read More Link */
