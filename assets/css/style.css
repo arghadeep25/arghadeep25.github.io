@@ -238,6 +238,14 @@ h6 {
     background-size: cover;
 }
 
+@media screen and (max-width: 768px) {
+    #pxwrm {
+        /* background-attachment: scroll; */
+        background: url("https://lh3.googleusercontent.com/pw/AP1GczNGYyObS5UIoKYuuGmvWUUqddCDiwxyjnuJmoLtYsOA3_uczirWwibmC-KhinVXWiVYwwki4_P1JOQyNgybQWux0xxbgtmABEiULu0iKGsigBfwYARK=w2400") top center;
+    }
+}
+
+
 #pxwrm:before {
     content: "";
     background: rgba(5, 13, 24, 0.3);
