@@ -1,0 +1,70 @@
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    z-index: 1001;
+
+}
+
+nav ul li a:hover {
+    color: #FF6C28;
+}
+
+/* Hide the menu on small screens */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 1000;
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 20px 0;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    /* Hamburger Menu Icon */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 2rem;
+        color: white;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+}
+
+/* Show regular menu on wide screens */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+}

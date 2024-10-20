@@ -1,0 +1,118 @@
+#skills {
+    padding: 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+    background-image: url('./../bg/bg-dark.png');
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Skills Header Styling */
+#skills h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #ff4d5a;
+}
+
+/* Skills Grid Styling */
+.skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    /* 10 columns for wide screens */
+    gap: 40px;
+    justify-items: center;
+    align-items: center;
+}
+
+/* Image Styling */
+.skillsGrid img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    align-items: center;
+}
+
+.skillsGrid img:hover {
+    transform: scale(1.1);
+    /* Slight zoom-in effect on hover */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .skillsGrid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .skillsGrid img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+}
+
+.robot-image {
+    width: 150px;
+    /* Adjust as needed */
+    position: absolute;
+    /* Positioning for animation */
+    left: -150px;
+    /* Start off the screen */
+    animation: moveRight 5s linear infinite;
+    /* Animation properties */
+}
+
+@keyframes moveRight {
+    0% {
+        left: -150px;
+        /* Start position */
+    }
+
+    100% {
+        left: calc(100% + 150px);
+        /* End position (off the right side of the screen) */
+    }
+}
+
+.drone-image {
+    width: 80px;
+    /* Adjust as needed */
+    position: absolute;
+    /* Positioning for animation */
+    top: 20%;
+    /* Adjust to position above the robot */
+    left: 50%;
+    /* Center it initially */
+    transform: translateX(-50%);
+    /* Center horizontally */
+    animation: fly 5s linear infinite;
+    /* Animation properties */
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(-50%, 0);
+        /* Start position */
+    }
+
+    25% {
+        transform: translate(-50%, -10%);
+        /* Move up */
+    }
+
+    50% {
+        transform: translate(-50%, 0);
+        /* Move back down */
+    }
+
+    75% {
+        transform: translate(-50%, -5%);
+        /* Small up movement */
+    }
+
+    100% {
+        transform: translate(-50%, 0);
+        /* Back to starting position */
+    }
+}

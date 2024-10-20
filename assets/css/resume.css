@@ -1,0 +1,135 @@
+#resume {
+    background-image: url('./../bg/bg-dark.png');
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 8;
+}
+
+
+#resume .resume-container {
+    position: relative;
+    /* min-width: 300px; */
+    /* max-width: 1500px; */
+    /* margin: 10% 90%; */
+    max-width: fit-content;
+    max-height: fit-content;
+    /* text-align: center; */
+    position: relative;
+    /* padding-top: 10px; */
+    /* padding: 60px; */
+    /* margin: 20px; */
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#resume .section-title h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    /* margin-bottom: 10px; */
+    color: #ff4d5a;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+#resume .section-title h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    /* margin-bottom: 40px; */
+    /* color: #333; */
+    color: #ff4d5a;
+}
+
+/* Titles for different sections in the resume */
+#resume .resume-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff4d5a;
+    /* margin-bottom: 20px; */
+    letter-spacing: 0.1em;
+}
+
+#resume .resume-item h4 {
+    font-size: 18px;
+    font-weight: 600;
+    /* color: #bba9a0; */
+    color: #cfbdb4;
+
+}
+
+#resume .resume-item h5 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666;
+}
+
+#resume .resume-item p,
+.resume-item ul li {
+    font-size: 16px;
+    /* color: #555; */
+    /* color: #ffebe1; */
+    color: #e0d4ce;
+    margin-bottom: 10px;
+}
+
+#resume .resume-item {
+    padding: 20px;
+    /* margin-bottom: 20px; */
+    border-left: 3px solid #ff4d5a;
+}
+
+#resume ul {
+    /* list-style: none; */
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+#resume .resume ul li {
+    position: relative;
+    padding-left: 25px;
+    /* margin-bottom: 10px; */
+    list-style-type: disc;
+    /* Use default disc bullet */
+    color: #ff4d5a;
+    
+    /* Set the bullet color to orange */
+}
+
+#resume .resume ul li:before {
+    content: '\f00c';
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    left: 0;
+    /* top: 2px; */
+    font-size: 12px;
+    color: #ff4d5a;
+}
+
+@media (max-width: 768px) {
+    #resume .resume-item {
+        margin-bottom: 15px;
+    }
+
+    #resume h4,
+    #resume h5,
+    #resume p {
+        font-size: 14px;
+    }
+}
+
+resume-section {
+    height: 400vh;
+    height: fit-content;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    /* color: white; */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-image: url('./../bg/bg-dark.png');
+}

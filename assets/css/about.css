@@ -1,0 +1,71 @@
+#about {
+    background-image: url('./../bg/bg-dark.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-bottom: 100px; */
+    z-index: 9;
+}
+
+#about .about-container {
+    position: relative;
+    /* min-width: 300px; */
+    /* max-width: 1500px; */
+    max-width: fit-content;
+    max-height: fit-content;
+    margin-left: 20%;
+    margin-right: 20%;
+
+    position: relative;
+}
+
+#about h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    /* color: #FF6C28; */
+    color: #ff4d5a;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#about p {
+    font-size: 1.rem;
+    color: #ffebe1;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+    #about h1 {
+        font-size: 1.5rem;
+    }
+
+    #about p {
+        font-size: 0.75rem;
+    }
+}
+
+#about .about-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Optional: Center content */
+}
+
+#about .about-image {
+    width: 250px; /* Adjust as needed */
+    height: 250px; /* Adjust as needed */
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image covers the container */
+    margin-right: 20px; /* Space between image and text */
+}
+
+#about .text-content {
+    max-width: 1000px; /* Optional: Limit the width of the text */
+}
