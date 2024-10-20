@@ -1,0 +1,17 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier">
+<defs>
+<style>.cls-1{fill:none;stroke:#ff4d5a;stroke-miterlimit:10;stroke-width:0.9359999999999999;}</style>
+</defs>
+<circle class="cls-1" cx="4.37" cy="18.67" r="2.87"/>
+<path class="cls-1" d="M16.8,19.63a1.89,1.89,0,1,1-.25-1A2,2,0,0,1,16.8,19.63Z"/>
+<path class="cls-1" d="M16.8,14.85v4.78a2,2,0,0,0-.25-1,1.92,1.92,0,0,0-3.57,1H7.24v-1A2.89,2.89,0,0,0,4.37,15.8V5.28h6.7l3.48,9.57Z"/>
+<line class="cls-1" x1="16.8" y1="1.46" x2="16.8" y2="18.67"/>
+<line class="cls-1" x1="23.5" y1="18.67" x2="16.8" y2="18.67"/>
+<line class="cls-1" x1="4.37" y1="14.85" x2="11.07" y2="14.85"/>
+</g>
+</svg>
