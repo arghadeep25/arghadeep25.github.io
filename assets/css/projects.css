@@ -67,6 +67,7 @@
     padding-right: 20px; /* Adjust padding between the two columns */
 }
 
+
 .drone-image {
     width: 80px;
     animation: flyInZone 7s linear infinite;
@@ -76,6 +77,11 @@
 .robot-image {
     width: 150px;
     animation: moveWithinGrid 5s linear infinite;
+    position: absolute;
+}
+
+.static-image {
+    width: 250px;
     position: absolute;
 }
 
@@ -132,3 +138,4 @@
         text-align: center; /* Center text and images */
     }
 }
+
