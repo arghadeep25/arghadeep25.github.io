@@ -1,6 +1,6 @@
 #pixworm {
     background-image: url('pxwrm-bg.png');
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0.9);
     filter: brightness(0.7);
     background-size: cover;
     background-position: center;
