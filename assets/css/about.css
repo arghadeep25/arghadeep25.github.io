@@ -1,5 +1,6 @@
 #about {
     background-image: url('./../bg/bg-dark.png');
+    background-color: rgba(0,0,0,0.9);
     background-size: cover;
     background-position: center;
     position: relative;
