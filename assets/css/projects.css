@@ -101,10 +101,22 @@
 /* Confine the robot movement within the grid, no overflow */
 @keyframes moveWithinGrid {
     0% {
-        left: -300px; /* Start off the screen */
+        left: -350px; /* Start off the screen */
+        transform: scaleX(1); /* Facing right */
     }
+
+    50% {
+        left: calc(100% - 450px); /* Reaches the right end */
+        transform: scaleX(1); /* Facing right */
+    }
+
+    51% {
+        transform: scaleX(-1); /* Flip horizontally (start facing left) */
+    }
+
     100% {
-        left: calc(100% - 450px); /* Stop within the grid */
+        left: -350px; /* Move back to the left */
+        transform: scaleX(-1); /* Facing left */
     }
 }
 
