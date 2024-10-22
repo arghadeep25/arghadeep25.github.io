@@ -2,8 +2,8 @@ const canvas = document.getElementById('stars-canvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
 let numStars = 800; // Number of stars
-let connectionRadius = 100; // Radius for connecting stars
-let starRadius = 1; // Size of each star
+let connectionRadius = 120; // Radius for connecting stars
+let starRadius = 1.1; // Size of each star
 
 // Resize the canvas to the full window
 canvas.width = window.innerWidth;
@@ -58,7 +58,7 @@ function draw() {
             if (distance(mouse.x, mouse.y, star.x, star.y) < connectionRadius) {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, starRadius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.fillStyle = 'rgba(0, 0, 255, 0.9)';
                 ctx.fill();
             }
         });
@@ -71,7 +71,7 @@ function draw() {
                         ctx.beginPath();
                         ctx.moveTo(star.x, star.y);
                         ctx.lineTo(otherStar.x, otherStar.y);
-                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'; // Subtle line effect
+                        ctx.strokeStyle = 'rgba(255, 100, 255, 0.1)'; // Subtle line effect
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
