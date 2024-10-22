@@ -40,15 +40,31 @@
     animation: shine 5s linear infinite;
 }
 
+#home h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    margin-bottom: 10px;
+    /* color: #FF6C28; */
+    color: #ffffff;
+    font-weight: 100;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    /* animation: shine 5s linear infinite; */
+}
+
 #home p {
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
     /* color: #FF6C28; */
     color: #ff4d5a;
+    font-weight: 100;
 }
 
 .typed {
     color: white;
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
 }
 
 @media screen and (max-width: 768px) {
