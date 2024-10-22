@@ -58,3 +58,7 @@ window.onload = function () {
         loop: true
     });
 };
+
+document.querySelector('.scroll-down').addEventListener('click', function() {
+    document.getElementById('next-section').scrollIntoView({ behavior: 'smooth' });
+});
