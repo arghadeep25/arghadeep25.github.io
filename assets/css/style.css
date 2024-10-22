@@ -62,3 +62,32 @@ footer {
     background: #333;
     color: white;
 }
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px; /* Adjust the distance from the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem; /* For Unicode arrow, use font size */
+    color: #ff4d5a;
+    animation: bounce 2s infinite; /* Apply animation */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* For the SVG arrow */
+.scroll-down svg {
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0); /* Start at original position */
+    }
+    40% {
+        transform: translateY(10px); /* Move down 10px */
+    }
+    60% {
+        transform: translateY(5px); /* Move back up slightly */
+    }
+}
