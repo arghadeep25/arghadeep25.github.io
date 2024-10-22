@@ -1,8 +1,22 @@
 #skills {
     padding: 50px;
     background-color: rgba(0, 0, 0, 0.9);
-    background-image: url('./../bg/bg-dark.png');
+    /* background-image: url('./../bg/bg-dark.png'); */
     text-align: center;
+    padding: 50px 0;
+}
+
+#skills h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    /* color: #FF6C28; */
+    color: #ff4d5a;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 40px;
 }
 
 /* Skills Header Styling */
@@ -15,7 +29,8 @@
 /* Rectangular Grid Styling */
 .skillsGrid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 8 columns */
+    grid-template-columns: repeat(6, 1fr);
+    /* 8 columns */
     gap: 20px;
     justify-items: center;
     align-items: center;
@@ -26,18 +41,23 @@
 /* Image Wrapper with Landscape Shape and Transparent Background */
 .skillsGrid .hex-wrapper {
     position: relative;
-    width: 180px; /* Wider for landscape mode */
-    height: 150px; /* Shorter for landscape mode */
+    width: 180px;
+    /* Wider for landscape mode */
+    height: 150px;
+    /* Shorter for landscape mode */
     /* background: linear-gradient(135deg, #ff4d5a, #6363cf); */
     /* border: linear-gradient(135deg, #ff4d5a, #6363cf); */
-    border: 2px solid #ff4d5a; /* Thin border */
-    padding: 2px; /* Thin border */
+    border: 2px solid #ff4d5a;
+    /* Thin border */
+    padding: 2px;
+    /* Thin border */
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 12px; /* Rounded corners */
+    border-radius: 12px;
+    /* Rounded corners */
     /* background-color: transparent;  */
 }
 
@@ -47,11 +67,14 @@
 
 /* Image Styling within the Landscape Rectangle */
 .skillsGrid img {
-    width: 80px; /* Adjust image width */
-    height: 80px; /* Adjust image height */
+    width: 80px;
+    /* Adjust image width */
+    height: 80px;
+    /* Adjust image height */
     object-fit: contain;
     /* background-color: #1a1a1a; */
-    border-radius: 10px; /* Ensure image corners are rounded */
+    border-radius: 10px;
+    /* Ensure image corners are rounded */
 }
 
 /* Text below the image */
@@ -59,7 +82,8 @@
     color: white;
     font-size: 18px;
     font-weight: 400;
-    margin-top: 8px; /* Space between the image and text */
+    margin-top: 8px;
+    /* Space between the image and text */
     text-align: center;
 }
 
@@ -72,15 +96,18 @@
 
     .skillsGrid .hex-wrapper {
         width: 120px;
-        height: 90px; /* Smaller size for mobile screens */
+        height: 90px;
+        /* Smaller size for mobile screens */
     }
 
     .skillsGrid img {
-        width: 60px; /* Smaller image */
+        width: 60px;
+        /* Smaller image */
         height: 60px;
     }
 
     .skillsGrid .hex-wrapper span {
-        font-size: 12px; /* Smaller text on mobile */
+        font-size: 12px;
+        /* Smaller text on mobile */
     }
 }
