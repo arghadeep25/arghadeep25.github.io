@@ -23,7 +23,7 @@ const canvasBackground = document.getElementById('background-stars-canvas');
                 y: Math.random() * canvasBackground.height,
                 dx: (Math.random() - 0.5) * 0.2, // Slower movement
                 dy: (Math.random() - 0.5) * 0.2, // Slower movement
-                color: Math.random() < 0.5 ? 'white' : 'rgb(165, 42, 42)' // White and purple-red stars
+                color: Math.random() < 0.5 ? 'rgba(0, 100, 255, 0.6)' : 'rgba(165, 42, 42, 0.6)' // White and purple-red stars
             });
         }
     }
