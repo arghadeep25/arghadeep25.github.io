@@ -215,7 +215,7 @@
 }
 
 .slam-image {
-    width: 350px;
+    width: 100%;
     /* Reduce size of path planning image */
     height: auto;
     /* Maintain aspect ratio */
