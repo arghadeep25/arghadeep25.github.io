@@ -62,3 +62,18 @@ window.onload = function () {
 document.querySelector('.scroll-down').addEventListener('click', function() {
     document.getElementById('next-section').scrollIntoView({ behavior: 'smooth' });
 });
+
+
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('main-header');
+    const homeSection = document.getElementById('home');
+
+    // Get the bottom position of the "Home" section
+    const homeBottom = homeSection.getBoundingClientRect().bottom;
+
+    if (window.scrollY > homeBottom) {
+        header.classList.add('scrolled');  // Show header after "Home" section
+    } else {
+        header.classList.remove('scrolled'); // Hide header in "Home" section
+    }
+});
