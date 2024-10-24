@@ -288,7 +288,7 @@
 /* Confine the robot movement within the grid, no overflow */
 @keyframes moveWithinGrid {
     0% {
-        left: -350px;
+        left: -200px;
         /* Start off the screen */
         transform: scaleX(1);
         /* Facing right */
