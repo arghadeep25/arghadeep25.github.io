@@ -91,3 +91,23 @@ footer {
         transform: translateY(5px); /* Move back up slightly */
     }
 }
+
+
+#main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust transparency */
+    z-index: 1000;
+    padding: 10px 0;
+    display: none; /* Initially hidden */
+}
+
+#main-header.scrolled {
+    display: block; /* Make header visible after scrolling */
+}
+
+#main-header ul {
+    display: flex;
+    justify-content: center;
+}
