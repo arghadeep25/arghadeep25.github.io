@@ -22,6 +22,35 @@
     /* Ensure content doesn't overflow */
 }
 
+@media screen and (max-width: 768px) {
+    #projects .row {
+        display: flex;
+        flex-direction: column;
+        /* Stack elements vertically */
+        padding: 0 5%;
+        gap: 10px;
+    }
+
+    .image,
+    .text {
+        text-align: center;
+        /* Center text and images */
+    }
+
+    /* Ensuring correct order for smaller screens */
+    .title {
+        order: -1;
+    }
+
+    .image {
+        order: 1;
+    }
+
+    .text {
+        order: 2;
+    }
+}
+
 
 #projects .title h1 {
     font-size: 2.5rem;
@@ -88,7 +117,7 @@
     .text {
         font-size: 0.75rem;
     }
-    
+
 }
 
 
@@ -106,7 +135,7 @@
     .text h2 {
         font-size: 1rem;
     }
-    
+
 }
 
 .image {
@@ -159,7 +188,7 @@
 }
 
 .robot-image {
-    width: 150px;
+    width: 100px;
     animation: moveWithinGrid 5s linear infinite;
     position: absolute;
 }
@@ -194,7 +223,7 @@
 
 @media screen and (max-width: 768px) {
     .static-image {
-        width: 100%;
+        width: 80%;
         height: auto;
         position: relative;
     }
@@ -226,7 +255,7 @@
     }
 
     .slam-image {
-        width: 250px;
+        width: 200px;
         /* Reduce size of path planning image */
         height: auto;
         /* Maintain aspect ratio */
@@ -282,6 +311,72 @@
         /* Move back to the left */
         transform: scaleX(-1);
         /* Facing left */
+    }
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .drone-image {
+        animation: flyInZoneSmall 7s linear infinite;
+
+        /* Adjust size if needed */
+    }
+
+    .robot-image {
+        animation: moveWithinGridSmall 5s linear infinite;
+        /* Adjust size if needed */
+    }
+
+    /* Drone's movement range on smaller screens */
+    @keyframes flyInZoneSmall {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        25% {
+            transform: translate(10px, -10px);
+            /* Reduce movement */
+        }
+
+        50% {
+            transform: translate(-10px, -20px);
+            /* Reduce movement */
+        }
+
+        75% {
+            transform: translate(-10px, 10px);
+            /* Reduce movement */
+        }
+
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    /* Robot's movement confined to smaller screen size */
+    @keyframes moveWithinGridSmall {
+        0% {
+            left: -150px;
+            /* Smaller start point */
+            transform: scaleX(1);
+        }
+
+        50% {
+            left: calc(100% - 200px);
+            /* Adjust to fit smaller screens */
+            transform: scaleX(1);
+        }
+
+        51% {
+            transform: scaleX(-1);
+            /* Flip */
+        }
+
+        100% {
+            left: -150px;
+            /* Return to smaller start point */
+            transform: scaleX(-1);
+        }
     }
 }
 
