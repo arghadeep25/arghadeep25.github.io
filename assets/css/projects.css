@@ -33,6 +33,13 @@
     text-transform: uppercase;
 }
 
+@media screen and (max-width: 768px) {
+    #projects .title h1 {
+        font-size: 1.5rem;
+    }
+
+}
+
 #projects .title h2 {
     font-size: 1.2rem;
     margin-bottom: 30px;
@@ -41,6 +48,13 @@
     letter-spacing: 0.1em;
     text-align: center;
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+    #projects .title h2 {
+        font-size: 1rem;
+    }
+
 }
 
 #projects p {
@@ -52,6 +66,15 @@
     margin-right: 10%;
 }
 
+@media screen and (max-width: 768px) {
+    #projects p {
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 0.75rem;
+    }
+
+}
+
 .text {
     font-size: 1rem;
     color: #ffebe1;
@@ -59,6 +82,13 @@
     width: 100%;
     margin: 0 auto;
     display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .text {
+        font-size: 0.75rem;
+    }
+    
 }
 
 
@@ -70,6 +100,13 @@
     letter-spacing: 0.1em;
     text-align: center;
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+    .text h2 {
+        font-size: 1rem;
+    }
+    
 }
 
 .image {
@@ -104,6 +141,16 @@
     /* Adjust padding between the two columns */
 }
 
+@media screen and (max-width: 768px) {
+
+    .text-left,
+    .text-right {
+        padding-right: 0;
+        /* Remove padding */
+    }
+
+}
+
 
 .drone-image {
     width: 80px;
@@ -129,6 +176,61 @@
     /* Reduce size of path planning image */
     height: auto;
     /* Maintain aspect ratio */
+}
+
+.building-image {
+    width: 900px;
+    /* Reduce size of path planning image */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.slam-image {
+    width: 350px;
+    /* Reduce size of path planning image */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+@media screen and (max-width: 768px) {
+    .static-image {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .drone-image {
+        width: 60px;
+        animation: flyInZone 7s linear infinite;
+        position: absolute;
+    }
+
+    .robot-image {
+        width: 100px;
+        animation: moveWithinGrid 5s linear infinite;
+        position: absolute;
+    }
+
+    .path-planning-image {
+        width: 200px;
+        /* Reduce size of path planning image */
+        height: auto;
+        /* Maintain aspect ratio */
+    }
+
+    .building-image {
+        width: 700px;
+        /* Reduce size of path planning image */
+        height: auto;
+        /* Maintain aspect ratio */
+    }
+
+    .slam-image {
+        width: 250px;
+        /* Reduce size of path planning image */
+        height: auto;
+        /* Maintain aspect ratio */
+    }
 }
 
 /* Confine the drone's animation within the row's boundaries */

@@ -26,6 +26,7 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #ff4d5a;
+    font-weight: 700;
 }
 
 /* Hide the menu on small screens */

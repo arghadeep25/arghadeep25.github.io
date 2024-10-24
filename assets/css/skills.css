@@ -19,6 +19,14 @@
     padding-bottom: 40px;
 }
 
+@media screen and (max-width: 768px) {
+    #skills h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+}
+
 /* Skills Header Styling */
 #skills h2 {
     font-size: 2.5rem;
@@ -36,6 +44,15 @@
     align-items: center;
     position: relative;
     padding: 0% 10%;
+}
+
+@media screen and (max-width: 768px) {
+    .skillsGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 0% 5%;
+    }
+    
 }
 
 /* Image Wrapper with Landscape Shape and Transparent Background */
@@ -61,6 +78,16 @@
     /* background-color: transparent;  */
 }
 
+@media screen and (max-width: 768px) {
+    .skillsGrid .hex-wrapper {
+        width: 120px;
+        /* Wider for landscape mode */
+        height: 90px;
+        /* Shorter for landscape mode */
+    }
+    
+}
+
 .skillsGrid .hex-wrapper:hover {
     transform: scale(1.1);
 }
@@ -75,6 +102,16 @@
     /* background-color: #1a1a1a; */
     border-radius: 10px;
     /* Ensure image corners are rounded */
+}
+
+@media screen and (max-width: 768px) {
+    .skillsGrid img {
+        width: 60px;
+        /* Adjust image width */
+        height: 60px;
+        /* Adjust image height */
+    }
+    
 }
 
 /* Text below the image */
