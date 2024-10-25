@@ -189,7 +189,7 @@
 
 .robot-image {
     width: 100px;
-    animation: moveWithinGrid 5s linear infinite;
+    animation: moveWithinGrid 10s linear infinite;
     position: absolute;
 }
 
@@ -288,7 +288,7 @@
 /* Confine the robot movement within the grid, no overflow */
 @keyframes moveWithinGrid {
     0% {
-        left: -200px;
+        left: -250px;
         /* Start off the screen */
         transform: scaleX(1);
         /* Facing right */
@@ -307,7 +307,7 @@
     }
 
     100% {
-        left: -350px;
+        left: -250px;
         /* Move back to the left */
         transform: scaleX(-1);
         /* Facing left */
