@@ -4,7 +4,7 @@ let stars = [];
 const numStars = 350;
 const connectionRadius = 120;
 const starRadius = 1.1;
-const maxConnections = 3;
+const maxConnections = 1;
 const clusterRadius = Math.min(window.innerWidth, window.innerHeight) * 0.3;
 const starVisibilityRadius = Math.min(window.innerWidth, window.innerHeight) * 0.6;
 
@@ -39,7 +39,7 @@ function generateStars() {
             y: Math.random() * canvas.height,
             dx: (Math.random() - 0.5) * 0.5,
             dy: (Math.random() - 0.5) * 0.5,
-            color: Math.random() < 0.5 ? 'rgba(0, 100, 255, 0.5)' : 'rgba(165, 42, 42, 0.5)',
+            color: Math.random() < 0.5 ? 'rgba(0, 100, 255, 0.8)' : 'rgba(165, 42, 42, 0.8)',
             connections: 0 // Track the number of connections
         });
     }
@@ -87,7 +87,7 @@ function createConnections(star) {
                 ctx.beginPath();
                 ctx.moveTo(star.x, star.y);
                 ctx.lineTo(otherStar.x, otherStar.y);
-                ctx.strokeStyle = 'rgba(150, 150, 255, 0.2)';
+                ctx.strokeStyle = 'rgba(80, 177, 255, 0.3)';
                 ctx.lineWidth = 0.8;
                 ctx.stroke();
             }
