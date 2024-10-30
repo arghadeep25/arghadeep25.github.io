@@ -33,17 +33,30 @@ canvas.addEventListener('mousemove', (e) => {
 // Create stars with random movement, color, and initial connections
 function generateStars() {
     stars = [];
+    const maxAttempts = 5; // Limit attempts to avoid infinite loops
+
     for (let i = 0; i < numStars; i++) {
+        let x, y, tooClose, attempts = 0;
+
+        do {
+            x = Math.random() * canvas.width;
+            y = Math.random() * canvas.height;
+            tooClose = stars.some(otherStar => distance(x, y, otherStar.x, otherStar.y) < connectionRadius);
+            attempts++;
+        } while (tooClose && attempts < maxAttempts);
+
+        // Add the star regardless of spacing if max attempts reached
         stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
+            x: x,
+            y: y,
             dx: (Math.random() - 0.5) * 0.5,
             dy: (Math.random() - 0.5) * 0.5,
             color: Math.random() < 0.5 ? 'rgba(0, 100, 255, 0.8)' : 'rgba(165, 42, 42, 0.8)',
-            connections: 0 // Track the number of connections
+            connections: 0
         });
     }
 }
+
 
 // Draw the stars and create connections
 function draw() {
