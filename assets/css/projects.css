@@ -201,7 +201,7 @@
 }
 
 .path-planning-image {
-    width: 250px;
+    width: 50%;
     /* Reduce size of path planning image */
     height: auto;
     /* Maintain aspect ratio */
@@ -215,7 +215,7 @@
 }
 
 .slam-image {
-    width: 100%;
+    width: 50%;
     /* Reduce size of path planning image */
     height: auto;
     /* Maintain aspect ratio */
