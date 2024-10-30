@@ -9,24 +9,19 @@
 #projects .row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Create two equal columns */
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
     padding: 0 10%;
-    /* Add padding on both sides */
     gap: 20px;
-    /* Add space between columns */
     position: relative;
     overflow: hidden;
-    /* Ensure content doesn't overflow */
 }
 
 @media screen and (max-width: 768px) {
     #projects .row {
         display: flex;
         flex-direction: column;
-        /* Stack elements vertically */
         padding: 0 5%;
         gap: 10px;
     }
@@ -34,10 +29,8 @@
     .image,
     .text {
         text-align: center;
-        /* Center text and images */
     }
 
-    /* Ensuring correct order for smaller screens */
     .title {
         order: -1;
     }
@@ -153,12 +146,10 @@
 
 .image img {
     max-width: 80%;
-    /* Adjust size within container */
     height: auto;
     position: relative;
 }
 
-/* Padding between text and image columns */
 .text-left,
 .text-right {
     padding-right: 20px;
@@ -167,7 +158,6 @@
     width: 100%;
     margin: 0 auto;
     display: block;
-    /* Adjust padding between the two columns */
 }
 
 @media screen and (max-width: 768px) {
@@ -175,7 +165,6 @@
     .text-left,
     .text-right {
         padding-right: 0;
-        /* Remove padding */
     }
 
 }
@@ -197,28 +186,21 @@
     width: 100%;
     height: auto;
     position: relative;
-    /* position: absolute; */
 }
 
 .path-planning-image {
     width: 50%;
-    /* Reduce size of path planning image */
     height: auto;
-    /* Maintain aspect ratio */
 }
 
 .building-image {
     width: 900px;
-    /* Reduce size of path planning image */
     height: auto;
-    /* Maintain aspect ratio */
 }
 
 .slam-image {
     width: 50%;
-    /* Reduce size of path planning image */
     height: auto;
-    /* Maintain aspect ratio */
 }
 
 @media screen and (max-width: 768px) {
@@ -242,27 +224,20 @@
 
     .path-planning-image {
         width: 200px;
-        /* Reduce size of path planning image */
         height: auto;
-        /* Maintain aspect ratio */
     }
 
     .building-image {
         width: 700px;
-        /* Reduce size of path planning image */
         height: auto;
-        /* Maintain aspect ratio */
     }
 
     .slam-image {
         width: 200px;
-        /* Reduce size of path planning image */
         height: auto;
-        /* Maintain aspect ratio */
     }
 }
 
-/* Confine the drone's animation within the row's boundaries */
 @keyframes flyInZone {
     0% {
         transform: translate(0, 0);
@@ -285,49 +260,36 @@
     }
 }
 
-/* Confine the robot movement within the grid, no overflow */
 @keyframes moveWithinGrid {
     0% {
         left: -250px;
-        /* Start off the screen */
         transform: scaleX(1);
-        /* Facing right */
     }
 
     50% {
         left: calc(100% - 450px);
-        /* Reaches the right end */
         transform: scaleX(1);
-        /* Facing right */
     }
 
     51% {
         transform: scaleX(-1);
-        /* Flip horizontally (start facing left) */
     }
 
     100% {
         left: -250px;
-        /* Move back to the left */
         transform: scaleX(-1);
-        /* Facing left */
     }
 }
 
-/* Adjustments for smaller screens */
 @media screen and (max-width: 768px) {
     .drone-image {
         animation: flyInZoneSmall 7s linear infinite;
-
-        /* Adjust size if needed */
     }
 
     .robot-image {
         animation: moveWithinGridSmall 5s linear infinite;
-        /* Adjust size if needed */
     }
 
-    /* Drone's movement range on smaller screens */
     @keyframes flyInZoneSmall {
         0% {
             transform: translate(0, 0);
@@ -335,17 +297,14 @@
 
         25% {
             transform: translate(10px, -10px);
-            /* Reduce movement */
         }
 
         50% {
             transform: translate(-10px, -20px);
-            /* Reduce movement */
         }
 
         75% {
             transform: translate(-10px, 10px);
-            /* Reduce movement */
         }
 
         100% {
@@ -353,38 +312,31 @@
         }
     }
 
-    /* Robot's movement confined to smaller screen size */
     @keyframes moveWithinGridSmall {
         0% {
             left: -150px;
-            /* Smaller start point */
             transform: scaleX(1);
         }
 
         50% {
             left: calc(100% - 200px);
-            /* Adjust to fit smaller screens */
             transform: scaleX(1);
         }
 
         51% {
             transform: scaleX(-1);
-            /* Flip */
         }
 
         100% {
             left: -150px;
-            /* Return to smaller start point */
             transform: scaleX(-1);
         }
     }
 }
 
-/* Adjustments for smaller screens */
 @media screen and (max-width: 768px) {
     #projects .row {
         grid-template-columns: 1fr;
-        /* Stack columns vertically */
         padding: 0 5%;
         gap: 10px;
     }
@@ -392,6 +344,5 @@
     .image,
     .text {
         text-align: center;
-        /* Center text and images */
     }
 }
