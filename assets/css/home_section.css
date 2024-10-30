@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     background-image: url('./../bg/bg-dark.png');
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -35,15 +35,16 @@
     margin-bottom: 10px;
     /* color: #FF6C28; */
     color: #ff4d5a;
-    font-weight: 100;
+    font-weight: 300;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    animation: shine 5s linear infinite;
+    /* animation: shine 5s linear infinite; */
+    animation: focus-in-contract 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 #home h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 5rem;
+    font-size: 3.5rem;
     margin-bottom: 10px;
     /* color: #FF6C28; */
     color: #ffffff;
@@ -124,5 +125,19 @@
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes focus-in-contract {
+
+    0% {
+        letter-spacing: 1em;
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        filter: blur(0);
+        opacity: 1;
     }
 }
