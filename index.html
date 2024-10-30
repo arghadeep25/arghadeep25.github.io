@@ -36,19 +36,33 @@
 
 
     <!-- Sections -->
-    <section id="home" class="d-flex flex-column justify-content-center align-items-center">
+    <!-- <section id="home" class="d-flex flex-column justify-content-center align-items-center">
         <canvas id="stars-canvas"></canvas>
         <div class="home-container" data-aos="fade-in" data-aos-duration="1">
-            <!-- <h1>Hello, I'm</h1> -->
             <h2>Hello, I'm</h2>
             <h1>Arghadeep Mazumder</h1>
             <p>I'm a <span class="typed"
                     data-typed-items="Software Developer ..., Data Scientist ..., Photographer ..."></span></p>
         </div>
-        <!-- todo fix the scroll and glowing animate -->
+        
         <div class="scroll-down">
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"
                 stroke="#ff4d5a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9l6 6 6-6" />
+            </svg>
+        </div>
+    </section> -->
+
+    <section id="home" class="d-flex flex-column justify-content-center align-items-center">
+        <canvas id="stars-canvas"></canvas>
+        <canvas id="background-stars-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; display: none;"></canvas>
+        <div class="home-container" data-aos="fade-in" data-aos-duration="1">
+            <h2>Hello, I'm</h2>
+            <h1>Arghadeep Mazumder</h1>
+            <p>I'm a <span class="typed" data-typed-items="Software Developer ..., Data Scientist ..., Photographer ..."></span></p>
+        </div>
+        <div class="scroll-down">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#ff4d5a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 9l6 6 6-6" />
             </svg>
         </div>
@@ -128,8 +142,12 @@
         <div class="row">
             <div class="col text">
                 <h2>Autonomous Drone</h2>
-                <p>Short description of the drone project goes here. It covers autonomous aerial navigation and
-                    environmental monitoring.</p>
+                <p>The Autonomous Drone for Bridge Inspection is designed to enhance structural assessment and
+                    maintenance through precise, efficient aerial inspections. Equipped with camera, LiDAR, GPS, IMU,
+                    and gyroscope sensors, the drone provides both manual and autonomous operational modes. In
+                    autonomous mode, it leverages a custom-built stack integrating LiDAR, GPS, and IMU data to navigate
+                    complex environments accurately. This setup allows for real-time data capture and analysis, making
+                    bridge inspections safer, faster, and more thorough.</p>
             </div>
             <div class="col image">
                 <img src="./assets/svg/drone.svg" alt="Autonomous Drone" class="drone-image">
@@ -142,16 +160,24 @@
             </div>
             <div class="col text">
                 <h2>Autonomous Robot</h2>
-                <p>Short description of the robot project goes here. It covers ground navigation, obstacle avoidance,
-                    and task automation.</p>
+                <p>The Autonomous Drone for Urban Food Delivery project aims to provide efficient, contactless food
+                    delivery in city environments. With sensors including camera, LiDAR, GPS, IMU, and ultrasonic for
+                    obstacle detection, the drone can operate in both manual and autonomous modes. Utilizing an in-house
+                    autonomous stack, the drone combines LiDAR, GPS, and IMU data to navigate urban landscapes
+                    precisely, avoiding obstacles and ensuring timely deliveries. This technology supports sustainable,
+                    quick, and convenient food delivery directly to customers in densely populated areas.</p>
             </div>
         </div>
 
         <div class="row">
             <div class="col text">
                 <h2>Automated Forklift</h2>
-                <p>Short description of the automated forklift project goes here. It enhances warehouse automation and
-                    logistics operations.</p>
+                <p>The Autonomous Forklift for Warehouse Operations project aims to improve efficiency and safety in
+                    warehouse logistics. Outfitted with camera, LiDAR, GPS, IMU, and ultrasonic sensors, the forklift
+                    can operate in both manual and autonomous modes. Using an in-house autonomous stack, it combines
+                    LiDAR, GPS, and IMU data for precise navigation and obstacle avoidance within warehouse
+                    environments. This system enables seamless load handling, reduces reliance on human operators, and
+                    optimizes workflow, contributing to a more productive and automated warehouse setup.</p>
             </div>
             <div class="col image">
                 <img src="./assets/svg/forklift.svg" alt="Automated Forklift" class="robot-image">
