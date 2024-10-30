@@ -283,7 +283,7 @@
 
 @media screen and (max-width: 768px) {
     .drone-image {
-        animation: flyInZoneSmall 7s linear infinite;
+        animation: flyInZoneSmall 3s linear infinite;
     }
 
     .robot-image {
@@ -314,12 +314,12 @@
 
     @keyframes moveWithinGridSmall {
         0% {
-            left: -150px;
+            left: -120px;
             transform: scaleX(1);
         }
 
         50% {
-            left: calc(100% - 200px);
+            left: calc(100% - 250px);
             transform: scaleX(1);
         }
 
@@ -328,7 +328,7 @@
         }
 
         100% {
-            left: -150px;
+            left: -120px;
             transform: scaleX(-1);
         }
     }
