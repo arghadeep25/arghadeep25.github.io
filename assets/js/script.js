@@ -79,8 +79,9 @@ window.addEventListener('scroll', function() {
 });
 
 function updateCanvas() {
-    const starsCanvas = document.getElementById('stars-canvas');
-    const backgroundStarsCanvas = document.getElementById('background-stars-canvas');
+    const homeSection = document.getElementById('home');
+    const starsCanvas = homeSection.querySelector('#stars-canvas');
+    const backgroundStarsCanvas = homeSection.querySelector('#home-background-stars-canvas');
 
     // Change the canvas based on the window width
     if (window.innerWidth < 768) { // Adjust the threshold as needed
