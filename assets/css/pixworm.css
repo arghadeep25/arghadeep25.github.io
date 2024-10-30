@@ -1,6 +1,6 @@
 #pixworm {
     background-image: url('./../svg/pxwrm-bg.png');
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     filter: brightness(0.7);
     background-size: cover;
     background-position: center;
@@ -12,7 +12,7 @@
 @media screen and (max-width: 768px) {
     #pixworm {
         height: 100vh;
-        background-image: url('pxwrm-bg-small.png');
+        background-image: url('./../svg/pxwrm-bg.png');
         object-fit: cover;
     }
 
