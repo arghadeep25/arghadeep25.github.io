@@ -77,3 +77,21 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled'); // Hide header in "Home" section
     }
 });
+
+function updateCanvas() {
+    const starsCanvas = document.getElementById('stars-canvas');
+    const backgroundStarsCanvas = document.getElementById('background-stars-canvas');
+
+    // Change the canvas based on the window width
+    if (window.innerWidth < 768) { // Adjust the threshold as needed
+        starsCanvas.style.display = 'none';
+        backgroundStarsCanvas.style.display = 'block';
+    } else {
+        starsCanvas.style.display = 'block';
+        backgroundStarsCanvas.style.display = 'none';
+    }
+}
+
+// Call the function on load and on resize
+window.addEventListener('load', updateCanvas);
+window.addEventListener('resize', updateCanvas);
