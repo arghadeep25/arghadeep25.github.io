@@ -142,39 +142,32 @@
             combination of skills in software development, data science, and engineering.
         </p>
 
-        <div class="row">
-            <div class="col text">
-                <h2>Autonomous Drone</h2>
-                <p>The Autonomous Drone for Bridge Inspection is designed to enhance structural assessment and
-                    maintenance through precise, efficient aerial inspections. Equipped with camera, LiDAR, GPS, IMU,
-                    and gyroscope sensors, the drone provides both manual and autonomous operational modes. In
-                    autonomous mode, it leverages a custom-built stack integrating LiDAR, GPS, and IMU data to navigate
-                    complex environments accurately. This setup allows for real-time data capture and analysis, making
-                    bridge inspections safer, faster, and more thorough.</p>
-            </div>
-            <div class="col image">
-                <img src="./assets/svg/drone.svg" alt="Autonomous Drone" class="drone-image">
-            </div>
-        </div>
+
 
         <div class="row">
-            <div class="col image">
-                <img src="./assets/svg/delivery-bot.svg" alt="Autonomous Robot" class="robot-image">
-            </div>
+
             <div class="col text">
-                <h2>Autonomous Robot</h2>
+                <h2>Autonomous Robot for Food Delivery</h2>
                 <p>The Autonomous Drone for Urban Food Delivery project aims to provide efficient, contactless food
                     delivery in city environments. With sensors including camera, LiDAR, GPS, IMU, and ultrasonic for
                     obstacle detection, the drone can operate in both manual and autonomous modes. Utilizing an in-house
                     autonomous stack, the drone combines LiDAR, GPS, and IMU data to navigate urban landscapes
                     precisely, avoiding obstacles and ensuring timely deliveries. This technology supports sustainable,
                     quick, and convenient food delivery directly to customers in densely populated areas.</p>
+
+                <p><i>C++, Python, OpenCV, TensorRT, PCL, WebRTC</i></p>
+            </div>
+            <div class="col image">
+                <img src="./assets/svg/delivery-bot-1.svg" alt="Autonomous Robot" class="robot-image">
             </div>
         </div>
 
         <div class="row">
+            <div class="col image">
+                <img src="./assets/svg/forklift.svg" alt="Automated Forklift" class="forklift-image">
+            </div>
             <div class="col text">
-                <h2>Automated Forklift</h2>
+                <h2>Automated Forklift for Warehouse Application</h2>
                 <p>The Autonomous Forklift for Warehouse Operations project aims to improve efficiency and safety in
                     warehouse logistics. Outfitted with camera, LiDAR, GPS, IMU, and ultrasonic sensors, the forklift
                     can operate in both manual and autonomous modes. Using an in-house autonomous stack, it combines
@@ -182,46 +175,79 @@
                     environments. This system enables seamless load handling, reduces reliance on human operators, and
                     optimizes workflow, contributing to a more productive and automated warehouse setup.</p>
             </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col text">
+                <h2>Autonomous Drone for Bridge Inspection</h2>
+                <p>The Autonomous Drone for Bridge Inspection is designed to enhance structural assessment and
+                    maintenance through precise, efficient aerial inspections. Equipped with camera, LiDAR, GPS, IMU,
+                    and gyroscope sensors, the drone provides both manual and autonomous operational modes. In
+                    autonomous mode, it leverages a custom-built stack integrating LiDAR, GPS, and IMU data to navigate
+                    complex environments accurately. This setup allows for real-time data capture and analysis, making
+                    bridge inspections safer, faster, and more thorough.
+                </p>
+                <p><i>C++, Python, OpenCV, TensorRT, PCL, WebRTC</i></p>
+
+
+            </div>
             <div class="col image">
-                <img src="./assets/svg/forklift.svg" alt="Automated Forklift" class="robot-image">
+                <img src="./assets/svg/drone-1.svg" alt="Autonomous Drone" class="drone-image">
             </div>
         </div>
 
         <div class="row">
             <div class="col image">
-                <img src="./assets/svg/object_detection.svg" alt="Object Detection" class="static-image">
+                <img src="./assets/svg/object_detection_1.png" alt="Object Detection" class="static-image">
             </div>
             <div class="col text">
-                <h2>Object Detection</h2>
-                <p>Short description of the warehouse automation project goes here. It optimizes inventory management
-                    and order fulfillment.</p>
+                <h2>Counting Cars in a Parking Lot</h2>
+                <p>This project focuses on automating car counting in a parking lot using a camera installed at the
+                    entrance/exit. By replacing manual inspection, the system efficiently tracks cars entering and
+                    exiting the lot, providing real-time updates on available parking spots for drivers.
+
+                    A lightweight object detection model was developed to run on the Raspberry Pi CPU, eliminating the
+                    need for expensive devices like Nvidia Xavier. The model achieved an impressive 17 FPS on a
+                    Raspberry Pi 3, ensuring cost-effectiveness and high performance. Additionally, a tracker was
+                    implemented to distinguish whether a car is entering or exiting, avoiding the need for an additional
+                    camera installation and further optimizing the solution.
+
+                    The collected numbers and statistics were transmitted to a database, enabling seamless integration
+                    with a website and app to display parking availability to users in real time.
+                </p>
             </div>
         </div>
 
         <div class="row">
             <div class="col text">
                 <h2>Building footprint extraction from high resolution satellite images</h2>
-                <p>Short description of the image classification project goes here. It enhances quality control and
-                    defect detection. Short description of the image classification project goes here. It enhances
-                    quality control and Short description of the image classification project goes here. It enhances
-                    quality control and Short description of the image classification project goes here. It enhances
-                    quality control and Short description of the image classification project goes here. It enhances
-                    quality control and Short description of the image classification project goes here. It enhances
-                    quality control and Short description of the image classification project goes here. It enhances
-                    quality control and Short description of the image classification project goes here. It enhances
-                    quality control and Short description of the image classification project goes here. It enhances
-                    quality control and</p>
+                <p> My Master's thesis focuses on pixel-wise image segmentation to automate tasks such as building
+                    detection
+                    from 3-band monocular satellite images using convolutional neural networks (CNNs) like FCN, SegNet,
+                    UNet, Deep UNet, PSPNet and Mask RCNN. Manual extraction of buildings, roads, and other features
+                    from
+                    satellite imagery is a time-intensive process,
+                    especially in rapidly growing cities. By leveraging deep learning, computational advancements, and
+                    high-quality data acquisition, this project aims to streamline this process.
+
+                    The core objective is to evaluate the transferability of trained neural networks to detect buildings
+                    in unseen geographical regions, addressing variations in building attributes across different
+                    locations. The research also explores factors such as image resolution, quality, building
+                    separation, and texture of non-building areas. Transferability is assessed using metrics like
+                    completeness, correctness, overlap with ground truth data, and accuracy. This work contributes
+                    towards creating a generalized solution for building detection tasks in diverse environments.</p>
             </div>
             <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczPqNMhfX99Tsuq3bljDG79kytCkGQuxze2LCExM1Dy62Zk2KHZZLOQQSyVRPknSoCVHXYE2g6Pw0bkSgELfKQv8Q-Y-vTF9wAY_1Njiwlb4ayI1lQ3X=w2400"
-                    alt="Image Classification" class="static-image building-image">
+                <img src="./assets/svg/building_detection.png" alt="Image Classification"
+                    class="static-image building-image">
             </div>
 
         </div>
 
         <div class="row">
             <div class="col image">
-                <img src="./assets/svg/point_cloud.svg" alt="Point Cloud Processing" class="static-image slam-image">
+                <img src="./assets/svg/point_cloud.png" alt="Point Cloud Processing" class="static-image slam-image">
             </div>
             <div class="col text">
                 <h2>Point Cloud Processing</h2>
@@ -244,7 +270,7 @@
 
         <div class="row">
             <div class="col image">
-                <img src="./assets/svg/path_planning.svg" alt="Obstacle Detection"
+                <img src="./assets/svg/path_planning-1.svg" alt="Obstacle Detection"
                     class="static-image path-planning-image">
             </div>
             <div class="col text">
@@ -261,8 +287,21 @@
                     defect detection.</p>
             </div>
             <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczP_1d-_p7Qz1AJwx2wIAu79pZY44hyNBbMfQXrBdeFaDyjTRvh89GjdxScN7gPewY8e37D5lBdaVVhX180R2cuql82AgeqRqueaNZZceVTe4apXO1z1=w2400"
-                    alt="Image Classification" class="static-image classification-image">
+                <!-- <img src="https://lh3.googleusercontent.com/pw/AP1GczP_1d-_p7Qz1AJwx2wIAu79pZY44hyNBbMfQXrBdeFaDyjTRvh89GjdxScN7gPewY8e37D5lBdaVVhX180R2cuql82AgeqRqueaNZZceVTe4apXO1z1=w2400"
+                    alt="Image Classification" class="static-image classification-image"> -->
+                <img src="./assets/svg/remote_operation.png" alt="Image Classification"
+                    class="static-image classification-image">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col image">
+                <img src="./assets/svg/parking_detection.png" alt="Warehouse Automation" class="static-image">
+            </div>
+            <div class="col text">
+                <h2>Free Parking Space Detection in a Parking Lot</h2>
+                <p>Short description of the warehouse automation project goes here. It optimizes inventory management
+                    and order fulfillment.</p>
             </div>
         </div>
 
