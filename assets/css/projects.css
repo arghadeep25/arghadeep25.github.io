@@ -131,6 +131,37 @@
 
 }
 
+.text ul {
+    margin-top: 10px;
+    /* Adds spacing between paragraph and bullet points */
+    margin-left: 10%;
+    /* Aligns bullets with paragraph text */
+    padding-left: 20px;
+    /* Adjusts bullet indentation */
+    list-style-type: disc;
+    /* Ensures default bullets are used */
+}
+
+.text ul li {
+    margin-bottom: 8px;
+    /* Adds spacing between list items */
+    text-align: justify;
+    /* Matches paragraph alignment */
+}
+
+.text p {
+    margin-bottom: 20px;
+    /* Ensures space between paragraph and bullets */
+}
+
+@media screen and (max-width: 768px) {
+    .text ul {
+        margin-left: 5%;
+        /* Adjust for smaller screens */
+        padding-left: 15px;
+    }
+}
+
 .image {
     display: flex;
     justify-content: center;
