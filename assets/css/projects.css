@@ -8,7 +8,7 @@
 
 #projects .row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 2fr;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
@@ -182,6 +182,12 @@
     position: absolute;
 }
 
+.forklift-image {
+    width: 150px;
+    animation: moveWithinGridForklift 10s linear infinite;
+    position: absolute;
+}
+
 .static-image {
     width: 100%;
     height: auto;
@@ -219,6 +225,12 @@
     .robot-image {
         width: 70px;
         animation: moveWithinGrid 5s linear infinite;
+        position: absolute;
+    }
+
+    .forklift-image {
+        width: 70px;
+        animation: moveWithinGridForklift 5s linear infinite;
         position: absolute;
     }
 
@@ -280,6 +292,28 @@
         transform: scaleX(-1);
     }
 }
+
+@keyframes moveWithinGridForklift {
+    0% {
+        left: calc(100% - 450px);
+        transform: scaleX(-1);
+    }
+
+    50% {
+        left: -250px;
+        transform: scaleX(-1);
+    }
+
+    51% {
+        transform: scaleX(1);
+    }
+
+    100% {
+        left: calc(100% - 450px);
+        transform: scaleX(1);
+    }
+}
+
 
 @media screen and (max-width: 768px) {
     .drone-image {

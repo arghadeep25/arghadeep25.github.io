@@ -3,7 +3,7 @@
     background-color: rgba(0, 0, 0, 0.9);
     text-align: center;
     padding: 50px 0;
-    
+
 }
 
 #skills h1 {
@@ -116,7 +116,8 @@
 
 .skillsGrid .hex-wrapper:hover {
     transform: scale(1.1);
-    animation: rotate-scale-up 0.65s linear both;
+    /* animation: rotate-scale-up 0.65s linear both; */
+    animation: scale-and-bounce 0.65s linear both;
 }
 
 .skillsGrid img {
@@ -191,5 +192,59 @@
     100% {
         -webkit-transform: scale(1) rotateZ(360deg);
         transform: scale(1) rotateZ(360deg);
+    }
+}
+
+@-webkit-keyframes scale-and-bounce {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    30% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    70% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes scale-and-bounce {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    30% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    70% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 }
