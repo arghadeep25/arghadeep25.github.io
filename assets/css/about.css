@@ -1,6 +1,6 @@
 #about {
     /* background-image: url('./../bg/bg-dark.png'); */
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -28,7 +28,7 @@
         margin-left: 10%;
         margin-right: 10%;
     }
-    
+
 }
 
 #about h1 {
@@ -41,13 +41,17 @@
     letter-spacing: 0.1em;
     text-align: center;
     text-transform: uppercase;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 @media screen and (max-width: 768px) {
     #about h1 {
         font-size: 1.5rem;
     }
-    
+
 }
 
 #about p {
@@ -55,6 +59,10 @@
     color: #ffebe1;
     text-align: justify;
     margin-bottom: 20px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 
@@ -72,27 +80,40 @@
 #about .about-content {
     display: flex;
     align-items: center;
-    justify-content: center; /* Optional: Center content */
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 @media screen and (max-width: 768px) {
     #about .about-content {
-        flex-direction: column; /* Stack image and text vertically on small screens */
-        align-items: center; /* Center image and text horizontally */
+        flex-direction: column;
+        /* Stack image and text vertically on small screens */
+        align-items: center;
+        /* Center image and text horizontally */
     }
 
     #about .about-image {
-        margin-right: 0; /* Remove the right margin when stacking vertically */
-        margin-bottom: 20px; /* Add space between image and text */
+        margin-right: 0;
+        /* Remove the right margin when stacking vertically */
+        margin-bottom: 20px;
+        /* Add space between image and text */
     }
 }
 
 #about .about-image {
-    width: 250px; /* Adjust as needed */
-    height: 250px; /* Adjust as needed */
-    border-radius: 50%; /* Makes the image round */
-    object-fit: cover; /* Ensures the image covers the container */
-    margin-right: 20px; /* Space between image and text */
+    width: 250px;
+    /* Adjust as needed */
+    height: 250px;
+    /* Adjust as needed */
+    border-radius: 50%;
+    /* Makes the image round */
+    object-fit: cover;
+    /* Ensures the image covers the container */
+    margin-right: 20px;
+    /* Space between image and text */
     pointer-events: none;
 }
 
@@ -101,9 +122,10 @@
         width: 150px;
         height: 150px;
     }
-    
+
 }
 
 #about .text-content {
-    max-width: 1000px; /* Optional: Limit the width of the text */
+    max-width: 1000px;
+    /* Optional: Limit the width of the text */
 }
