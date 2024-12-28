@@ -32,31 +32,11 @@
 </head>
 
 <body>
-
-
-
-    <!-- Sections -->
-    <!-- <section id="home" class="d-flex flex-column justify-content-center align-items-center">
-        <canvas id="stars-canvas"></canvas>
-        <div class="home-container" data-aos="fade-in" data-aos-duration="1">
-            <h2>Hello, I'm</h2>
-            <h1>Arghadeep Mazumder</h1>
-            <p>I'm a <span class="typed"
-                    data-typed-items="Software Developer ..., Data Scientist ..., Photographer ..."></span></p>
-        </div>
-        
-        <div class="scroll-down">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"
-                stroke="#ff4d5a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9l6 6 6-6" />
-            </svg>
-        </div>
-    </section> -->
-
     <section id="home" class="d-flex flex-column justify-content-center align-items-center">
         <canvas id="stars-canvas"></canvas>
         <canvas id="home-background-stars-canvas"
             style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; display: none;"></canvas>
+        <div id="doodle-container"></div>
         <div class="home-container" data-aos="fade-in" data-aos-duration="1">
             <h2>Hello, I'm</h2>
             <h1>Arghadeep Mazumder</h1>
@@ -71,9 +51,6 @@
         </div>
     </section>
 
-
-
-
     <section id="about" class="about">
         <header id="main-header">
             <div class="hamburger">
@@ -83,7 +60,6 @@
                 <ul>
                     <li><a href="#home">HOME</a></li>
                     <li><a href="#about">ABOUT</a></li>
-                    <!-- <li><a href="#resume">RESUME</a></li> -->
                     <li><a href="#projects">PROJECTS</a></li>
                     <li><a href="#skills">SKILLS</a></li>
                     <li><a href="#pixworm">PIXWORM</a></li>
@@ -99,13 +75,11 @@
                 <img src="https://lh3.googleusercontent.com/pw/AP1GczOpO2LwpkkiEIh-X0qUCwO2Ritg3Y7c8gHbTKIHBMP3XeI7kYxt6CvtRyKpL96LtgYLDDBqDDDZHLDjQ9EDP0THCNsK5bGSMS8SKXB14k45ujKyWrGr=w2400"
                     alt="Description of Image" class="about-image">
                 <div class="text-content">
-                    <h1>About Me</h1>
+                    <h1 class="animate-charcter">About Me</h1>
                     <p>Hello! My name is Arghadeep Mazumder. I am a <strong>Data Scientist</strong>, <strong>Software
                             Developer</strong>, and <strong>Photographer</strong>. I have always had a love for both
                         technology and art, and I am fortunate to be able
                         to pursue both passions in my life.
-                        <!-- <br></br> -->
-
 
 
                     <p> I did my Bachelor of Technology (B.Tech) in Electrical Engineering from West Bengal University
@@ -126,23 +100,20 @@
                 </div>
 
             </div>
-            <!-- <img src="delivery-bot.svg" alt="Robot" class="robot-image"> -->
-            <!-- <img src="drone.svg" alt="Drone" class="drone-image"> -->
     </section>
 
 
 
     <div id="projects">
         <div class="title">
-            <h1>Projects</h1>
+            <h1 class="animate-charcter">Projects</h1>
+            <!-- <h1>Projects</h1> -->
         </div>
-        <p>
+        <!-- <p>
             Here are some of the projects I have worked on. These projects cover a wide range of topics, including
             autonomous drones, robots, and forklifts. Each project involves a unique set of challenges and requires a
             combination of skills in software development, data science, and engineering.
-        </p>
-
-
+        </p> -->
 
         <div class="row">
 
@@ -199,7 +170,8 @@
 
         <div class="row">
             <div class="col image">
-                <img src="./assets/svg/object_detection.png" alt="Object Detection" class="static-image">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNs5_3PPrztJpmwdSLX0RVXTEoFFFAMvDC1FpS0Tz-xl00gapvbSL7TBDerCPYblcTf87TsRDdlvfAS8guBdjMg7oBCsOe58tTRdKr08q7XB8DYghSN=w2400"
+                    alt="Object Detection" class="static-image">
             </div>
             <div class="col text">
                 <h2>Counting Cars in a Multistorey Car park</h2>
@@ -239,15 +211,17 @@
                     towards creating a generalized solution for building detection tasks in diverse environments.</p>
             </div>
             <div class="col image">
-                <img src="./assets/svg/building_detection.png" alt="Image Classification"
-                    class="static-image building-image">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPscBkUksCfW7LLUJgkfNUt4Oe9D7Xt1Em5APBj-0WVWEoYM2RGs8Qj0xWyFNEKUgbPwlZioJ9E1nnFApWCGmAGLu6yGonygxZFj-o4KlHXGt5LIlXd=w2400"
+                    alt="Image Classification" class="static-image building-image">
             </div>
 
         </div>
 
         <div class="row">
             <div class="col image">
-                <img src="./assets/svg/point_cloud.png" alt="Point Cloud Processing" class="static-image slam-image">
+                <!-- https://lh3.googleusercontent.com/pw/AP1GczM3txHFMtabS7YR4omGQw398IcAGuaJbPfnv-1BW94AaD45egIdXnghJhncT1l54OzMyKo6a809e4x9yo7b1-FajmJKDY19ikuFxeNCQcbE-B1_IHIX=w2400 -->
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczOmVj1v-pk8enbmXQN9wHqwA7tNzgF1HSOrE8TrgDNZf6vuESLBq25R6UUf0UkQKODdsdezqdnXeo2jZuZVgAwgIYm6G3qZ_u2l-YCIH5DWyLAAdFon=w2400"
+                    alt="Point Cloud Processing" class="static-image slam-image">
             </div>
             <div class="col text">
                 <h2>LIDAR Point Cloud Processing</h2>
@@ -294,8 +268,8 @@
 
         <div class="row">
             <div class="col image">
-                <img src="./assets/svg/path_planning.svg" alt="Obstacle Detection"
-                    class="static-image path-planning-image">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczM2nQ8lbSk-MeT6mdV2vNx3jSEj8Xqy9L3p3sVjfYtP_hj-fwT4WZ8FfhOL1gyVsW2vOoI1DvzvAYig-70Bxe-1Z3Wjg2cFDxbVuINlJ4yjVMsuH8ie=w2400"
+                    alt="Path Planning" class="static-image path-planning-image">
             </div>
             <div class="col text">
                 <h2>Path planning</h2>
@@ -322,16 +296,15 @@
                     solution ensures safe and efficient remote operation in diverse environments.</p>
             </div>
             <div class="col image">
-                <!-- <img src="https://lh3.googleusercontent.com/pw/AP1GczP_1d-_p7Qz1AJwx2wIAu79pZY44hyNBbMfQXrBdeFaDyjTRvh89GjdxScN7gPewY8e37D5lBdaVVhX180R2cuql82AgeqRqueaNZZceVTe4apXO1z1=w2400"
-                    alt="Image Classification" class="static-image classification-image"> -->
-                <img src="./assets/svg/remote_operation.png" alt="Image Classification"
-                    class="static-image classification-image">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNo1Ej6YWEvZbcjHuETh0XkIi-B0HjbXnFJM80UZv3f0572EkVDL9MWsalopVMFY5RdJDag08fDIWppaGzQImxBAnDts9-n_wspDoMBxgrbckWxoM1w=w2400"
+                    alt="Remote operation" class="static-image classification-image">
             </div>
         </div>
 
         <div class="row">
             <div class="col image">
-                <img src="./assets/svg/parking_detection.png" alt="Warehouse Automation" class="static-image">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNCPr9vQNDjV39quOwVVBUh56MnzZ6TanJzLrOcA-9FJRt9bTWeurvNZuo4f0xG2OpdvqeMizWuPb2v0iv1YrH6IqB482WN_RC9wQxCqt_ruKe1Qn_8=w2400"
+                    alt="Parking space" class="static-image">
             </div>
             <div class="col text">
                 <h2>Free Parking Space Detection in a Parking Lot</h2>
@@ -339,139 +312,150 @@
                     and order fulfillment.</p>
             </div>
         </div>
+    </div>
 
 
-
-        <div id="skills">
-            <div class="title">
-                <h1>SKILLS</h1>
-            </div>
-            <div class="skillsGrid">
-                <div class="hex-wrapper div1">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="Skill 1">
-                    <span>C++</span>
-                </div>
-                <div class="hex-wrapper div2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Skill 2">
-                    <span>Python</span>
-                </div>
-                <div class="hex-wrapper div3">
-                    <img src="https://www.ros.org/imgs/logo-white.png" alt="Skill 2">
-                    <span>ROS</span>
-                </div>
-                <div class="hex-wrapper div4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Cmake.svg" alt="Skill 2">
-                    <span>CMake</span>
-                </div>
-
-                <div class="hex-wrapper div5">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/480px-Git_icon.svg.png"
-                        alt="Skill 2">
-                    <span>Git</span>
-                </div>
-
-                <div class="hex-wrapper div6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/224px-Tensorflow_logo.svg.png"
-                        alt="Skill 2">
-                    <span>TensorFlow</span>
-                </div>
-                <div class="hex-wrapper div7">
-                    <img src="https://img.icons8.com/?size=100&id=cdYUlRaag9G9&format=png&color=000000" alt="Skill 2">
-                    <span>Docker</span>
-                </div>
-                <div class="hex-wrapper div8">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg"
-                        alt="Skill 2">
-                    <span>OpenCV</span>
-                </div>
-
-                <div class="hex-wrapper div9">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/267px-Matlab_Logo.png"
-                        alt="Skill 2">
-                    <span>MATLAB</span>
-                </div>
-
-                <div class="hex-wrapper div10">
-                    <img src="https://img.icons8.com/?size=100&id=piVHs2bMOs6P&format=png&color=000000" alt="Skill 2">
-                    <span>LaTeX</span>
-                </div>
-
-                <div class="hex-wrapper div11">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Autodesk_Logo_A_only.svg"
-                        alt="Skill 2">
-                    <span>Autodesk</span>
-                </div>
-                <div class="hex-wrapper div12">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Pcl_%28PointClouds_library%29_logo_with_text.png"
-                        alt="Skill 2">
-                    <span>PCL</span>
-                </div>
-            </div>
+    <div id="skills">
+        <div class="title">
+            <h1 class="animate-charcter">SKILLS</h1>
         </div>
 
-        <!-- Tools -->
-        <!-- <div class="hex-wrapper">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/github.svg" alt="Skill 2">
-                <span>Github</span>
-            </div> -->
-        <!-- <div class="hex-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/de/c/cb/Raspberry_Pi_Logo.svg" alt="Skill 2">
-                <span>Raspberry Pi</span>
+        <div class="skillsGrid">
+            <div class="hex-wrapper div1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="Skill 1">
+                <span>C++</span>
             </div>
-            <div class="hex-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/sco/2/21/Nvidia_logo.svg" alt="Skill 2">
-                <span>Nvidia</span>
-            </div> -->
-        <!-- <div class="hex-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/483px-Visual_Studio_Icon_2019.svg.png"
-                    alt="Skill 2">
-            </div> -->
-        <!-- <div class="hex-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/480px-IntelliJ_IDEA_Icon.svg.png"
-                    alt="Skill 2">
-            </div> -->
-        <!-- <div class="hex-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Microsoft_365_%282022%29.svg/436px-Microsoft_365_%282022%29.svg.png"
-                    alt="Skill 2">
-            </div> -->
-        <!-- <div class="hex-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ouster_Logo.png/640px-Ouster_Logo.png"
-                    alt="Skill 2">
+            <div class="hex-wrapper div2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Skill 2">
+                <span>Python</span>
             </div>
-            <div class="hex-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Velodyne_Company_logo.jpg" alt="Skill 2">
-            </div> -->
-        <!-- <div class="hex-wrapper">
-                <img src="https://companieslogo.com/img/orig/TEAM-ddb0dd07.png?t=1633504719" alt="Skill 2">
-            </div> -->
+            <div class="hex-wrapper div3">
+                <img src="https://www.ros.org/imgs/logo-white.png" alt="Skill 2">
+                <span>ROS</span>
+            </div>
+            <div class="hex-wrapper div4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Cmake.svg" alt="Skill 2">
+                <span>CMake</span>
+            </div>
 
-        <section id="pixworm">
-            <div class="content">Pixworm Projects</div>
-        </section>
+            <div class="hex-wrapper div5">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/480px-Git_icon.svg.png"
+                    alt="Skill 2">
+                <span>Git</span>
+            </div>
 
-        <!-- <section id="blogs">
+            <div class="hex-wrapper div6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/224px-Tensorflow_logo.svg.png"
+                    alt="Skill 2">
+                <span>TensorFlow</span>
+            </div>
+            <div class="hex-wrapper div7">
+                <img src="https://img.icons8.com/?size=100&id=cdYUlRaag9G9&format=png&color=000000" alt="Skill 2">
+                <span>Docker</span>
+            </div>
+            <div class="hex-wrapper div8">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg"
+                    alt="Skill 2">
+                <span>OpenCV</span>
+            </div>
+
+            <div class="hex-wrapper div9">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/267px-Matlab_Logo.png"
+                    alt="Skill 2">
+                <span>MATLAB</span>
+            </div>
+
+            <div class="hex-wrapper div10">
+                <img src="https://img.icons8.com/?size=100&id=piVHs2bMOs6P&format=png&color=000000" alt="Skill 2">
+                <span>LaTeX</span>
+            </div>
+
+            <div class="hex-wrapper div11">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Autodesk_Logo_A_only.svg" alt="Skill 2">
+                <span>Autodesk</span>
+            </div>
+            <div class="hex-wrapper div12">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Pcl_%28PointClouds_library%29_logo_with_text.png"
+                    alt="Skill 2">
+                <span>PCL</span>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="pixworm">
+        <div class="title">
+            <h1 class="animate-charcter">PIXWORM</h1>
+            <p>Here are some of my favorite photographs. I hope you enjoy them!</p>
+            <button class="glow-on-hover" type="button">Welcome to PIXWORM</button>
+
+            <div class="options">
+                <div class="option"
+                    style="--optionBackground: url('https://lh3.googleusercontent.com/pw/AP1GczNsLhDu3RMReCz3A9bEn4LzTtOesVyNHXhszGYV0drgEvuyRvxURaPQNGlSBd9UA7NLOMP4Rq5WUw6GH6XUhnnlbcFwgCmsc_c0h45GlKs3OHJCB6Gj=w2400');">
+                    <div class="shadow"></div>
+                </div>
+                <div class="option"
+                    style="--optionBackground: url('https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg');">
+                    <div class="shadow"></div>
+                </div>
+                <div class="option"
+                    style="--optionBackground: url('https://66.media.tumblr.com/5af3f8303456e376ceda1517553ba786/tumblr_o4986gakjh1qho82wo1_1280.jpg');">
+                    <div class="shadow"></div>
+                </div>
+                <div class="option"
+                    style="--optionBackground: url('https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg');">
+                    <div class="shadow"></div>
+                </div>
+                <div class="option"
+                    style="--optionBackground: url('https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg');">
+                    <div class="shadow"></div>
+                </div>
+                <div class="option"
+                    style="--optionBackground: url('https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg');">
+                    <div class="shadow"></div>
+                </div>
+                <div class="option"
+                    style="--optionBackground: url('https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg');">
+                    <div class="shadow"></div>
+                </div>
+            </div>
+
+            <div class="video-container">
+                <iframe width="640" height="480"
+                    src="https://www.youtube.com/embed/asWf_1dZV4M?si=th1dDtBOjgu_x3lf&amp;controls=0"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="blogs">
         <div class="content">Blogs</div>
     </section> -->
 
-        <script src="./assets/js/script.js"></script>
-        <script src="./assets/js/canvas.js"></script>
-        <script src="./assets/js/stars.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/canvas.js"></script>
+    <script src="./assets/js/stars.js"></script>
+    <script src="./assets/js/pixworm_scroll.js"></script>
+    <script src="./assets/js/word.js"></script>
+    <script src="./assets/js/dots.js"></script>
 
-        <!-- External -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script> -->
-        <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs@1.5.0/dist/purecounter_vanilla.js"></script>
-        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.3/swiper-bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/waypoints@4.0.1/lib/noframework.waypoints.min.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
-        <!-- <script src="assets/js/bot.js"></script> -->
+    <!-- External -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs@1.5.0/dist/purecounter_vanilla.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.3/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/waypoints@4.0.1/lib/noframework.waypoints.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- <script src="assets/js/bot.js"></script> -->
 
 </body>
 
