@@ -1,19 +1,271 @@
 #pixworm {
-    background-image: url('./../svg/pxwrm-bg.png');
     background-color: rgba(0, 0, 0, 0.9);
-    filter: brightness(0.7);
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 100vh;
-    z-index: 7;
+    height: 200vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
-@media screen and (max-width: 768px) {
-    #pixworm {
-        height: 100vh;
-        background-image: url('./../svg/pxwrm-bg.png');
-        object-fit: cover;
+#pixworm h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.0rem;
+    margin-bottom: 30px;
+    color: #ff4d5a;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+#pixworm p {
+    font-size: 1rem;
+    color: #ffebe1;
+    text-align: justify;
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    /* align-items: stretch; */
+    align-items: center;
+    overflow: hidden;
+    min-width: 1200px;
+    max-width: 1600px;
+    width: calc(100% - 100px);
+    height: 800px;
+    margin: 0 auto;
+}
+
+.option {
+    position: relative;
+    overflow: hidden;
+    height: 70%;
+    width: auto;
+    margin: 20px;
+    background: var(--optionBackground);
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.3);
+}
+
+.option:hover {
+    flex-grow: 2;
+    transform: scale(1.1);
+    z-index: 2;
+    box-shadow: 0px 6px 25px rgba(255, 255, 255, 0.5);
+}
+
+.option.active {
+    flex-grow: 3;
+    height: 80%;
+    width: auto;
+    transform: scale(1.2);
+    border-radius: 30px;
+    z-index: 3;
+    box-shadow: 0px 8px 30px rgba(255, 255, 255, 0.6);
+}
+
+.option:not(.active) {
+    flex-grow: 1;
+    /* height: 50%; */
+}
+
+.shadow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+.label {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    left: 10px;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+.icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: white;
+    color: var(--defaultBackground);
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+    color: white;
+    white-space: pre;
+}
+
+.main {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.sub {
+    opacity: 0;
+    transition-delay: 0.1s;
+}
+
+.option.active .sub {
+    opacity: 1;
+}
+
+.credit {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: inherit;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    /* Center the container horizontally */
+    padding: 10px;
+    /* Thin padding for the border */
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    /* Smaller rounded corners */
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    /* Subtle shadow */
+    max-width: 640px;
+    /* Slightly larger than the iframe to accommodate the border */
+}
+
+.video-container iframe {
+    width: 100%;
+    /* Default to fully responsive */
+    max-width: 640px;
+    /* Maximum width of 800px */
+    height: 480px;
+    /* Fixed height */
+    border-radius: 10px;
+    /* Rounded corners for the iframe */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    /* Thin border */
+}
+
+@media (max-width: 768px) {
+    .video-container iframe {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+.glow-on-hover {
+    width: 250px;
+    height: 70px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
     }
 
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.animate-charcter {
+    text-transform: uppercase;
+    background-image: linear-gradient(-225deg,
+            #231557 0%,
+            #44107a 29%,
+            #ff1361 67%,
+            #fff800 100%);
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-size: 190px;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
 }
