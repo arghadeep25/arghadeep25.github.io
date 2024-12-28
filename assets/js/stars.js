@@ -1,8 +1,8 @@
 const canvasBackground = document.getElementById('background-stars-canvas');
 const ctxBackground = canvasBackground.getContext('2d');
 let backgroundStars = [];
-let numBackgroundStars = 100; // Fewer stars for background
-let backgroundStarRadius = 1.5; // Slightly larger stars for visibility
+let numBackgroundStars = 80; // Fewer stars for background
+let backgroundStarRadius = 1.2; // Slightly larger stars for visibility
 
 // Resize canvas to full window size
 canvasBackground.width = window.innerWidth;
