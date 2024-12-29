@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./assets/css/menu.css">
     <link rel="stylesheet" href="./assets/css/pixworm.css">
     <link rel="stylesheet" href="./assets/css/projects.css">
-    <link rel="stylesheet" href="./assets/css/resume.css">
     <link rel="stylesheet" href="./assets/css/skills.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 
@@ -36,7 +35,6 @@
         <canvas id="stars-canvas"></canvas>
         <canvas id="home-background-stars-canvas"
             style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; display: none;"></canvas>
-        <div id="doodle-container"></div>
         <div class="home-container" data-aos="fade-in" data-aos-duration="1">
             <h2>Hello, I'm</h2>
             <h1>Arghadeep Mazumder</h1>
@@ -102,289 +100,309 @@
             </div>
     </section>
 
-
-
-    <div id="projects">
-        <div class="title">
-            <h1 class="animate-charcter">Projects</h1>
-            <!-- <h1>Projects</h1> -->
-        </div>
-        <!-- <p>
-            Here are some of the projects I have worked on. These projects cover a wide range of topics, including
-            autonomous drones, robots, and forklifts. Each project involves a unique set of challenges and requires a
-            combination of skills in software development, data science, and engineering.
-        </p> -->
-
-        <div class="row">
-
-            <div class="col text">
-                <h2>Autonomous Robot for Food Delivery</h2>
-                <p>The Autonomous Drone for Urban Food Delivery project aims to provide efficient, contactless food
-                    delivery in city environments. With sensors including camera, LiDAR, GPS, IMU, and ultrasonic for
-                    obstacle detection, the drone can operate in both manual and autonomous modes. Utilizing an in-house
-                    autonomous stack, the drone combines LiDAR, GPS, and IMU data to navigate urban landscapes
-                    precisely, avoiding obstacles and ensuring timely deliveries. This technology supports sustainable,
-                    quick, and convenient food delivery directly to customers in densely populated areas.</p>
-
-                <p><i>C++, Python, OpenCV, TensorRT, PCL, WebRTC</i></p>
-            </div>
-            <div class="col image">
-                <img src="./assets/svg/delivery-bot.svg" alt="Autonomous Robot" class="robot-image">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col image">
-                <img src="./assets/svg/forklift.svg" alt="Automated Forklift" class="forklift-image">
-            </div>
-            <div class="col text">
-                <h2>Automated Forklift for Warehouse Application</h2>
-                <p>The Autonomous Forklift for Warehouse Operations project aims to improve efficiency and safety in
-                    warehouse logistics. Outfitted with camera, LiDAR, GPS, IMU, and ultrasonic sensors, the forklift
-                    can operate in both manual and autonomous modes. Using an in-house autonomous stack, it combines
-                    LiDAR, GPS, and IMU data for precise navigation and obstacle avoidance within warehouse
-                    environments. This system enables seamless load handling, reduces reliance on human operators, and
-                    optimizes workflow, contributing to a more productive and automated warehouse setup.</p>
+    <section id="projects">
+        <div class="projects">
+            <div class="title">
+                <h1 class="animate-charcter">Projects</h1>
             </div>
 
-        </div>
+            <div class="row">
 
-        <div class="row">
-            <div class="col text">
-                <h2>Autonomous Drone for Bridge Inspection</h2>
-                <p>The Autonomous Drone for Bridge Inspection is designed to enhance structural assessment and
-                    maintenance through precise, efficient aerial inspections. Equipped with camera, LiDAR, GPS, IMU,
-                    and gyroscope sensors, the drone provides both manual and autonomous operational modes. In
-                    autonomous mode, it leverages a custom-built stack integrating LiDAR, GPS, and IMU data to navigate
-                    complex environments accurately. This setup allows for real-time data capture and analysis, making
-                    bridge inspections safer, faster, and more thorough.
-                </p>
-                <p><i>C++, Python, OpenCV, TensorRT, PCL, WebRTC</i></p>
-
-
-            </div>
-            <div class="col image">
-                <img src="./assets/svg/drone.svg" alt="Autonomous Drone" class="drone-image">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNs5_3PPrztJpmwdSLX0RVXTEoFFFAMvDC1FpS0Tz-xl00gapvbSL7TBDerCPYblcTf87TsRDdlvfAS8guBdjMg7oBCsOe58tTRdKr08q7XB8DYghSN=w2400"
-                    alt="Object Detection" class="static-image">
-            </div>
-            <div class="col text">
-                <h2>Counting Cars in a Multistorey Car park</h2>
-                <p>This project focuses on automating car counting in a parking lot using a camera installed at the
-                    entrance/exit. By replacing manual inspection, the system efficiently tracks cars entering and
-                    exiting the lot, providing real-time updates on available parking spots for drivers.
-
-                    A lightweight object detection model was developed to run on the Raspberry Pi CPU, eliminating the
-                    need for expensive devices like Nvidia Xavier. The model achieved an impressive 17 FPS on a
-                    Raspberry Pi 3, ensuring cost-effectiveness and high performance. Additionally, a tracker was
-                    implemented to distinguish whether a car is entering or exiting, avoiding the need for an additional
-                    camera installation and further optimizing the solution.
-
-                    The collected numbers and statistics were transmitted to a database, enabling seamless integration
-                    with a website and app to display parking availability to users in real time.
-                </p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col text">
-                <h2>Building footprint extraction from high resolution satellite images</h2>
-                <p> My Master's thesis focuses on pixel-wise image segmentation to automate tasks such as building
-                    detection
-                    from 3-band monocular satellite images using convolutional neural networks (CNNs) like FCN, SegNet,
-                    UNet, Deep UNet, PSPNet and Mask RCNN. Manual extraction of buildings, roads, and other features
-                    from
-                    satellite imagery is a time-intensive process,
-                    especially in rapidly growing cities. By leveraging deep learning, computational advancements, and
-                    high-quality data acquisition, this project aims to streamline this process.
-
-                    The core objective is to evaluate the transferability of trained neural networks to detect buildings
-                    in unseen geographical regions, addressing variations in building attributes across different
-                    locations. The research also explores factors such as image resolution, quality, building
-                    separation, and texture of non-building areas. Transferability is assessed using metrics like
-                    completeness, correctness, overlap with ground truth data, and accuracy. This work contributes
-                    towards creating a generalized solution for building detection tasks in diverse environments.</p>
-            </div>
-            <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczPscBkUksCfW7LLUJgkfNUt4Oe9D7Xt1Em5APBj-0WVWEoYM2RGs8Qj0xWyFNEKUgbPwlZioJ9E1nnFApWCGmAGLu6yGonygxZFj-o4KlHXGt5LIlXd=w2400"
-                    alt="Image Classification" class="static-image building-image">
+                <div class="col text">
+                    <h2>Autonomous Robot for Food Delivery</h2>
+                    <p>The Autonomous Drone for Urban Food Delivery project aims to provide efficient, contactless food
+                        delivery in city environments. With sensors including camera, LiDAR, GPS, IMU, and ultrasonic
+                        for
+                        obstacle detection, the drone can operate in both manual and autonomous modes. Utilizing an
+                        in-house
+                        autonomous stack, the drone combines LiDAR, GPS, and IMU data to navigate urban landscapes
+                        precisely, avoiding obstacles and ensuring timely deliveries. This technology supports
+                        sustainable,
+                        quick, and convenient food delivery directly to customers in densely populated areas.</p>
+                </div>
+                <div class="col image">
+                    <img src="./assets/svg/delivery-bot.svg" alt="Autonomous Robot" class="robot-image">
+                </div>
             </div>
 
-        </div>
+            <div class="row">
+                <div class="col image">
+                    <img src="./assets/svg/forklift.svg" alt="Automated Forklift" class="forklift-image">
+                </div>
+                <div class="col text">
+                    <h2>Automated Forklift for Warehouse Application</h2>
+                    <p>The Autonomous Forklift for Warehouse Operations project aims to improve efficiency and safety in
+                        warehouse logistics. Outfitted with camera, LiDAR, GPS, IMU, and ultrasonic sensors, the
+                        forklift
+                        can operate in both manual and autonomous modes. Using an in-house autonomous stack, it combines
+                        LiDAR, GPS, and IMU data for precise navigation and obstacle avoidance within warehouse
+                        environments. This system enables seamless load handling, reduces reliance on human operators,
+                        and
+                        optimizes workflow, contributing to a more productive and automated warehouse setup.</p>
+                </div>
 
-        <div class="row">
-            <div class="col image">
-                <!-- https://lh3.googleusercontent.com/pw/AP1GczM3txHFMtabS7YR4omGQw398IcAGuaJbPfnv-1BW94AaD45egIdXnghJhncT1l54OzMyKo6a809e4x9yo7b1-FajmJKDY19ikuFxeNCQcbE-B1_IHIX=w2400 -->
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczOmVj1v-pk8enbmXQN9wHqwA7tNzgF1HSOrE8TrgDNZf6vuESLBq25R6UUf0UkQKODdsdezqdnXeo2jZuZVgAwgIYm6G3qZ_u2l-YCIH5DWyLAAdFon=w2400"
-                    alt="Point Cloud Processing" class="static-image slam-image">
-            </div>
-            <div class="col text">
-                <h2>LIDAR Point Cloud Processing</h2>
-                <p>Real-time processing of raw point clouds from various lidar types, including 2D single-line lidar (RP
-                    Lidar), 3D solid-state lidar (Livox, AEye, and Innoviz), and 3D mechanical lidar (Ouster, and
-                    Velodyne). The key functionalities include:</p>
-                <ul>
-                    <li>Compression of point clouds for efficient streaming.</li>
-                    <li>Feature extraction and obstacle detection.</li>
-                    <li>Identification of regions of interest (ROI) and non-interest.</li>
-                    <li>Real-time point cloud registration on embedded devices.</li>
-                    <li>Live streaming of processed point clouds using a cloud server for edge devices.</li>
-                </ul>
-                <p>The entire workflow was designed for seamless operation in real-time, leveraging embedded platforms
-                    to enable effective lidar data utilization in applications like navigation, mapping, and obstacle
-                    avoidance.</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col text">
-                <h2>Simultaneous Localization and Mapping (SLAM)</h2>
-                <p>
-                    This project focuses on implementing a real-time Simultaneous Localization and Mapping (SLAM) system
-                    with millimeter-level precision. The system is designed to operate efficiently on embedded devices
-                    and is robust for both constrained and unconstrained environments.
-
-                    Key features include:
-                </p>
-                <ul>
-                    <li>Point cloud-based graph SLAM for accurate mapping.</li>
-                    <li>Feature-based loop closure to enhance map consistency.</li>
-                    <li>Integration of GPS, IMU, and gyroscope data for additional assistance, when required.</li>
-                </ul>
-                <p>This SLAM solution is optimized for resource-constrained platforms and is ideal for applications
-                    requiring precise localization and mapping in diverse and dynamic scenarios.
-                </p>
-            </div>
-            <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczO3OKcTN5d6l3iacKW6Pl4z0X38Nlu6W3DdnKfUaYZgS45nmWpqjb9-ND2HwuxaWzzULkl3r4zFvCCAAcPm0WJ9oC-LuiuQKSHYFI76_RiQVIL8q2MF=w2400"
-                    alt="SLAM" class="static-image slam-image">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczM2nQ8lbSk-MeT6mdV2vNx3jSEj8Xqy9L3p3sVjfYtP_hj-fwT4WZ8FfhOL1gyVsW2vOoI1DvzvAYig-70Bxe-1Z3Wjg2cFDxbVuINlJ4yjVMsuH8ie=w2400"
-                    alt="Path Planning" class="static-image path-planning-image">
-            </div>
-            <div class="col text">
-                <h2>Path planning</h2>
-                <p>This project involves designing a grid-based path planner for autonomous navigation in urban streets
-                    and warehouses. The planner incorporates algorithms such as waypoints, Dijkstra's, and A* to ensure
-                    efficient route generation.
-
-                    Developed for food delivery robots and forklifts, the system includes real-time obstacle avoidance
-                    and dynamic re-routing capabilities to handle changing environments seamlessly. This solution
-                    enables safe and efficient navigation for autonomous vehicles in complex, dynamic settings.</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col text">
-                <h2>Remote Operation</h2>
-                <p>This project enables remote operation of robots and forklifts, allowing users to control vehicles
-                    from a distant location instead of physically driving them. The system supports any type of
-                    controller and uses WebRTC for seamless communication. Control commands are sent to a server, and
-                    vehicles subscribe to these commands for execution.
-
-                    The user interface provides real-time statistics of the vehicle, while the edge system integrates
-                    cameras for visual inspection and lidar, radar, or ultrasonic sensors for obstacle detection. This
-                    solution ensures safe and efficient remote operation in diverse environments.</p>
-            </div>
-            <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNo1Ej6YWEvZbcjHuETh0XkIi-B0HjbXnFJM80UZv3f0572EkVDL9MWsalopVMFY5RdJDag08fDIWppaGzQImxBAnDts9-n_wspDoMBxgrbckWxoM1w=w2400"
-                    alt="Remote operation" class="static-image classification-image">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col image">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNCPr9vQNDjV39quOwVVBUh56MnzZ6TanJzLrOcA-9FJRt9bTWeurvNZuo4f0xG2OpdvqeMizWuPb2v0iv1YrH6IqB482WN_RC9wQxCqt_ruKe1Qn_8=w2400"
-                    alt="Parking space" class="static-image">
-            </div>
-            <div class="col text">
-                <h2>Free Parking Space Detection in a Parking Lot</h2>
-                <p>Short description of the warehouse automation project goes here. It optimizes inventory management
-                    and order fulfillment.</p>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="skills">
-        <div class="title">
-            <h1 class="animate-charcter">SKILLS</h1>
-        </div>
-
-        <div class="skillsGrid">
-            <div class="hex-wrapper div1">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="Skill 1">
-                <span>C++</span>
-            </div>
-            <div class="hex-wrapper div2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Skill 2">
-                <span>Python</span>
-            </div>
-            <div class="hex-wrapper div3">
-                <img src="https://www.ros.org/imgs/logo-white.png" alt="Skill 2">
-                <span>ROS</span>
-            </div>
-            <div class="hex-wrapper div4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Cmake.svg" alt="Skill 2">
-                <span>CMake</span>
             </div>
 
-            <div class="hex-wrapper div5">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/480px-Git_icon.svg.png"
-                    alt="Skill 2">
-                <span>Git</span>
+            <div class="row">
+                <div class="col text">
+                    <h2>Autonomous Drone for Bridge Inspection</h2>
+                    <p>The Autonomous Drone for Bridge Inspection is designed to enhance structural assessment and
+                        maintenance through precise, efficient aerial inspections. Equipped with camera, LiDAR, GPS,
+                        IMU,
+                        and gyroscope sensors, the drone provides both manual and autonomous operational modes. In
+                        autonomous mode, it leverages a custom-built stack integrating LiDAR, GPS, and IMU data to
+                        navigate
+                        complex environments accurately. This setup allows for real-time data capture and analysis,
+                        making
+                        bridge inspections safer, faster, and more thorough.
+                    </p>
+                    <p><i>C++, Python, OpenCV, TensorRT, PCL, WebRTC</i></p>
+
+
+                </div>
+                <div class="col image">
+                    <img src="./assets/svg/drone.svg" alt="Autonomous Drone" class="drone-image">
+                </div>
             </div>
 
-            <div class="hex-wrapper div6">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/224px-Tensorflow_logo.svg.png"
-                    alt="Skill 2">
-                <span>TensorFlow</span>
-            </div>
-            <div class="hex-wrapper div7">
-                <img src="https://img.icons8.com/?size=100&id=cdYUlRaag9G9&format=png&color=000000" alt="Skill 2">
-                <span>Docker</span>
-            </div>
-            <div class="hex-wrapper div8">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg"
-                    alt="Skill 2">
-                <span>OpenCV</span>
+            <div class="row">
+                <div class="col image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNs5_3PPrztJpmwdSLX0RVXTEoFFFAMvDC1FpS0Tz-xl00gapvbSL7TBDerCPYblcTf87TsRDdlvfAS8guBdjMg7oBCsOe58tTRdKr08q7XB8DYghSN=w2400"
+                        alt="Object Detection" class="static-image">
+                </div>
+                <div class="col text">
+                    <h2>Counting Cars in a Multistorey Car park</h2>
+                    <p>This project focuses on automating car counting in a parking lot using a camera installed at the
+                        entrance/exit. By replacing manual inspection, the system efficiently tracks cars entering and
+                        exiting the lot, providing real-time updates on available parking spots for drivers.
+
+                        A lightweight object detection model was developed to run on the Raspberry Pi CPU, eliminating
+                        the
+                        need for expensive devices like Nvidia Xavier. The model achieved an impressive 17 FPS on a
+                        Raspberry Pi 3, ensuring cost-effectiveness and high performance. Additionally, a tracker was
+                        implemented to distinguish whether a car is entering or exiting, avoiding the need for an
+                        additional
+                        camera installation and further optimizing the solution.
+
+                        The collected numbers and statistics were transmitted to a database, enabling seamless
+                        integration
+                        with a website and app to display parking availability to users in real time.
+                    </p>
+                </div>
             </div>
 
-            <div class="hex-wrapper div9">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/267px-Matlab_Logo.png"
-                    alt="Skill 2">
-                <span>MATLAB</span>
+            <div class="row">
+                <div class="col text">
+                    <h2>Building footprint extraction from high resolution satellite images</h2>
+                    <p> My Master's thesis focuses on pixel-wise image segmentation to automate tasks such as building
+                        detection
+                        from 3-band monocular satellite images using convolutional neural networks (CNNs) like FCN,
+                        SegNet,
+                        UNet, Deep UNet, PSPNet and Mask RCNN. Manual extraction of buildings, roads, and other features
+                        from
+                        satellite imagery is a time-intensive process,
+                        especially in rapidly growing cities. By leveraging deep learning, computational advancements,
+                        and
+                        high-quality data acquisition, this project aims to streamline this process.
+
+                        The core objective is to evaluate the transferability of trained neural networks to detect
+                        buildings
+                        in unseen geographical regions, addressing variations in building attributes across different
+                        locations. The research also explores factors such as image resolution, quality, building
+                        separation, and texture of non-building areas. Transferability is assessed using metrics like
+                        completeness, correctness, overlap with ground truth data, and accuracy. This work contributes
+                        towards creating a generalized solution for building detection tasks in diverse environments.
+                    </p>
+                </div>
+                <div class="col image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczPscBkUksCfW7LLUJgkfNUt4Oe9D7Xt1Em5APBj-0WVWEoYM2RGs8Qj0xWyFNEKUgbPwlZioJ9E1nnFApWCGmAGLu6yGonygxZFj-o4KlHXGt5LIlXd=w2400"
+                        alt="Image Classification" class="static-image building-image">
+                </div>
+
             </div>
 
-            <div class="hex-wrapper div10">
-                <img src="https://img.icons8.com/?size=100&id=piVHs2bMOs6P&format=png&color=000000" alt="Skill 2">
-                <span>LaTeX</span>
+            <div class="row">
+                <div class="col image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOmVj1v-pk8enbmXQN9wHqwA7tNzgF1HSOrE8TrgDNZf6vuESLBq25R6UUf0UkQKODdsdezqdnXeo2jZuZVgAwgIYm6G3qZ_u2l-YCIH5DWyLAAdFon=w2400"
+                        alt="Point Cloud Processing" class="static-image slam-image">
+                </div>
+                <div class="col text">
+                    <h2>LIDAR Point Cloud Processing</h2>
+                    <p>Real-time processing of raw point clouds from various lidar types, including 2D single-line lidar
+                        (RP
+                        Lidar), 3D solid-state lidar (Livox, AEye, and Innoviz), and 3D mechanical lidar (Ouster, and
+                        Velodyne). The key functionalities include:</p>
+                    <ul>
+                        <li>Compression of point clouds for efficient streaming.</li>
+                        <li>Feature extraction and obstacle detection.</li>
+                        <li>Identification of regions of interest (ROI) and non-interest.</li>
+                        <li>Real-time point cloud registration on embedded devices.</li>
+                        <li>Live streaming of processed point clouds using a cloud server for edge devices.</li>
+                    </ul>
+                    <p>The entire workflow was designed for seamless operation in real-time, leveraging embedded
+                        platforms
+                        to enable effective lidar data utilization in applications like navigation, mapping, and
+                        obstacle
+                        avoidance.</p>
+                </div>
             </div>
 
-            <div class="hex-wrapper div11">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Autodesk_Logo_A_only.svg" alt="Skill 2">
-                <span>Autodesk</span>
+            <div class="row">
+                <div class="col text">
+                    <h2>Simultaneous Localization and Mapping (SLAM)</h2>
+                    <p>
+                        This project focuses on implementing a real-time Simultaneous Localization and Mapping (SLAM)
+                        system
+                        with millimeter-level precision. The system is designed to operate efficiently on embedded
+                        devices
+                        and is robust for both constrained and unconstrained environments.
+
+                        Key features include:
+                    </p>
+                    <ul>
+                        <li>Point cloud-based graph SLAM for accurate mapping.</li>
+                        <li>Feature-based loop closure to enhance map consistency.</li>
+                        <li>Integration of GPS, IMU, and gyroscope data for additional assistance, when required.</li>
+                    </ul>
+                    <p>This SLAM solution is optimized for resource-constrained platforms and is ideal for applications
+                        requiring precise localization and mapping in diverse and dynamic scenarios.
+                    </p>
+                </div>
+                <div class="col image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczO3OKcTN5d6l3iacKW6Pl4z0X38Nlu6W3DdnKfUaYZgS45nmWpqjb9-ND2HwuxaWzzULkl3r4zFvCCAAcPm0WJ9oC-LuiuQKSHYFI76_RiQVIL8q2MF=w2400"
+                        alt="SLAM" class="static-image slam-image">
+                </div>
             </div>
-            <div class="hex-wrapper div12">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Pcl_%28PointClouds_library%29_logo_with_text.png"
-                    alt="Skill 2">
-                <span>PCL</span>
+
+            <div class="row">
+                <div class="col image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczM2nQ8lbSk-MeT6mdV2vNx3jSEj8Xqy9L3p3sVjfYtP_hj-fwT4WZ8FfhOL1gyVsW2vOoI1DvzvAYig-70Bxe-1Z3Wjg2cFDxbVuINlJ4yjVMsuH8ie=w2400"
+                        alt="Path Planning" class="static-image path-planning-image">
+                </div>
+                <div class="col text">
+                    <h2>Path planning</h2>
+                    <p>This project involves designing a grid-based path planner for autonomous navigation in urban
+                        streets
+                        and warehouses. The planner incorporates algorithms such as waypoints, Dijkstra's, and A* to
+                        ensure
+                        efficient route generation.
+
+                        Developed for food delivery robots and forklifts, the system includes real-time obstacle
+                        avoidance
+                        and dynamic re-routing capabilities to handle changing environments seamlessly. This solution
+                        enables safe and efficient navigation for autonomous vehicles in complex, dynamic settings.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text">
+                    <h2>Remote Operation</h2>
+                    <p>This project enables remote operation of robots and forklifts, allowing users to control vehicles
+                        from a distant location instead of physically driving them. The system supports any type of
+                        controller and uses WebRTC for seamless communication. Control commands are sent to a server,
+                        and
+                        vehicles subscribe to these commands for execution.
+
+                        The user interface provides real-time statistics of the vehicle, while the edge system
+                        integrates
+                        cameras for visual inspection and lidar, radar, or ultrasonic sensors for obstacle detection.
+                        This
+                        solution ensures safe and efficient remote operation in diverse environments.</p>
+                </div>
+                <div class="col image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNo1Ej6YWEvZbcjHuETh0XkIi-B0HjbXnFJM80UZv3f0572EkVDL9MWsalopVMFY5RdJDag08fDIWppaGzQImxBAnDts9-n_wspDoMBxgrbckWxoM1w=w2400"
+                        alt="Remote operation" class="static-image classification-image">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNCPr9vQNDjV39quOwVVBUh56MnzZ6TanJzLrOcA-9FJRt9bTWeurvNZuo4f0xG2OpdvqeMizWuPb2v0iv1YrH6IqB482WN_RC9wQxCqt_ruKe1Qn_8=w2400"
+                        alt="Parking space" class="static-image">
+                </div>
+                <div class="col text">
+                    <h2>Free Parking Space Detection in a Parking Lot</h2>
+                    <p>Short description of the warehouse automation project goes here. It optimizes inventory
+                        management
+                        and order fulfillment.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="skills">
+        <div class="skills">
+            <div class="title">
+                <h1 class="animate-charcter">SKILLS</h1>
+            </div>
+
+            <div class="skillsGrid">
+                <div class="hex-wrapper div1">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="Skill 1">
+                    <span>C++</span>
+                </div>
+                <div class="hex-wrapper div2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Skill 2">
+                    <span>Python</span>
+                </div>
+                <div class="hex-wrapper div3">
+                    <img src="https://www.ros.org/imgs/logo-white.png" alt="Skill 2">
+                    <span>ROS</span>
+                </div>
+                <div class="hex-wrapper div4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Cmake.svg" alt="Skill 2">
+                    <span>CMake</span>
+                </div>
+
+                <div class="hex-wrapper div5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/480px-Git_icon.svg.png"
+                        alt="Skill 2">
+                    <span>Git</span>
+                </div>
+
+                <div class="hex-wrapper div6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/224px-Tensorflow_logo.svg.png"
+                        alt="Skill 2">
+                    <span>TensorFlow</span>
+                </div>
+                <div class="hex-wrapper div7">
+                    <img src="https://img.icons8.com/?size=100&id=cdYUlRaag9G9&format=png&color=000000" alt="Skill 2">
+                    <span>Docker</span>
+                </div>
+                <div class="hex-wrapper div8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg"
+                        alt="Skill 2">
+                    <span>OpenCV</span>
+                </div>
+
+                <div class="hex-wrapper div9">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/267px-Matlab_Logo.png"
+                        alt="Skill 2">
+                    <span>MATLAB</span>
+                </div>
+
+                <div class="hex-wrapper div10">
+                    <img src="https://img.icons8.com/?size=100&id=piVHs2bMOs6P&format=png&color=000000" alt="Skill 2">
+                    <span>LaTeX</span>
+                </div>
+
+                <div class="hex-wrapper div11">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Autodesk_Logo_A_only.svg"
+                        alt="Skill 2">
+                    <span>Autodesk</span>
+                </div>
+                <div class="hex-wrapper div12">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Pcl_%28PointClouds_library%29_logo_with_text.png"
+                        alt="Skill 2">
+                    <span>PCL</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <section id="pixworm">
-        <div class="title">
+        <div class="pixworm">
             <h1 class="animate-charcter">PIXWORM</h1>
             <p>Here are some of my favorite photographs. I hope you enjoy them!</p>
             <button class="glow-on-hover" type="button">Welcome to PIXWORM</button>
