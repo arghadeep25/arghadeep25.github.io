@@ -8,6 +8,34 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
     });
 });
 
+// Add an event listener for scroll
+document.addEventListener("scroll", () => {
+    const sections = document.querySelectorAll("section"); // All sections
+    const navLinks = document.querySelectorAll("nav ul li a"); // All nav links
+
+    let currentSection = "";
+
+    // Identify the current section in the viewport
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop - 50 && window.scrollY < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute("id");
+        }
+    });
+
+    // Remove active class from all links
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+
+        // Add active class to the current section link
+        if (link.getAttribute("href").includes(currentSection)) {
+            link.classList.add("active");
+        }
+    });
+});
+
+
 // Change header background on scroll
 window.addEventListener('scroll', function() {
     const header = document.getElementById('main-header');
