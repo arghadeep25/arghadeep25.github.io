@@ -1,9 +1,16 @@
 #projects {
-    background-image: url('./../bg/bg-dark.png');
     background-color: rgba(0, 0, 0, 0.9);
     background-size: cover;
     background-position: center;
-    padding: 50px 0;
+    width: 100%;
+    height: 400vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-x: hidden;
 }
 
 #projects .row {
@@ -18,18 +25,6 @@
     overflow: hidden;
 }
 
-#projects .title {
-    display: flex;
-    /* Flexbox for alignment */
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: auto;
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
 @media screen and (max-width: 768px) {
     #projects .row {
         display: flex;
@@ -37,23 +32,17 @@
         padding: 0 5%;
         gap: 10px;
     }
+}
 
-    .image,
-    .text {
-        text-align: center;
-    }
-
-    .title {
-        order: -1;
-    }
-
-    .image {
-        order: 1;
-    }
-
-    .text {
-        order: 2;
-    }
+#projects .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
 }
 
 #projects .title h1 {
@@ -90,33 +79,6 @@
 @media screen and (max-width: 768px) {
     #projects .title h2 {
         font-size: 1rem;
-    }
-}
-
-.animate-charcter {
-    text-transform: uppercase;
-    background-image: linear-gradient(-225deg,
-            #231557 0%,
-            #44107a 29%,
-            #ff1361 67%,
-            #fff800 100%);
-    background-size: auto auto;
-    background-clip: border-box;
-    background-size: 200% auto;
-    color: #fff;
-    background-clip: text;
-    /* text-fill-color: transparent; */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textclip 2s linear infinite;
-    display: inline-block;
-    font-size: 190px;
-    text-align: center;
-}
-
-@keyframes textclip {
-    to {
-        background-position: 200% center;
     }
 }
 
@@ -158,7 +120,6 @@
 
 }
 
-
 .text h2 {
     font-size: 1.4rem;
     margin-bottom: 30px;
@@ -178,33 +139,26 @@
 
 .text ul {
     margin-top: 10px;
-    /* Adds spacing between paragraph and bullet points */
     margin-left: 10%;
-    /* Aligns bullets with paragraph text */
     padding-left: 20px;
-    /* Adjusts bullet indentation */
     list-style-type: disc;
-    /* Ensures default bullets are used */
-}
-
-.text ul li {
-    margin-bottom: 8px;
-    /* Adds spacing between list items */
-    text-align: justify;
-    /* Matches paragraph alignment */
-}
-
-.text p {
-    margin-bottom: 20px;
-    /* Ensures space between paragraph and bullets */
 }
 
 @media screen and (max-width: 768px) {
     .text ul {
         margin-left: 5%;
-        /* Adjust for smaller screens */
         padding-left: 15px;
     }
+}
+
+
+.text ul li {
+    margin-bottom: 8px;
+    text-align: justify;
+}
+
+.text p {
+    margin-bottom: 20px;
 }
 
 .image {
@@ -219,12 +173,6 @@
     position: relative;
     width: 100%;
     min-height: 250px; */
-}
-
-.image img {
-    max-width: 80%;
-    height: auto;
-    position: relative;
 }
 
 .text-left,
@@ -246,6 +194,40 @@
 
 }
 
+
+
+.animate-charcter {
+    text-transform: uppercase;
+    background-image: linear-gradient(-225deg,
+            #231557 0%,
+            #44107a 29%,
+            #ff1361 67%,
+            #fff800 100%);
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-size: 190px;
+    text-align: center;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.image img {
+    max-width: 80%;
+    height: auto;
+    position: relative;
+}
 
 .drone-image {
     width: 80px;
@@ -455,5 +437,25 @@
     .image,
     .text {
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .image,
+    .text {
+        text-align: center;
+    }
+
+    .title {
+        order: -1;
+    }
+
+    .image {
+        order: 1;
+    }
+
+    .text {
+        order: 2;
     }
 }
