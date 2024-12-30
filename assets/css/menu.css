@@ -52,7 +52,9 @@ nav ul li a:hover {
 }
 
 nav ul li a.active {
-    color: #ff1361;
+    /* color: #ff1361; */
+    color: #f1e3e3;
+    font-weight: 700;
 }
 
 @keyframes textclip {
@@ -61,6 +63,7 @@ nav ul li a.active {
     }
 }
 
+/* TODO different resolution needs to be added */
 /* Hide the menu on small screens */
 @media (max-width: 768px) {
     nav ul {

@@ -1,11 +1,13 @@
 #skills {
     width: 100%;
-    height: 80vh;
+    height: auto;
     background-color: rgba(0, 0, 0, 0.9);
     text-align: center;
     background-size: cover;
     background-position: center;
     position: relative;
+    /* padding-top: 50px; */
+    /* padding-bottom: 50px; */
 }
 
 #skills h1 {
@@ -16,6 +18,14 @@
     letter-spacing: 0.1em;
     text-align: center;
     text-transform: uppercase;
+}
+
+/* TODO different resolution needs to be added */
+@media screen and (max-width: 1000px) {
+    #skills h1 {
+        font-size: 2rem;
+    }
+
 }
 
 
@@ -165,7 +175,7 @@
     z-index: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .skillsGrid {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(6, 1fr);

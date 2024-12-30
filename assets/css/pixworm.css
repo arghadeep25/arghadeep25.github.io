@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 160vh;
+    height: auto;
     overflow-x: hidden;
     position: relative;
 }
@@ -20,6 +20,12 @@
     user-select: none;
 }
 
+@media (max-width: 768px) {
+    #pixworm h1 {
+        font-size: 2rem;
+    }
+}
+
 #pixworm p {
     font-size: 1rem;
     color: #ffebe1;
@@ -28,10 +34,17 @@
     user-select: none;
 }
 
+@media screen and (max-width: 768px) {
+    #pixworm p {
+        font-size: 0.75rem;
+        text-align: center;
+    }
+
+}
+
 .options {
     display: flex;
     flex-direction: row;
-    /* align-items: stretch; */
     align-items: center;
     overflow: hidden;
     min-width: 1200px;
@@ -39,6 +52,16 @@
     width: calc(100% - 100px);
     height: 800px;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .options {
+        height: 100%;
+        /* min-width: 200px; */
+        /* max-width: 600px; */
+        /* width: calc(50% - 50px); */
+        height: 300px;
+    }
 }
 
 .option {
@@ -54,6 +77,13 @@
     cursor: pointer;
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+    .option {
+        height: 50%;
+    }
+
 }
 
 .option:hover {
@@ -144,34 +174,33 @@
     justify-content: center;
     align-items: center;
     margin: 30px auto;
-    /* Center the container horizontally */
     padding: 10px;
-    /* Thin padding for the border */
     background-color: rgba(0, 0, 0, 0.9);
     border-radius: 10px;
-    /* Smaller rounded corners */
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-    /* Subtle shadow */
     max-width: 640px;
-    /* Slightly larger than the iframe to accommodate the border */
+}
+
+@media screen and (max-width: 768px) {
+    .video-container {
+        /* margin: 20px auto; */
+        max-width: 480px;
+        background-size: auto;
+    }
+
 }
 
 .video-container iframe {
     width: 100%;
-    /* Default to fully responsive */
     max-width: 640px;
-    /* Maximum width of 800px */
     height: 480px;
-    /* Fixed height */
     border-radius: 10px;
-    /* Rounded corners for the iframe */
     border: 2px solid rgba(255, 255, 255, 0.5);
-    /* Thin border */
 }
 
 @media (max-width: 768px) {
     .video-container iframe {
-        width: 100%;
+        width: 80%;
         height: auto;
     }
 }
@@ -182,12 +211,21 @@
     height: 70px;
     border: none;
     outline: none;
-    color: #fff;
+    color: #e6d7d7;
     background: #111;
     cursor: pointer;
     position: relative;
     z-index: 0;
     border-radius: 10px;
+}
+
+/* TODO different resolution needs to be added */
+@media screen and (max-width: 1000px) {
+    .glow-on-hover {
+        width: 180px;
+        height: 50px;
+    }
+
 }
 
 .glow-on-hover:before {
@@ -268,4 +306,43 @@
     to {
         background-position: 200% center;
     }
+}
+
+.quote-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* position: relative; */
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 80%;
+    /* flex-direction: column; */
+    gap: 10px;
+}
+
+.big-comma {
+    font-size: 80px;
+    /* Adjust for large commas */
+    color: #ff4d5a;
+    /* Customize the color of the commas */
+    font-family: 'Georgia', serif;
+    /* Example font for commas */
+    line-height: 0.8;
+}
+
+.quote-text {
+    font-size: 1.5rem;
+    /* Adjust the size of the quote */
+    font-style: italic;
+    color: #ffebe1;
+    font-family: 'Playfair Display', serif;
+    /* Different font for the quote text */
+    margin: 0;
+    line-height: 1.8;
+}
+
+.quote-content {
+    font-size: 1.5em;
+    display: inline-block;
 }

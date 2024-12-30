@@ -3,7 +3,8 @@
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 400vh;
+    height: auto;
+    /* min-height: 600vh; */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -11,7 +12,16 @@
     align-items: center;
     text-align: center;
     overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    padding-bottom: 50px;
 }
+
+/* @media screen and (max-width: 1000px) {
+    #projects {
+        height: 500vh;
+    }
+} */
 
 #projects .row {
     display: grid;
@@ -25,7 +35,8 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 768px) {
+/* TODO different resolution needs to be added */
+@media screen and (max-width: 1000px) {
     #projects .row {
         display: flex;
         flex-direction: column;
@@ -60,7 +71,7 @@
     -ms-user-select: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     #projects .title h1 {
         font-size: 1.5rem;
     }
@@ -76,7 +87,7 @@
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     #projects .title h2 {
         font-size: 1rem;
     }
@@ -91,7 +102,7 @@
     margin-right: 10%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     #projects p {
         margin-left: 5%;
         margin-right: 5%;
@@ -113,7 +124,7 @@
     -ms-user-select: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .text {
         font-size: 0.75rem;
     }
@@ -130,7 +141,7 @@
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .text h2 {
         font-size: 1rem;
     }
@@ -144,7 +155,7 @@
     list-style-type: disc;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .text ul {
         margin-left: 5%;
         padding-left: 15px;
@@ -185,7 +196,7 @@
     display: block;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 
     .text-left,
     .text-right {
@@ -268,9 +279,9 @@
     height: auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .static-image {
-        width: 80%;
+        width: 30%;
         height: auto;
         position: relative;
     }
@@ -299,7 +310,7 @@
     }
 
     .building-image {
-        width: 700px;
+        width: 300px;
         height: auto;
     }
 
@@ -374,7 +385,7 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .drone-image {
         animation: flyInZoneSmall 3s linear infinite;
     }
@@ -427,7 +438,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     #projects .row {
         grid-template-columns: 1fr;
         padding: 0 5%;
@@ -440,7 +451,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 
     .image,
     .text {

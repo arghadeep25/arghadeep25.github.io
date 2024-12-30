@@ -69,7 +69,8 @@
     font-weight: 100;
 }
 
-@media screen and (max-width: 768px) {
+/* TODO different resolution needs to be added */
+@media screen and (max-width: 1000px) {
     #home h1 {
         font-size: 3rem;
     }
