@@ -142,41 +142,79 @@
     }
 }
 
-#about .about-container .quote-container {
+.quote-container {
     display: flex;
+    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
-    text-align: center;
-    /* position: relative; */
+    text-align: justify;
+    flex-wrap: nowrap;
     margin: 20px auto;
     padding: 20px;
+    width: 100%;
     max-width: 80%;
-    /* flex-direction: column; */
-    gap: 10px;
+    gap: 20px;
+    box-sizing: border-box;
 }
 
-#about .about-container .big-comma {
-    font-size: 80px;
-    /* Adjust for large commas */
+.quote-container .big-comma {
+    font-size: 3rem;
     color: #ff4d5a;
-    /* Customize the color of the commas */
     font-family: 'Georgia', serif;
-    /* Example font for commas */
-    line-height: 0.8;
-}
-
-#about .about-container .quote-text {
-    font-size: 1.0rem;
-    /* Adjust the size of the quote */
-    font-style: italic;
-    color: #ffebe1;
-    font-family: 'Playfair Display', serif;
-    /* Different font for the quote text */
+    line-height: 1;
     margin: 0;
-    line-height: 1.8;
 }
 
-#about .about-container .quote-content {
-    font-size: 1.5em;
+.quote-container .quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #e4dcd1;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.quote-container .quote-content {
+    font-size: 1.5rem;
     display: inline-block;
+}
+
+.quote-container .quote-author {
+    font-size: 1rem;
+    color: #aaa9a7;
+    font-family: 'Arial', sans-serif;
+    margin-top: 10px;
+    white-space: nowrap;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .quote-container .big-comma {
+        font-size: 1.5rem;
+    }
+
+    .quote-container .quote-text {
+        font-size: 0.75rem;
+    }
+
+    .quote-container .quote-author {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .about-container .quote-text {
+        font-size: 1.0em;
+        line-height: 1.5;
+    }
+
+    .about-container .quote-content {
+        font-size: 1.0em;
+    }
+
+    .about-container .big-comma {
+        font-size: 40px;
+    }
+
 }
