@@ -57,10 +57,36 @@ section {
 }
 
 footer {
-    padding: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #ffebe1;
     text-align: center;
-    background: #333;
-    color: white;
+    padding: 20px 10px;
+    font-size: 0.75rem;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer .social-icons {
+    margin-top: 10px;
+}
+
+footer .social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+footer .social-icons img {
+    width: 30px;
+    /* Icon size */
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+footer .social-icons img:hover {
+    transform: scale(1.2);
+    /* Slightly enlarge the icon on hover */
 }
 
 
