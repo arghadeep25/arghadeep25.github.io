@@ -174,17 +174,12 @@
     justify-content: center;
     align-items: center;
     margin: 30px auto;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.9);
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-    max-width: 640px;
+    max-width: 80%;
 }
 
 @media screen and (max-width: 768px) {
     .video-container {
-        /* margin: 20px auto; */
-        max-width: 480px;
+        max-width: 40%;
         background-size: auto;
     }
 
@@ -195,7 +190,6 @@
     max-width: 640px;
     height: 480px;
     border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 768px) {
@@ -217,13 +211,23 @@
     position: relative;
     z-index: 0;
     border-radius: 10px;
+    font-size: 1.0rem;
 }
 
 /* TODO different resolution needs to be added */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .glow-on-hover {
         width: 180px;
         height: 50px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .glow-on-hover {
+        width: 150px;
+        height: 40px;
+        font-size: 0.75rem;
     }
 
 }
@@ -308,41 +312,84 @@
     }
 }
 
+
 .quote-container {
     display: flex;
+    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
-    text-align: center;
-    /* position: relative; */
+    text-align: justify;
+    flex-wrap: nowrap;
     margin: 20px auto;
     padding: 20px;
+    width: 100%;
     max-width: 80%;
-    /* flex-direction: column; */
-    gap: 10px;
+    gap: 20px;
+    box-sizing: border-box;
 }
 
-.big-comma {
-    font-size: 80px;
-    /* Adjust for large commas */
+.quote-container .big-comma {
+    font-size: 3rem;
     color: #ff4d5a;
-    /* Customize the color of the commas */
     font-family: 'Georgia', serif;
-    /* Example font for commas */
-    line-height: 0.8;
-}
-
-.quote-text {
-    font-size: 1.5rem;
-    /* Adjust the size of the quote */
-    font-style: italic;
-    color: #ffebe1;
-    font-family: 'Playfair Display', serif;
-    /* Different font for the quote text */
+    line-height: 1;
     margin: 0;
-    line-height: 1.8;
 }
 
-.quote-content {
-    font-size: 1.5em;
+.quote-container .quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #e4dcd1;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.quote-container .quote-content {
+    font-size: 1.5rem;
     display: inline-block;
 }
+
+.quote-container .quote-author {
+    font-size: 1rem;
+    color: #aaa9a7;
+    font-family: 'Arial', sans-serif;
+    margin-top: 10px;
+    white-space: nowrap;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1024px) {
+    .quote-container .quote-text {
+        font-size: 1.0em;
+        line-height: 1.5;
+    }
+
+    .quote-container .quote-content {
+        font-size: 1.0em;
+    }
+
+    .quote-container .big-comma {
+        font-size: 40px;
+    }
+
+    .quote-container .quote-author {
+        font-size: 0.75rem;
+    }
+
+}
+
+/* @media (max-width: 768px) {
+    .quote-container .big-comma {
+        font-size: 1.5rem;
+    }
+
+    .quote-container .quote-text {
+        font-size: 0.75rem;
+    }
+
+    .quote-container .quote-author {
+        font-size: 0.75rem;
+    }
+} */
