@@ -44,32 +44,24 @@
 
 .options {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    /* Allow items to wrap into the next row */
+    justify-content: space-between;
     align-items: center;
-    overflow: hidden;
-    min-width: 1200px;
-    max-width: 1600px;
+    gap: 20px;
+    min-width: 1500px;
+    max-width: 1800px;
     width: calc(100% - 100px);
     height: 800px;
     margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-    .options {
-        height: 100%;
-        /* min-width: 200px; */
-        /* max-width: 600px; */
-        /* width: calc(50% - 50px); */
-        height: 300px;
-    }
-}
-
+/* Style for each option */
 .option {
     position: relative;
     overflow: hidden;
     height: 70%;
     width: auto;
-    margin: 20px;
     background: var(--optionBackground);
     background-size: cover;
     background-position: center;
@@ -79,12 +71,30 @@
     box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.3);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 912px) {
+    .options {
+        width: calc(100% - 100px);
+    }
+
     .option {
         height: 50%;
     }
 
 }
+
+@media screen and (max-width: 768px) {
+    .options {
+        min-width: 30%;
+        max-width: 80%;
+        height: 400px;
+    }
+
+    .option {
+        height: 50%;
+    }
+
+}
+
 
 .option:hover {
     flex-grow: 2;
@@ -101,6 +111,15 @@
     border-radius: 30px;
     z-index: 3;
     box-shadow: 0px 8px 30px rgba(255, 255, 255, 0.6);
+}
+
+@media screen and (max-width: 1024px) {
+    .options.active {
+        height: 250px;
+        flex-grow: 2;
+        transform: scale(1.1);
+    }
+
 }
 
 .option:not(.active) {
@@ -174,22 +193,38 @@
     justify-content: center;
     align-items: center;
     margin: 30px auto;
-    max-width: 80%;
+    max-width: 100%;
+    height: auto;
 }
+
+@media (max-width: 912px) {
+    .video-container {
+        max-width: 100%;
+        background-size: auto;
+    }
+}
+
 
 @media screen and (max-width: 768px) {
     .video-container {
-        max-width: 40%;
+        max-width: 80%;
         background-size: auto;
     }
-
 }
 
 .video-container iframe {
     width: 100%;
-    max-width: 640px;
+    max-width: 800px;
     height: 480px;
     border-radius: 10px;
+}
+
+@media (max-width: 912px) {
+    .video-container iframe {
+        /* max-width: 800px; */
+        width: 80%;
+        height: auto;
+    }
 }
 
 @media (max-width: 768px) {
