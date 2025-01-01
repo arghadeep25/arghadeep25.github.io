@@ -29,14 +29,28 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
-    padding: 0 10%;
+    padding: 0 5%;
     gap: 20px;
     position: relative;
     overflow: hidden;
 }
 
+@media screen and (max-width: 1024px) {
+    #projects .row {
+        grid-template-columns: 1fr;
+        padding: 0 0%;
+        gap: 10px;
+    }
+
+    .image,
+    .text {
+        text-align: center;
+    }
+}
+
+
 /* TODO different resolution needs to be added */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     #projects .row {
         display: flex;
         flex-direction: column;
@@ -71,7 +85,13 @@
     -ms-user-select: none;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
+    #projects .title h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
     #projects .title h1 {
         font-size: 1.5rem;
     }
@@ -87,9 +107,15 @@
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     #projects .title h2 {
-        font-size: 1rem;
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #projects .title h2 {
+        font-size: 2rem;
     }
 }
 
@@ -102,10 +128,19 @@
     margin-right: 10%;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     #projects p {
         margin-left: 5%;
         margin-right: 5%;
+        font-size: 1.2rem;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    #projects p {
+        margin-left: 2%;
+        margin-right: 2%;
         font-size: 0.75rem;
     }
 
@@ -124,7 +159,7 @@
     -ms-user-select: none;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .text {
         font-size: 0.75rem;
     }
@@ -141,7 +176,7 @@
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .text h2 {
         font-size: 1rem;
     }
@@ -155,13 +190,21 @@
     list-style-type: disc;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
     .text ul {
         margin-left: 5%;
         padding-left: 15px;
+        font-size: 1.2rem;
     }
 }
 
+@media screen and (max-width: 768px) {
+    .text ul {
+        margin-left: 2%;
+        padding-left: 10px;
+        font-size: 0.7rem;
+    }
+}
 
 .text ul li {
     margin-bottom: 8px;
@@ -196,7 +239,25 @@
     display: block;
 }
 
-@media screen and (max-width: 1000px) {
+
+@media screen and (max-width: 1024px) {
+
+    .image,
+    .text {
+        text-align: center;
+    }
+
+    .title {
+        order: -1;
+    }
+
+    .image {
+        order: 1;
+    }
+
+    .text {
+        order: 2;
+    }
 
     .text-left,
     .text-right {
@@ -279,46 +340,89 @@
     height: auto;
 }
 
-@media screen and (max-width: 1000px) {
+
+@media screen and (max-width: 1024px) {
     .static-image {
-        width: 30%;
+        width: 50%;
         height: auto;
         position: relative;
     }
 
     .drone-image {
-        width: 50px;
+        width: 10%;
         animation: flyInZone 7s linear infinite;
         position: absolute;
     }
 
     .robot-image {
-        width: 70px;
+        width: 10%;
         animation: moveWithinGrid 5s linear infinite;
         position: absolute;
     }
 
     .forklift-image {
-        width: 70px;
+        width: 15%;
         animation: moveWithinGridForklift 5s linear infinite;
         position: absolute;
     }
 
     .path-planning-image {
-        width: 200px;
+        width: 30%;
         height: auto;
     }
 
     .building-image {
-        width: 300px;
+        width: 60%;
         height: auto;
     }
 
     .slam-image {
-        width: 200px;
+        width: 30%;
         height: auto;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .static-image {
+        width: 60%;
+        height: auto;
+        position: relative;
+    }
+
+    .drone-image {
+        width: 15%;
+        animation: flyInZone 7s linear infinite;
+        position: absolute;
+    }
+
+    .robot-image {
+        width: 15%;
+        animation: moveWithinGrid 5s linear infinite;
+        position: absolute;
+    }
+
+    .forklift-image {
+        width: 20%;
+        animation: moveWithinGridForklift 5s linear infinite;
+        position: absolute;
+    }
+
+    .path-planning-image {
+        width: 50%;
+        height: auto;
+    }
+
+    .building-image {
+        width: 80%;
+        height: auto;
+    }
+
+    .slam-image {
+        width: 50%;
+        height: auto;
+    }
+}
+
 
 @keyframes flyInZone {
     0% {
@@ -326,15 +430,15 @@
     }
 
     25% {
-        transform: translate(20px, -20px);
+        transform: translate(5vw, -5vh);
     }
 
     50% {
-        transform: translate(-20px, -40px);
+        transform: translate(-5vw, -10vh);
     }
 
     75% {
-        transform: translate(-20px, 20px);
+        transform: translate(-5vw, 5vh);
     }
 
     100% {
@@ -342,14 +446,39 @@
     }
 }
 
+@media screen and (max-width: 1024px) {
+    @keyframes flyInZone {
+        0% {
+            transform: translate(-5vw, -1vh);
+        }
+
+        25% {
+            transform: translate(0vw, 1vh);
+        }
+
+        50% {
+            transform: translate(5vw, -1vh);
+        }
+
+        75% {
+            transform: translate(0vw, 1vh);
+        }
+
+        100% {
+            transform: translate(-5vw, -1vh);
+        }
+    }
+}
+
+
 @keyframes moveWithinGrid {
     0% {
-        left: -250px;
+        left: -50%;
         transform: scaleX(1);
     }
 
     50% {
-        left: calc(100% - 450px);
+        left: calc(100% - 50%);
         transform: scaleX(1);
     }
 
@@ -358,19 +487,19 @@
     }
 
     100% {
-        left: -250px;
+        left: -50%;
         transform: scaleX(-1);
     }
 }
 
 @keyframes moveWithinGridForklift {
     0% {
-        left: calc(100% - 450px);
+        left: calc(100% - 50%);
         transform: scaleX(-1);
     }
 
     50% {
-        left: -250px;
+        left: -50%;
         transform: scaleX(-1);
     }
 
@@ -379,94 +508,7 @@
     }
 
     100% {
-        left: calc(100% - 450px);
+        left: calc(100% - 50%);
         transform: scaleX(1);
-    }
-}
-
-
-@media screen and (max-width: 1000px) {
-    .drone-image {
-        animation: flyInZoneSmall 3s linear infinite;
-    }
-
-    .robot-image {
-        animation: moveWithinGridSmall 5s linear infinite;
-    }
-
-    @keyframes flyInZoneSmall {
-        0% {
-            transform: translate(0, 0);
-        }
-
-        25% {
-            transform: translate(10px, -10px);
-        }
-
-        50% {
-            transform: translate(-10px, -20px);
-        }
-
-        75% {
-            transform: translate(-10px, 10px);
-        }
-
-        100% {
-            transform: translate(0, 0);
-        }
-    }
-
-    @keyframes moveWithinGridSmall {
-        0% {
-            left: -120px;
-            transform: scaleX(1);
-        }
-
-        50% {
-            left: calc(100% - 250px);
-            transform: scaleX(1);
-        }
-
-        51% {
-            transform: scaleX(-1);
-        }
-
-        100% {
-            left: -120px;
-            transform: scaleX(-1);
-        }
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    #projects .row {
-        grid-template-columns: 1fr;
-        padding: 0 5%;
-        gap: 10px;
-    }
-
-    .image,
-    .text {
-        text-align: center;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-
-    .image,
-    .text {
-        text-align: center;
-    }
-
-    .title {
-        order: -1;
-    }
-
-    .image {
-        order: 1;
-    }
-
-    .text {
-        order: 2;
     }
 }
