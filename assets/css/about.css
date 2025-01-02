@@ -145,6 +145,41 @@
     }
 
     #about p {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #about .about-container {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #about .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #about .about-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100px;
+        height: 100px;
+    }
+
+    #about .text-content {
+        max-width: 90%;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    #about h1 {
+        font-size: 1.5rem;
+        margin-left: 0px;
+    }
+
+    #about p {
         font-size: 0.75rem;
         margin-bottom: 5px;
     }

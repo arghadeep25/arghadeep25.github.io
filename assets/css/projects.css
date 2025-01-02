@@ -50,7 +50,7 @@
 
 
 /* TODO different resolution needs to be added */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
     #projects .row {
         display: flex;
         flex-direction: column;
@@ -132,7 +132,7 @@
     #projects p {
         margin-left: 5%;
         margin-right: 5%;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
 }
@@ -194,7 +194,7 @@
     .text ul {
         margin-left: 5%;
         padding-left: 15px;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }
 
@@ -240,7 +240,7 @@
 }
 
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
 
     .image,
     .text {
