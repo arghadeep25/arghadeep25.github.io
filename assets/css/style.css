@@ -29,13 +29,13 @@ header.scrolled {
 
 /* Full-Screen Sections */
 section {
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: relative;
-    color: white;
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .parallax {

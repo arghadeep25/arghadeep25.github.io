@@ -25,25 +25,25 @@
     /* z-index: -1; */
 }
 
+
+
 /* TODO different resolution needs to be added */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     #stars-canvas {
         display: none;
-        position: absolute;
+        /* position: absolute; */
         top: 0;
         left: 0;
         width: 0%;
         height: 0%;
     }
-}
 
-@media screen and (max-width: 768px) {
-    #stars-canvas {
-        display: none;
+    #home-background-stars-canvas {
         position: absolute;
         top: 0;
         left: 0;
         width: 0%;
         height: 0%;
+        /* z-index: -1; */
     }
 }
