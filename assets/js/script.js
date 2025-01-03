@@ -124,3 +124,20 @@ function updateCanvas() {
 // Call the function on load and on resize
 window.addEventListener('load', updateCanvas);
 window.addEventListener('resize', updateCanvas);
+
+let lastScrollPosition = 0;
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+    const currentScrollPosition = window.pageYOffset;
+
+    if (currentScrollPosition > lastScrollPosition) {
+        nav.style.transform = 'translateY(-100%)';
+        nav.style.display = 'none';
+    } else {
+        nav.style.transform = 'translateY(0)';
+        nav.style.display = 'block';
+    }
+
+    lastScrollPosition = currentScrollPosition;
+});
