@@ -35,10 +35,11 @@ header nav {
 }
 
 .logo {
-    width: 6vw;
+    width: 15vw;
     min-width: 50px;
     height: auto;
     position: absolute;
+    top: 1vw;
     left: 2vw;
 }
 
@@ -198,9 +199,9 @@ footer .social-icons img:hover {
 
 .masonry-grid {
     column-count: 3;
-    
+
     column-gap: 15px;
-    
+
     padding: 40px;
 
     /* display: grid;
