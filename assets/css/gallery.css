@@ -197,17 +197,17 @@ footer .social-icons img:hover {
 }
 
 .masonry-grid {
-    /* column-count: 3;
+    column-count: 3;
     
     column-gap: 15px;
     
-    padding: 40px; */
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* Exactly 3 items per row */
-    gap: 20px;
     padding: 40px;
+
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
+    /* Exactly 3 items per row */
+    /* gap: 20px;
+    padding: 40px; */
 }
 
 .masonry-img {
