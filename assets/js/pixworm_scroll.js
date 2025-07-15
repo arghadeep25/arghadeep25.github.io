@@ -12,3 +12,17 @@ document.querySelectorAll(".option").forEach(option => {
         }
     });
 });
+
+const bg = document.getElementById('background-shrink');
+const baseSize = 100;  // base background size in %
+const zoomFactor = 0.05; // adjust zoom speed
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    let newSize = baseSize + scrollY * zoomFactor;
+
+    // Optional: Clamp zoom to prevent too much zoom in or out
+    newSize = Math.max(100, Math.min(newSize, 200));
+
+    bg.style.backgroundSize = `${newSize}%`;
+});
