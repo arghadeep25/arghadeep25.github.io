@@ -193,3 +193,25 @@ footer .social-icons img {
 footer .social-icons img:hover {
     transform: scale(1.4);
 }
+
+.masonry-grid {
+    column-count: 3;
+    /* 3 columns like your example */
+    column-gap: 15px;
+    /* Uniform gap between columns */
+    padding: 40px;
+}
+
+.masonry-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    /* Uniform vertical gap */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.masonry-img:hover {
+    transform: scale(1.03);
+}
