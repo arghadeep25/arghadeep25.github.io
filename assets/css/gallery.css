@@ -82,15 +82,32 @@ nav ul li a:hover {
     padding: 10px 20px;
     top: 30px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    font-size: 0.8em;
-    grid-template-columns: repeat(5, auto);
+    font-size: 0.9em;
+    grid-template-columns: repeat(4, auto);
     gap: 10px 20px;
     white-space: nowrap;
     z-index: 999;
+    border-radius: 15px;
+    min-width: max-content;
 }
+
+.submenu ul {
+    display: flex;
+    /* Instead of grid, use flex for better centering */
+    gap: 10px 20px;
+    /* Maintains your spacing */
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    /* Centers items horizontally */
+    align-items: center;
+    /* Centers items vertically (if needed) */
+}
+
 
 .submenu li {
     margin: 0;
+    list-style: none;
 }
 
 .submenu li a {
@@ -175,6 +192,9 @@ nav ul li:hover .submenu {
     height: auto;
     border-radius: 10px;
     transition: transform 0.5s ease;
+    /* pointer-events: none; */
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .gallery-item:hover img {
