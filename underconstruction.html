@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+            }
+
+            to {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        .construction-scene {
+            margin: 2rem 0;
+            position: relative;
+            animation: sceneEntry 1.5s ease-out;
+        }
+
+        @keyframes sceneEntry {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .crane {
+            animation: craneSway 4s ease-in-out infinite;
+            transform-origin: 50% 100%;
+        }
+
+        @keyframes craneSway {
+
+            0%,
+            100% {
+                transform: rotate(-2deg);
+            }
+
+            50% {
+                transform: rotate(2deg);
+            }
+        }
+
+        .crane-hook {
+            animation: hookBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes hookBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        .gear {
+            animation: rotate 3s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .gear-reverse {
+            animation: rotateReverse 4s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes rotateReverse {
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 2rem auto;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            border-radius: 5px;
+            width: 0%;
+            animation: progressLoad 3s ease-out infinite;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+        }
+
+        @keyframes progressLoad {
+            0% {
+                width: 0%;
+            }
+
+            70% {
+                width: 85%;
+            }
+
+            100% {
+                width: 85%;
+            }
+        }
+
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .status-text {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .progress-bar {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-particles" id="particles"></div>
+
+    <div class="container">
+        <h1 class="main-title">UNDER CONSTRUCTION</h1>
+        <p class="subtitle">Coming Soon</p>
+
+        <div class="construction-scene">
+            <svg width="400" height="300" viewBox="0 0 400 300">
+                <!-- Background buildings -->
+                <rect x="20" y="180" width="40" height="80" fill="rgba(255,255,255,0.1)" />
+                <rect x="340" y="160" width="35" height="100" fill="rgba(255,255,255,0.1)" />
+
+                <!-- Construction crane -->
+                <g class="crane">
+                    <!-- Crane base -->
+                    <rect x="180" y="240" width="40" height="60" fill="#FFB74D" stroke="#FF9800" stroke-width="2" />
+                    <!-- Crane tower -->
+                    <rect x="195" y="80" width="10" height="160" fill="#FF9800" stroke="#F57400" stroke-width="1" />
+                    <!-- Crane arm -->
+                    <rect x="120" y="85" width="150" height="8" fill="#FF9800" stroke="#F57400" stroke-width="1" />
+                    <!-- Counter weight -->
+                    <rect x="115" y="75" width="20" height="25" fill="#E65100" />
+
+                    <!-- Crane hook -->
+                    <g class="crane-hook">
+                        <line x1="250" y1="93" x2="250" y2="130" stroke="#666" stroke-width="2" />
+                        <rect x="245" y="130" width="10" height="8" fill="#555" rx="2" />
+                    </g>
+                </g>
+
+                <!-- Gears -->
+                <g class="gear" transform="translate(80,220)">
+                    <circle cx="0" cy="0" r="25" fill="none" stroke="#FFD54F" stroke-width="4" />
+                    <circle cx="0" cy="0" r="15" fill="#FFB74D" />
+                    <rect x="-2" y="-30" width="4" height="10" fill="#FFD54F" />
+                    <rect x="-2" y="20" width="4" height="10" fill="#FFD54F" />
+                    <rect x="-30" y="-2" width="10" height="4" fill="#FFD54F" />
+                    <rect x="20" y="-2" width="10" height="4" fill="#FFD54F" />
+                    <rect x="-20" y="-20" width="6" height="4" fill="#FFD54F" transform="rotate(45)" />
+                    <rect x="14" y="14" width="6" height="4" fill="#FFD54F" transform="rotate(45)" />
+                    <rect x="-20" y="16" width="6" height="4" fill="#FFD54F" transform="rotate(-45)" />
+                    <rect x="16" y="-20" width="6" height="4" fill="#FFD54F" transform="rotate(-45)" />
+                </g>
+
+                <g class="gear-reverse" transform="translate(320,240)">
+                    <circle cx="0" cy="0" r="20" fill="none" stroke="#4CAF50" stroke-width="3" />
+                    <circle cx="0" cy="0" r="12" fill="#66BB6A" />
+                    <rect x="-1.5" y="-23" width="3" height="6" fill="#4CAF50" />
+                    <rect x="-1.5" y="17" width="3" height="6" fill="#4CAF50" />
+                    <rect x="-23" y="-1.5" width="6" height="3" fill="#4CAF50" />
+                    <rect x="17" y="-1.5" width="6" height="3" fill="#4CAF50" />
+                </g>
+
+                <!-- Building under construction -->
+                <rect x="150" y="140" width="100" height="120" fill="rgba(255,255,255,0.15)" stroke="#fff"
+                    stroke-width="1" stroke-dasharray="5,5" />
+                <rect x="160" y="150" width="15" height="20" fill="rgba(255,255,255,0.1)" />
+                <rect x="180" y="150" width="15" height="20" fill="rgba(255,255,255,0.1)" />
+                <rect x="200" y="150" width="15" height="20" fill="rgba(255,255,255,0.1)" />
+                <rect x="220" y="150" width="15" height="20" fill="rgba(255,255,255,0.1)" />
+
+                <!-- Tools -->
+                <g transform="translate(50,260)">
+                    <!-- Hammer -->
+                    <rect x="0" y="0" width="3" height="20" fill="#8D6E63" />
+                    <rect x="-3" y="-2" width="9" height="6" fill="#5D4037" />
+                </g>
+
+                <g transform="translate(70,255)">
+                    <!-- Wrench -->
+                    <circle cx="0" cy="0" r="4" fill="none" stroke="#607D8B" stroke-width="2" />
+                    <rect x="-1" y="4" width="2" height="15" fill="#607D8B" />
+                </g>
+            </svg>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <div class="status-text">Building something amazing...</div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 6) + 's';
+            document.getElementById('particles').appendChild(particle);
+
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 9000);
+        }
+
+        // Create particles continuously
+        setInterval(createParticle, 500);
+
+        // Initial particles
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createParticle, i * 100);
+        }
+
+        // Add some interactive elements
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+
+            document.body.style.background = `linear-gradient(135deg, 
+                hsl(${220 + x / 10}, 70%, ${60 + y / 10}%) 0%, 
+                hsl(${260 + x / 10}, 70%, ${50 + y / 10}%) 100%)`;
+        });
+
+        // Random status messages
+        const statusMessages = [
+            "Building something amazing...",
+            "Putting the pieces together...",
+            "Almost ready to launch...",
+            "Fine-tuning the details...",
+            "Getting everything perfect..."
+        ];
+
+        let messageIndex = 0;
+        setInterval(() => {
+            const statusElement = document.querySelector('.status-text');
+            statusElement.style.opacity = '0';
+            setTimeout(() => {
+                messageIndex = (messageIndex + 1) % statusMessages.length;
+                statusElement.textContent = statusMessages[messageIndex];
+                statusElement.style.opacity = '0.8';
+            }, 500);
+        }, 4000);
+    </script>
+</body>
+
+</html>
