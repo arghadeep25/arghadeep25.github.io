@@ -15,63 +15,83 @@
 
 <body>
 
-    <header>
-        <img class="logo"
-            src="https://lh3.googleusercontent.com/pw/AP1GczPMNnmuJKYJJuHsosNs26aOqMWiu1TvroXMmq4uxXXNJsFskg-L7Cx4fvFstjPitv-iw3y64U4SZZXcAhl7iNFbEX1OFFRrVKrFMa8f4RRd2L6orjU=w2400"
-            alt="Logo">
+    <div id="header-container"></div>
 
-        <nav>
-            <ul>
-                <li><a href="../pixworm.html">Home</a></li>
-                <li>
-                    <a href="./gallery.html">Gallery</a>
-                    <ul class="submenu">
-                        <li><a href="./nature.html">Nature</a></li>
-                        <li><a href="./wildlife.html">Wildlife</a></li>
-                        <li><a href="#">Urban</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <script>
+        fetch("./gallery_menu_header.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("header-container").innerHTML = data;
+            });
+    </script>
 
     <section class="banner" style="background-image: url('../assets/banner.jpg');">
         <div class="banner-text">WILDLIFE</div>
     </section>
 
     <section class="masonry-grid">
-        <img src="https://drive.google.com/thumbnail?id=1YnEB1BSD5rX6qdDFaV9MEsSFs3BBR2gf&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=10aqo1KftUJo7VhyzqH1wrANdkWJLwOGz&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=13G40oavfiHXGqBQ7hQkmpk4iL-esJ96K&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1FO7nnX9kPPJwhjCHPMatJelLzdmiQtBh&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=14TNpzd1T-v46fPgOuc44FKPwCQV4PhoB&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1kKl3IZCki6O-4GjrJ9NJ6G7sW2BowKSE&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1jRah_wdyzKL01_3WHpTsQvPaipr9iuv3&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1_h3r1WjGGZOpnXI350JOj5TLm7Jb3wEg&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1tIj_csnHxzcnN8Ej-L6bzdfMzFVBkHGy&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1nS15WO0ieII_ybiboduZds08d0u-hFh7&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1ZRr6td6JFnovR8TxvLrjtDKxNGO_rjde&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1I7HCg9FROXOH3kjYnryB_rH_yZJvJX12&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1cj5rDwvXo1twi0TGLK7KrP-V-jJkSp6b&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1pfnFAD5qlQHd-hIRQFMi7FND_YR030BC&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1VetDhtkHCQFLkuaBUegWydtOM3OQUQBl&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1xokf7qni3xoh99-TYHQbQANNse2lDc7d&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1g5NhJqFSqHy76Ck_DzxbXBpxlNkXjAvo&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1kpoqF307OcPTWsmvxkckuamCUD1x-H2_&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1RA2OBPqAExtE9EVH-ulBNYtDwZxVRYPy&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=18QlCrit8utjeWWia5MAtrt_PetX9Glzw&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1oapOl-eUyO46y_JhTk94PDbuZjomYZ-F&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1bbYwcCEgnZVaZmzoLfKTk5JhUDsBD_tq&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=19lVeBQKy-m_1Gv2SCZhg9AZ1kOB-x4LF&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1CgYVJKbQS391RdWYxuBJ2tX8BjERBEUm&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1VPsc2sJiE_7D34MRwr09AY8HogkholWF&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1mTAbzarSPi8OFC-PjqjRKgI6Yve4enNM&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1Im2I2uxRKxcutEOGMX6CO-z4gH3H4eVU&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=18l8BjUrIbILdtvF6Q39HNTluo-tbzSDb&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=17i6GS9a32wvs8ByC7d-knrD9fLWOCrRo&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1NFrK7wro2YE79WmTOXK9E-Sbz7vIdGk1&sz=w1000" alt="" class="masonry-img">
-<img src="https://drive.google.com/thumbnail?id=1fsZMWWYLkqg-ZKhVr8eS7zcc5pOfWQ1B&sz=w1000" alt="" class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1YnEB1BSD5rX6qdDFaV9MEsSFs3BBR2gf&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=10aqo1KftUJo7VhyzqH1wrANdkWJLwOGz&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=13G40oavfiHXGqBQ7hQkmpk4iL-esJ96K&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1FO7nnX9kPPJwhjCHPMatJelLzdmiQtBh&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=14TNpzd1T-v46fPgOuc44FKPwCQV4PhoB&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1kKl3IZCki6O-4GjrJ9NJ6G7sW2BowKSE&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1jRah_wdyzKL01_3WHpTsQvPaipr9iuv3&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1_h3r1WjGGZOpnXI350JOj5TLm7Jb3wEg&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1tIj_csnHxzcnN8Ej-L6bzdfMzFVBkHGy&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1nS15WO0ieII_ybiboduZds08d0u-hFh7&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1ZRr6td6JFnovR8TxvLrjtDKxNGO_rjde&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1I7HCg9FROXOH3kjYnryB_rH_yZJvJX12&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1cj5rDwvXo1twi0TGLK7KrP-V-jJkSp6b&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1pfnFAD5qlQHd-hIRQFMi7FND_YR030BC&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1VetDhtkHCQFLkuaBUegWydtOM3OQUQBl&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1xokf7qni3xoh99-TYHQbQANNse2lDc7d&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1g5NhJqFSqHy76Ck_DzxbXBpxlNkXjAvo&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1kpoqF307OcPTWsmvxkckuamCUD1x-H2_&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1RA2OBPqAExtE9EVH-ulBNYtDwZxVRYPy&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=18QlCrit8utjeWWia5MAtrt_PetX9Glzw&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1oapOl-eUyO46y_JhTk94PDbuZjomYZ-F&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1bbYwcCEgnZVaZmzoLfKTk5JhUDsBD_tq&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=19lVeBQKy-m_1Gv2SCZhg9AZ1kOB-x4LF&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1CgYVJKbQS391RdWYxuBJ2tX8BjERBEUm&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1VPsc2sJiE_7D34MRwr09AY8HogkholWF&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1mTAbzarSPi8OFC-PjqjRKgI6Yve4enNM&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1Im2I2uxRKxcutEOGMX6CO-z4gH3H4eVU&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=18l8BjUrIbILdtvF6Q39HNTluo-tbzSDb&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=17i6GS9a32wvs8ByC7d-knrD9fLWOCrRo&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1NFrK7wro2YE79WmTOXK9E-Sbz7vIdGk1&sz=w1000" alt=""
+            class="masonry-img">
+        <img src="https://drive.google.com/thumbnail?id=1fsZMWWYLkqg-ZKhVr8eS7zcc5pOfWQ1B&sz=w1000" alt=""
+            class="masonry-img">
 
         <!-- Add more images -->
     </section>
