@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 #pixworm {
     background-color: rgba(0, 0, 0, 0.9);
     background-size: cover;
