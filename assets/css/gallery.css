@@ -8,6 +8,12 @@
     --text-color: #000;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -189,10 +195,21 @@ nav ul li:hover .submenu {
 /* Gallery Grid */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 40px;
     padding: 80px 5vw;
     text-align: center;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 20px;
+        padding: 40px 5vw;
+    }
 }
 
 .gallery-item {
@@ -226,6 +243,18 @@ nav ul li:hover .submenu {
     font-weight: 900;
     color: #333;
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .category {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .category {
+        font-size: 0.9rem;
+    }
 }
 
 footer {
@@ -287,4 +316,55 @@ footer .social-icons img:hover {
 
 .masonry-img:hover {
     transform: scale(1.03);
+}
+
+
+@media (max-width: 768px) {
+
+    /* Keep nav horizontal on mobile */
+    nav ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 5px;
+        overflow-x: auto;
+        font-size: 1.0em;
+        padding-left: 10vw;
+        margin-top: -2px;
+    }
+
+    nav ul li {
+        margin: 5px 10px;
+    }
+
+    /* Logo shrink + reposition */
+    .logo {
+        width: 15vw;
+        top: 10px;
+        left: 10px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav {
+        margin-top: 60px 60px;
+    }
+
+    /* Submenu adapts to smaller screen */
+    .submenu {
+        grid-template-columns: repeat(2, auto);
+        padding: 15px 20px;
+        max-width: 90vw;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: normal;
+    }
+
+    .submenu::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
