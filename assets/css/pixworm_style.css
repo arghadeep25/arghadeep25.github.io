@@ -5,6 +5,12 @@
     --text-color: #000;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 [data-theme="dark"] {
     --bg-color: #111;
     --text-color: #eee;
@@ -144,6 +150,53 @@ nav ul li:hover .submenu {
         transform: translateX(-50%) translateY(0);
     }
 }
+
+@media (max-width: 768px) {
+  /* Keep nav horizontal on mobile */
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    font-size: 1.0em;
+  }
+
+  nav ul li {
+    margin: 5px 10px;
+  }
+
+  /* Logo shrink + reposition */
+  .logo {
+    width: 15vw;
+    top: 10px;
+    left: 10px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    margin-top: 60px 60px;
+  }
+
+  /* Submenu adapts to smaller screen */
+  .submenu {
+    grid-template-columns: repeat(2, auto);
+    padding: 15px 20px;
+    max-width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal;
+  }
+
+  .submenu::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 
 .slideshow-container {
     position: relative;
