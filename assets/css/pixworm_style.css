@@ -152,49 +152,53 @@ nav ul li:hover .submenu {
 }
 
 @media (max-width: 768px) {
-  /* Keep nav horizontal on mobile */
-  nav ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
-    font-size: 1.0em;
-  }
 
-  nav ul li {
-    margin: 5px 10px;
-  }
+    /* Keep nav horizontal on mobile */
+    nav ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 5px;
+        overflow-x: auto;
+        font-size: 1.0em;
+        padding-left: 10vw;
+        margin-top: -2px;
+    }
 
-  /* Logo shrink + reposition */
-  .logo {
-    width: 15vw;
-    top: 10px;
-    left: 10px;
-  }
+    nav ul li {
+        margin: 5px 10px;
+    }
 
-  header {
-    flex-direction: column;
-    align-items: center;
-  }
+    /* Logo shrink + reposition */
+    .logo {
+        width: 15vw;
+        top: 10px;
+        left: 10px;
+    }
 
-  nav {
-    margin-top: 60px 60px;
-  }
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
 
-  /* Submenu adapts to smaller screen */
-  .submenu {
-    grid-template-columns: repeat(2, auto);
-    padding: 15px 20px;
-    max-width: 90vw;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: normal;
-  }
+    nav {
+        margin-top: 60px 60px;
+    }
 
-  .submenu::before {
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    /* Submenu adapts to smaller screen */
+    .submenu {
+        grid-template-columns: repeat(2, auto);
+        padding: 15px 20px;
+        max-width: 90vw;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: normal;
+    }
+
+    .submenu::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 
