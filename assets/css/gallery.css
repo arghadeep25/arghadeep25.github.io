@@ -310,6 +310,14 @@ footer .social-icons img:hover {
     padding: 40px; */
 }
 
+@media (max-width: 768px) {
+    .masonry-grid {
+        column-count: 2;
+        column-gap: 10px;
+        padding: 10px;
+    }
+}
+
 .masonry-img {
     width: 100%;
     height: auto;
