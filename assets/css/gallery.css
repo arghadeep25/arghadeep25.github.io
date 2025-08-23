@@ -202,7 +202,7 @@ nav ul li:hover .submenu {
 /* Gallery Grid */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 40px;
     padding: 80px 5vw;
     text-align: center;
