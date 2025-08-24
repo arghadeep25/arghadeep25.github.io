@@ -2,199 +2,107 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Jagadhatri Pujo | Pixworm | Arghadeep Mazumder </title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagadhatri Pujo | Gallery | Pixworm</title>
+    <link rel="stylesheet" href="../assets/css/gallery.css">
+    <link rel="stylesheet" href="../assets/css/lightbox.css">
 
     <link
-        href="https://lh3.googleusercontent.com/pw/AL9nZEXdP5mQzVZ_3tQ5JoH9t-3Tv_u_3tV2PYUTGhDqsIBLJ2kdDAIRqQuaFHAK1MlPqtehW03mSvCE-hGevl2kbwai87I4SOhnMIbulnE5gDEd427hxYrKG5bkRV8x41-9W-gi82uzzCGGqybxg2qbzoPOSA=s661-no?authuser=0"
+        href="https://lh3.googleusercontent.com/pw/AP1GczN2M1oDCuupFPO33IyhSL8oQswKEZLz8fjj7GyuLJryXeyNNOej-y1juMCvGVNNgCIHhh5KOe9NRXiN38Gy6RWHUaIQRkFtn3XMXl07lbvwUYUg8NZx=w2400"
         rel="icon">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/swiper@8.4.3/swiper-bundle.min.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="../assets/css/test.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- ======= Mobile nav toggle button ======= -->
-    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+    <div id="header-container"></div>
 
-    <!-- ======= Header ======= -->
-    <header id="header">
-        <div class="d-flex flex-column">
+    <script>
+        fetch("./gallery_menu_header.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("header-container").innerHTML = data;
+            });
+    </script>
 
-            <div class="profile">
-                <img src="https://lh3.googleusercontent.com/pw/ABLVV84DCcepw_aFk_VNKp_uUChoupJP8OKlE-UAgc2z4J2u3EJ4HiS8Vy3VQ49M4H3Yu0Z-IpJ64e6TSDalcNFDQWLmMnTLMtw_bcCvh19wUru5hiMEOJY=w2400"
-                    alt="" class="img-fluid rounded-circle">
-                <h1 class="text-light text-center"><a href="../index.html">Arghadeep Mazumder</a></h1>
-                <div class="social-links mt-3 text-center">
-                    <a href="https://facebook.com/amazumder" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="https://www.instagram.com/pixworm/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                    <a href="https://github.com/arghadeep25" class="github"><i class="bx bxl-github"></i></a>
-                    <a href="https://www.linkedin.com/in/arghadeepmazumder/" class="linkedin"><i
-                            class="bx bxl-linkedin"></i></a>
-                </div>
-            </div>
+    <section class="banner"
+        style="background-image: url('https://drive.google.com/thumbnail?id=1U1yOpZ9QrY5HKIL2a7XaOtg-5gLyAP5h&sz=w3600');">
+        <div class="banner-text">JAGADHATRI PUJO</div>
+    </section>
 
-            <nav id="navbar" class="nav-menu navbar flex-column">
-                <ul>
-                    <li><a href="../index.html" class="nav-link scrollto active"><i class="bx bx-home"></i>
-                            <span>Home</span></a></li>
-                    <li><a href="../index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i>
-                            <span>About</span></a></li>
-                    <li><a href="../index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i>
-                            <span>Resume</span></a></li>
-                    <li><a href="../pixworm.html" class="nav-link scrollto"><i class="bx bx-book-content"></i>
-                            <span>Pixworm</span></a></li>
-                    <li><a href="../blogs.html" class="nav-link scrollto"><i class="bx bx-server"></i>
-                            <span>Blogs</span></a></li>
-                    <li><a href="../index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i>
-                            <span>Contact</span></a></li>
-                </ul>
-            </nav>
-            <!-- .nav-menu -->
-        </div>
-    </header>
-    <!-- End Header -->
+    <section class="masonry-grid">
+        <img src="https://drive.google.com/thumbnail?id=1EK1oCcjTGHR3Ov3OegvMpI-jfrG5vizE&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1QUkg8KETdgvlMkajBCvnzJhGlOrHKieS&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1l6PvXOKTFx1Bxe-eyEXXf48PRiAMFhpO&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1-bkmJeT4-EH8YwYoGyWCO4_bnctbUNwA&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1U2CiNJcGrp0413SGDTfsRGaV-87x1cgH&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=17qcICZ64GSgKU_VniLWt5_U_sqEDJwdt&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1ODKRiv6pT_v1QSwh_LqwzGqD7KrPSfFc&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1IFzIumrQKpmUyj4IV-4s9Pc36zkuqr7q&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=14PanNF3a4DGiD2Rl8SfRRNr6oVInuwbw&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1sMcnc6QBxRBTNMXXca7VxEsl29BXyxa0&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1viQZ4I_6OO86IKq-8DNNPHJeV7_mZtXP&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1oNCwNk8QAQK4Z_OhU-0lwy4JnAsz8760&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1WzUoQOo0xasWs5hExwNlAuaLBo1bKvNA&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1ODJkEi7TqKNSKPBTNEywOFnZkAm5cSA6&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1OmxXVDPxOnsApBWGSC0E8xod8_KRbVBJ&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1g_IhoXjmdyf19QRzOyYzcP_Kt7e6dS7k&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1y3EX1cEnU1TQODSQuQd6QBdmdraXiwjr&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1YjxwfevE9CjQnzcgAR1FpFmvr3ECg51b&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1tJVppTDqcBdAyT45G4uuFGgs09Icpm3C&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1DAGkhRAqYVeR1JKXV2lX4ZLjEbrLWMl0&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=15s-W3pD_ooBSTL7SleJ66W_fZlLLLnkK&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=16n9ylzEh0pW8jslMWIMnnjUHw63dL8fR&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1mqH9FO2l6ChZBZ1cH-BIdOlh4p-j-njK&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=12wDuT0JjdcU4lCpONRTPk6bWrounPC3s&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1PtkggghpSiAc-HB7_xVvfNsLDIKIuSCR&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=15CbHUBnwL8nCTQgCOL06A9SVRJAXcVAp&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1OWkUXW5_0GipCWBxBZk4ShD4POEop63g&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1qa_C0mFG4Hq7rsrXqIwIB2DNDUiGYNf1&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1s9iKJ3JP2Qv-XZkAMkE5Mn7AF435tlyh&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1fmPBvOxhCIwGOU2-1-5esMI4QXJuLQ5L&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1qBNOdUhm1mj1eSrftEwxSV4JOr4rmQ-d&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1n7pYHWGCmtS74FYdzVrlyvFGhbdCOxYY&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1rJOGwXGT4BmpBpo_3NP81ic4sglCpGY6&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1kzx_qP2RyPvWdfnMZCaECuo9dHAS9frO&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1h4cBH4lh2iWujIZktgqYyd8VQV6DHG3l&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1yAtZVWveb4XHAO0Ge6KIgKxOTLEyKEfV&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1h8eQJYK0rOdB6rw8VYnLFDYIaw7GInk8&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1QNbvj3ZLXa33eHWh0HP1jvPLlr9wdZsU&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1FsosCsRtsHxJ5Kh6NFoS9TadG0ElBHB5&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1Xu00CL0HVFaOerGeUTnRnRkpj322ZEgY&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=12_bCtosAYZ7WAeY76KC1Q_V59RtTZ9d3&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1El8RFFENUM-rqeObHhvWM4RXyW7_9kQD&sz=w1000" alt="" class="masonry-img">
+<img src="https://drive.google.com/thumbnail?id=1lq0rVbKYHK4Ri66BmFrBK6pSqagN4qtz&sz=w1000" alt="" class="masonry-img">
 
-    <main id="main">
+    </section>
 
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-            <div class="header-container clearfix">
-                <h1 class="header-post-title-banner ">Pixworm | Jagadhatri Pujo</h1>
-                <!-- <img src="https://lh3.googleusercontent.com/pw/AL9nZEXT4j7Q2i31VLMXOcNLK7dSC0dfJ303GMox7hz5NnHjlFta1wKgHE8w4LNEkg6fs3mD_k6F54ER4PDWpVhkTH_eQwFYfaPT5KIMu4IGyk8qxQt9RoF3KwFZaa7QL_pqEnuljLrXgeN8WvEOLjLxdbvmBw=s661-no?authuser=0"
-                    class="header-image"> -->
-            </div>
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+    </div>
 
-        </section>
-        <!-- End Breadcrumbs -->
-
-        <!-- <div class="centered-text">
-            <span class="underline-border">J A G A D H A T R I</span> <span class="underline-border">P U J O</span>
-            </div> -->
-        <section id="portfolio" class="portfolio section-bg2">
-            <div class="container2">
-
-                <div class="gallery">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV84_-BDTBSRbav1dV-wLmL2RNDDObYMLOtgvn1f0dfIlDkLCm6hFGhj2qU1hqakAgJEeLWYyvtJKTHrySRF3UoFTeCfDRIGa5BOihsuD3rpd4XgBpPV4dCh4rPhRdwEjSFyzSkUm8HSuCGbBp6kC9p-z=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV86JWtnDiFVOwzFjuq_fpialIBib_lcE65tljj8w0Hbcny308KYhYCVykHhXqcGIWwKpr_wY5MeT81uYY_0DPgJGwqD5jMSyxmP2ckA74Y1KyVB9RLZHXZSVmNp1jBzO8THeKJCiebCctuVDwn1-C02O=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV85wzxp1vKHqHt_q0M0FpIxKEWAbES-ySiQZHp64rNGStSk0wBPzhJKAtg6jcwKqgis9wJqhbn4y26Og3yCuG1g4WTdW0heT3o2eTAOm8um-jAU0DR1rmqyRlojWQOF6Cq5iw6hhv14XkLtz7immGXWU=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV87s13p6U9OpV_4frAqL9Rkr2zq2v5gq7AhHSDxDije1OC73OP7XDemYmWEpawwkM9Pt3d5kEe1tM6oGXdTyF8XrrtdydUxkEoDmLBy6IrF-5JkW15LOe2JDAOESAJRp49MlK9m5TFO_AArsigZ6-Ic_=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV85Hm2Wfhh0CwepXUA3WPylDKnuc59PDCBP5hXmogSSgg13rdmvckPxn80aUtzqG3EX7e9SR8oyRnPVZlPj7_4wnTZhTEd-CiAe6dJ7z_slqhTzx7p3vDOfcNdfbqWNdlrJpE2tpm5rccvTQVD1lVveT=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV84_YtqPmB7QA9H5M3c0oYY7lYKiS5hS6D6nlHDXrqM3UONNqlJuWQ8LBd-7el9hv0BMkA9s2Jazlnl4RWI26V5nD6PVImyvkaSJ00CQvA7FrPL3b-0hU-FnZtjdAZZNTRZlg_apz6oFBBDMAV28LY4j=w1491-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV87K95TEb6By48izKaeLI5bt-VWIp41YjyhPA35cB283h6k8eXrPplpbUtz28-OguBOSUpScMpkG7_0hvC7m3Fl1Yzkzo5hzQVWaxSHplGowxj0rpLx--IK4f9gRFloJHRT_smNHbOatRDZbOjq4bC95=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV866PJ00qCN5yQwuypTGbD011Ak-feVkKnDvn3NvBElkSdtuIvkWiO-ygRElTcQW1zqL3LMfoCv3WFAhmb5o8WnquBQNDCo2JsnCy_PR4z3C5cGZIw-uXpOo3Tfn0CuP-l4GQv78vX4466cKCmlTdIf1=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV86phOLu2aazsozMe5CYvpPy90p3jZe50x1WeeQeCD52L3xrnvNE5pFOsSaCBcKRHC3803iRKe_QJDplJM905lfjjbLXcZisPtR-tSpJ0Yj-FLZmv7aR0RSWe_whfDdQCHHOK7cPGDQIS7GnJJXpULS5=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV86kw7ncapbSo5OxOeNmzqKBSzWS1DfAEJzbyZWMI_JL_81zu6VDT_QXxkMU1omyN0y9iwKly536gaZW83WDGvnkgjQCUvaxG83zD4AHWP7JzKEKPdhE9QzGCSybOkyB7SPNtg9d-jqZOrdOOcGVzkm4=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV87qQ80sdsPIxfkBn-zBT6LgKhppxgER7gUI-R8T2fRw3Xk9q2MmtcxvyVUyVyvauGoxkLKnlxO2TWxuyvP-BBuefJYa5yinOi0S5uxGJ2oB6z4KmsxF83sX0joiJ3EiySjjvqTQdoLoX-mMAQavBivI=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV86kpbB73TaH0FNwWzeWgyJlvZW_hh0vN3d-mO4s91Z4tsnSIuKf3tEjHnHia99HmkfXO__RlstDGnnmXbQTRpL-QnvxxGz2nrXESpoAlwnqAvuEfGrp8uBEMv-MICUyPcF5ISQ0NC7idMabV1VI04_s=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV87DYnzcqOlwdbrlFncQpVYwJSF9sojbvCYKV_zpksi69vdU-Jqy8GLgQpch7ZaB4HT81yga3WKp7X-n4tjLeJQrUmJppnjsG2sYw7wB9CU_HCzgo0_qtv85B9zSvISOFDSPpM8nEN0IvqtZKKqwG0RI=w1492-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="https://lh3.googleusercontent.com/pw/ABLVV87BiQPU3zYofAA4h2XXGS26NVqO_lcaJ980nDXJKTpRnbpjbc2mUfpMZJL9PEba_yvggPRlYeXuu3G3T5aVjImeEtwJquHqyYgn7NvMX9TCbL2SxOpL9gsq9tkas7UnsjMJEYjf3Dl554u6Mynj0XLO=w1765-h993-s-no-gm?authuser=2"
-                        alt="" class="gallery-image" onclick="openViewer(this)">
-                    <!-- <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)"> -->
-
-
-                    <!-- <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)">
-                    <img src="" alt="" class="gallery-image" onclick="openViewer(this)"> -->
-
-                </div>
-
-                <div class="viewer-overlay" id="viewerOverlay" onclick="closeViewer()">
-                    <div class="viewer-content" onclick="event.stopPropagation();">
-                        <img src="" alt="Viewer Image" id="viewerImage">
-                        <span class="close-btn" onclick="closeViewer()">&times;</span>
-                        <div class="nav-btn prev" onclick="showPreviousImage()">&#8249;</div>
-                        <div class="nav-btn next" onclick="showNextImage()">&#8250;</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-
-
-    </main>
-    <!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>Arghadeep Mazumder</span></strong>
-            </div>
-            <div class="credits">
-                Designed by <a href="https://arghadeep25.github.io/">Arghadeep Mazumder</a>
-            </div>
+    <footer>
+        <p>&copy; Arghadeep Mazumder 2025 </p>
+        <div class="social-icons">
+            <a href="" target="_blank" title="GitHub">
+                <img src="https://img.icons8.com/?size=100&id=12599&format=png&color=000000" alt="GitHub">
+            </a>
+            <a href="" target="_blank" title="Facebook">
+                <img src="https://img.icons8.com/?size=100&id=118467&format=png&color=000000" alt="Facebook">
+            </a>
+            <a href="" target="_blank" title="YouTube">
+                <img src="https://img.icons8.com/?size=100&id=37326&format=png&color=000000" alt="YouTube">
+            </a>
+            <a href="" target="_blank" title="LinkedIn">
+                <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000" alt="LinkedIn">
+            </a>
         </div>
     </footer>
-    <!-- End  Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Vendor JS Files -->
-    <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs@1.5.0/dist/purecounter_vanilla.js"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.3/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/waypoints@4.0.1/lib/noframework.waypoints.min.js"></script>
-    <script src="../assets/vendor/php-email-form/validate.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/js/splide.min.js"></script> -->
-    <script src="../assets/js/gallery.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
-    <!-- <script src=""></script> -->
-    <!-- <script src=""></script> -->
-
-    <!-- Template Main JS File -->
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/enlarge.js"></script>
-    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    <script src="../assets/js/lightbox.js"></script>
 
 </body>
 
