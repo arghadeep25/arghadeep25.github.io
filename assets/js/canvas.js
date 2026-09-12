@@ -6,7 +6,6 @@ const connectionRadius = 120;
 const starRadius = 1.1;
 const maxConnections = 1;
 const clusterRadius = Math.min(window.innerWidth, window.innerHeight) * 0.3;
-const starVisibilityRadius = Math.min(window.innerWidth, window.innerHeight) * 0.6;
 
 // Resize the canvas to the full window
 canvas.width = window.innerWidth;
@@ -69,14 +68,13 @@ function draw() {
         if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
         if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
 
-        // Draw star
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, starRadius, 0, Math.PI * 2);
-        ctx.fillStyle = star.color;
-        ctx.fill();
-        
-        // Create connections either from initial cluster position or based on mouse hover
+        // Only draw stars (and their connections) within the mouse-centered cluster radius
         if (isWithinCluster(star.x, star.y)) {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, starRadius, 0, Math.PI * 2);
+            ctx.fillStyle = star.color;
+            ctx.fill();
+
             createConnections(star);
         }
     });
