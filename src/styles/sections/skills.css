@@ -169,8 +169,13 @@
   .skills__side {
     z-index: 5;
     height: auto;
-    padding: 70px 0 8px;
-    background: linear-gradient(var(--bg) 82%, transparent);
+    padding: 70px 0 12px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+  }
+
+  .skills__now {
+    display: none;
   }
 
   .skills__lede,
