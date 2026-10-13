@@ -449,6 +449,16 @@ import { $, lerp, TAU } from './common.js';
     }
   });
 
+  // ?stage=route opens the page with that stage held, used by the project chapters
+  const wanted = STAGES.findIndex(
+    (st) => st.id === new URLSearchParams(location.search).get('stage'),
+  );
+  if (wanted >= 0) {
+    focus = wanted;
+    locked = true;
+    renderCard();
+  }
+
   // ---------- simulation ----------
   let perfT = 0,
     hbT = 0,
