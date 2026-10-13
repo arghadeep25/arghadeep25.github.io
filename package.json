@@ -9,10 +9,13 @@
     "preview": "vite preview",
     "postbuild": "cp -r assets/js dist/assets/js && cp -r assets/vendor dist/assets/vendor",
     "format": "prettier --write \"src/**/*.{js,css,html}\" \"*.{js,json,md}\" \"docs/**/*.md\"",
-    "format:check": "prettier --check \"src/**/*.{js,css,html}\" \"*.{js,json,md}\" \"docs/**/*.md\""
+    "format:check": "prettier --check \"src/**/*.{js,css,html}\" \"*.{js,json,md}\" \"docs/**/*.md\"",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "prettier": "^3.9.10",
-    "vite": "^8.3.4"
+    "vite": "^8.3.4",
+    "vitest": "^4.1.11"
   }
 }
