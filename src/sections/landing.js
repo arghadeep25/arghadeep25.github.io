@@ -43,6 +43,7 @@ export function initLanding(root) {
   let velocity = 0;
   let prevProgress = 0;
   let ready = false;
+  let visible = true;
 
   /** Rasterise the name and turn the pixels into a lattice of dots plus a faint ambient field. */
   function setup(first) {
@@ -171,9 +172,9 @@ export function initLanding(root) {
 
   function frame(now) {
     requestAnimationFrame(frame);
-    if (!ready) return;
     const dt = Math.min(0.033, (now - last) / 1000);
     last = now;
+    if (!ready || !visible) return;
     time += dt;
     progress += (target - progress) * Math.min(1, dt * 7);
     velocity +=
@@ -267,6 +268,9 @@ export function initLanding(root) {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => setup(false), 150);
   });
+  new IntersectionObserver((entries) => {
+    visible = entries[0].isIntersecting;
+  }).observe(root);
   addEventListener('pointermove', onMove, { passive: true });
   document.addEventListener('pointerleave', onLeave);
   addEventListener('scroll', onScroll, { passive: true });
