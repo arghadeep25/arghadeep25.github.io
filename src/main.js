@@ -4,6 +4,7 @@ import './styles/sections/about.css';
 import './styles/sections/skills.css';
 import './styles/sections/pixworm.css';
 import './styles/sections/blogs.css';
+import './styles/sections/footer.css';
 import { initScrollSpy } from './core/scrollspy.js';
 import { initLanding } from './sections/landing.js';
 import { initAbout } from './sections/about.js';
@@ -30,3 +31,5 @@ initPixworm(document.getElementById('pixworm'), [
 ]);
 
 initBlogs(document.getElementById('blogs'));
+
+document.querySelector('[data-year]').textContent = new Date().getFullYear();
