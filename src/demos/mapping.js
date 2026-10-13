@@ -1894,3 +1894,20 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
+
+/* Test hooks, only with ?debug in the address: fast-forward the simulation and read its state. */
+if (new URLSearchParams(location.search).has('debug')) {
+  window.__sim = (sec) => {
+    for (let t = 0; t < sec; t += 1 / 50) step(1 / 50);
+  };
+  window.__dbg = () => ({
+    t: S.t,
+    ph: S.ph,
+    nodes: S.nodes.length,
+    loops: S.loops.length,
+    drift: drift(),
+    peak: S.peak,
+    s: S.s,
+    RL,
+  });
+}
