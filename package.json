@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "cp -r assets/js dist/assets/js && cp -r assets/vendor dist/assets/vendor"
   },
   "devDependencies": {
     "vite": "^8.3.4"
