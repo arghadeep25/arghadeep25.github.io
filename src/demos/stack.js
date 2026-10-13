@@ -42,7 +42,7 @@ import { $, lerp, TAU } from './common.js';
     },
     {
       id: 'guardian',
-      name: 'Guardian',
+      name: 'Watchdog',
       repo: 'Safety \u00b7 Monitoring',
       color: '#ff375f',
       desc: 'A watchdog over the whole system. Continuously checks that every component is alive, on time and healthy.',
