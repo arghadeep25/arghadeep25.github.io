@@ -31,7 +31,7 @@ Legend: `[x]` done, `[-]` not done.
 ## Phase 2: design tokens and base styles
 
 - [x] 2.1 Add `src/styles/tokens.css` (colours, type, spacing, radii, motion)
-- [-] 2.2 Add `src/styles/base.css` (reset, body, links, focus ring)
+- [x] 2.2 Add `src/styles/base.css` (reset, body, links, focus ring)
 - [-] 2.3 Add component styles: nav pill, button, glass panel, chip
 
 ## Phase 3: shared JS modules (`src/core`)
