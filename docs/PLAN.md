@@ -45,7 +45,7 @@ Legend: `[x]` done, `[-]` not done.
 
 - [x] 4.1 Add Vitest
 - [x] 4.2 `tracker.js` (IoU and centre-distance association) with tests
-- [-] 4.3 `counting.js` (line-crossing and direction) with tests
+- [x] 4.3 `counting.js` (line-crossing and direction) with tests
 - [-] 4.4 `kdtree.js` with tests
 - [-] 4.5 `pose-graph.js` (Cholesky LM solver) with tests
 
