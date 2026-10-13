@@ -71,7 +71,7 @@ Each demo is a page under `projects/` plus a module under `src/demos/`. They sha
 A faithful port comes first, and swapping inline helpers for the tested modules in
 `src/core` and `src/algos` follows as separate commits.
 
-- [-] 6.0 Include `projects/*.html` in the build
+- [x] 6.0 Include `projects/*.html` in the build
 - [-] 6.1 Shared demo styles (`demo.css`) and demo helpers (`src/demos/common.js`)
 - [-] 6.2 Mapping: page and module, then use the tested k-d tree and pose-graph solver
 - [-] 6.3 Localization
