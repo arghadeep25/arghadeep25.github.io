@@ -63,15 +63,23 @@ section except Projects was in. The old page is kept as `legacy.html` until phas
 - [x] 5.6 Footer and back-to-top
 - [x] 5.7 Check `index.html` end to end (all sections, mobile widths, no console errors). Projects is still empty until 6.7
 
-## Phase 6: demos (`src/demos`, each exports `mount` and `destroy`)
+## Phase 6: projects (the autonomy stack, in this order)
 
-- [-] 6.1 Localization
-- [-] 6.2 Obstacle detection
-- [-] 6.3 Path tracking
-- [-] 6.4 Mapping service
-- [-] 6.5 Building footprints
-- [-] 6.6 Car counting
-- [-] 6.7 Projects section in `index.html` (needs the demos above)
+Order of the stack: mapping, localization, detection, planning, tracking, watchdog.
+Each demo is a page under `projects/` plus a module under `src/demos/`. They share
+`src/styles/demo.css`; a demo adds its own stylesheet only for what differs.
+A faithful port comes first, and swapping inline helpers for the tested modules in
+`src/core` and `src/algos` follows as separate commits.
+
+- [-] 6.0 Include `projects/*.html` in the build
+- [-] 6.1 Shared demo styles (`demo.css`) and demo helpers (`src/demos/common.js`)
+- [-] 6.2 Mapping: page and module, then use the tested k-d tree and pose-graph solver
+- [-] 6.3 Localization
+- [-] 6.4 Detection (obstacles)
+- [-] 6.5 Planning and watchdog: stages of the stack overview, shown as two chapters
+- [-] 6.6 Tracking (path tracking)
+- [-] 6.7 Projects section in `index.html`: six chapters in the order above, each showing its demo
+- [-] 6.8 Other projects: building footprints and car counting demos, in a "More work" grid
 
 ## Phase 7: cleanup
 
