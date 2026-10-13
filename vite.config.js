@@ -9,7 +9,9 @@ const pages = globSync('{*,blogs/*,pixworm/*}.html', { exclude: (f) => /^google/
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: Object.fromEntries(pages.map((p) => [p.replace(/\.html$/, ''), resolve(import.meta.dirname, p)])),
+      input: Object.fromEntries(
+        pages.map((p) => [p.replace(/\.html$/, ''), resolve(import.meta.dirname, p)]),
+      ),
     },
   },
 });
