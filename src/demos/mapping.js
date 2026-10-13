@@ -1,3 +1,4 @@
+import { buildKdTree, nearest } from '../algos/kdtree.js';
 import { $, FONT, TAU, clamp, comp, gauss, hash, lerp, relp, wrapA } from './common.js';
 
 /* ---------- canvases ---------- */
@@ -281,35 +282,6 @@ function scDist(A, B) {
   }
   return { d: best, shift: bs };
 }
-function kdBuild(items, depth) {
-  if (!items.length) return null;
-  const ax = depth % NR;
-  items.sort((p, q) => p.key[ax] - q.key[ax]);
-  const m = items.length >> 1;
-  return {
-    it: items[m],
-    ax,
-    l: kdBuild(items.slice(0, m), depth + 1),
-    r: kdBuild(items.slice(m + 1), depth + 1),
-  };
-}
-function kdKnn(node, q, k, out) {
-  if (!node) return;
-  let d2 = 0;
-  for (let i = 0; i < NR; i++) {
-    const e = node.it.key[i] - q[i];
-    d2 += e * e;
-  }
-  out.push({ it: node.it, d: Math.sqrt(d2) });
-  out.sort((a, b) => a.d - b.d);
-  if (out.length > k) out.pop();
-  const diff = q[node.ax] - node.it.key[node.ax],
-    near = diff < 0 ? node.l : node.r,
-    far = diff < 0 ? node.r : node.l;
-  kdKnn(near, q, k, out);
-  if (out.length < k || Math.abs(diff) < out[out.length - 1].d) kdKnn(far, q, k, out);
-}
-
 /* ---------- graph optimiser (planar poses, dense solver) ---------- */
 function cholSolve(A, b, n) {
   const L = new Float64Array(n * n);
@@ -555,11 +527,11 @@ function detect(n) {
   }
   const elig = S.nodes.slice(0, n.id - EXCL);
   if (kdN !== n.id) {
-    S.tree = kdBuild(elig.slice(), 0);
+    S.tree = buildKdTree(elig, (it) => it.key);
     kdN = n.id;
   }
   const nn = [];
-  kdKnn(S.tree, n.key, 6, nn);
+  nn.push(...nearest(S.tree, n.key, 6).map((h) => ({ it: h.item, d: h.distance })));
   const cands = nn.map((o) => {
     const r = scDist(n.desc, o.it.desc);
     return { id: o.it.id, rk: o.d, d: r.d, shift: r.shift };
