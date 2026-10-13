@@ -1,4 +1,5 @@
 import { buildKdTree, nearest } from '../algos/kdtree.js';
+import { solvePoseGraph } from '../algos/pose-graph.js';
 import { $, FONT, TAU, clamp, comp, gauss, hash, lerp, relp, wrapA } from './common.js';
 
 /* ---------- canvases ---------- */
@@ -283,120 +284,7 @@ function scDist(A, B) {
   return { d: best, shift: bs };
 }
 /* ---------- graph optimiser (planar poses, dense solver) ---------- */
-function cholSolve(A, b, n) {
-  const L = new Float64Array(n * n);
-  for (let i = 0; i < n; i++)
-    for (let j = 0; j <= i; j++) {
-      let s = A[i * n + j];
-      for (let k = 0; k < j; k++) s -= L[i * n + k] * L[j * n + k];
-      if (i === j) L[i * n + i] = Math.sqrt(Math.max(s, 1e-12));
-      else L[i * n + j] = s / L[j * n + j];
-    }
-  const y = new Float64Array(n);
-  for (let i = 0; i < n; i++) {
-    let s = b[i];
-    for (let k = 0; k < i; k++) s -= L[i * n + k] * y[k];
-    y[i] = s / L[i * n + i];
-  }
-  const x = new Float64Array(n);
-  for (let i = n - 1; i >= 0; i--) {
-    let s = y[i];
-    for (let k = i + 1; k < n; k++) s -= L[k * n + i] * x[k];
-    x[i] = s / L[i * n + i];
-  }
-  return x;
-}
 const SIG = { gps: 5, imu: 0.15, anchor: 0.02, loopXY: 0.1, loopTh: 0.005 };
-function resEdge(pi, pj, z) {
-  const r = relp(pi, pj);
-  return [r[0] - z[0], r[1] - z[1], wrapA(r[2] - z[2])];
-}
-function solveGraph(nodes, edges, priors, iters) {
-  const N = nodes.length,
-    n3 = 3 * N;
-  let X = nodes.map((n) => n.p.slice());
-  const out = [],
-    chi = [];
-  const evalChi = (Xs) => {
-    let c = 0;
-    for (const e of edges) {
-      const r = resEdge(Xs[e.i], Xs[e.j], e.z);
-      for (let k = 0; k < 3; k++) c += e.w[k] * r[k] * r[k];
-    }
-    for (const p of priors) {
-      const x = Xs[p.i];
-      if (p.t === 'gps') c += p.w * ((x[0] - p.z[0]) ** 2 + (x[1] - p.z[1]) ** 2);
-      else if (p.t === 'imu') c += p.w * wrapA(x[2] - p.z) ** 2;
-      else c += p.w * ((x[0] - p.z[0]) ** 2 + (x[1] - p.z[1]) ** 2 + wrapA(x[2] - p.z[2]) ** 2);
-    }
-    return c;
-  };
-  chi.push(evalChi(X));
-  let lam = 0.6;
-  for (let it = 0; it < iters; it++) {
-    const Hm = new Float64Array(n3 * n3),
-      bv = new Float64Array(n3);
-    for (const e of edges) {
-      const pi = X[e.i],
-        pj = X[e.j],
-        r0 = resEdge(pi, pj, e.z),
-        J = [[], [], []],
-        eps = 1e-6;
-      for (let a = 0; a < 6; a++) {
-        const qi = pi.slice(),
-          qj = pj.slice();
-        if (a < 3) qi[a] += eps;
-        else qj[a - 3] += eps;
-        const r1 = resEdge(qi, qj, e.z);
-        for (let k = 0; k < 3; k++) J[k][a] = (r1[k] - r0[k]) / eps;
-      }
-      const idx = (a) => (a < 3 ? 3 * e.i + a : 3 * e.j + a - 3);
-      for (let a = 0; a < 6; a++) {
-        let gb = 0;
-        for (let k = 0; k < 3; k++) gb += e.w[k] * J[k][a] * r0[k];
-        bv[idx(a)] += gb;
-        for (let c = 0; c < 6; c++) {
-          let s = 0;
-          for (let k = 0; k < 3; k++) s += e.w[k] * J[k][a] * J[k][c];
-          Hm[idx(a) * n3 + idx(c)] += s;
-        }
-      }
-    }
-    for (const p of priors) {
-      const x = X[p.i],
-        o = 3 * p.i;
-      if (p.t === 'gps') {
-        Hm[o * n3 + o] += p.w;
-        Hm[(o + 1) * n3 + o + 1] += p.w;
-        bv[o] += p.w * (x[0] - p.z[0]);
-        bv[o + 1] += p.w * (x[1] - p.z[1]);
-      } else if (p.t === 'imu') {
-        Hm[(o + 2) * n3 + o + 2] += p.w;
-        bv[o + 2] += p.w * wrapA(x[2] - p.z);
-      } else {
-        for (let k = 0; k < 3; k++) {
-          Hm[(o + k) * n3 + o + k] += p.w;
-          bv[o + k] += p.w * (k < 2 ? x[k] - p.z[k] : wrapA(x[2] - p.z[2]));
-        }
-      }
-    }
-    for (let i = 0; i < n3; i++) {
-      Hm[i * n3 + i] += lam * (Hm[i * n3 + i] + 1e-6);
-      bv[i] = -bv[i];
-    }
-    const d = cholSolve(Hm, bv, n3);
-    let mx = 0;
-    X = X.map((x, i) => {
-      mx = Math.max(mx, Math.abs(d[3 * i]), Math.abs(d[3 * i + 1]));
-      return [x[0] + d[3 * i], x[1] + d[3 * i + 1], x[2] + d[3 * i + 2]];
-    });
-    out.push(X.map((x) => x.slice()));
-    chi.push(evalChi(X));
-    lam *= 0.45;
-    if (mx < 2e-3) break;
-  }
-  return { sols: out, chi };
-}
 
 /* ---------- state ---------- */
 const KF_D = 9,
@@ -585,12 +473,17 @@ function addLoop(cand) {
   runOpt(9, false);
 }
 function runOpt(iters, quiet) {
-  const r = solveGraph(S.nodes, S.edges, S.priors, iters);
-  S.lastOpt = { chi: r.chi, k: 0, quiet };
+  const r = solvePoseGraph(
+    S.nodes.map((n) => n.p),
+    S.edges,
+    S.priors,
+    iters,
+  );
+  S.lastOpt = { chi: r.cost, k: 0, quiet };
   if (quiet) {
-    applySol(r.sols[r.sols.length - 1]);
-    S.lastOpt.k = r.chi.length - 1;
-  } else S.opt = { sols: r.sols, k: 0, tn: S.t };
+    applySol(r.solutions[r.solutions.length - 1]);
+    S.lastOpt.k = r.cost.length - 1;
+  } else S.opt = { sols: r.solutions, k: 0, tn: S.t };
 }
 function applySol(sol) {
   const L = sol.length,
