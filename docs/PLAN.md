@@ -49,20 +49,19 @@ Legend: `[x]` done, `[-]` not done.
 - [x] 4.4 `kdtree.js` with tests
 - [x] 4.5 `pose-graph.js` (Cholesky LM solver) with tests
 
-## Phase 5: new one-page site (built alongside the old one as `next.html`)
+## Phase 5: new one-page site
 
-The old `index.html` and its scripts stay untouched and working. The new page is
-assembled section by section in `next.html`, and replaces `index.html` in 7.0, once the
-Projects section exists.
+Built section by section as `index.html`, then made the homepage (`index.html`) once every
+section except Projects was in. The old page is kept as `legacy.html` until phase 7.
 
-- [x] 5.0 Add `next.html` shell, `src/main.js` and a scroll-spy for the nav
+- [x] 5.0 Add `index.html` shell, `src/main.js` and a scroll-spy for the nav
 - [x] 5.1 Landing: styles, script, markup
 - [x] 5.2 About: port the existing text and photo to the new style
 - [x] 5.3 Skills: styles, script, markup
 - [x] 5.4 Pixworm: photos, styles, script, markup
 - [x] 5.5 Blogs: styles, tile animations, markup
 - [x] 5.6 Footer and back-to-top
-- [x] 5.7 Check `next.html` end to end (all sections, mobile widths, no console errors). Projects is still empty until 6.7
+- [x] 5.7 Check `index.html` end to end (all sections, mobile widths, no console errors). Projects is still empty until 6.7
 
 ## Phase 6: demos (`src/demos`, each exports `mount` and `destroy`)
 
@@ -72,11 +71,11 @@ Projects section exists.
 - [-] 6.4 Mapping service
 - [-] 6.5 Building footprints
 - [-] 6.6 Car counting
-- [-] 6.7 Projects section in `next.html` (needs the demos above)
+- [-] 6.7 Projects section in `index.html` (needs the demos above)
 
 ## Phase 7: cleanup
 
-- [-] 7.0 Make `next.html` the new `index.html`; the old page becomes `legacy.html` until deleted
+- [x] 7.0 Make `index.html` the new `index.html`; the old page becomes `legacy.html` until deleted
 - [-] 7.1 Remove Bootstrap, AOS, Swiper, Typed.js and other unused libraries
 - [-] 7.2 Delete old CSS and JS that nothing references (`test.css` first)
 - [-] 7.3 Move the blog pages onto the shared styles
