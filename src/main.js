@@ -3,11 +3,13 @@ import './styles/sections/landing.css';
 import './styles/sections/about.css';
 import './styles/sections/skills.css';
 import './styles/sections/pixworm.css';
+import './styles/sections/blogs.css';
 import { initScrollSpy } from './core/scrollspy.js';
 import { initLanding } from './sections/landing.js';
 import { initAbout } from './sections/about.js';
 import { initSkills } from './sections/skills.js';
 import { initPixworm } from './sections/pixworm.js';
+import { initBlogs } from './sections/blogs.js';
 
 const SECTIONS = ['home', 'about', 'projects', 'skills', 'pixworm', 'blogs'];
 
@@ -26,3 +28,5 @@ initPixworm(document.getElementById('pixworm'), [
   { src: '/images/pixworm/p6.jpg', caption: 'Tulips', focusY: 0.62 },
   { src: '/images/pixworm/p7.jpg', caption: 'Garden at sunset', focusY: 0.58 },
 ]);
+
+initBlogs(document.getElementById('blogs'));

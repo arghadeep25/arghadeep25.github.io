@@ -59,7 +59,7 @@ assembled section by section in `next.html`, and replaces `index.html` in 5.8.
 - [x] 5.2 About: port the existing text and photo to the new style
 - [x] 5.3 Skills: styles, script, markup
 - [x] 5.4 Pixworm: photos, styles, script, markup
-- [-] 5.5 Blogs: styles, tile animations, markup
+- [x] 5.5 Blogs: styles, tile animations, markup
 - [-] 5.6 Footer and back-to-top
 - [-] 5.7 Check `next.html` end to end (all sections, mobile widths, no console errors)
 - [-] 5.8 Make `next.html` the new `index.html`; the old page moves to `legacy/`
