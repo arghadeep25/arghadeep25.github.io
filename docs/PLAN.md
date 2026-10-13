@@ -52,7 +52,8 @@ Legend: `[x]` done, `[-]` not done.
 ## Phase 5: new one-page site (built alongside the old one as `next.html`)
 
 The old `index.html` and its scripts stay untouched and working. The new page is
-assembled section by section in `next.html`, and replaces `index.html` in 5.8.
+assembled section by section in `next.html`, and replaces `index.html` in 7.0, once the
+Projects section exists.
 
 - [x] 5.0 Add `next.html` shell, `src/main.js` and a scroll-spy for the nav
 - [x] 5.1 Landing: styles, script, markup
@@ -61,8 +62,7 @@ assembled section by section in `next.html`, and replaces `index.html` in 5.8.
 - [x] 5.4 Pixworm: photos, styles, script, markup
 - [x] 5.5 Blogs: styles, tile animations, markup
 - [x] 5.6 Footer and back-to-top
-- [-] 5.7 Check `next.html` end to end (all sections, mobile widths, no console errors)
-- [-] 5.8 Make `next.html` the new `index.html`; the old page moves to `legacy/`
+- [x] 5.7 Check `next.html` end to end (all sections, mobile widths, no console errors). Projects is still empty until 6.7
 
 ## Phase 6: demos (`src/demos`, each exports `mount` and `destroy`)
 
@@ -76,6 +76,7 @@ assembled section by section in `next.html`, and replaces `index.html` in 5.8.
 
 ## Phase 7: cleanup
 
+- [-] 7.0 Make `next.html` the new `index.html`; the old page becomes `legacy.html` until deleted
 - [-] 7.1 Remove Bootstrap, AOS, Swiper, Typed.js and other unused libraries
 - [-] 7.2 Delete old CSS and JS that nothing references (`test.css` first)
 - [-] 7.3 Move the blog pages onto the shared styles
