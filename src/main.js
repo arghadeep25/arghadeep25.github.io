@@ -1,6 +1,7 @@
 import './styles/index.css';
 import './styles/sections/landing.css';
 import './styles/sections/about.css';
+import './styles/sections/projects.css';
 import './styles/sections/skills.css';
 import './styles/sections/pixworm.css';
 import './styles/sections/blogs.css';

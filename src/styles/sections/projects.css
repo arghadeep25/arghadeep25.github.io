@@ -1,0 +1,19 @@
+/* Placeholder until the demos are moved in (plan item 6.7). */
+.projects {
+  padding: clamp(110px, 18vh, 180px) 0;
+}
+
+.projects h2 {
+  font-size: var(--fs-display);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.projects p {
+  max-width: 42ch;
+  margin-top: 16px;
+  color: var(--ink-mute);
+  font-size: var(--fs-lede);
+  line-height: 1.5;
+}
