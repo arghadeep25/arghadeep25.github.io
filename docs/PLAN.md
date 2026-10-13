@@ -55,7 +55,7 @@ The old `index.html` and its scripts stay untouched and working. The new page is
 assembled section by section in `next.html`, and replaces `index.html` in 5.8.
 
 - [x] 5.0 Add `next.html` shell, `src/main.js` and a scroll-spy for the nav
-- [-] 5.1 Landing: styles, script, markup
+- [x] 5.1 Landing: styles, script, markup
 - [-] 5.2 About: port the existing text and photo to the new style
 - [-] 5.3 Skills: styles, script, markup
 - [-] 5.4 Pixworm: photos, styles, script, markup

@@ -27,7 +27,32 @@
     </nav>
 
     <main>
-      <section id="home"></section>
+      <section id="home" class="landing">
+        <div class="landing__pin">
+          <canvas aria-hidden="true"></canvas>
+          <div class="landing__hero">
+            <p class="landing__hello">Hello, I'm</p>
+            <div class="landing__name" data-name-box>
+              <h1 class="sr-only">Arghadeep Mazumder</h1>
+            </div>
+            <p
+              class="landing__roles"
+              aria-label="I'm a Lead Software Developer, Photographer, Human"
+            >
+              I'm a <strong data-roles></strong><i class="landing__caret"></i>
+            </p>
+          </div>
+          <div class="landing__cta">
+            <h2>The work, in motion.</h2>
+            <p>Live simulations of the systems I've built, from mapping to path tracking.</p>
+            <div class="landing__actions">
+              <a class="btn btn--ghost" href="#about">About me</a>
+              <a class="btn btn--primary" href="#projects">See the projects</a>
+            </div>
+          </div>
+          <div class="landing__scroll"><i></i>Scroll</div>
+        </div>
+      </section>
       <section id="about"></section>
       <section id="projects"></section>
       <section id="skills"></section>
