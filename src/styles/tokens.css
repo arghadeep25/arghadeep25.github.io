@@ -18,8 +18,7 @@
   --glass: rgba(14, 20, 33, 0.55);
 
   /* type */
-  --font:
-    'Montserrat', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --font: 'Montserrat', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
   --fs-display: clamp(44px, 7vw, 100px);
   --fs-title: clamp(30px, 3.6vw, 52px);
   --fs-lede: clamp(15px, 1.35vw, 18px);
