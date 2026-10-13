@@ -49,13 +49,20 @@ Legend: `[x]` done, `[-]` not done.
 - [x] 4.4 `kdtree.js` with tests
 - [x] 4.5 `pose-graph.js` (Cholesky LM solver) with tests
 
-## Phase 5: page sections
+## Phase 5: new one-page site (built alongside the old one as `next.html`)
 
-- [-] 5.1 Landing: markup, then `sections/landing.js`
-- [-] 5.2 Skills: markup, then `sections/skills.js`
-- [-] 5.3 Pixworm section and photo assets
-- [-] 5.4 Blogs section and tile animations
-- [-] 5.5 Projects page and chapters
+The old `index.html` and its scripts stay untouched and working. The new page is
+assembled section by section in `next.html`, and replaces `index.html` in 5.8.
+
+- [-] 5.0 Add `next.html` shell, `src/main.js` and a scroll-spy for the nav
+- [-] 5.1 Landing: styles, script, markup
+- [-] 5.2 About: port the existing text and photo to the new style
+- [-] 5.3 Skills: styles, script, markup
+- [-] 5.4 Pixworm: photos, styles, script, markup
+- [-] 5.5 Blogs: styles, tile animations, markup
+- [-] 5.6 Footer and back-to-top
+- [-] 5.7 Check `next.html` end to end (all sections, mobile widths, no console errors)
+- [-] 5.8 Make `next.html` the new `index.html`; the old page moves to `legacy/`
 
 ## Phase 6: demos (`src/demos`, each exports `mount` and `destroy`)
 
@@ -65,6 +72,7 @@ Legend: `[x]` done, `[-]` not done.
 - [-] 6.4 Mapping service
 - [-] 6.5 Building footprints
 - [-] 6.6 Car counting
+- [-] 6.7 Projects section in `next.html` (needs the demos above)
 
 ## Phase 7: cleanup
 
