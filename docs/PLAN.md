@@ -26,7 +26,7 @@ Legend: `[x]` done, `[-]` not done.
 - [x] 1.2 Add `vite.config.js` with the existing pages as entries
 - [x] 1.2a Copy legacy scripts into `dist` until they become modules (temporary)
 - [x] 1.3 Add `.editorconfig` and Prettier config
-- [x] 1.4 Add a GitHub Actions workflow that builds and deploys to Pages (needs Settings > Pages > Source: GitHub Actions before merging to main)
+- [x] 1.4 Add a GitHub Actions workflow that builds and deploys to Pages (needs Settings > Pages > Source: GitHub Actions before merging to master)
 
 ## Phase 2: design tokens and base styles
 
