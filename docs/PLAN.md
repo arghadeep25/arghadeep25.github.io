@@ -11,12 +11,12 @@ Legend: `[x]` done, `[-]` not done.
 - Conventional commits, always with a body:
   `git commit -m "feat: short message" -m "what it does and why"`
 - Allowed types: `feat`, `fix`, `refactor`, `style`, `test`, `docs`, `build`, `ci`, `chore`.
-- Work happens on the `restructure` branch. Nothing is pushed or merged without review.
+- Work happens on the `design_update` branch. Nothing is pushed, and `master` is untouched until the whole redesign is finished and reviewed.
 - Public names only. No internal project or repository names anywhere in the code.
 
 ## Phase 0: baseline
 
-- [x] 0.1 Create the `restructure` branch and add this plan
+- [x] 0.1 Add this plan on `design_update`
 - [x] 0.2 Ignore `node_modules` and `dist`
 - [x] 0.3 Add an inventory of pages, assets and libraries in use
 
