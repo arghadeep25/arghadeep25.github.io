@@ -77,7 +77,7 @@ A faithful port comes first, and swapping inline helpers for the tested modules 
 - [x] 6.3 Localization
 - [x] 6.4 Detection (obstacles)
 - [-] 6.5 Planning and watchdog: stages of the stack overview, shown as two chapters
-- [-] 6.6 Tracking (path tracking)
+- [x] 6.6 Tracking (path tracking)
 - [-] 6.7 Projects section in `index.html`: six chapters in the order above, each showing its demo
 - [-] 6.8 Other projects: building footprints and car counting demos, in a "More work" grid
 
