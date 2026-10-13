@@ -36,10 +36,10 @@ Legend: `[x]` done, `[-]` not done.
 
 ## Phase 3: shared JS modules (`src/core`)
 
-- [-] 3.1 `dots.js`, the dot engine used by landing, skills and Pixworm
-- [-] 3.2 `nav.js`, the floating nav pill with active state
-- [-] 3.3 `reveal.js`, one IntersectionObserver helper
-- [-] 3.4 `stage-rail.js`, the spotlight rail used by the demos
+- [x] 3.1 `dots.js`, the dot engine used by landing, skills and Pixworm
+- [x] 3.2 `nav.js`, the floating nav pill with active state
+- [x] 3.3 `reveal.js`, one IntersectionObserver helper
+- [x] 3.4 `stage-rail.js`, the spotlight rail used by the demos
 
 ## Phase 4: pure logic with unit tests (`src/algos`)
 
