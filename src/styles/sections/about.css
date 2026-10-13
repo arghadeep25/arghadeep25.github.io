@@ -1,0 +1,81 @@
+.about {
+  padding: clamp(110px, 18vh, 200px) 0;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(32px, 6vw, 110px);
+  align-items: start;
+}
+
+.about__side {
+  position: sticky;
+  top: 12vh;
+}
+
+.about h2 {
+  font-size: var(--fs-display);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.about__photo {
+  margin-top: clamp(24px, 4vh, 40px);
+  aspect-ratio: 4 / 5;
+  max-width: 420px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+
+.about__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__quote {
+  max-width: 24ch;
+  font-size: clamp(22px, 2.3vw, 34px);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.about__quote cite {
+  display: block;
+  margin-top: 14px;
+  color: var(--ink-dim);
+  font-size: var(--fs-small);
+  font-style: normal;
+}
+
+.about__text {
+  display: grid;
+  gap: 1.3em;
+  max-width: 58ch;
+  margin-top: clamp(28px, 5vh, 52px);
+  color: var(--ink-mute);
+  font-size: clamp(16px, 1.3vw, 18.5px);
+  line-height: 1.75;
+}
+
+.about__text p:first-child {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__side {
+    position: static;
+  }
+
+  .about__photo {
+    max-width: 320px;
+  }
+}
