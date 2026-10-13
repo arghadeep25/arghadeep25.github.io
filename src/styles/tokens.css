@@ -28,6 +28,7 @@
   /* layout */
   --gut: clamp(20px, 5vw, 72px);
   --maxw: 1320px;
+  --maxw-wide: 1520px;
 
   /* shape */
   --r-sm: 8px;
