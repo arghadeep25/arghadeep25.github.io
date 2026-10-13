@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Localization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="stylesheet" href="/src/styles/demos/localization.css" />
+    <script type="module" src="/src/demos/localization.js"></script>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header class="head">
+      <h1>Localization</h1>
+      <p>Where the vehicle is, to the centimetre.</p>
+      <div class="legend">
+        <span><i style="background: #8da0bd"></i>Prior map</span>
+        <span><i style="background: var(--scan)"></i>LiDAR scan</span>
+        <span><i style="background: var(--ap)"></i>Estimate</span>
+        <span><i style="border: 1.5px dashed #fff; background: none"></i>Ground truth</span>
+      </div>
+    </header>
+
+    <div class="sens panel" id="sens">
+      <span id="s-imu">IMU</span><span id="s-lid">LiDAR</span><span id="s-gnss">GNSS</span>
+    </div>
+
+    <div class="mhud panel">
+      <div><span>Error</span><b id="mErr">0.00 m</b></div>
+      <div><span>σ</span><b id="mSig">0.00 m</b></div>
+    </div>
+
+    <div class="parts" id="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Scenarios"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-pose">
+        <div class="lab">Position error</div>
+        <div class="big"><span id="dErr">0.00</span><small>m</small></div>
+        <div class="rows">
+          <div><span>Estimate</span><b id="dXY">—</b></div>
+          <div><span>Heading error</span><b id="dHd">0.0°</b></div>
+          <div><span>Uncertainty σ</span><b id="dSig">0.00 m</b></div>
+        </div>
+      </section>
+      <section class="b-chart">
+        <div class="top">
+          <span class="lab">Estimate error over time</span>
+          <span class="key"
+            ><span><i style="background: #34d399"></i>Error</span
+            ><span><i style="background: #3e9bff"></i>Uncertainty σ</span></span
+          >
+        </div>
+        <canvas id="chart"></canvas>
+      </section>
+      <section class="b-tiles" id="tiles">
+        <div class="tile" id="t-imu">
+          <div class="n"><i></i>Inertial</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-lid">
+          <div class="n"><i></i>LiDAR</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-gnss">
+          <div class="n"><i></i>GNSS</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-map">
+          <div class="n"><i></i>Prior map</div>
+          <div class="s">Loaded</div>
+        </div>
+        <div class="tile" id="t-reg">
+          <div class="n"><i></i>Registration</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-flt">
+          <div class="n"><i></i>Filter</div>
+          <div class="s">—</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Interactive simulation. Telemetry is illustrative. Click a scenario to jump to it · Space
+      pauses
+    </div>
+  </body>
+</html>
