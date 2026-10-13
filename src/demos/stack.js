@@ -449,16 +449,6 @@ import { $, lerp, TAU } from './common.js';
     }
   });
 
-  // ?stage=route opens the page with that stage held, used by the project chapters
-  const wanted = STAGES.findIndex(
-    (st) => st.id === new URLSearchParams(location.search).get('stage'),
-  );
-  if (wanted >= 0) {
-    focus = wanted;
-    locked = true;
-    renderCard();
-  }
-
   // ---------- simulation ----------
   let perfT = 0,
     hbT = 0,
@@ -1629,6 +1619,14 @@ import { $, lerp, TAU } from './common.js';
   spawnFeatures();
   spawnAuto();
   for (let i = 0; i < 20; i++) step(0.05); // settle
+  // ?stage=route opens the page with that stage held, used by the project chapters
+  const wanted = STAGES.findIndex(
+    (st) => st.id === new URLSearchParams(location.search).get('stage'),
+  );
+  if (wanted >= 0) {
+    focus = wanted;
+    locked = true;
+  }
   renderCard();
   requestAnimationFrame(frame);
   setTimeout(() => hint.classList.add('gone'), 12000);
