@@ -36,7 +36,6 @@ export function initBlogs(root) {
     tile.g.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  new ResizeObserver((entries) => entries.forEach((e) => resize(byEl.get(e.target)))).observe(grid);
   const sizeObserver = new ResizeObserver((entries) =>
     entries.forEach((e) => resize(byEl.get(e.target))),
   );
