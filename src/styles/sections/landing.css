@@ -1,0 +1,182 @@
+/* Landing: the name is made of dots, which fly past on scroll. */
+.landing {
+  position: relative;
+  height: 320vh;
+}
+
+.landing__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.landing__pin canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.landing__pin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 120% 90% at 50% 45%,
+    transparent 55%,
+    rgba(5, 7, 13, 0.7) 100%
+  );
+}
+
+.landing__hero {
+  position: absolute;
+  z-index: var(--z-content);
+  left: 0;
+  right: 0;
+  top: 44%;
+  padding: 0 var(--gut);
+  text-align: center;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.landing__hello {
+  color: var(--ink-mute);
+  font-size: clamp(14px, 1.5vw, 19px);
+  animation: landing-rise 1.1s 0.5s var(--ease-out) backwards;
+}
+
+.landing__name {
+  margin-top: 16px;
+}
+
+.landing__roles {
+  min-height: 1.5em;
+  margin-top: 22px;
+  color: var(--ink-mute);
+  font-size: clamp(15px, 1.45vw, 19px);
+  white-space: nowrap;
+  animation: landing-rise 1.2s 1.7s var(--ease-out) backwards;
+}
+
+.landing__roles strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.landing__caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: landing-blink 1s steps(1) infinite;
+}
+
+.landing__scroll {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-mute);
+  font-size: 12px;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.landing__scroll i {
+  position: relative;
+  width: 22px;
+  height: 36px;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+}
+
+.landing__scroll i::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 3px;
+  height: 7px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--ink);
+  animation: landing-wheel 2s ease-in-out infinite;
+}
+
+.landing__cta {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  top: 50%;
+  padding: 0 var(--gut);
+  text-align: center;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.landing__cta.is-live {
+  pointer-events: auto;
+}
+
+.landing__cta h2 {
+  font-size: var(--fs-display);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  text-shadow: 0 2px 40px rgba(5, 7, 13, 0.9);
+}
+
+.landing__cta p {
+  max-width: 40ch;
+  margin: 16px auto 0;
+  color: var(--ink-mute);
+  font-size: var(--fs-lede);
+}
+
+.landing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(8px);
+  }
+}
+
+@keyframes landing-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes landing-wheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  70%,
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
