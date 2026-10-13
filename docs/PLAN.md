@@ -23,7 +23,8 @@ Legend: `[x]` done, `[-]` not done.
 ## Phase 1: tooling
 
 - [x] 1.1 Add `package.json` and Vite with `dev`, `build` and `preview` scripts
-- [-] 1.2 Add `vite.config.js` with the existing pages as entries
+- [x] 1.2 Add `vite.config.js` with the existing pages as entries
+- [x] 1.2a Copy legacy scripts into `dist` until they become modules (temporary)
 - [-] 1.3 Add `.editorconfig` and Prettier config
 - [-] 1.4 Add a GitHub Actions workflow that builds and deploys to Pages
 
