@@ -1,0 +1,48 @@
+/* Design tokens: the single source of truth for colour, type, spacing and motion. */
+:root {
+  /* colour */
+  --bg: #05070d;
+  --bg-raised: #0a0f1a;
+  --ink: #f3f6fb;
+  --ink-mute: #93a0b8;
+  --ink-dim: #5d6b84;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --accent: #8b7cff;
+  --accent-hover: #a094ff;
+  --accent-soft: rgba(139, 124, 255, 0.14);
+  --accent-line: rgba(139, 124, 255, 0.5);
+  --blue: #3e9bff;
+  --ok: #34d399;
+  --warn: #ffb547;
+  --glass: rgba(14, 20, 33, 0.55);
+
+  /* type */
+  --font:
+    'Montserrat', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --fs-display: clamp(44px, 7vw, 100px);
+  --fs-title: clamp(30px, 3.6vw, 52px);
+  --fs-lede: clamp(15px, 1.35vw, 18px);
+  --fs-body: 15px;
+  --fs-small: 13px;
+
+  /* layout */
+  --gut: clamp(20px, 5vw, 72px);
+  --maxw: 1320px;
+
+  /* shape */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 26px;
+  --r-pill: 999px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-fast: 0.2s;
+  --t-base: 0.35s;
+
+  /* stacking */
+  --z-content: 2;
+  --z-overlay: 20;
+  --z-nav: 30;
+}
