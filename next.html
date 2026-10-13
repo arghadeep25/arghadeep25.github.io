@@ -99,7 +99,130 @@
         </div>
       </section>
       <section id="projects"></section>
-      <section id="skills"></section>
+      <section id="skills" class="wrap skills">
+        <div class="skills__side">
+          <h2>Skills</h2>
+          <p class="skills__lede">What I build with, and how I lead the work.</p>
+          <div class="skills__stage">
+            <canvas role="img" aria-label="A dot icon that reshapes for each skill area"></canvas>
+          </div>
+          <div class="skills__now" data-now>Perception</div>
+          <div class="skills__legend">
+            <span><i class="is-core"></i>Daily drivers</span>
+            <span><i class="is-depth"></i>Working depth</span>
+          </div>
+        </div>
+        <div class="skills__list">
+          <article class="skill is-active" data-shape="eye" data-name="Perception">
+            <h3>Perception</h3>
+            <p class="skill__lead">
+              Turning raw camera and LiDAR data into things a vehicle can act on.
+            </p>
+            <ul class="skill__chips">
+              <li class="chip chip--accent">OpenCV</li>
+              <li class="chip chip--accent">PCL</li>
+              <li class="chip chip--accent">TensorFlow</li>
+              <li class="chip">Point-cloud processing</li>
+              <li class="chip">LiDAR</li>
+              <li class="chip">Semantic segmentation</li>
+              <li class="chip">Object detection</li>
+              <li class="chip">Multi-object tracking</li>
+            </ul>
+            <div class="skill__seen">
+              Seen in <a href="projects/obstacle-detection.html">Obstacle detection</a
+              ><a href="projects/car-counting.html">Car counting</a
+              ><a href="projects/building-footprints.html">Building footprints</a>
+            </div>
+          </article>
+          <article class="skill" data-shape="pin" data-name="Localization and mapping">
+            <h3>Localization and mapping</h3>
+            <p class="skill__lead">
+              Knowing where the vehicle is, and building the map, even when GPS drops out.
+            </p>
+            <ul class="skill__chips">
+              <li class="chip chip--accent">Sensor fusion</li>
+              <li class="chip chip--accent">SLAM</li>
+              <li class="chip chip--accent">ROS</li>
+              <li class="chip">Pose-graph optimisation</li>
+              <li class="chip">Loop closure</li>
+              <li class="chip">GPS, IMU, wheel odometry</li>
+              <li class="chip">KD-tree search</li>
+              <li class="chip">Dead reckoning</li>
+            </ul>
+            <div class="skill__seen">
+              Seen in <a href="projects/localization.html">Localization</a
+              ><a href="projects/mapping.html">Mapping service</a>
+            </div>
+          </article>
+          <article class="skill" data-shape="path" data-name="Planning and control">
+            <h3>Planning and control</h3>
+            <p class="skill__lead">
+              Following a path smoothly: slowing for curves, absorbing rough terrain, steering true.
+            </p>
+            <ul class="skill__chips">
+              <li class="chip chip--accent">PID control</li>
+              <li class="chip chip--accent">Path tracking</li>
+              <li class="chip">Ackermann steering model</li>
+              <li class="chip">Speed profiling</li>
+              <li class="chip">Trajectory tracking</li>
+              <li class="chip">MATLAB</li>
+            </ul>
+            <div class="skill__seen">
+              Seen in <a href="projects/path-tracking.html">Path tracking</a>
+            </div>
+          </article>
+          <article class="skill" data-shape="cube" data-name="Software engineering">
+            <h3>Software engineering</h3>
+            <p class="skill__lead">
+              Production-minded code that other engineers can read, build and trust.
+            </p>
+            <ul class="skill__chips">
+              <li class="chip chip--accent">C++</li>
+              <li class="chip chip--accent">Python</li>
+              <li class="chip chip--accent">CMake</li>
+              <li class="chip chip--accent">Git</li>
+              <li class="chip chip--accent">Docker</li>
+              <li class="chip">Linux</li>
+              <li class="chip">Real-time systems</li>
+              <li class="chip">Performance profiling</li>
+            </ul>
+            <div class="skill__seen">Seen in <a href="#projects">The autonomy stack</a></div>
+          </article>
+          <article class="skill" data-shape="chip" data-name="Embedded and edge">
+            <h3>Embedded and edge</h3>
+            <p class="skill__lead">Getting real-time vision to run on small, CPU-only hardware.</p>
+            <ul class="skill__chips">
+              <li class="chip chip--accent">Raspberry Pi</li>
+              <li class="chip">CPU-only inference</li>
+              <li class="chip">Edge deployment</li>
+              <li class="chip">Sensor interfacing</li>
+              <li class="chip">Optimisation</li>
+              <li class="chip">Autodesk CAD</li>
+            </ul>
+            <div class="skill__seen">
+              Seen in <a href="projects/car-counting.html">Car counting</a>
+            </div>
+          </article>
+          <article class="skill" data-shape="net" data-name="Leadership and craft">
+            <h3>Leadership and craft</h3>
+            <p class="skill__lead">
+              Setting direction, raising the team's bar, and keeping an eye for composition.
+            </p>
+            <ul class="skill__chips">
+              <li class="chip chip--accent">Technical direction</li>
+              <li class="chip chip--accent">Mentoring</li>
+              <li class="chip">Architecture and design reviews</li>
+              <li class="chip">Cross-team delivery</li>
+              <li class="chip">Technical writing</li>
+              <li class="chip">LaTeX</li>
+              <li class="chip">Photography</li>
+            </ul>
+            <div class="skill__seen">
+              Seen in <a href="#blogs">Blogs</a><a href="#pixworm">Pixworm</a>
+            </div>
+          </article>
+        </div>
+      </section>
       <section id="pixworm"></section>
       <section id="blogs"></section>
     </main>
