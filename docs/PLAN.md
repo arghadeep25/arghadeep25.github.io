@@ -75,7 +75,7 @@ A faithful port comes first, and swapping inline helpers for the tested modules 
 - [x] 6.1 Shared demo styles (`demo.css`) and demo helpers (`src/demos/common.js`)
 - [x] 6.2 Mapping: page and module, then use the tested k-d tree and pose-graph solver
 - [x] 6.3 Localization
-- [-] 6.4 Detection (obstacles)
+- [x] 6.4 Detection (obstacles)
 - [-] 6.5 Planning and watchdog: stages of the stack overview, shown as two chapters
 - [-] 6.6 Tracking (path tracking)
 - [-] 6.7 Projects section in `index.html`: six chapters in the order above, each showing its demo
