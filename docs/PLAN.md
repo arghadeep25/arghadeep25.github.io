@@ -116,7 +116,7 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 
 - [x] 11.1 Wording: nav label and the stack page headline
 - [x] 11.2 Stack demo: the vehicle drives in the right lane, not the middle
-- [-] 11.3 `algos/ukf.js`, an unscented Kalman filter for object tracking, with tests
+- [x] 11.3 `algos/ukf.js`, an unscented Kalman filter for object tracking, with tests
 - [-] 11.4 Object tracking demo: detections, UKF tracks, IDs, velocity and uncertainty
 - [-] 11.5 Route planning demo: user drops a pin, global route, local planning, slowing, overtaking, signals, hard braking, pedestrians
 - [-] 11.6 Watchdog demo: the same style as mapping and localization
