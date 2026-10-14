@@ -87,6 +87,7 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
 
   const car = { x: 0, y: road(0) + LANE_OFF, th: 0.2, v: 7, steer: 0, pedal: 0 };
   let obstacles = [];
+  let DEST = 1500; // where the vehicle is heading; a new one is chosen on arrival
   let nextId = 1,
     nextSpawn = 55,
     spawnCount = 0;
@@ -269,6 +270,7 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
     keyframes: 0,
     tracked: 0,
     fastest: 0,
+    beh: 'Cruising',
     traj: [],
     lastDetected: new Set(),
   };
@@ -396,9 +398,9 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
         ];
       case 'route':
         return [
+          [S.beh, 'Doing now'],
+          [f(Math.max(0, DEST - car.x) / 1000, 2) + ' km', 'To destination'],
           [f(Math.abs(S.detour)) + ' m', 'Detour'],
-          ['40 m', 'Horizon'],
-          [S.replans, 'Replans'],
         ];
       case 'track':
         return [
@@ -627,6 +629,7 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
         S.stopFor = 'ped';
       }
     }
+    if (car.x > DEST - 25) DEST = car.x + 1400 + rnd() * 800;
     if (stopD < Infinity) vt = Math.min(vt, stopD <= 0.3 ? 0 : Math.sqrt(4 * stopD));
     const Lf = 3 + 0.55 * car.v;
     S.Lf = Lf;
@@ -650,6 +653,15 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
     let u = clamp(1.1 * (vt - car.v), -1, 1);
     if (S.aeb) u = -1;
     car.pedal = u;
+    S.beh = S.aeb
+      ? 'Braking'
+      : S.stopFor === 'light'
+        ? 'Stopping'
+        : S.yielding
+          ? 'Giving way'
+          : Math.abs(S.detour) > 1
+            ? 'Passing'
+            : 'Cruising';
     S.steerCmd = car.steer / 0.5;
     S.pedalCmd = u;
 
@@ -1374,6 +1386,61 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
     ctx.lineDashOffset = -perfT * 40;
     strokePath(S.traj, 1.5, 'rgba(255,255,255,.85)', 0, [4, 22]);
     ctx.restore();
+    drawDestination(a);
+  }
+
+  // The pin the vehicle is heading for, on the road when it is in view and at the edge of the screen when not.
+  function drawDestination(a) {
+    const dist = Math.max(0, DEST - car.x);
+    let x = toX(DEST),
+      y = toY(road(DEST) + LANE_OFF);
+    const off = x > W - 70;
+    if (off) {
+      x = W - 70;
+      y = CY() - 96;
+    }
+    ctx.save();
+    ctx.globalAlpha = 0.5 + 0.5 * a;
+    ctx.translate(x, y);
+    ctx.fillStyle = '#ff5d6c';
+    ctx.shadowColor = '#ff5d6c';
+    ctx.shadowBlur = 14;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(-13, -17, -13, -35, 0, -35);
+    ctx.bezierCurveTo(13, -35, 13, -17, 0, 0);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(0, -23, 5, 0, TAU);
+    ctx.fill();
+    ctx.font = '600 11px -apple-system, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffd0d5';
+    ctx.fillText(`Destination · ${dist >= 1000 ? (dist / 1000).toFixed(1) + ' km' : Math.round(dist) + ' m'}`, 0, -44);
+    ctx.restore();
+    // what it is doing right now, beside the vehicle
+    if (a > 0.3) {
+      ctx.save();
+      ctx.globalAlpha = a;
+      ctx.font = '600 12px -apple-system, system-ui, sans-serif';
+      const tx = toX(car.x) - 8,
+        ty = toY(car.y) - 3.6 * SC;
+      const w = ctx.measureText(S.beh).width + 22;
+      ctx.fillStyle = 'rgba(14,20,33,.78)';
+      ctx.strokeStyle = rgba(COL('route'), 0.8);
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.roundRect(tx - w / 2, ty - 13, w, 26, 13);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(S.beh, tx, ty + 1);
+      ctx.restore();
+    }
   }
 
   function drawTrack(a) {
