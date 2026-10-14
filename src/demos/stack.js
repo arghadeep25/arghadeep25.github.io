@@ -150,9 +150,14 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
       for (const pv of cands) {
         let viol = 0;
         for (const o of g.items)
-          viol = Math.max(viol, clearance(o) - (o.side ? (pv - rl(o)) * o.side : Math.abs(pv - rl(o))));
+          viol = Math.max(
+            viol,
+            clearance(o) - (o.side ? (pv - rl(o)) * o.side : Math.abs(pv - rl(o))),
+          );
         const score =
-          (viol > 1e-6 ? 100 + viol * 10 : 0) + Math.abs(pv) + (Math.abs(pv + LANE_OFF) > 3.3 ? 4 : 0);
+          (viol > 1e-6 ? 100 + viol * 10 : 0) +
+          Math.abs(pv) +
+          (Math.abs(pv + LANE_OFF) > 3.3 ? 4 : 0);
         if (score < bestScore) {
           bestScore = score;
           best = pv;
@@ -295,7 +300,9 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
       });
     }
     tracker.step(0.1, dets);
-    tracker.tracks = tracker.tracks.filter((t) => t.filter.x[0] > car.x - 24 && t.filter.x[0] < car.x + 60);
+    tracker.tracks = tracker.tracks.filter(
+      (t) => t.filter.x[0] > car.x - 24 && t.filter.x[0] < car.x + 60,
+    );
     const live = tracker.tracks.filter((t) => t.state !== 'tentative');
     S.tracked = live.length;
     S.fastest = live.reduce((m, t) => Math.max(m, Math.abs(t.filter.x[2])), 0);
@@ -594,7 +601,8 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
 
     // --- track: pure pursuit + speed
     let maxOff = 0;
-    for (let i = 0; i < 18; i++) maxOff = Math.max(maxOff, Math.abs(traj[i][1] - road(traj[i][0]) - LANE_OFF));
+    for (let i = 0; i < 18; i++)
+      maxOff = Math.max(maxOff, Math.abs(traj[i][1] - road(traj[i][0]) - LANE_OFF));
     S.lightState = null;
     S.yielding = false;
     S.stopFor = null;
@@ -1185,7 +1193,12 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
     for (let i = 0; i + 2 < kfs.length; i++) {
       ctx.beginPath();
       ctx.moveTo(toX(kfs[i][0]), toY(kfs[i][1]));
-      ctx.quadraticCurveTo(toX(kfs[i + 1][0]), toY(kfs[i + 1][1]) + 14, toX(kfs[i + 2][0]), toY(kfs[i + 2][1]));
+      ctx.quadraticCurveTo(
+        toX(kfs[i + 1][0]),
+        toY(kfs[i + 1][1]) + 14,
+        toX(kfs[i + 2][0]),
+        toY(kfs[i + 2][1]),
+      );
       ctx.stroke();
     }
     kfs.forEach(([x, y], i) => {
@@ -1418,7 +1431,11 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
     ctx.font = '600 11px -apple-system, system-ui, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillStyle = '#ffd0d5';
-    ctx.fillText(`Destination · ${dist >= 1000 ? (dist / 1000).toFixed(1) + ' km' : Math.round(dist) + ' m'}`, 0, -44);
+    ctx.fillText(
+      `Destination · ${dist >= 1000 ? (dist / 1000).toFixed(1) + ' km' : Math.round(dist) + ' m'}`,
+      0,
+      -44,
+    );
     ctx.restore();
     // what it is doing right now, beside the vehicle
     if (a > 0.3) {
