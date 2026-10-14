@@ -49,6 +49,8 @@ import { $, lerp, TAU } from './common.js';
     },
   ];
 
+  const COL = (id) => STAGES.find((s) => s.id === id).color;
+
   // ---------- helpers ----------
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const smooth = (t) => {
@@ -928,7 +930,7 @@ import { $, lerp, TAU } from './common.js';
 
   function drawSense(a) {
     if (a < 0.02) return;
-    const col = STAGES[0].color;
+    const col = COL('sense');
     const lidX = car.x + Math.cos(car.th) * LIDAR_FROM_REAR,
       lidY = car.y + Math.sin(car.th) * LIDAR_FROM_REAR;
     ctx.save();
@@ -1040,7 +1042,7 @@ import { $, lerp, TAU } from './common.js';
 
   function drawEgo(a) {
     if (a < 0.02) return;
-    const col = STAGES[1].color;
+    const col = COL('ego');
     ctx.save();
     ctx.globalAlpha = a;
     // landmarks from global map
@@ -1100,7 +1102,7 @@ import { $, lerp, TAU } from './common.js';
   }
 
   function drawRoute(a) {
-    const col = STAGES[2].color;
+    const col = COL('route');
     // global route: always faint, brighter when focused
     const g = [];
     for (let x = fromX(-60); x < car.x + 130; x += 3) g.push(at(x, LANE_OFF));
@@ -1155,7 +1157,7 @@ import { $, lerp, TAU } from './common.js';
 
   function drawTrack(a) {
     if (a < 0.02 || !S.tgt) return;
-    const col = STAGES[3].color;
+    const col = COL('track');
     ctx.save();
     ctx.globalAlpha = a;
     const cx = toX(car.x),
@@ -1212,7 +1214,7 @@ import { $, lerp, TAU } from './common.js';
 
   function drawBridge(a) {
     if (a < 0.02 || !S.tgt) return;
-    const col = STAGES[4].color;
+    const col = COL('bridge');
     ctx.save();
     ctx.globalAlpha = a;
     const fx = car.x + Math.cos(car.th) * WB,
@@ -1269,7 +1271,7 @@ import { $, lerp, TAU } from './common.js';
 
   function drawGuardian(a) {
     if (a < 0.02) return;
-    const col = STAGES[5].color;
+    const col = COL('guardian');
     ctx.save();
     ctx.globalAlpha = a;
     const cx = toX(car.x + Math.cos(car.th) * 1.3),
