@@ -104,7 +104,7 @@ A README and a CONTRIBUTING guide were planned. This is a personal portfolio wit
 Photos stay on Google Drive and Google Photos. Every photo list lives in `src/pixworm/photos.js`.
 
 - [x] 10.1 Photo data in one file, with the address helper and tests
-- [-] 10.2 Lightbox: keyboard, swipe, preload, deep link
+- [x] 10.2 Lightbox: keyboard, swipe, preload, deep link
 - [-] 10.3 Pixworm styles and the full screen opening
 - [-] 10.4 Collections strip and the selected mosaic on `pixworm.html`
 - [-] 10.5 One collection page template; the 9 collection pages use it
