@@ -224,11 +224,11 @@ html {
   border-radius: var(--r-md);
   background: var(--bg-raised);
   break-inside: avoid;
+  aspect-ratio: 4 / 5;
 }
 
 .mosaic__item img {
   width: 100%;
-  min-height: 140px;
   opacity: 0;
   transition:
     opacity 0.6s ease,
@@ -253,6 +253,7 @@ html {
     width: auto;
     overflow-x: auto;
     scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--gut);
     scrollbar-width: none;
   }
 

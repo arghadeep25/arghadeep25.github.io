@@ -20,7 +20,10 @@ export function renderMosaic(grid, photos, lightbox) {
     if (b) lightbox.open(photos, Number(b.dataset.i), b);
   });
   grid.querySelectorAll('img').forEach((img) => {
-    const done = () => img.classList.add('is-ready');
+    const done = () => {
+      img.classList.add('is-ready');
+      img.parentElement.style.aspectRatio = 'auto'; // the photo's own shape replaces the placeholder
+    };
     if (img.complete) done();
     else img.addEventListener('load', done, { once: true });
   });
