@@ -91,9 +91,9 @@ A faithful port comes first, and swapping inline helpers for the tested modules 
 
 ## Phase 8: tests and budgets
 
-- [-] 8.1 Playwright smoke test: every page loads with no console errors
-- [-] 8.2 Visual snapshots for the main pages
-- [-] 8.3 Lighthouse CI with size and performance budgets
+- [x] 8.1 Playwright smoke test: every page loads with no console errors
+- [x] 8.2 Visual snapshots for the main pages
+- [x] 8.3 Lighthouse CI with size and performance budgets
 
 ## Phase 9: docs
 

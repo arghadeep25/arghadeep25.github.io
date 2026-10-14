@@ -25,7 +25,18 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm test
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: npx lhci autorun
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-output
+          path: |
+            test-results
+            .lighthouseci
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
