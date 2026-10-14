@@ -23,7 +23,6 @@ Snapshot of the site before restructuring.
 - `pixworm/stockholm.html`
 - `pixworm/sundry.html`
 - `pixworm/wildlife.html`
-- `underconstruction.html`
 
 ## Local CSS and JS
 
