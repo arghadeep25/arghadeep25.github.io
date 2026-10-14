@@ -49,7 +49,7 @@ describe('buildHall', () => {
     expect(hall.items[0].type).toBe('mark');
     const types = hall.items.map((i) => i.type);
     expect(types.filter((t) => t === 'title')).toHaveLength(3);
-    expect(types.filter((t) => t === 'frame')).toHaveLength(12);
+    expect(types.filter((t) => t === 'frame')).toHaveLength(9);
     expect(types[1]).toBe('title');
   });
 
@@ -84,14 +84,14 @@ describe('cameraZ', () => {
 
 describe('depthAlpha', () => {
   it('is hidden far away, solid mid range, gone once past the screen plane', () => {
-    expect(depthAlpha(-5000)).toBe(0);
+    expect(depthAlpha(-3500)).toBe(0);
     expect(depthAlpha(-1000)).toBe(1);
     expect(depthAlpha(0)).toBe(1);
     expect(depthAlpha(PERSPECTIVE)).toBe(0);
   });
 
   it('fades smoothly on both ends', () => {
-    const a = depthAlpha(-3000);
+    const a = depthAlpha(-2400);
     expect(a).toBeGreaterThan(0);
     expect(a).toBeLessThan(1);
     const b = depthAlpha(PERSPECTIVE * 0.5);

@@ -3,111 +3,6 @@ html {
   scroll-padding-top: 0;
 }
 
-/* opening */
-.pxh {
-  position: relative;
-  height: 100vh;
-  height: 100svh;
-  min-height: 520px;
-  overflow: hidden;
-  background: #04070d;
-}
-
-.pxh__slides,
-.pxh__slides img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.pxh__slides img {
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.08);
-  transition:
-    opacity 1.4s ease,
-    transform 8s ease-out;
-}
-
-.pxh__slides img.is-active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.pxh::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(to top, rgba(5, 7, 13, 0.85), transparent 45%),
-    linear-gradient(to bottom, rgba(5, 7, 13, 0.45), transparent 22%);
-}
-
-.pxh__text {
-  position: absolute;
-  left: var(--gut);
-  bottom: clamp(88px, 14vh, 150px);
-  z-index: var(--z-content);
-  max-width: 760px;
-}
-
-.pxh__text h1 {
-  font-size: clamp(56px, 11vw, 168px);
-  font-weight: 300;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
-}
-
-.pxh__text p {
-  margin-top: 18px;
-  color: var(--ink-mute);
-  font-size: var(--fs-lede);
-}
-
-.pxh__foot {
-  position: absolute;
-  right: var(--gut);
-  bottom: clamp(28px, 5vh, 48px);
-  left: var(--gut);
-  z-index: var(--z-content);
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.pxh__track {
-  position: relative;
-  flex: 1;
-  height: 1px;
-  background: var(--line-strong);
-}
-
-.pxh__bar {
-  position: absolute;
-  inset: 0;
-  background: var(--ink);
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
-@keyframes pxh-line {
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.pxh__down {
-  color: var(--ink-mute);
-  font-size: var(--fs-small);
-  transition: color var(--t-fast);
-}
-
-.pxh__down:hover {
-  color: var(--ink);
-}
-
 /* collections */
 .pxc {
   position: relative;
@@ -268,11 +163,6 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pxh__slides img {
-    transform: none;
-    transition: opacity 0.4s;
-  }
-
   .pxc__pin {
     height: auto;
     padding-block: 72px 24px;

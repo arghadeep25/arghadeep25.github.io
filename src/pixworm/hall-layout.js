@@ -26,14 +26,14 @@ export function pickPhotos(photos, cover, k) {
  * @param {{ slug: string, title: string, cover: string, photos: string[] }[]} collections
  * @param {{ perGroup?: number, spacing?: number, seed?: number }} [opts]
  */
-export function buildHall(collections, { perGroup = 4, spacing = 560, seed = 7 } = {}) {
+export function buildHall(collections, { perGroup = 3, spacing = 900, seed = 7 } = {}) {
   const rnd = mulberry32(seed);
   const items = [{ type: 'mark', z: 0 }];
-  let z = -1000;
+  let z = -2200; // the first title waits well behind the wordmark
   let side = 1;
   collections.forEach((c, g) => {
     items.push({ type: 'title', z, group: g, collection: c });
-    z -= spacing * 0.9;
+    z -= spacing * 1.15;
     pickPhotos(c.photos, c.cover, perGroup).forEach((p) => {
       side = -side;
       items.push({
@@ -43,7 +43,7 @@ export function buildHall(collections, { perGroup = 4, spacing = 560, seed = 7 }
         collection: c,
         entry: p.entry,
         index: Math.max(0, p.index),
-        x: side * (0.2 + 0.14 * rnd()),
+        x: side * (0.24 + 0.14 * rnd()),
         y: (rnd() - 0.5) * 0.3,
         tilt: -side * (3 + 5 * rnd()),
       });
@@ -61,8 +61,8 @@ export const cameraZ = (progress, depth) => clamp(progress, 0, 1) * depth;
  * Opacity of something `zView` in front of the eye (negative = ahead, positive = passing).
  * Fades in out of the distance and out again as it nears the screen plane.
  */
-export function depthAlpha(zView, { far = 3600, near = PERSPECTIVE } = {}) {
-  const farFade = smoothstep((zView + far) / (far * 0.45));
+export function depthAlpha(zView, { far = 3000, near = PERSPECTIVE } = {}) {
+  const farFade = smoothstep((zView + far) / (far * 0.5));
   const nearFade = 1 - smoothstep((zView - near * 0.35) / (near * 0.4));
   return farFade * nearFade;
 }
