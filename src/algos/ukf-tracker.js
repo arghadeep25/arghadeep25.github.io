@@ -20,6 +20,7 @@ export class UkfTracker {
    * @param {object} [o]
    * @param {number} [o.gate2] squared Mahalanobis gate; 9.21 is the 99% bound for 2 degrees of freedom
    * @param {number} [o.confirmHits] hits needed to confirm a new track
+   * @param {number} [o.rescue] metres: a detection this close to a track that found nothing else still goes to it
    * @param {number} [o.maxCoast] steps a confirmed track may go unseen before it is dropped
    * @param {number} [o.tentativeMiss] misses that kill a tentative track
    * @param {object} [o.noise] passed to every filter: accel, yawAccel, meas
@@ -29,9 +30,11 @@ export class UkfTracker {
     confirmHits = 3,
     maxCoast = 14,
     tentativeMiss = 1,
+    rescue = 1.5,
     noise = {},
   } = {}) {
     this.gate2 = gate2;
+    this.rescue = rescue;
     this.confirmHits = confirmHits;
     this.maxCoast = maxCoast;
     this.tentativeMiss = tentativeMiss;
@@ -67,6 +70,24 @@ export class UkfTracker {
       usedT.add(c.t);
       usedD.add(c.j);
       pairs.push({ track: c.t, det: detections[c.j], d2: c.d2 });
+    }
+    // second chance: a detection just outside the gate of a track that found nothing is still its
+    // object, which beats starting a duplicate track beside it
+    const near = [];
+    for (const t of this.tracks) {
+      if (usedT.has(t)) continue;
+      detections.forEach((d, j) => {
+        if (usedD.has(j) || (d.cls && t.cls && d.cls !== t.cls)) return;
+        const dist = Math.hypot(d.x - t.filter.x[0], d.y - t.filter.x[1]);
+        if (dist < this.rescue) near.push({ t, j, dist });
+      });
+    }
+    near.sort((a, b) => a.dist - b.dist);
+    for (const c of near) {
+      if (usedT.has(c.t) || usedD.has(c.j)) continue;
+      usedT.add(c.t);
+      usedD.add(c.j);
+      pairs.push({ track: c.t, det: detections[c.j], d2: c.dist * c.dist });
     }
 
     for (const { track: t, det } of pairs) {

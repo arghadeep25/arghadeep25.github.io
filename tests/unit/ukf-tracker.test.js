@@ -116,4 +116,23 @@ describe('UkfTracker', () => {
     expect(path).toHaveLength(4);
     expect(path[3][0] - path[0][0]).toBeGreaterThan(10);
   });
+
+  it('gives a detection just outside the gate to the nearby track instead of starting a duplicate', () => {
+    const tr = new UkfTracker({ gate2: 0.5 });
+    for (let k = 0; k < 6; k++) tr.step(DT, [{ x: 10, y: 0 }]);
+    const res = tr.step(DT, [{ x: 10.9, y: 0.3 }]);
+    expect(res.born).toHaveLength(0);
+    expect(res.pairs).toHaveLength(1);
+    expect(tr.tracks).toHaveLength(1);
+  });
+
+  it('still starts a new track for a detection far from every track', () => {
+    const tr = new UkfTracker({ gate2: 0.5 });
+    for (let k = 0; k < 6; k++) tr.step(DT, [{ x: 10, y: 0 }]);
+    const res = tr.step(DT, [
+      { x: 10, y: 0 },
+      { x: 25, y: 4 },
+    ]);
+    expect(res.born).toHaveLength(1);
+  });
 });
