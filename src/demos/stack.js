@@ -6,49 +6,48 @@ import { $, lerp, TAU } from './common.js';
   // ---------- stages ----------
   const STAGES = [
     {
-      id: 'sense',
-      name: 'Perception',
-      repo: 'Lidar \u00b7 Obstacles',
-      color: '#5ac8fa',
-      desc: 'Finds obstacles and pedestrians, reads traffic lights and speed-limit signs, and watches a speed-aware safety corridor ahead of the vehicle.',
+      id: 'map',
+      name: 'Mapping service',
+      color: '#3e9bff',
+      desc: 'Builds the map everything else relies on. Scans become keyframes, places are recognised when seen again, and the whole map is pulled back into line.',
     },
     {
       id: 'ego',
       name: 'Localization',
-      repo: 'Map \u00b7 Pose',
       color: '#bf5af2',
-      desc: 'Knows exactly where the vehicle is. Matches each scan against a prebuilt map to produce a precise, continuous pose.',
+      desc: 'Knows exactly where the vehicle is. Matches each scan against the prebuilt map to produce a precise, continuous pose.',
+    },
+    {
+      id: 'sense',
+      name: 'Obstacle Detection',
+      color: '#5ac8fa',
+      desc: 'Finds obstacles and pedestrians, reads traffic lights and speed-limit signs, and watches a speed-aware safety corridor ahead of the vehicle.',
     },
     {
       id: 'route',
       name: 'Route Planning',
-      repo: 'Global \u00b7 Local',
       color: '#30d158',
-      desc: 'Follows the global route, plans a local trajectory around anything in the way, and decides when to stop for a red light or yield to pedestrians.',
+      desc: 'Plans the way to the destination, then drives it: a local path around anything in the way, a safe gap to traffic, and a stop for red lights and people crossing.',
     },
     {
       id: 'track',
       name: 'Path Tracking',
-      repo: 'Steering \u00b7 Speed',
       color: '#ffd60a',
       desc: 'Turns the planned trajectory into smooth steering and speed commands, looking further ahead as speed rises.',
     },
     {
       id: 'bridge',
       name: 'Vehicle Interface',
-      repo: 'Commands \u00b7 Feedback',
       color: '#ff9f0a',
       desc: 'Carries steering and pedal commands down to the vehicle, and brings gear and state feedback back up.',
     },
     {
       id: 'guardian',
       name: 'Watchdog',
-      repo: 'Safety \u00b7 Monitoring',
       color: '#ff375f',
-      desc: 'A watchdog over the whole system. Continuously checks that every component is alive, on time and healthy.',
+      desc: 'Watches every component: that it is alive, on time and healthy. If one fails, it slows the vehicle or brings it to a safe stop.',
     },
   ];
-
   const COL = (id) => STAGES.find((s) => s.id === id).color;
 
   // ---------- helpers ----------
@@ -254,6 +253,7 @@ import { $, lerp, TAU } from './common.js';
     score: 0.97,
     sigma: 12,
     matched: 0,
+    keyframes: 0,
     traj: [],
     lastDetected: new Set(),
   };
@@ -328,6 +328,12 @@ import { $, lerp, TAU } from './common.js';
   function metricsFor(i) {
     const f = (n, d = 1) => n.toFixed(d);
     switch (STAGES[i].id) {
+      case 'map':
+        return [
+          [S.keyframes, 'Keyframes'],
+          [f(S.odo / 1000, 2) + ' km', 'Mapped'],
+          [f(1.6 + 0.8 * Math.sin(perfT * 0.6), 1) + ' cm', 'Graph error'],
+        ];
       case 'sense':
         return [
           [isFinite(S.nearest) ? f(S.nearest) + ' m' : '—', 'Nearest'],
@@ -441,7 +447,7 @@ import { $, lerp, TAU } from './common.js';
     if (o) obstacles.splice(obstacles.indexOf(o), 1);
   });
   addEventListener('keydown', (e) => {
-    if (e.key >= '1' && e.key <= '6') {
+    if (e.key >= '1' && e.key <= String(STAGES.length)) {
       focus = +e.key - 1;
       locked = true;
       renderCard();
@@ -592,6 +598,7 @@ import { $, lerp, TAU } from './common.js';
     // --- plant (kinematic bicycle at rear axle)
     car.v = Math.max(0, car.v + (u > 0 ? u * 2.4 : u * 4) * dt - 0.02 * car.v * dt);
     S.odo = (S.odo || 0) + car.v * dt;
+    S.keyframes = Math.floor(S.odo / 8);
     car.x += car.v * Math.cos(car.th) * dt;
     car.y += car.v * Math.sin(car.th) * dt;
     car.th += (car.v / WB) * Math.tan(car.steer) * dt;
@@ -1040,6 +1047,86 @@ import { $, lerp, TAU } from './common.js';
     ctx.restore();
   }
 
+  // The map being built: tiles along the road, filled once scanned, with a keyframe every few metres
+  // and the links of the graph that holds them together.
+  function drawMap(a) {
+    if (a < 0.02) return;
+    const col = COL('map');
+    const TILE = 18;
+    const quad = (k, w) => {
+      const x0 = k * TILE,
+        x1 = x0 + TILE;
+      return [
+        [x0, road(x0) + w],
+        [x1, road(x1) + w],
+        [x1, road(x1) - w],
+        [x0, road(x0) - w],
+      ];
+    };
+    ctx.save();
+    ctx.globalAlpha = a;
+    const k0 = Math.floor((car.x - 50) / TILE),
+      k1 = Math.floor((car.x + 90) / TILE);
+    for (let k = k0; k <= k1; k++) {
+      const q = quad(k, 9);
+      const done = (k + 1) * TILE < car.x + 6,
+        here = k * TILE <= car.x + 6 && (k + 1) * TILE >= car.x + 6;
+      ctx.beginPath();
+      q.forEach(([x, y], i) => (i ? ctx.lineTo(toX(x), toY(y)) : ctx.moveTo(toX(x), toY(y))));
+      ctx.closePath();
+      if (done) {
+        ctx.fillStyle = rgba(col, 0.06);
+        ctx.fill();
+        ctx.strokeStyle = rgba(col, 0.26);
+        ctx.setLineDash([]);
+      } else {
+        ctx.fillStyle = here ? rgba(col, 0.11 + 0.05 * Math.sin(perfT * 5)) : 'transparent';
+        ctx.fill();
+        ctx.strokeStyle = rgba(col, here ? 0.7 : 0.22);
+        ctx.setLineDash([4, 6]);
+      }
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      // the landmarks that tile holds
+      for (let m = 0; m < 7; m++) {
+        const x = k * TILE + hash(k, m) * TILE;
+        const side = hash(k + 5, m) > 0.5 ? 1 : -1;
+        const y = road(x) + side * (LANE_W / 2 + 1 + hash(k, m + 9) * 4.5);
+        ctx.fillStyle = rgba(col, done ? 0.8 : 0.28);
+        ctx.beginPath();
+        ctx.arc(toX(x), toY(y), done ? 2.4 : 1.6, 0, TAU);
+        ctx.fill();
+      }
+    }
+    // keyframes along the driven path and the graph between them
+    const kfs = [];
+    let dist = 0;
+    for (let i = trail.length - 1; i > 0; i--) {
+      dist += Math.hypot(trail[i][0] - trail[i - 1][0], trail[i][1] - trail[i - 1][1]);
+      if (dist >= kfs.length * 8) kfs.push(trail[i]);
+    }
+    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = rgba(col, 0.55);
+    ctx.beginPath();
+    kfs.forEach(([x, y], i) => (i ? ctx.lineTo(toX(x), toY(y)) : ctx.moveTo(toX(x), toY(y))));
+    ctx.stroke();
+    ctx.strokeStyle = rgba(col, 0.28);
+    for (let i = 0; i + 2 < kfs.length; i++) {
+      ctx.beginPath();
+      ctx.moveTo(toX(kfs[i][0]), toY(kfs[i][1]));
+      ctx.quadraticCurveTo(toX(kfs[i + 1][0]), toY(kfs[i + 1][1]) + 14, toX(kfs[i + 2][0]), toY(kfs[i + 2][1]));
+      ctx.stroke();
+    }
+    kfs.forEach(([x, y], i) => {
+      ctx.fillStyle = i === 0 ? '#fff' : col;
+      ctx.shadowColor = col;
+      ctx.shadowBlur = i === 0 ? 12 : 6;
+      ctx.fillRect(toX(x) - 3.5, toY(y) - 3.5, 7, 7);
+    });
+    ctx.restore();
+  }
+
   function drawEgo(a) {
     if (a < 0.02) return;
     const col = COL('ego');
@@ -1341,6 +1428,7 @@ import { $, lerp, TAU } from './common.js';
     drawBackground();
     drawRoad();
     drawFeatures();
+    drawMap(smoothA.map);
     drawEgo(smoothA.ego);
     drawRoute(smoothA.route);
     drawObstacles(smoothA.sense);
