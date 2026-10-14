@@ -20,8 +20,36 @@ test.describe('pixworm page', () => {
     expect(hrefs).toEqual(COLLECTIONS.map((c) => `/pixworm/${c.slug}.html`));
   });
 
+  test('the fly-through holds a title and three frames per collection', async ({ page }) => {
+    await page.goto('/pixworm.html');
+    await expect(page.locator('.hall__title')).toHaveCount(COLLECTIONS.length);
+    await expect(page.locator('.hall__frame')).toHaveCount(COLLECTIONS.length * 3);
+  });
+
+  test('scrolling brings the first collection into view and a frame opens the viewer', async ({
+    page,
+  }) => {
+    await page.goto('/pixworm.html');
+    await page.evaluate(() => scrollTo(0, 1300));
+    await expect(page.locator('[data-group]')).toHaveText(COLLECTIONS[0].title);
+    const frame = page.locator('.hall__frame').filter({ visible: true }).first();
+    await expect(frame).toBeVisible();
+    await frame.dispatchEvent('click');
+    await expect(page.locator('.lb')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.lb')).toBeHidden();
+  });
+
+  test('reduced motion shows the photographs as a plain grid', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/pixworm.html');
+    await expect(page.locator('.hall')).toHaveClass(/hall--flat/);
+    await expect(page.locator('.hall__frame').first()).toBeVisible();
+  });
+
   test('a photo opens the viewer, arrows move, Esc closes', async ({ page }) => {
     await page.goto('/pixworm.html');
+    await page.locator('.mosaic__item').first().scrollIntoViewIfNeeded();
     await page.locator('.mosaic__item').first().click();
     await expect(page.locator('.lb')).toBeVisible();
     await expect(page.locator('.lb__count')).toHaveText(`1 / ${SELECTED.length}`);
