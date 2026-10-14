@@ -1,51 +1,58 @@
 import { clamp } from '../core/math.js';
 
 /**
- * The autonomy stack, in order. Planning and watchdog are stages of the stack overview page.
- * Public names only.
+ * The autonomy stack, one chapter per system, in the order the data flows. Every system has its own
+ * demo page and carries the same name here, on that page and in the stack overview. Public names only.
  */
 export const CHAPTERS = [
   {
-    kicker: 'What does the world look like',
+    name: 'Mapping service',
     title: 'It builds the map <b>as it drives.</b>',
     text: 'Scans become keyframes. Places are recognised from their features, and a graph optimiser pulls the whole map back into line.',
     chips: ['Registration', 'Feature-based loop closure', 'Graph optimisation'],
     src: '/projects/mapping.html',
   },
   {
-    kicker: 'Where am I',
+    name: 'Localization',
     title: 'It always knows <b>where it is.</b>',
     text: 'LiDAR, IMU and GPS blend into one position. If GPS drops, or LiDAR does, the others carry on, and it recovers without a jump.',
     chips: ['Sensor fusion', 'Dead reckoning', 'Smooth recovery'],
     src: '/projects/localization.html',
   },
   {
-    kicker: 'What is around me',
+    name: 'Obstacle detection',
     title: 'It sees what it <b>could hit.</b>',
     text: 'A corridor bends with the steering and stretches with speed. Only what stands in it is kept, grouped and ranked.',
     chips: ['Steering-aware zone', 'Ground removal', 'Clustering'],
     src: '/projects/obstacle-detection.html',
   },
   {
-    kicker: 'Where do I go',
-    title: 'It plans <b>around whatever is in the way.</b>',
-    text: 'It follows the global route, plans a local path around obstacles, and decides when to stop for a red light or yield to pedestrians.',
-    chips: ['Global route', 'Local trajectory', 'Traffic rules'],
-    src: '/projects/stack.html?stage=route',
+    name: 'Object tracking',
+    title: 'It follows <b>everything that moves.</b>',
+    text: 'Each detection is paired with the object it belongs to. A filter per object estimates its speed and heading, predicts where it goes, and keeps the same ID when something hides it for a moment.',
+    chips: ['Association', 'Unscented Kalman filter', 'Motion prediction'],
+    src: '/projects/tracking.html',
   },
   {
-    kicker: 'How do I steer',
+    name: 'Route planning',
+    title: 'It finds the way, <b>then drives it.</b>',
+    text: 'A pin on the map becomes a route over the streets. Along it the vehicle keeps its distance, overtakes when the lane is free, stops at signals, brakes hard when it must and gives way to people.',
+    chips: ['Global route', 'Local planner', 'Overtaking', 'Traffic rules'],
+    src: '/projects/route-planning.html',
+  },
+  {
+    name: 'Path tracking',
     title: 'It <b>holds the line.</b>',
     text: 'It slows for curves, keeps its speed over rough ground and hills, and steers back quickly when something pushes it off course.',
     chips: ['Steering geometry', 'Speed control', 'Error recovery'],
     src: '/projects/path-tracking.html',
   },
   {
-    kicker: 'Is everything healthy',
+    name: 'Watchdog',
     title: 'It <b>watches itself.</b>',
-    text: 'A watchdog over the whole system continuously checks that every component is alive, on time and healthy.',
-    chips: ['Liveness', 'Timing', 'Health monitoring'],
-    src: '/projects/stack.html?stage=guardian',
+    text: 'Every component reports in. The watchdog catches a late message, a silent component or an overloaded one, restarts what it can, and brings the vehicle to a safe stop when it must.',
+    chips: ['Heartbeats', 'Timing', 'Health monitoring', 'Safe stop'],
+    src: '/projects/watchdog.html',
   },
 ];
 
@@ -88,17 +95,17 @@ export function initProjects(root) {
     const slide = document.createElement('div');
     slide.className = 'slide';
     slide.setAttribute('aria-hidden', 'true');
-    slide.innerHTML = `<div class="slide__kicker">${c.kicker}</div><h3>${c.title}</h3><p>${c.text}</p><ul class="slide__chips">${c.chips.map((x) => `<li class="chip">${x}</li>`).join('')}</ul><a class="slide__open" href="${c.src}">Open the full demo</a>`;
+    slide.innerHTML = `<div class="slide__kicker">${c.name}</div><h3>${c.title}</h3><p>${c.text}</p><ul class="slide__chips">${c.chips.map((x) => `<li class="chip">${x}</li>`).join('')}</ul><a class="slide__open" href="${c.src}">Open the full demo</a>`;
     slidesEl.appendChild(slide);
 
     const dot = document.createElement('button');
-    dot.setAttribute('aria-label', `Chapter ${i + 1}: ${c.kicker}`);
+    dot.setAttribute('aria-label', `Chapter ${i + 1}: ${c.name}`);
     dot.addEventListener('click', () => jump(i));
     rail.appendChild(dot);
     dots.push(dot);
 
     const frame = document.createElement('iframe');
-    frame.title = `${c.kicker}: simulation`;
+    frame.title = `${c.name}: simulation`;
     frame.dataset.src = c.src;
     screen.appendChild(frame);
     frames.push(frame);

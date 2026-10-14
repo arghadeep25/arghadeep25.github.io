@@ -7,22 +7,24 @@ import {
 } from '../../src/sections/projects.js';
 
 describe('chapters', () => {
-  it('follow the order of the stack, each with a page to show', () => {
-    expect(CHAPTERS.map((c) => c.kicker)).toEqual([
-      'What does the world look like',
-      'Where am I',
-      'What is around me',
-      'Where do I go',
-      'How do I steer',
-      'Is everything healthy',
+  it('name every system and follow the order the data flows, each with a demo page', () => {
+    expect(CHAPTERS.map((c) => c.name)).toEqual([
+      'Mapping service',
+      'Localization',
+      'Obstacle detection',
+      'Object tracking',
+      'Route planning',
+      'Path tracking',
+      'Watchdog',
     ]);
     expect(CHAPTERS.map((c) => c.src)).toEqual([
       '/projects/mapping.html',
       '/projects/localization.html',
       '/projects/obstacle-detection.html',
-      '/projects/stack.html?stage=route',
+      '/projects/tracking.html',
+      '/projects/route-planning.html',
       '/projects/path-tracking.html',
-      '/projects/stack.html?stage=guardian',
+      '/projects/watchdog.html',
     ]);
   });
 
@@ -34,8 +36,8 @@ describe('chapters', () => {
 
 describe('activeChapter', () => {
   it('splits the track evenly', () => {
-    expect([0, 0.16, 0.17, 0.5, 0.99, 1].map((p) => activeChapter(p, 6))).toEqual([
-      0, 0, 1, 3, 5, 5,
+    expect([0, 0.14, 0.15, 0.5, 0.99, 1].map((p) => activeChapter(p, 7))).toEqual([
+      0, 0, 1, 3, 6, 6,
     ]);
   });
   it('clamps outside the track', () => {

@@ -18,9 +18,18 @@ test.describe('homepage', () => {
     await expect(page.locator('section#blogs')).toBeInViewport();
   });
 
-  test('projects section lists six chapters and loads a demo', async ({ page }) => {
+  test('work section names seven systems and loads a demo', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('.projects__slides > *')).toHaveCount(6);
+    await expect(page.locator('.projects__slides > *')).toHaveCount(7);
+    await expect(page.locator('.projects__slides .slide__kicker')).toHaveText([
+      'Mapping service',
+      'Localization',
+      'Obstacle detection',
+      'Object tracking',
+      'Route planning',
+      'Path tracking',
+      'Watchdog',
+    ]);
     await page.evaluate(() => {
       const el = document.querySelector('.projects__chapters');
       scrollTo(0, el.getBoundingClientRect().top + scrollY + 200);
