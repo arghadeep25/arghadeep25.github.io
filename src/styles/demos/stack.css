@@ -465,13 +465,13 @@ h1 {
   flex: none;
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 11px 18px;
+  gap: 8px;
+  padding: 10px 13px;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font: 600 14px/1 inherit;
+  font: 600 13px/1 inherit;
   font-family: inherit;
   letter-spacing: -0.01em;
   cursor: pointer;
@@ -506,8 +506,8 @@ h1 {
 }
 .chip .bar {
   position: absolute;
-  left: 16px;
-  right: 16px;
+  left: 13px;
+  right: 13px;
   bottom: 3px;
   height: 2px;
   border-radius: 2px;
