@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { relativePose, wrapAngle } from '../../src/algos/geometry.js';
+import { relativePose, segmentHitsBox, wrapAngle } from '../../src/algos/geometry.js';
 
 describe('wrapAngle', () => {
   it('keeps small angles unchanged', () => {
@@ -25,5 +25,25 @@ describe('relativePose', () => {
   it('wraps the heading difference', () => {
     const r = relativePose([0, 0, Math.PI - 0.1], [0, 0, -Math.PI + 0.1]);
     expect(r[2]).toBeCloseTo(0.2);
+  });
+});
+
+describe('segmentHitsBox', () => {
+  it('hits when the segment passes through the box', () => {
+    expect(segmentHitsBox(-5, 0, 5, 0, 0, 0, 0, 2, 2)).toBe(true);
+  });
+  it('misses when the segment passes beside it', () => {
+    expect(segmentHitsBox(-5, 3, 5, 3, 0, 0, 0, 2, 2)).toBe(false);
+  });
+  it('misses when the segment stops short', () => {
+    expect(segmentHitsBox(-5, 0, -2, 0, 0, 0, 0, 2, 2)).toBe(false);
+  });
+  it('respects the rotation of the box', () => {
+    // a long thin box turned to point up: a horizontal segment at y=3 hits it, one at x=3 does not
+    expect(segmentHitsBox(-5, 3, 5, 3, 0, 0, Math.PI / 2, 8, 1)).toBe(true);
+    expect(segmentHitsBox(3, -5, 3, 5, 0, 0, Math.PI / 2, 8, 1)).toBe(false);
+  });
+  it('hits a segment that starts inside the box', () => {
+    expect(segmentHitsBox(0, 0, 9, 9, 0, 0, 0.3, 4, 4)).toBe(true);
   });
 });
