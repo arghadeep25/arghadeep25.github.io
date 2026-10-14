@@ -84,10 +84,10 @@ A faithful port comes first, and swapping inline helpers for the tested modules 
 ## Phase 7: cleanup
 
 - [x] 7.0 Make `index.html` the new `index.html`; the old page becomes `legacy.html` until deleted
-- [-] 7.1 Remove Bootstrap, AOS, Swiper, Typed.js and other unused libraries
-- [-] 7.2 Delete old CSS and JS that nothing references (`test.css` first)
-- [-] 7.3 Move the blog pages onto the shared styles
-- [-] 7.4 Remove `underconstruction.html` and other dead pages
+- [x] 7.1 Remove Bootstrap, AOS, Swiper, Typed.js and other unused libraries
+- [x] 7.2 Delete old CSS and JS that nothing references (`test.css` first)
+- [x] 7.3 Move the blog pages onto the shared styles
+- [x] 7.4 Remove `underconstruction.html` and other dead pages
 
 ## Phase 8: tests and budgets
 
