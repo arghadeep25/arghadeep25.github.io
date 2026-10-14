@@ -74,8 +74,10 @@ import { $, lerp, TAU } from './common.js';
     LANE_W = 7.5;
   const BRAKE = 3.0,
     REACT = 0.5;
+  // The vehicle keeps to the right-hand lane: half a lane right of the road centre line.
+  const LANE_OFF = -LANE_W / 4;
 
-  const car = { x: 0, y: road(0), th: 0.2, v: 7, steer: 0, pedal: 0 };
+  const car = { x: 0, y: road(0) + LANE_OFF, th: 0.2, v: 7, steer: 0, pedal: 0 };
   let obstacles = [];
   let nextId = 1,
     nextSpawn = 55;
@@ -86,7 +88,7 @@ import { $, lerp, TAU } from './common.js';
     while (nextSpawn < car.x + 130) {
       let x = nextSpawn;
       while (feats.some((f) => f.type !== 'sign' && Math.abs(f.x - x) < 24)) x += 20;
-      addObstacle(x, road(x) + (rnd() - 0.5) * 1.8, 1 + rnd() * 0.5, false);
+      addObstacle(x, road(x) + LANE_OFF + (rnd() - 0.5) * 1.8, 1 + rnd() * 0.5, false);
       nextSpawn = x + 55 + rnd() * 35;
     }
   }
@@ -106,7 +108,9 @@ import { $, lerp, TAU } from './common.js';
   const clearance = (o) => o.r + VEH_W / 2 + 0.9;
   const commit = new Map(); // committed lateral profile, keyed by whole metre of path
   // Group obstacles that sit beside each other, pick one side per group by clearance, keep that
-  // side while the detour is active, chain groups without returning to centre, and ease out afterwards.
+  // side while the detour is active, chain groups without returning to the lane, and ease out afterwards.
+  // Offsets here are measured from the middle of the right-hand lane, not from the road centre.
+  const rl = (o) => o.l - LANE_OFF;
   function planLateral(lat0) {
     const obs = obstacles
       .filter((o) => !o.ped && o.seen && o.xa > car.x - 4)
@@ -123,23 +127,23 @@ import { $, lerp, TAU } from './common.js';
       const cands = [0];
       for (const o of g.items) {
         const c = clearance(o);
-        if (o.side !== -1) cands.push(o.l + c);
-        if (o.side !== 1) cands.push(o.l - c);
+        if (o.side !== -1) cands.push(rl(o) + c);
+        if (o.side !== 1) cands.push(rl(o) - c);
       }
       let best = 0,
         bestScore = Infinity;
       for (const pv of cands) {
         let viol = 0;
         for (const o of g.items)
-          viol = Math.max(viol, clearance(o) - (o.side ? (pv - o.l) * o.side : Math.abs(pv - o.l)));
+          viol = Math.max(viol, clearance(o) - (o.side ? (pv - rl(o)) * o.side : Math.abs(pv - rl(o))));
         const score =
-          (viol > 1e-6 ? 100 + viol * 10 : 0) + Math.abs(pv) + (Math.abs(pv) > 3.3 ? 4 : 0);
+          (viol > 1e-6 ? 100 + viol * 10 : 0) + Math.abs(pv) + (Math.abs(pv + LANE_OFF) > 3.3 ? 4 : 0);
         if (score < bestScore) {
           bestScore = score;
           best = pv;
         }
       }
-      for (const o of g.items) o.side = best > o.l ? 1 : -1;
+      for (const o of g.items) o.side = best > rl(o) ? 1 : -1;
       g.p = best;
       g.xs = g.x0 - 3.5;
       g.xe = g.x1 + 4.5;
@@ -505,7 +509,7 @@ import { $, lerp, TAU } from './common.js';
 
     // --- route: local trajectory
     const lat0 = latOf(rearX, rearY)[1];
-    const lat = planLateral(lat0);
+    const lat = planLateral(lat0 - LANE_OFF);
     const ck = 1 - Math.exp(-dt * 5);
     const traj = [];
     for (let i = 0; i <= 44; i++) {
@@ -514,7 +518,7 @@ import { $, lerp, TAU } from './common.js';
         tgt = lat(x);
       const cv = commit.has(key) ? lerp(commit.get(key), tgt, ck) : tgt;
       commit.set(key, cv);
-      traj.push(at(x, cv));
+      traj.push(at(x, cv + LANE_OFF));
     }
     for (const key of commit.keys()) if (key < rearX - 6) commit.delete(key);
     S.traj = traj;
@@ -522,7 +526,7 @@ import { $, lerp, TAU } from './common.js';
 
     // --- track: pure pursuit + speed
     let maxOff = 0;
-    for (let i = 0; i < 18; i++) maxOff = Math.max(maxOff, Math.abs(traj[i][1] - road(traj[i][0])));
+    for (let i = 0; i < 18; i++) maxOff = Math.max(maxOff, Math.abs(traj[i][1] - road(traj[i][0]) - LANE_OFF));
     S.lightState = null;
     S.yielding = false;
     S.stopFor = null;
@@ -573,7 +577,7 @@ import { $, lerp, TAU } from './common.js';
     S.alpha = a;
     const delta = clamp(Math.atan2(2 * WB * Math.sin(a), Lf), -0.5, 0.5);
     car.steer = lerp(car.steer, delta, 1 - Math.exp(-dt * 12));
-    S.lat = lat0;
+    S.lat = lat0 - LANE_OFF;
     S.ttc = isFinite(nearest) ? Math.max(0, nearest) / Math.max(car.v, 0.1) : Infinity;
     S.aeb = isFinite(nearest) && nearest < Math.max(2.5, car.v * 0.9);
     S.vt = vt;
@@ -1099,7 +1103,7 @@ import { $, lerp, TAU } from './common.js';
     const col = STAGES[2].color;
     // global route: always faint, brighter when focused
     const g = [];
-    for (let x = fromX(-60); x < car.x + 130; x += 3) g.push([x, road(x)]);
+    for (let x = fromX(-60); x < car.x + 130; x += 3) g.push(at(x, LANE_OFF));
     ctx.save();
     ctx.globalAlpha = 0.35 + 0.65 * a;
     strokePath(g, 1.4, rgba(col, 0.45), 0, [3, 7]);
