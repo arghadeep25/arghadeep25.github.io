@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { COLLECTIONS, HERO, SELECTED } from '../../src/pixworm/photos.js';
+import { COLLECTIONS, SELECTED } from '../../src/pixworm/photos.js';
 import { findCollection, photoUrl, widthFor } from '../../src/pixworm/images.js';
 
 describe('photoUrl', () => {
@@ -50,7 +50,7 @@ describe('photo data', () => {
 
   it('only holds Drive ids or Google Photos links', () => {
     const ok = (p) => /^[\w-]{20,}$/.test(p) || /^https:\/\/lh3\.googleusercontent\.com\//.test(p);
-    [...HERO, ...SELECTED, ...COLLECTIONS.flatMap((c) => [c.cover, ...c.photos])].forEach((p) =>
+    [...SELECTED, ...COLLECTIONS.flatMap((c) => [c.cover, ...c.photos])].forEach((p) =>
       expect(ok(p), p).toBe(true),
     );
   });

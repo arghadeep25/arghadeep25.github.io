@@ -3,19 +3,9 @@
  *
  * A photo is either a Google Drive file id (share the file as "anyone with the link")
  * or a full Google Photos link. Sizes are requested per use, so keep full-size links here.
- * The order here is the order on the page.
+ * The order here is the order on the page. The fly-through at the top shows each collection's
+ * cover plus two more photos spread through its list.
  */
-export const HERO = [
-  '1VVbItoXTsIpLOh-VohGWao1o6ff9ucdy',
-  '1Iv85wsG3ZPX9tKKMhqlIMh6gPG3RO71L',
-  '1hEzlvet4EnRBiyqWNDLDx5H3WXyKNtgC',
-  '12o4KFDmnDxc36jbvYj8axm6q5ePI5IGz',
-  '1PXukBuUDN5iHnhLi9wUwL3JG8zKgKEHW',
-  '1xIrBNWMy9BtrWbDDN9Db36wSj58SFpVd',
-  '1LtiSnqtwY1AwX_tsEkxuSWg6ZQyf4r0O',
-  '1ZdvDc1vl_JZm_SBLqBhUEeLDcRm0tViX',
-];
-
 export const COLLECTIONS = [
   {
     slug: 'prague',
