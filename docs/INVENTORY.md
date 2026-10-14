@@ -7,7 +7,6 @@ Snapshot of the site before restructuring.
 - `blogs.html`
 - `blogs/pointers.html`
 - `blogs/slam.html`
-- `blogs/template.html`
 - `google51222984f7f233a7.html`
 - `index.html`
 - `pixworm.html`
@@ -29,7 +28,6 @@ Snapshot of the site before restructuring.
 | File                             | Lines | Used by                                                                                                                                                                                                                                              |
 | -------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `assets/css/about.css`           | 263   | `index.html`                                                                                                                                                                                                                                         |
-| `assets/css/blog_style.css`      | 779   | `blogs.html`, `blogs/pointers.html`, `blogs/slam.html`, `blogs/template.html`                                                                                                                                                                        |
 | `assets/css/canvas.css`          | 49    | `index.html`                                                                                                                                                                                                                                         |
 | `assets/css/code_style.css`      | 106   | `blogs/pointers.html`                                                                                                                                                                                                                                |
 | `assets/css/gallery.css`         | 385   | `pixworm/cologne.html`, `pixworm/flowers.html`, `pixworm/gallery.html`, `pixworm/gdansk.html`, `pixworm/jagadhatripujo.html`, `pixworm/nature.html`, `pixworm/prague.html`, `pixworm/stockholm.html`, `pixworm/sundry.html`, `pixworm/wildlife.html` |
@@ -44,7 +42,6 @@ Snapshot of the site before restructuring.
 | `assets/css/skills.css`          | 285   | `index.html`                                                                                                                                                                                                                                         |
 | `assets/css/style.css`           | 204   | `blogs.html`, `blogs/pointers.html`, `blogs/slam.html`, `index.html`, `pixworm/auschwitz.html`                                                                                                                                                       |
 | `assets/css/test.css`            | 1385  | `pixworm/auschwitz.html`                                                                                                                                                                                                                             |
-| `assets/js/blog.js`              | 119   | `blogs/template.html`                                                                                                                                                                                                                                |
 | `assets/js/canvas.js`            | 116   | `index.html`                                                                                                                                                                                                                                         |
 | `assets/js/copy_code.js`         | 10    | **unused**                                                                                                                                                                                                                                           |
 | `assets/js/dots.js`              | 13    | `index.html`                                                                                                                                                                                                                                         |
