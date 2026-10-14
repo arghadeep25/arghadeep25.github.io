@@ -1,4 +1,5 @@
-import { $, lerp, TAU } from './common.js';
+import { $, gauss, lerp, TAU } from './common.js';
+import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
 
 (() => {
   'use strict';
@@ -22,6 +23,12 @@ import { $, lerp, TAU } from './common.js';
       name: 'Obstacle Detection',
       color: '#5ac8fa',
       desc: 'Finds obstacles and pedestrians, reads traffic lights and speed-limit signs, and watches a speed-aware safety corridor ahead of the vehicle.',
+    },
+    {
+      id: 'objects',
+      name: 'Object Tracking',
+      color: '#2dd4bf',
+      desc: 'Follows every detected object from scan to scan with a filter of its own, so each keeps its ID, a speed and a heading, and a prediction of where it will be in two seconds.',
     },
     {
       id: 'route',
@@ -81,7 +88,8 @@ import { $, lerp, TAU } from './common.js';
   const car = { x: 0, y: road(0) + LANE_OFF, th: 0.2, v: 7, steer: 0, pedal: 0 };
   let obstacles = [];
   let nextId = 1,
-    nextSpawn = 55;
+    nextSpawn = 55,
+    spawnCount = 0;
   const addObstacle = (x, y, r, manual) =>
     obstacles.push({ id: nextId++, x, y, r, w: 0, manual: !!manual, born: performance.now() });
 
@@ -89,7 +97,12 @@ import { $, lerp, TAU } from './common.js';
     while (nextSpawn < car.x + 130) {
       let x = nextSpawn;
       while (feats.some((f) => f.type !== 'sign' && Math.abs(f.x - x) < 24)) x += 20;
-      addObstacle(x, road(x) + LANE_OFF + (rnd() - 0.5) * 1.8, 1 + rnd() * 0.5, false);
+      // every third thing on the road is a cyclist riding the same way, slower than the vehicle
+      if (spawnCount++ % 3 === 2) {
+        const off = LANE_OFF + (rnd() - 0.5) * 0.8;
+        const c = addObstacle(x, road(x) + off, 0.8, false);
+        Object.assign(c, { mover: true, vx: 2.6 + rnd() * 1.2, off });
+      } else addObstacle(x, road(x) + LANE_OFF + (rnd() - 0.5) * 1.8, 1 + rnd() * 0.5, false);
       nextSpawn = x + 55 + rnd() * 35;
     }
   }
@@ -254,9 +267,38 @@ import { $, lerp, TAU } from './common.js';
     sigma: 12,
     matched: 0,
     keyframes: 0,
+    tracked: 0,
+    fastest: 0,
     traj: [],
     lastDetected: new Set(),
   };
+
+  // one unscented Kalman filter per detected object, run ten times a second
+  const tracker = new UkfTracker({
+    maxCoast: 12,
+    confirmHits: 3,
+    noise: { accel: 1.6, yawAccel: 2.2, meas: 0.35 },
+  });
+  let trackClock = 0,
+    trackStamp = 0;
+  function trackTick() {
+    const dets = [];
+    for (const o of obstacles) {
+      if (!o.seen) continue;
+      const sg = 0.12 + 0.012 * o.dist;
+      dets.push({
+        x: o.x + sg * gauss(),
+        y: o.y + sg * gauss(),
+        cls: o.ped ? 'pedestrian' : o.mover ? 'cyclist' : 'obstacle',
+      });
+    }
+    tracker.step(0.1, dets);
+    tracker.tracks = tracker.tracks.filter((t) => t.filter.x[0] > car.x - 24 && t.filter.x[0] < car.x + 60);
+    const live = tracker.tracks.filter((t) => t.state !== 'tentative');
+    S.tracked = live.length;
+    S.fastest = live.reduce((m, t) => Math.max(m, Math.abs(t.filter.x[2])), 0);
+    trackStamp = perfT;
+  }
 
   // ---------- canvas ----------
   const cv = document.getElementById('scene');
@@ -339,6 +381,12 @@ import { $, lerp, TAU } from './common.js';
           [isFinite(S.nearest) ? f(S.nearest) + ' m' : '—', 'Nearest'],
           [f(S.roi) + ' m', 'Safety zone'],
           [S.clusters, 'In path'],
+        ];
+      case 'objects':
+        return [
+          [S.tracked, 'Tracked'],
+          [f(S.fastest * 3.6, 0) + ' km/h', 'Fastest'],
+          ['2 s', 'Prediction'],
         ];
       case 'ego':
         return [
@@ -477,6 +525,11 @@ import { $, lerp, TAU } from './common.js';
     spawnFeatures();
     spawnAuto();
     updatePeds(dt);
+    for (const o of obstacles)
+      if (o.mover && !o.manual) {
+        o.x += o.vx * dt;
+        o.y = road(o.x) + o.off;
+      }
     obstacles = obstacles.filter((o) => !o.done && o.x > car.x - 40);
 
     const rearX = car.x,
@@ -509,6 +562,11 @@ import { $, lerp, TAU } from './common.js';
         nearest = Math.min(nearest, lx - o.r);
       }
       o.seen = d < 34 && ahead;
+    }
+    trackClock += dt;
+    while (trackClock >= 0.1) {
+      trackClock -= 0.1;
+      trackTick();
     }
     for (const id of detectedNow) if (!S.lastDetected.has(id)) S.replans++;
     S.lastDetected = detectedNow;
@@ -1127,6 +1185,82 @@ import { $, lerp, TAU } from './common.js';
     ctx.restore();
   }
 
+  // Tracked objects: an id, a speed, an arrow, the uncertainty of the estimate and where it goes next.
+  function drawObjects(a) {
+    if (a < 0.02) return;
+    const col = COL('objects');
+    const tau = clamp(perfT - trackStamp, 0, 0.15);
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.font = '600 11px -apple-system, system-ui, sans-serif';
+    for (const t of tracker.tracks) {
+      if (t.state === 'tentative') continue;
+      const [vx, vy] = t.filter.velocity;
+      const sp = Math.hypot(vx, vy);
+      const px = t.filter.x[0] + vx * tau,
+        py = t.filter.x[1] + vy * tau;
+      const x = toX(px),
+        y = toY(py);
+      if (x < -60 || x > W + 60) continue;
+      const moving = sp > 0.5;
+      const r = (t.cls === 'pedestrian' ? 0.9 : 1.5) * SC + 6;
+      // predicted path
+      if (moving) {
+        const path = predictPath(t, 2, 0.25);
+        ctx.strokeStyle = rgba(col, 0.85);
+        ctx.lineWidth = 1.6;
+        ctx.setLineDash([4, 5]);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        path.forEach(([qx, qy]) => ctx.lineTo(toX(qx), toY(qy)));
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      // uncertainty
+      const e = t.filter.ellipse(2);
+      ctx.strokeStyle = rgba(col, 0.8);
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.ellipse(x, y, Math.max(e.a, 0.2) * SC, Math.max(e.b, 0.15) * SC, -e.angle, 0, TAU);
+      ctx.stroke();
+      // box
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 1.8;
+      ctx.shadowColor = col;
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.roundRect(x - r, y - r, r * 2, r * 2, 6);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      if (moving) {
+        const ex = x + vx * 0.9 * SC,
+          ey = y - vy * 0.9 * SC,
+          ang = Math.atan2(-vy, vx);
+        ctx.fillStyle = col;
+        ctx.strokeStyle = col;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(ex, ey);
+        ctx.lineTo(ex - 7 * Math.cos(ang - 0.45), ey - 7 * Math.sin(ang - 0.45));
+        ctx.lineTo(ex - 7 * Math.cos(ang + 0.45), ey - 7 * Math.sin(ang + 0.45));
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.fillStyle = col;
+      ctx.textAlign = 'left';
+      ctx.fillText(
+        `#${t.id} ${{ pedestrian: 'Pedestrian', cyclist: 'Cyclist' }[t.cls] || 'Object'} · ${moving ? (sp * 3.6).toFixed(0) + ' km/h' : 'static'}`,
+        x + r + 5,
+        y - r + 10,
+      );
+    }
+    ctx.restore();
+  }
+
   function drawEgo(a) {
     if (a < 0.02) return;
     const col = COL('ego');
@@ -1433,6 +1567,7 @@ import { $, lerp, TAU } from './common.js';
     drawRoute(smoothA.route);
     drawObstacles(smoothA.sense);
     drawSense(smoothA.sense);
+    drawObjects(smoothA.objects);
     drawTrack(smoothA.track);
     drawBridge(smoothA.bridge);
     drawCar();
