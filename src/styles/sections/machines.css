@@ -1,0 +1,135 @@
+/* Same stack, other machines: three live scenes, each with the stack's systems along the top. */
+.machines {
+  padding: clamp(24px, 6vh, 64px) 0 clamp(72px, 12vh, 140px);
+}
+
+.machines__head {
+  max-width: 720px;
+  margin: 0 auto clamp(28px, 5vh, 52px);
+  text-align: center;
+}
+
+.machines__head h3 {
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.machines__head p {
+  margin-top: 14px;
+  color: var(--ink-mute);
+  font-size: var(--fs-lede);
+}
+
+.machines__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.machine {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: rgba(14, 20, 33, 0.45);
+}
+
+.machine__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 14px 14px 12px;
+  list-style: none;
+}
+
+.machine__chips li {
+  position: relative;
+  padding: 4px 9px 4px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  color: var(--ink-dim);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition:
+    color var(--t-base),
+    border-color var(--t-base),
+    background var(--t-base);
+}
+
+.machine__chips li::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.machine__chips li.is-on {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.machine__chips li.is-on::before {
+  background: var(--ok);
+  opacity: 1;
+  box-shadow: 0 0 8px var(--ok);
+}
+
+.machine__chips li[data-k='watch'].is-on::before {
+  animation: beat 1.1s ease-in-out infinite;
+}
+
+@keyframes beat {
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
+}
+
+.machine canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 40 / 26;
+  background: #080b12;
+}
+
+.machine figcaption {
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px 20px;
+}
+
+.machine figcaption b {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.machine figcaption span {
+  color: var(--ink-mute);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+@media (max-width: 960px) {
+  .machines__grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+    margin-inline: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .machine__chips li[data-k='watch'].is-on::before {
+    animation: none;
+  }
+}

@@ -121,7 +121,7 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 - [x] 11.5 Route planning demo: user drops a pin, global route, local planning, slowing, overtaking, signals, hard braking, pedestrians
 - [x] 11.6 Watchdog demo: the same style as mapping and localization
 - [x] 11.7 Seven chapters on the home page and in the stack overview, named the same everywhere
-- [-] 11.8 "One stack, three machines": forklift in a warehouse, drone, sidewalk delivery robot
+- [x] 11.8 "One stack, three machines": forklift in a warehouse, drone, sidewalk delivery robot
 - [-] 11.9 Smoke and e2e tests for the new pages and band
 
 ## Target structure
