@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Watchdog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="stylesheet" href="/src/styles/demos/watchdog.css" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/demos/watchdog.js"></script>
+  </head>
+  <body>
+    <canvas
+      id="scene"
+      aria-label="Diagram of the driving software with a watchdog checking every component"
+    ></canvas>
+
+    <header class="head">
+      <h1>Watchdog</h1>
+      <p>Every component reports in. Anything late, silent or struggling gets handled.</p>
+      <div class="legend">
+        <span><i class="beat"></i>Heartbeat</span>
+        <span><i class="dat"></i>Data</span>
+        <span><i class="late"></i>Late</span>
+        <span><i class="dead"></i>Lost</span>
+      </div>
+    </header>
+
+    <div class="status panel"><span id="stat">All systems healthy</span></div>
+
+    <aside class="log panel" aria-label="Watchdog log" aria-live="off">
+      <div class="log__top"><span>Watchdog log</span><b id="logMode">Autonomous</b></div>
+      <ol id="logList"></ol>
+    </aside>
+
+    <div class="parts" id="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Situations"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-main">
+        <div class="lab">Components alive</div>
+        <div class="big" id="dAlive">8<small>/ 8</small></div>
+        <div class="rows">
+          <div><span>Speed</span><b id="dSpd">0 km/h</b></div>
+          <div><span>Vehicle</span><b id="dVeh">Autonomous</b></div>
+          <div><span>Restarts</span><b id="dRst">0</b></div>
+        </div>
+      </section>
+      <section class="b-view">
+        <div class="charts">
+          <div class="ch">
+            <div class="top">
+              <span class="lab">Heartbeats · last 12 s</span>
+              <span class="key"
+                ><span><i style="background: var(--wd)"></i>Seen</span
+                ><span><i style="background: var(--bad)"></i>Missed</span></span
+              >
+            </div>
+            <canvas id="chB"></canvas>
+          </div>
+          <div class="ch">
+            <div class="top">
+              <span class="lab">Localization delay</span>
+              <span class="key"
+                ><span><i style="background: var(--ap)"></i>Delay</span
+                ><span><i style="background: #8fa0bd"></i>Limit</span></span
+              >
+            </div>
+            <canvas id="chL"></canvas>
+          </div>
+        </div>
+      </section>
+      <section class="b-tiles">
+        <div class="tile" id="t-live">
+          <div class="n"><i></i>Liveness</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-time">
+          <div class="n"><i></i>Timing</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-hlth">
+          <div class="n"><i></i>Health</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-rec">
+          <div class="n"><i></i>Recovery</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-fall">
+          <div class="n"><i></i>Fallback</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-flt">
+          <div class="n"><i></i>Faults logged</div>
+          <div class="s">—</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Interactive simulation. Telemetry is illustrative. Click a situation to play it
+    </div>
+  </body>
+</html>
