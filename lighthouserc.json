@@ -2,7 +2,14 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
-      "url": ["/index.html", "/blogs.html", "/blogs/pointers.html", "/projects/stack.html"],
+      "url": [
+        "/index.html",
+        "/pixworm.html",
+        "/pixworm/prague.html",
+        "/blogs.html",
+        "/blogs/pointers.html",
+        "/projects/stack.html"
+      ],
       "numberOfRuns": 1,
       "settings": { "chromeFlags": "--no-sandbox" }
     },

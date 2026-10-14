@@ -108,7 +108,7 @@ Photos stay on Google Drive and Google Photos. Every photo list lives in `src/pi
 - [x] 10.3 Pixworm styles and the full screen opening
 - [x] 10.4 Collections strip and the selected mosaic on `pixworm.html`
 - [x] 10.5 One collection page template; the 9 collection pages use it
-- [-] 10.6 Remove the old pixworm styles, scripts and gallery pages; extend the tests
+- [x] 10.6 Remove the old pixworm styles, scripts and gallery pages; extend the tests
 
 ## Target structure
 
