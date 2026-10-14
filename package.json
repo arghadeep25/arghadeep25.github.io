@@ -10,9 +10,12 @@
     "format": "prettier --write \"src/**/*.{js,css,html}\" \"*.{js,json,md}\" \"docs/**/*.md\"",
     "format:check": "prettier --check \"src/**/*.{js,css,html}\" \"*.{js,json,md}\" \"docs/**/*.md\"",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.64.0",
     "prettier": "^3.9.10",
     "vite": "^8.3.4",
     "vitest": "^4.1.11"

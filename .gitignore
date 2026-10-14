@@ -6,3 +6,6 @@ extra/
 *.pp3
 node_modules/
 dist/
+test-results/
+playwright-report/
+.lighthouseci/
