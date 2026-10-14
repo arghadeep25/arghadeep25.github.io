@@ -47,14 +47,8 @@
   transform: translateY(-4px);
 }
 
-.posts__item img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
-
 .posts__item div {
-  padding: 18px 22px 22px;
+  padding: 28px 26px 30px;
 }
 
 .posts__item h2 {
