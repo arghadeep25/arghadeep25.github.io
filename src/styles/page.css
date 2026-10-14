@@ -207,3 +207,15 @@
 .page__back:hover {
   color: var(--ink);
 }
+
+.article .page__head h1 {
+  margin: 0;
+}
+
+.article__toc a {
+  text-decoration: none;
+}
+
+.article__toc a:hover {
+  text-decoration: underline;
+}
