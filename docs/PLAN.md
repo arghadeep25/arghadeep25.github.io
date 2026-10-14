@@ -79,7 +79,7 @@ A faithful port comes first, and swapping inline helpers for the tested modules 
 - [x] 6.5 Planning and watchdog: stages of the stack overview (`projects/stack.html?stage=route` and `?stage=guardian`)
 - [x] 6.6 Tracking (path tracking)
 - [x] 6.7 Projects section in `index.html`: six chapters in the order above, each showing its demo
-- [-] 6.8 Other projects: building footprints and car counting demos, in a "More work" grid
+- [x] 6.8 Other projects: building footprints and car counting demos, in a "More work" grid
 
 ## Phase 7: cleanup
 

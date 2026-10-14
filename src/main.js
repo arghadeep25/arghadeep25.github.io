@@ -10,6 +10,7 @@ import { initScrollSpy } from './core/scrollspy.js';
 import { initLanding } from './sections/landing.js';
 import { initAbout } from './sections/about.js';
 import { initProjects } from './sections/projects.js';
+import { initMoreWork } from './sections/more-work.js';
 import { initSkills } from './sections/skills.js';
 import { initPixworm } from './sections/pixworm.js';
 import { initBlogs } from './sections/blogs.js';
@@ -21,6 +22,7 @@ initScrollSpy(document.querySelector('.nav-pill'), SECTIONS);
 initLanding(document.getElementById('home'));
 initAbout(document.getElementById('about'));
 initProjects(document.getElementById('projects'));
+initMoreWork(document.getElementById('more-work'));
 initSkills(document.getElementById('skills'));
 
 initPixworm(document.getElementById('pixworm'), [

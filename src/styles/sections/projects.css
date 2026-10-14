@@ -315,3 +315,86 @@
     transform: none !important;
   }
 }
+
+/* More work: preview tiles under the chapters */
+.more {
+  padding-block: clamp(56px, 9vw, 120px);
+}
+
+.more__title {
+  margin-bottom: 28px;
+  font-size: var(--fs-title);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.more__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2.4vw, 32px);
+}
+
+.more__tile {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.more__shot {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: #04070d;
+  transition:
+    border-color 0.25s,
+    transform 0.35s var(--ease-out);
+}
+
+.more__tile:hover .more__shot,
+.more__tile:focus-visible .more__shot {
+  border-color: var(--accent-line);
+  transform: translateY(-4px);
+}
+
+.more__screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 900px;
+  transform-origin: 0 0;
+}
+
+.more__screen iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.more__screen iframe.is-shown {
+  opacity: 1;
+}
+
+.more__tile h4 {
+  margin: 18px 0 6px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.more__tile p {
+  max-width: 46ch;
+  color: var(--ink-mute);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .more__grid {
+    grid-template-columns: 1fr;
+  }
+}
