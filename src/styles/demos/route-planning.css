@@ -1,0 +1,132 @@
+:root {
+  --gr: #30d158;
+}
+.legend i.ln {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+}
+.legend i.gl {
+  background: none;
+  border-top: 2px dashed var(--gr);
+  height: 0;
+  border-radius: 0;
+}
+.legend i.lo {
+  background: #fff;
+  box-shadow: 0 0 8px var(--gr);
+}
+.legend i.pin {
+  background: #ff5d6c;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg) scale(0.9);
+}
+.legend i.ds {
+  border-top-color: #ff5d6c;
+}
+.chip .bar {
+  background: linear-gradient(90deg, var(--gr), var(--scan));
+}
+.tile.hot {
+  background: rgba(48, 209, 88, 0.11);
+  border-color: rgba(48, 209, 88, 0.4);
+}
+.mini {
+  position: fixed;
+  right: var(--pad);
+  top: calc(var(--pad) + 58px);
+  width: 300px;
+  padding: 10px 10px 8px;
+  border-radius: 18px;
+}
+.mini__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11.5px;
+  color: var(--mute);
+  padding: 0 4px 6px;
+}
+.mini__top b {
+  font-weight: 500;
+  color: var(--dim);
+}
+.mini canvas {
+  display: block;
+  width: 100%;
+  height: 190px;
+  border-radius: 12px;
+  cursor: crosshair;
+  background: rgba(255, 255, 255, 0.03);
+}
+.b-main .big {
+  font-size: 52px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.charts {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 22px;
+}
+.ch {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.ch .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.ch canvas {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  margin-top: 8px;
+}
+.key {
+  display: flex;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--mute);
+}
+.key i {
+  display: inline-block;
+  width: 10px;
+  height: 3px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: 2px;
+}
+@media (max-width: 1100px) {
+  .key {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  .mini {
+    width: 168px;
+    top: calc(var(--pad) + 50px);
+    padding: 7px 7px 5px;
+  }
+  .mini canvas {
+    height: 104px;
+  }
+  .mini__top b {
+    display: none;
+  }
+  .ch + .ch {
+    display: none;
+  }
+  .rows div:nth-child(n + 2) {
+    display: none;
+  }
+}

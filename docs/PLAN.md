@@ -118,7 +118,7 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 - [x] 11.2 Stack demo: the vehicle drives in the right lane, not the middle
 - [x] 11.3 `algos/ukf.js`, an unscented Kalman filter for object tracking, with tests
 - [x] 11.4 Object tracking demo: detections, UKF tracks, IDs, velocity and uncertainty
-- [-] 11.5 Route planning demo: user drops a pin, global route, local planning, slowing, overtaking, signals, hard braking, pedestrians
+- [x] 11.5 Route planning demo: user drops a pin, global route, local planning, slowing, overtaking, signals, hard braking, pedestrians
 - [-] 11.6 Watchdog demo: the same style as mapping and localization
 - [-] 11.7 Seven chapters on the home page and in the stack overview, named the same everywhere
 - [-] 11.8 "One stack, three machines": forklift in a warehouse, drone, sidewalk delivery robot

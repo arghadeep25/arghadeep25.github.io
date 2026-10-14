@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Route Planning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="stylesheet" href="/src/styles/demos/route-planning.css" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/demos/route-planning.js"></script>
+  </head>
+  <body>
+    <canvas
+      id="scene"
+      aria-label="Simulation of a vehicle planning a route to a pin and driving it"
+    ></canvas>
+
+    <header class="head">
+      <h1>Route Planning</h1>
+      <p>Pick a destination. It plans the way, then drives it.</p>
+      <div class="legend">
+        <span><i class="ln gl"></i>Global route</span>
+        <span><i class="ln lo"></i>Local path</span>
+        <span><i class="pin"></i>Destination</span>
+        <span><i class="ds"></i>Stop point</span>
+      </div>
+    </header>
+
+    <div class="status panel"><span id="stat">Planning</span></div>
+
+    <div class="mini panel">
+      <div class="mini__top"><span>City map</span><b id="miniHint">Click to drop a pin</b></div>
+      <canvas id="mini" aria-label="City map. Click to drop a destination pin."></canvas>
+    </div>
+
+    <div class="parts" id="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Behaviours"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-main">
+        <div class="lab">Speed</div>
+        <div class="big" id="dSp">0<small>km/h</small></div>
+        <div class="rows">
+          <div><span>Distance left</span><b id="dLeft">—</b></div>
+          <div><span>Next turn</span><b id="dNext">—</b></div>
+          <div><span>Arrival in</span><b id="dEta">—</b></div>
+        </div>
+      </section>
+      <section class="b-view">
+        <div class="charts">
+          <div class="ch">
+            <div class="top">
+              <span class="lab">Speed · last 20 s</span>
+              <span class="key"
+                ><span><i style="background: #8fa0bd"></i>Planned</span
+                ><span><i style="background: var(--ap)"></i>Actual</span></span
+              >
+            </div>
+            <canvas id="chS"></canvas>
+          </div>
+          <div class="ch">
+            <div class="top">
+              <span class="lab">Free road ahead</span>
+              <span class="key"
+                ><span><i style="background: var(--gr)"></i>Metres</span></span
+              >
+            </div>
+            <canvas id="chG"></canvas>
+          </div>
+        </div>
+      </section>
+      <section class="b-tiles">
+        <div class="tile" id="t-glob">
+          <div class="n"><i></i>Global route</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-loc">
+          <div class="n"><i></i>Local path</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-veh">
+          <div class="n"><i></i>Vehicle ahead</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-sig">
+          <div class="n"><i></i>Signal</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-ped">
+          <div class="n"><i></i>Pedestrians</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-ovt">
+          <div class="n"><i></i>Overtaking</div>
+          <div class="s">—</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Interactive simulation. Telemetry is illustrative. Click the map to send it somewhere new
+    </div>
+  </body>
+</html>
