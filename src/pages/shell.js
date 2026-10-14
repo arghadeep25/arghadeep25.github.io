@@ -5,7 +5,7 @@
 export const NAV = [
   { id: 'home', label: 'Home', href: '/' },
   { id: 'about', label: 'About', href: '/#about' },
-  { id: 'projects', label: 'Projects', href: '/#projects' },
+  { id: 'projects', label: 'Work', href: '/#projects' },
   { id: 'skills', label: 'Skills', href: '/#skills' },
   { id: 'pixworm', label: 'Pixworm', href: '/pixworm.html' },
   { id: 'blogs', label: 'Blogs', href: '/blogs.html' },
