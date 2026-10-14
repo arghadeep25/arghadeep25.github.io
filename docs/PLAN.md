@@ -95,10 +95,9 @@ A faithful port comes first, and swapping inline helpers for the tested modules 
 - [x] 8.2 Visual snapshots for the main pages
 - [x] 8.3 Lighthouse CI with size and performance budgets
 
-## Phase 9: docs
+## Phase 9: docs (dropped)
 
-- [-] 9.1 README: structure, scripts, how to add a demo
-- [-] 9.2 CONTRIBUTING: commit convention and branch flow
+A README and a CONTRIBUTING guide were planned. This is a personal portfolio with one maintainer, so they are not needed.
 
 ## Target structure
 
