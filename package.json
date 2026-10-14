@@ -11,7 +11,8 @@
     "format:check": "prettier --check \"src/**/*.{js,css,html}\" \"*.{js,json,md}\" \"docs/**/*.md\"",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "lighthouse": "npm run build && lhci autorun"
   },
   "devDependencies": {
     "@lhci/cli": "^0.15.1",
