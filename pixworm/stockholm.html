@@ -1,89 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stockholm | Gallery | Pixworm</title>
-    <meta content="Photo gallery: Stockholm — part of Pixworm, the photography portfolio of Arghadeep Mazumder."
-        name="description">
-    <link rel="stylesheet" href="../assets/css/gallery.css">
-    <link rel="stylesheet" href="../assets/css/lightbox.css">
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Stockholm | Pixworm | Arghadeep Mazumder</title>
+    <meta name="description" content="Stockholm: photographs by Arghadeep Mazumder." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://lh3.googleusercontent.com/pw/AP1GczN2M1oDCuupFPO33IyhSL8oQswKEZLz8fjj7GyuLJryXeyNNOej-y1juMCvGVNNgCIHhh5KOe9NRXiN38Gy6RWHUaIQRkFtn3XMXl07lbvwUYUg8NZx=w2400"
-        rel="icon">
-</head>
-
-<body>
-
-    <div id="header-container"></div>
-
-    <script>
-        fetch("./gallery_menu_header.html")
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById("header-container").innerHTML = data;
-            });
-    </script>
-
-    <section class="banner"
-        style="background-image: url('https://drive.google.com/thumbnail?id=1kCnidK-a_aGu6TY45qOstIkuFrdTT_pM&sz=w3600');">
-        <div class="banner-text">STOCKHOLM</div>
-    </section>
-
-    <section class="masonry-grid">
-        <img src="https://drive.google.com/thumbnail?id=1O9PHy33E8nBk6-CWVzI--t35Oh-UKkT8&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=18gMBiCzSG-FkZ52WXirxOmxpktWtCTKi&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1uLi3DQQVnyW6HXqDW1pSMYuzizkUPZ6N&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1K2LDd7nj3BYwNxCQe5300QY_KdDFsg4n&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1M-kwuzUo-CLhb1tSHMaNa7i7Z8QmZuI7&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1x5Hl8LiwbUG1enpOP0uDZDcMAtCCgibP&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1BkfiKsRcm9_nGBYp_d9D3KysT33rUOtO&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1MfTM7lyCFA9IjTTQsv5FL30vL7Gm6NtI&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1cBt8WteUtvZUOpIM2qiWOGBq8Ntki52p&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1TnocfRUEukRdmNHqULEmvwKkUwKEn_Hm&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1R-zFrrDhkZgtfmSTsKJm_lTvSAgZZLl7&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1SDM0kfauiDaF4KwHXjAOT2-3z1vhOQ4s&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1wuGvGfvKxXBwzRpVVq0OvO6wJKQv5oih&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1zPo9Altqk0qeixqQUe2Ng28qffh6CHGi&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1pNTVtp4MXaFrLNWKMfm0d9VIfUyU_OlX&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1u2657A0hbZ0kQNfbdyc9j1YmZ4uQiGud&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1FM7UwyrHFxO_H1UP9cG2uqE6fbXph4ne&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1nTLowsIUahijVEGvsmOwh0Q3r3Q0KCwS&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1aSibbAp4aT9i85XO9Qp8nPI-JJRO9tn3&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1CxQFwi-szSAecn-C5vh5PxgD8OP5bO-S&sz=w1000" class="masonry-img">
-
-
-    </section>
-
-    <div id="lightbox" class="lightbox">
-        <span class="close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
-    </div>
-
-    <footer>
-        <p>&copy; Arghadeep Mazumder 2025 </p>
-        <div class="social-icons">
-            <a href="" target="_blank" title="GitHub">
-                <img src="https://img.icons8.com/?size=100&id=12599&format=png&color=000000" alt="GitHub">
-            </a>
-            <a href="" target="_blank" title="Facebook">
-                <img src="https://img.icons8.com/?size=100&id=118467&format=png&color=000000" alt="Facebook">
-            </a>
-            <a href="" target="_blank" title="YouTube">
-                <img src="https://img.icons8.com/?size=100&id=37326&format=png&color=000000" alt="YouTube">
-            </a>
-            <a href="" target="_blank" title="LinkedIn">
-                <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000" alt="LinkedIn">
-            </a>
-        </div>
-    </footer>
-
-    <script src="/assets/js/lightbox.js"></script>
-
-</body>
-
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/pages/collection.js"></script>
+  </head>
+  <body data-section="pixworm" data-collection="stockholm" id="top">
+    <div data-shell="nav"></div>
+    <main class="pxk wrap">
+      <header class="pxk__head">
+        <a class="pxk__back" href="/pixworm.html#collections">All collections</a>
+        <h1 data-title>Stockholm</h1>
+        <p data-blurb></p>
+        <p class="pxk__count" data-count></p>
+      </header>
+      <div class="mosaic"></div>
+      <p class="pxk__next">Next collection <a data-next href="/pixworm.html"></a></p>
+    </main>
+    <div data-shell="footer"></div>
+  </body>
 </html>
