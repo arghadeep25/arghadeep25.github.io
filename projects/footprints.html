@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Building footprints</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="stylesheet" href="/src/styles/demos/footprints.css" />
+    <script type="module" src="/src/demos/footprints.js"></script>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header class="head">
+      <h1>Building Footprint Extraction</h1>
+      <p>From satellite pixels to building outlines.</p>
+      <div class="legend">
+        <span><i style="background: #34d399"></i>Correct</span>
+        <span><i style="background: #ff5d6c"></i>False alarm</span>
+        <span><i style="background: #ffb547"></i>Missed</span>
+        <span><i style="background: #ff8a3d"></i>Building likelihood</span>
+      </div>
+    </header>
+
+    <div class="status panel"><span id="stat">Satellite imagery</span></div>
+
+    <div class="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Pipeline stages"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-main">
+        <div class="lab" id="mainLab">Score on this image</div>
+        <div class="big" id="dScore">0.00</div>
+        <div class="rows">
+          <div><span>Buildings found</span><b id="dCnt">0</b></div>
+          <div><span>Area covered</span><b id="dArea">0%</b></div>
+          <div><span>Patch</span><b id="dPatch">1 / 8</b></div>
+        </div>
+      </section>
+      <section class="b-view">
+        <div class="lab" id="vLab">Bands</div>
+        <canvas id="mini"></canvas>
+      </section>
+      <section class="b-tiles">
+        <div class="tile" id="t-reg">
+          <div class="n"><i></i>Region</div>
+          <div class="s">Austin</div>
+        </div>
+        <button class="tile pick" id="t-net">
+          <div class="n"><i></i>Network<em>click</em></div>
+          <div class="s">—</div>
+        </button>
+        <button class="tile pick" id="t-aug">
+          <div class="n"><i></i>Augmentation<em>click</em></div>
+          <div class="s">—</div>
+        </button>
+        <div class="tile" id="t-patch">
+          <div class="n"><i></i>Patch size</div>
+          <div class="s">256 × 256 px</div>
+        </div>
+        <div class="tile" id="t-rep">
+          <div class="n"><i></i>Reported score</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-band">
+          <div class="n"><i></i>Input</div>
+          <div class="s">3 bands · RGB</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Synthetic imagery. Reported scores are from the study. Click a stage to hold it
+    </div>
+  </body>
+</html>
