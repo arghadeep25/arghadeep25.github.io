@@ -99,6 +99,17 @@ A faithful port comes first, and swapping inline helpers for the tested modules 
 
 A README and a CONTRIBUTING guide were planned. This is a personal portfolio with one maintainer, so they are not needed.
 
+## Phase 10: Pixworm redesign
+
+Photos stay on Google Drive and Google Photos. Every photo list lives in `src/pixworm/photos.js`.
+
+- [x] 10.1 Photo data in one file, with the address helper and tests
+- [-] 10.2 Lightbox: keyboard, swipe, preload, deep link
+- [-] 10.3 Pixworm styles and the full screen opening
+- [-] 10.4 Collections strip and the selected mosaic on `pixworm.html`
+- [-] 10.5 One collection page template; the 9 collection pages use it
+- [-] 10.6 Remove the old pixworm styles, scripts and gallery pages; extend the tests
+
 ## Target structure
 
 ```
