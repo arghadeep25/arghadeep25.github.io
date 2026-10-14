@@ -416,7 +416,7 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
         ];
       default:
         return [
-          ['All OK', 'Components'],
+          [STAGES.length - 1 + ' of ' + (STAGES.length - 1), 'Components alive'],
           ['Live', 'Heartbeat'],
           [f(18 + 6 * Math.sin(perfT * 0.7) + car.v * 0.4, 0) + '%', 'Load'],
         ];
@@ -1571,10 +1571,22 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
       ctx.arc(cx, cy, (1.5 + r.t * 18) * SC, 0, TAU);
       ctx.stroke();
     }
-    // six tentacle nodes orbiting
-    for (let i = 0; i < 6; i++) {
-      const ang = perfT * 0.5 + i * (TAU / 6);
-      const rad = 4.2 * SC;
+    // every other component orbits the vehicle and reports in
+    const parts = STAGES.filter((st) => st.id !== 'guardian');
+    const names = {
+      map: 'Mapping',
+      ego: 'Localization',
+      sense: 'Obstacles',
+      objects: 'Tracking',
+      route: 'Route',
+      track: 'Path',
+      bridge: 'Vehicle',
+    };
+    ctx.font = '600 10.5px -apple-system, system-ui, sans-serif';
+    ctx.textBaseline = 'middle';
+    parts.forEach((p, i) => {
+      const ang = perfT * 0.45 + i * (TAU / parts.length);
+      const rad = 4.6 * SC;
       const nx = cx + Math.cos(ang) * rad,
         ny = cy + Math.sin(ang) * rad;
       ctx.strokeStyle = rgba(col, 0.25);
@@ -1584,14 +1596,19 @@ import { UkfTracker, predictPath } from '../algos/ukf-tracker.js';
       ctx.lineTo(nx, ny);
       ctx.stroke();
       const beat = 0.5 + 0.5 * Math.sin(perfT * 4 + i * 1.7);
-      ctx.fillStyle = rgba(STAGES[i].color, 0.55 + 0.45 * beat);
-      ctx.shadowColor = STAGES[i].color;
+      ctx.fillStyle = rgba(p.color, 0.55 + 0.45 * beat);
+      ctx.shadowColor = p.color;
       ctx.shadowBlur = 8 * beat;
       ctx.beginPath();
       ctx.arc(nx, ny, 3.6 + beat * 1.4, 0, TAU);
       ctx.fill();
       ctx.shadowBlur = 0;
-    }
+      if (a > 0.6) {
+        ctx.fillStyle = 'rgba(243,246,251,.9)';
+        ctx.textAlign = Math.cos(ang) >= 0 ? 'left' : 'right';
+        ctx.fillText(names[p.id], nx + (Math.cos(ang) >= 0 ? 9 : -9), ny);
+      }
+    });
     ctx.restore();
   }
 
