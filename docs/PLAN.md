@@ -136,10 +136,10 @@ Mostly animation, few words, so a child can follow it. Every formula is annotate
 - [x] 12.4 Section: why a robot gets lost (drift)
 - [x] 12.5 Section: nodes
 - [x] 12.6 Section: edges and how sure they are
-- [-] 12.7 Section: the cost, and the graph relaxing
+- [x] 12.7 Section: the cost, and the graph relaxing
 - [x] 12.8 Section: loop closure
-- [-] 12.9 Section: how the solver gets there, step by step
-- [-] 12.10 Section: uncertainty, and a wrong loop closure with a robust kernel
+- [x] 12.9 Section: how the solver gets there, step by step
+- [x] 12.10 Section: uncertainty, and a wrong loop closure with a robust kernel
 - [-] 12.11 Page text, contents list, tests, Lighthouse entry
 
 ## Target structure

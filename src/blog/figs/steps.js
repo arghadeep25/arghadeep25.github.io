@@ -75,11 +75,12 @@ export function steps(root) {
           g.shadowBlur = 10;
           g.fill();
           g.restore();
+          const nearTop = py(lg[i]) - cy < 22;
           label(
             g,
             `${Math.round(fr.cost[i])}`,
-            Math.min(px(i) + 10, cx + cw - 30),
-            py(lg[i]) - 12,
+            px(i) + (i > last * 0.7 ? -10 : 10),
+            py(lg[i]) + (nearTop ? 16 : -12),
             C.ink,
             i > last * 0.7 ? 'right' : 'left',
           );

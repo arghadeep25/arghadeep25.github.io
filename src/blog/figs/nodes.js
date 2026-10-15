@@ -148,7 +148,7 @@ export function nodes(root) {
           if (f < K - 1) robot(g, v, poseAt(local, f), alpha(C.accent, 0.9), 11);
 
           label(g, `pin ${sel}: one node, three numbers`, 18, 22, C.ink);
-          label(g, 'tap a pin to read it', 18, 42, C.dim);
+          label(g, 'tap a pin to read it', 18, h - 16, C.dim);
         },
       };
     },

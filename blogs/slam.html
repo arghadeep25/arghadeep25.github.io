@@ -29,6 +29,26 @@
           </p>
         </header>
 
+        <nav class="article__toc" aria-label="In this post">
+          <header>
+            <h1>In this post</h1>
+            <ul>
+              <li><a href="#drift">Walking with your eyes closed</a></li>
+              <li><a href="#nodes">Nodes: a pin for every step</a></li>
+              <li><a href="#edges">Edges: a string between two pins</a></li>
+              <li><a href="#trust">How sure is each string?</a></li>
+              <li><a href="#loop">Loop closure</a></li>
+              <li><a href="#cost">One price for the whole map</a></li>
+              <li><a href="#solve">Rolling down to the best map</a></li>
+              <li><a href="#settle">Watch the lap settle</a></li>
+              <li><a href="#anchor">Why we pin the first dot</a></li>
+              <li><a href="#fog">How sure is each pin?</a></li>
+              <li><a href="#liar">When a string lies</a></li>
+              <li><a href="#recipe">The whole recipe</a></li>
+            </ul>
+          </header>
+        </nav>
+
         <section class="beat" id="drift">
           <div class="beat__text">
             <h2>Walking with your eyes closed</h2>
@@ -515,8 +535,8 @@
           <figure class="fig" data-fig="steps">
             <div class="fig__stage"></div>
             <figcaption>
-              Each step is one jump of every pin. The price on the right is on a log scale: each
-              line down is ten times smaller.
+              Each step is one jump of every pin. The price chart is on a log scale, so a straight
+              line down means the price shrinks by the same factor every step.
             </figcaption>
           </figure>
         </section>
@@ -701,6 +721,45 @@
               </div>
             </div>
           </div>
+        </section>
+        <section class="beat" id="recipe">
+          <div class="beat__text">
+            <h2>The whole recipe</h2>
+            <p>That is all of Graph SLAM. Go round this list again for every new step.</p>
+          </div>
+          <ol class="recipe">
+            <li>
+              <a href="#nodes"><b>Drop a pin</b><span>for every step the robot takes.</span></a>
+            </li>
+            <li>
+              <a href="#edges"><b>Tie a string</b><span>from the last pin to the new one.</span></a>
+            </li>
+            <li>
+              <a href="#trust"
+                ><b>Say how sure</b><span>each string is. A sure string is stiff.</span></a
+              >
+            </li>
+            <li>
+              <a href="#loop"
+                ><b>Spot an old place</b><span>and tie a string back to its pin.</span></a
+              >
+            </li>
+            <li>
+              <a href="#cost"><b>Add up the prices</b><span>of all the stretched strings.</span></a>
+            </li>
+            <li>
+              <a href="#solve"><b>Roll downhill</b><span>until the price stops falling.</span></a>
+            </li>
+            <li>
+              <a href="#liar"
+                ><b>Doubt liars</b><span>and keep a cloud of doubt on every pin.</span></a
+              >
+            </li>
+          </ol>
+          <p class="beat__more">
+            Want to see it on a real map?
+            <a href="/projects/mapping.html">Open the mapping demo</a>.
+          </p>
         </section>
       </article>
     </main>

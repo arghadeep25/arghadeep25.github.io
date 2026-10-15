@@ -172,14 +172,17 @@ export function arrow(g, ax, ay, bx, by, { color = C.ink, width = 2, head = 9 } 
   g.restore();
 }
 
-/** Text at a screen position. */
+/** Text at a screen position. It is nudged sideways if it would run off the canvas. */
 export function label(g, text, x, y, color = C.mute, align = 'left', font = FONT) {
   g.save();
   g.font = font;
+  const m = g.measureText(text).width;
+  const W = g.canvas.width / (g.getTransform().a || 1);
+  const left = align === 'left' ? x : align === 'right' ? x - m : x - m / 2;
   g.fillStyle = color;
-  g.textAlign = align;
+  g.textAlign = 'left';
   g.textBaseline = 'middle';
-  g.fillText(text, x, y);
+  g.fillText(text, clamp(left, 6, Math.max(6, W - 6 - m)), y);
   g.restore();
 }
 

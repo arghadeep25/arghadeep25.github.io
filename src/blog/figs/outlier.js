@@ -78,20 +78,12 @@ export function outlier(root) {
             const final = run.trust[run.trust.length - 1];
             trust = 1 + (final - 1) * u;
             tie(S.wrong.i, S.wrong.j, alpha(C.bad, clamp(0.12 + trust, 0.12, 1)), 7);
-            const a = P[S.wrong.i];
-            const b = P[S.wrong.j];
-            label(
-              g,
-              'the wrong string',
-              (v.x(a[0]) + v.x(b[0])) / 2 + 12,
-              (v.y(a[1]) + v.y(b[1])) / 2 - 12,
-              C.bad,
-            );
+            label(g, 'the wrong string', 18, h - 40, C.bad);
             label(
               g,
               `we listen to it ${Math.max(0, trust * 100).toFixed(trust < 0.1 ? 1 : 0)}%`,
-              (v.x(a[0]) + v.x(b[0])) / 2 + 12,
-              (v.y(a[1]) + v.y(b[1])) / 2 + 6,
+              18,
+              h - 20,
               C.mute,
             );
           }

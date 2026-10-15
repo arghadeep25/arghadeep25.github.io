@@ -64,7 +64,6 @@ export function bowl(root) {
           g.moveTo(pad.l, Y(0));
           g.lineTo(w - pad.r, Y(0));
           g.stroke();
-          label(g, 'where the pin sits', w - pad.r, Y(0) + 24, C.mute, 'right');
 
           const s = Math.min(STEPS - 1, Math.floor(t / STEP));
           const u = t >= STEPS * STEP ? 1 : (t - s * STEP) / STEP; // progress inside this step

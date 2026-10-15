@@ -113,7 +113,9 @@ export function tug(root) {
           const by = h - 38;
           label(
             g,
-            'cost: how much each string is stretched, times how much we trust it',
+            w < 520
+              ? 'cost: stretch times trust'
+              : 'cost: how much each string is stretched, times how much we trust it',
             bx,
             by - 20,
             C.mute,
