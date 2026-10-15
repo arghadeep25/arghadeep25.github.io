@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Graph SLAM | Arghadeep Mazumder</title>
-    <meta name="description" content="A brief introduction to graph based SLAM." />
+    <meta
+      name="description"
+      content="Graph SLAM explained with animations: pins, strings, loop closure and how a lost robot fixes its map."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,20 +17,753 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
     <link rel="apple-touch-icon" href="/logo-180.png" />
-    <script type="module" src="/src/pages/inner.js"></script>
+    <script type="module" src="/src/pages/slam.js"></script>
   </head>
   <body data-section="blogs" id="top">
     <div data-shell="nav"></div>
     <main class="page">
-      <article class="article">
+      <article class="article article--wide">
         <a class="page__back" href="/blogs.html">All posts</a>
         <header class="page__head">
           <h1>Graph SLAM</h1>
           <p>
-            This post is still being written. The mapping demo on the homepage shows the idea live.
+            A robot walks, gets a little lost with every step, then fixes its whole map in one go.
+            Watch how.
           </p>
         </header>
-        <p><a href="/projects/mapping.html">Open the mapping demo</a></p>
+
+        <nav class="article__toc" aria-label="In this post">
+          <header>
+            <h1>In this post</h1>
+            <ul>
+              <li><a href="#drift">Walking with your eyes closed</a></li>
+              <li><a href="#nodes">Nodes: a pin for every step</a></li>
+              <li><a href="#edges">Edges: a string between two pins</a></li>
+              <li><a href="#trust">How sure is each string?</a></li>
+              <li><a href="#loop">Loop closure</a></li>
+              <li><a href="#cost">One price for the whole map</a></li>
+              <li><a href="#solve">Rolling down to the best map</a></li>
+              <li><a href="#settle">Watch the lap settle</a></li>
+              <li><a href="#anchor">Why we pin the first dot</a></li>
+              <li><a href="#fog">How sure is each pin?</a></li>
+              <li><a href="#liar">When a string lies</a></li>
+              <li><a href="#recipe">The whole recipe</a></li>
+            </ul>
+          </header>
+        </nav>
+
+        <section class="beat" id="drift">
+          <div class="beat__text">
+            <h2>Walking with your eyes closed</h2>
+            <p>
+              The robot counts its steps. Every count is a tiny bit wrong, and the mistakes add up.
+            </p>
+          </div>
+          <figure class="fig" data-fig="drift">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Slide the wobble. A rougher count drifts further, and the lap never closes.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="beat" id="nodes">
+          <div class="beat__text">
+            <h2>Nodes: a pin for every step</h2>
+            <p>
+              Each time the robot moves, it drops a pin. A pin is a guess: where am I, and which way
+              am I facing?
+            </p>
+          </div>
+          <figure class="fig" data-fig="nodes">
+            <div class="fig__stage"></div>
+            <figcaption>
+              The first pin is the start of the map. Every other pin is measured from it.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="node"><b>x</b><sub>i</sub></button>
+              <span class="fm__op">=</span>
+              <span class="fm__vec">
+                <button type="button" class="fm__p" data-p="x"><i>x</i><sub>i</sub></button>
+                <button type="button" class="fm__p" data-p="y"><i>y</i><sub>i</sub></button>
+                <button type="button" class="fm__p" data-p="th"><i>θ</i><sub>i</sub></button>
+              </span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="node">
+                <b>x<sub>i</sub>: pin number i</b>
+                <p>One node of the graph. It holds the robot's guess for step i.</p>
+                <p class="more">Bigger i: later in the trip.</p>
+                <p class="less">Smaller i: earlier in the trip.</p>
+              </div>
+              <div class="fm__note" data-for="x">
+                <b>x: how far along</b>
+                <p>Distance from the start, sideways on the map.</p>
+                <p class="more">Bigger x: further to the right.</p>
+                <p class="less">Smaller x: further to the left.</p>
+              </div>
+              <div class="fm__note" data-for="y">
+                <b>y: how far up</b>
+                <p>Distance from the start, up the map.</p>
+                <p class="more">Bigger y: further up.</p>
+                <p class="less">Smaller y: further down.</p>
+              </div>
+              <div class="fm__note" data-for="th">
+                <b>θ: which way it faces</b>
+                <p>The heading, as an angle.</p>
+                <p class="more">Bigger θ: turned more to the left.</p>
+                <p class="less">Smaller θ: turned more to the right.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="beat" id="edges">
+          <div class="beat__text">
+            <h2>Edges: a string between two pins</h2>
+            <p>
+              The odometer says what happened between two steps. Tie a string between the pins to
+              hold that fact. If the pins drift away from what the sensor said, the string stretches
+              and pulls them back.
+            </p>
+          </div>
+          <figure class="fig" data-fig="edges">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Blue is what the sensor said. Green is what the pins say now. Red is the gap between
+              them.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-bad" data-p="e"><i>e</i><sub>ij</sub></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p is-blue" data-p="z"><i>z</i><sub>ij</sub></button>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-ok" data-p="h"><i>h</i></button>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p" data-p="xi"><b>x</b><sub>i</sub></button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p" data-p="xj"><b>x</b><sub>j</sub></button>
+              <span class="fm__op">)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="e">
+                <b>e<sub>ij</sub>: the error</b>
+                <p>How far the string is stretched. Zero means the pins agree with the sensor.</p>
+                <p class="more">Bigger: the pins disagree with the sensor more.</p>
+                <p class="less">Smaller: the string is more relaxed.</p>
+              </div>
+              <div class="fm__note" data-for="z">
+                <b>z<sub>ij</sub>: what the sensor said</b>
+                <p>The measured move from pin i to pin j: how far, and how much it turned.</p>
+                <p class="more">Bigger: the sensor says the robot moved further.</p>
+                <p class="less">Smaller: the sensor says it barely moved.</p>
+              </div>
+              <div class="fm__note" data-for="h">
+                <b>h: what the pins say</b>
+                <p>The move from i to j that you get from where the two pins sit right now.</p>
+                <p class="more">Bigger: the pins are further apart.</p>
+                <p class="less">Smaller: the pins are closer together.</p>
+              </div>
+              <div class="fm__note" data-for="xi">
+                <b>x<sub>i</sub>: the first pin</b>
+                <p>Where the move started. Move this pin and h changes.</p>
+                <p class="more">Shifted: the whole string moves with it.</p>
+                <p class="less">Held still: only pin j can ease the stretch.</p>
+              </div>
+              <div class="fm__note" data-for="xj">
+                <b>x<sub>j</sub>: the second pin</b>
+                <p>Where the move ended. The optimiser slides this pin until e shrinks.</p>
+                <p class="more">Further from the sensor's answer: e grows.</p>
+                <p class="less">Closer to the sensor's answer: e shrinks.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="beat" id="trust">
+          <div class="beat__text">
+            <h2>How sure is each string?</h2>
+            <p>
+              Two strings can disagree. The pin goes nearer the string we trust more. That trust is
+              called <b>information</b>, and it is the second part of every edge.
+            </p>
+          </div>
+          <figure class="fig" data-fig="tug">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Strings 1 and 2 disagree by a metre. Slide the trust and watch where the pin settles.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="F"><i>F</i><sub>ij</sub></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p is-bad" data-p="eT">
+                <i>e</i><sub>ij</sub><sup>T</sup>
+              </button>
+              <button type="button" class="fm__p" data-p="W">Ω<sub>ij</sub></button>
+              <button type="button" class="fm__p is-bad" data-p="e2"><i>e</i><sub>ij</sub></button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="W2">Ω</button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">diag(</span>
+              <button type="button" class="fm__p" data-p="sx">
+                1 / <i>σ</i><sub>x</sub><sup>2</sup>
+              </button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p" data-p="sy">
+                1 / <i>σ</i><sub>y</sub><sup>2</sup>
+              </button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p" data-p="st">
+                1 / <i>σ</i><sub>θ</sub><sup>2</sup>
+              </button>
+              <span class="fm__op">)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="F">
+                <b>F<sub>ij</sub>: the price of this string</b>
+                <p>One number: how unhappy this string is.</p>
+                <p class="more">Bigger: the string is stretched, or we trust it a lot.</p>
+                <p class="less">Smaller: the string is relaxed, or we barely trust it.</p>
+              </div>
+              <div class="fm__note" data-for="eT">
+                <b>e<sup>T</sup>: the error, lying down</b>
+                <p>The same error as before, written as a row so it can be multiplied.</p>
+                <p class="more">Bigger error: the price grows with its square.</p>
+                <p class="less">Smaller error: the price falls fast.</p>
+              </div>
+              <div class="fm__note" data-for="W">
+                <b>Ω: how much we trust the string</b>
+                <p>Stiffness. It weighs the error before it is added to the price.</p>
+                <p class="more">Bigger: a stiff string. It wins the tug of war.</p>
+                <p class="less">Smaller: a loose string. It gives way.</p>
+              </div>
+              <div class="fm__note" data-for="e2">
+                <b>e: the error</b>
+                <p>The stretch from the last page, multiplied by itself and by Ω.</p>
+                <p class="more">Bigger: the price grows with its square.</p>
+                <p class="less">Smaller: the price falls fast.</p>
+              </div>
+              <div class="fm__note" data-for="W2">
+                <b>Ω: a table of three trusts</b>
+                <p>One trust for each thing a pin holds: x, y and the heading.</p>
+                <p class="more">Bigger numbers: a sharper, more trusted sensor.</p>
+                <p class="less">Smaller numbers: a noisy sensor.</p>
+              </div>
+              <div class="fm__note" data-for="sx">
+                <b>σ<sub>x</sub>: the sensor's usual miss in x</b>
+                <p>How wrong the sensor tends to be sideways, in metres.</p>
+                <p class="more">Bigger σ: a sloppier sensor, so 1/σ² is small and Ω is loose.</p>
+                <p class="less">Smaller σ: a precise sensor, so Ω is stiff.</p>
+              </div>
+              <div class="fm__note" data-for="sy">
+                <b>σ<sub>y</sub>: the usual miss in y</b>
+                <p>The same, for the other direction.</p>
+                <p class="more">Bigger σ: loose in y.</p>
+                <p class="less">Smaller σ: stiff in y.</p>
+              </div>
+              <div class="fm__note" data-for="st">
+                <b>σ<sub>θ</sub>: the usual miss in heading</b>
+                <p>How wrong the sensor tends to be about which way it faces, in radians.</p>
+                <p class="more">Bigger σ: loose in heading.</p>
+                <p class="less">Smaller σ: stiff in heading.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="beat" id="loop">
+          <div class="beat__text">
+            <h2>Loop closure: "I have been here!"</h2>
+            <p>
+              Look at the strings before the robot returns: all relaxed, and yet the map is wrong.
+              Then the robot recognises the start. One new string joins the last pin to the first,
+              and that string is very stretched. Every pin on the way gets pulled a little, and the
+              lap snaps shut.
+            </p>
+          </div>
+          <figure class="fig" data-fig="loop">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Play it, or drag the time bar. Red strings are stretched, grey ones are relaxed.
+            </figcaption>
+          </figure>
+        </section>
+        <section class="beat" id="cost">
+          <div class="beat__text">
+            <h2>One price for the whole map</h2>
+            <p>
+              Every string charges a price for being stretched. Add the prices up and you get one
+              number for the whole map. The best map is the one with the lowest total.
+            </p>
+          </div>
+          <figure class="fig" data-fig="sum">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Four pins, four strings. The last string is a little too long, so someone has to give.
+              Try to beat the computer.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="F"><i>F</i>(<b>x</b>)</button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="sum">
+                Σ<sub class="fm__lim">ij</sub>
+              </button>
+              <button type="button" class="fm__p is-bad" data-p="eT">
+                <i>e</i><sub>ij</sub><sup>T</sup>
+              </button>
+              <button type="button" class="fm__p" data-p="W">Ω<sub>ij</sub></button>
+              <button type="button" class="fm__p is-bad" data-p="e"><i>e</i><sub>ij</sub></button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-ok" data-p="best"><b>x</b><sup>*</sup></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="argmin">argmin</button>
+              <span class="fm__op"
+                ><sub><b>x</b></sub></span
+              >
+              <button type="button" class="fm__p is-warn" data-p="F2"><i>F</i>(<b>x</b>)</button>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="F">
+                <b>F(x): the total price of a map</b>
+                <p>x is every pin at once. F says how unhappy all the strings are with it.</p>
+                <p class="more">Bigger: a worse map. Strings are stretched.</p>
+                <p class="less">Smaller: a better map. Strings are relaxed.</p>
+              </div>
+              <div class="fm__note" data-for="sum">
+                <b>Σ: add them all up</b>
+                <p>Go through every string, from pin i to pin j, and add its price.</p>
+                <p class="more">More strings: more facts to respect, and a bigger total.</p>
+                <p class="less">Fewer strings: less to respect, so the map is easier to fool.</p>
+              </div>
+              <div class="fm__note" data-for="eT">
+                <b>e<sup>T</sup>: the stretch, as a row</b>
+                <p>The error from before, turned on its side so it can be multiplied.</p>
+                <p class="more">Bigger stretch: the price grows with its square.</p>
+                <p class="less">Smaller stretch: the price shrinks fast.</p>
+              </div>
+              <div class="fm__note" data-for="W">
+                <b>Ω: how much we trust this string</b>
+                <p>It decides how loudly this string complains.</p>
+                <p class="more">Bigger: even a small stretch costs a lot.</p>
+                <p class="less">Smaller: the string can stretch for free.</p>
+              </div>
+              <div class="fm__note" data-for="e">
+                <b>e: the stretch of this string</b>
+                <p>The gap between what the sensor said and what the pins say.</p>
+                <p class="more">Bigger: the pins disagree more.</p>
+                <p class="less">Smaller: the pins agree.</p>
+              </div>
+              <div class="fm__note" data-for="best">
+                <b>x*: the best map</b>
+                <p>The star means the best one. This is the answer we are after.</p>
+                <p class="more">Higher price at x*: the sensors disagree with each other.</p>
+                <p class="less">Price near zero at x*: every string is happy.</p>
+              </div>
+              <div class="fm__note" data-for="argmin">
+                <b>argmin: the choice that makes it smallest</b>
+                <p>Try every possible map. Keep the one with the lowest price.</p>
+                <p class="more">Bigger search: more pins, more to try.</p>
+                <p class="less">Smaller search: fewer pins, faster.</p>
+              </div>
+              <div class="fm__note" data-for="F2">
+                <b>F(x): the price we are minimising</b>
+                <p>The same total as above. The optimiser slides pins to make it fall.</p>
+                <p class="more">Going up: the last move was a bad one.</p>
+                <p class="less">Going down: the map is getting better.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="beat" id="solve">
+          <div class="beat__text">
+            <h2>Rolling down to the best map</h2>
+            <p>
+              The price is a bowl, and the best map is at the bottom. The computer cannot see the
+              whole bowl, only the bit under its feet. So it looks at the slope here, draws a simple
+              curve that hugs the bowl, jumps to the bottom of that curve, and looks again.
+            </p>
+          </div>
+          <figure class="fig" data-fig="bowl">
+            <div class="fig__stage"></div>
+            <figcaption>
+              One pin and its price. Four jumps are enough. Move the start and see how fast it gets
+              there.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="H"><i>H</i></button>
+              <button type="button" class="fm__p is-ok" data-p="dx">Δ<b>x</b></button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-warn" data-p="b"><i>b</i></button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="H2"><i>H</i></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="sum"><span>Σ</span></button>
+              <button type="button" class="fm__p is-blue" data-p="JT"><i>J</i><sup>T</sup></button>
+              <button type="button" class="fm__p" data-p="W">Ω</button>
+              <button type="button" class="fm__p is-blue" data-p="J"><i>J</i></button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p is-warn" data-p="b2"><i>b</i></button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">Σ</span>
+              <button type="button" class="fm__p is-blue" data-p="JT2"><i>J</i><sup>T</sup></button>
+              <button type="button" class="fm__p" data-p="W2">Ω</button>
+              <button type="button" class="fm__p is-bad" data-p="e">
+                <i>e</i>
+              </button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-ok" data-p="up"><b>x</b></button>
+              <span class="fm__op">←</span>
+              <button type="button" class="fm__p" data-p="x"><b>x</b></button>
+              <span class="fm__op">+</span>
+              <button type="button" class="fm__p is-ok" data-p="dx2">Δ<b>x</b></button>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="H">
+                <b>H: how steep the bowl is here</b>
+                <p>The curve of the bowl. It says how fast the slope itself changes.</p>
+                <p class="more">Bigger: a steep, narrow bowl, so take a short careful jump.</p>
+                <p class="less">Smaller: a wide, flat bowl, so take a long jump.</p>
+              </div>
+              <div class="fm__note" data-for="dx">
+                <b>Δx: the jump</b>
+                <p>How far to slide every pin, all at once, in this step.</p>
+                <p class="more">Bigger: still far from the bottom.</p>
+                <p class="less">Smaller: nearly there. Stop when it is tiny.</p>
+              </div>
+              <div class="fm__note" data-for="b">
+                <b>b: the slope under your feet</b>
+                <p>Which way is downhill, and how steep.</p>
+                <p class="more">Bigger: far up the bowl wall.</p>
+                <p class="less">Zero: you are at the bottom.</p>
+              </div>
+              <div class="fm__note" data-for="H2">
+                <b>H: built from every string</b>
+                <p>Add one piece for each string. Strings we trust make the bowl steeper.</p>
+                <p class="more">More or stiffer strings: a steeper bowl.</p>
+                <p class="less">Fewer or looser strings: a flatter bowl.</p>
+              </div>
+              <div class="fm__note" data-for="sum">
+                <b>Σ: add the strings</b>
+                <p>Each string adds its own piece to H, and its own piece to b.</p>
+                <p class="more">More strings: more pieces to add.</p>
+                <p class="less">Fewer strings: a smaller table.</p>
+              </div>
+              <div class="fm__note" data-for="JT">
+                <b>J<sup>T</sup>: the slope table, turned</b>
+                <p>The same table as J, flipped so it can carry the error back to the pins.</p>
+                <p class="more">Bigger: the pins push the error strongly.</p>
+                <p class="less">Smaller: the pins barely matter to this string.</p>
+              </div>
+              <div class="fm__note" data-for="W">
+                <b>Ω: trust</b>
+                <p>The same stiffness as before. It weighs this string.</p>
+                <p class="more">Bigger: this string counts for more.</p>
+                <p class="less">Smaller: this string counts for less.</p>
+              </div>
+              <div class="fm__note" data-for="J">
+                <b>J: how the error reacts to a nudge</b>
+                <p>
+                  Nudge a pin a tiny bit and see how much the stretch changes. One row per string.
+                </p>
+                <p class="more">Bigger: this pin controls the string a lot.</p>
+                <p class="less">Smaller: moving this pin hardly changes the string.</p>
+              </div>
+              <div class="fm__note" data-for="b2">
+                <b>b: the push on every pin</b>
+                <p>Every string pushes on the pins it is tied to, by its stretch.</p>
+                <p class="more">Bigger: the strings are pulling hard.</p>
+                <p class="less">Zero: the pulls cancel out.</p>
+              </div>
+              <div class="fm__note" data-for="JT2">
+                <b>J<sup>T</sup>: carries the stretch to the pins</b>
+                <p>Turns the stretch of a string into a push on the pins it joins.</p>
+                <p class="more">Bigger: a stronger push.</p>
+                <p class="less">Smaller: a weaker push.</p>
+              </div>
+              <div class="fm__note" data-for="W2">
+                <b>Ω: trust</b>
+                <p>A trusted string pushes harder.</p>
+                <p class="more">Bigger: pushes harder.</p>
+                <p class="less">Smaller: pushes softly.</p>
+              </div>
+              <div class="fm__note" data-for="e">
+                <b>e: the stretch</b>
+                <p>The gap between what the sensor said and what the pins say.</p>
+                <p class="more">Bigger: a bigger push.</p>
+                <p class="less">Zero: no push.</p>
+              </div>
+              <div class="fm__note" data-for="up">
+                <b>x: all the pins, after the jump</b>
+                <p>The new map. Then we measure everything again and repeat.</p>
+                <p class="more">More rounds: closer to the bottom.</p>
+                <p class="less">Fewer rounds: a rougher map.</p>
+              </div>
+              <div class="fm__note" data-for="x">
+                <b>x: all the pins, before the jump</b>
+                <p>The map we have now.</p>
+                <p class="more">Far from the best: expect a big jump.</p>
+                <p class="less">Close to the best: expect a small jump.</p>
+              </div>
+              <div class="fm__note" data-for="dx2">
+                <b>Δx: the jump we just worked out</b>
+                <p>Added to every pin.</p>
+                <p class="more">Bigger: the pins move a lot.</p>
+                <p class="less">Smaller: the pins barely move.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="beat" id="settle">
+          <div class="beat__text">
+            <h2>Watch the lap settle</h2>
+            <p>
+              The same jumps, on the whole lap. The price drops fast at first, then slows down.
+              After a handful of steps the pins stop moving.
+            </p>
+          </div>
+          <figure class="fig" data-fig="steps">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Each step is one jump of every pin. The price chart is on a log scale, so a straight
+              line down means the price shrinks by the same factor every step.
+            </figcaption>
+          </figure>
+        </section>
+        <section class="beat" id="anchor">
+          <div class="beat__text">
+            <h2>Why we pin the first dot</h2>
+            <p>
+              Every string only knows the gap between two pins. It has no idea where the pins are on
+              the page. So the whole map can slide or spin and the price stays the same. To stop
+              that, we nail the first pin down.
+            </p>
+          </div>
+          <figure class="fig" data-fig="anchor">
+            <div class="fig__stage"></div>
+            <figcaption>Drag the map or turn it. Then pin the first dot and try again.</figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="Fa">
+                <i>F</i><sub>pin</sub>
+              </button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p" data-p="x0"><b>x</b><sub>0</sub></button>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-ok" data-p="xbar"><b>x̄</b><sub>0</sub></button>
+              <span class="fm__op">)</span>
+              <span class="fm__op"><sup>T</sup></span>
+              <button type="button" class="fm__p" data-p="W0">Ω<sub>0</sub></button>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p" data-p="x02"><b>x</b><sub>0</sub></button>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-ok" data-p="xbar2"><b>x̄</b><sub>0</sub></button>
+              <span class="fm__op">)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="Fa">
+                <b>F<sub>pin</sub>: the price of moving the pin</b>
+                <p>One more string. It ties the first pin to the place we say it belongs.</p>
+                <p class="more">Bigger: the first pin has been dragged from its place.</p>
+                <p class="less">Zero: the first pin is where we said it would be.</p>
+              </div>
+              <div class="fm__note" data-for="x0">
+                <b>x<sub>0</sub>: the first pin, as the solver has it</b>
+                <p>The pin the optimiser is allowed to move.</p>
+                <p class="more">Further from x̄: a bigger price.</p>
+                <p class="less">Closer to x̄: a smaller price.</p>
+              </div>
+              <div class="fm__note" data-for="xbar">
+                <b>x̄<sub>0</sub>: where we say it belongs</b>
+                <p>A fixed choice, often the origin. Everything else is measured from here.</p>
+                <p class="more">Moved: the whole map moves with it.</p>
+                <p class="less">Kept: the map stays put.</p>
+              </div>
+              <div class="fm__note" data-for="W0">
+                <b>Ω<sub>0</sub>: how hard it is nailed</b>
+                <p>A huge number, so the first pin cannot really move.</p>
+                <p class="more">Bigger: nailed down. It will not budge.</p>
+                <p class="less">Smaller: a loose nail, and the map can drift again.</p>
+              </div>
+              <div class="fm__note" data-for="x02">
+                <b>x<sub>0</sub>: the first pin, again</b>
+                <p>It appears twice because the price is a square: the gap, times the gap.</p>
+                <p class="more">Bigger gap: the price grows with its square.</p>
+                <p class="less">Smaller gap: the price falls fast.</p>
+              </div>
+              <div class="fm__note" data-for="xbar2">
+                <b>x̄<sub>0</sub>: where we say it belongs</b>
+                <p>The same fixed place as before.</p>
+                <p class="more">Moved: the whole map moves with it.</p>
+                <p class="less">Kept: the map stays put.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="beat" id="fog">
+          <div class="beat__text">
+            <h2>How sure is each pin?</h2>
+            <p>
+              A good map says more than where things are. It also says how sure it is. Each pin
+              wears a cloud: the place it might really be. The cloud grows with every step of
+              counting, and shrinks when a loop closure ties the ends together.
+            </p>
+          </div>
+          <figure class="fig" data-fig="fog">
+            <div class="fig__stage"></div>
+            <figcaption>
+              The clouds come from the same strings as the map, just read the other way round.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-blue" data-p="S">Σ</button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="H"><i>H</i></button>
+              <button type="button" class="fm__p is-bad" data-p="inv"><sup>−1</sup></button>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="S">
+                <b>Σ: the size of the cloud</b>
+                <p>How far from its guess a pin might really be. One cloud per pin.</p>
+                <p class="more">Bigger: a bigger cloud, so the pin is less sure.</p>
+                <p class="less">Smaller: a tight cloud, so the pin is sure.</p>
+              </div>
+              <div class="fm__note" data-for="H">
+                <b>H: all the strings together</b>
+                <p>The same table as before. It measures how firmly the strings hold each pin.</p>
+                <p class="more">Bigger: more or stiffer strings hold the pin.</p>
+                <p class="less">Smaller: few or loose strings hold the pin.</p>
+              </div>
+              <div class="fm__note" data-for="inv">
+                <b>−1: flip it over</b>
+                <p>Held firmly means a small cloud. Held loosely means a big cloud.</p>
+                <p class="more">Bigger H: the flip makes the cloud smaller.</p>
+                <p class="less">Smaller H: the flip makes the cloud bigger.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="beat" id="liar">
+          <div class="beat__text">
+            <h2>When a string lies</h2>
+            <p>
+              Sometimes the robot is fooled. Two corridors look the same, so it ties a string
+              between two places that are far apart. One liar can crush the whole map. The fix: a
+              string that is stretched far too much is probably lying, so listen to it less and
+              less.
+            </p>
+          </div>
+          <figure class="fig" data-fig="outlier">
+            <div class="fig__stage"></div>
+            <figcaption>Press the buttons. Each one plays the fix again from the start.</figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="rho"><i>ρ</i>(<i>e</i>)</button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">½</span>
+              <button type="button" class="fm__p is-ok" data-p="d"><i>δ</i><sup>2</sup></button>
+              <button type="button" class="fm__p" data-p="ln">ln</button>
+              <span class="fm__op">(</span>
+              <span class="fm__op">1 +</span>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p is-bad" data-p="e"><i>e</i></button>
+              <span class="fm__op">/</span>
+              <button type="button" class="fm__p is-ok" data-p="d2"><i>δ</i></button>
+              <span class="fm__op">)<sup>2</sup>)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="rho">
+                <b>ρ(e): the robust price of a string</b>
+                <p>
+                  It replaces the plain price e². For small stretches it is almost the same. For
+                  huge ones it hardly grows.
+                </p>
+                <p class="more">Bigger stretch: the price rises, but more and more slowly.</p>
+                <p class="less">Smaller stretch: the same as the plain price.</p>
+              </div>
+              <div class="fm__note" data-for="d">
+                <b>δ²: the scale of the price</b>
+                <p>Sets how big the price can be before it flattens.</p>
+                <p class="more">Bigger: the price keeps rising for longer.</p>
+                <p class="less">Smaller: it flattens quickly, so everything is cheap.</p>
+              </div>
+              <div class="fm__note" data-for="ln">
+                <b>ln: the flattener</b>
+                <p>The log curve rises fast, then bends over. That is what stops a liar winning.</p>
+                <p class="more">Bigger input: only a small rise in price.</p>
+                <p class="less">Smaller input: close to a straight line.</p>
+              </div>
+              <div class="fm__note" data-for="e">
+                <b>e: how stretched the string is</b>
+                <p>Measured in how many "usual misses" it is off.</p>
+                <p class="more">Bigger: the string is probably lying.</p>
+                <p class="less">Smaller: the string is probably honest.</p>
+              </div>
+              <div class="fm__note" data-for="d2">
+                <b>δ: how patient we are</b>
+                <p>A stretch about this big is where we start to doubt a string.</p>
+                <p class="more">Bigger: more patient. Even odd strings are believed.</p>
+                <p class="less">Smaller: quick to doubt. Good strings may be ignored too.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="beat" id="recipe">
+          <div class="beat__text">
+            <h2>The whole recipe</h2>
+            <p>That is all of Graph SLAM. Go round this list again for every new step.</p>
+          </div>
+          <ol class="recipe">
+            <li>
+              <a href="#nodes"><b>Drop a pin</b><span>for every step the robot takes.</span></a>
+            </li>
+            <li>
+              <a href="#edges"><b>Tie a string</b><span>from the last pin to the new one.</span></a>
+            </li>
+            <li>
+              <a href="#trust"
+                ><b>Say how sure</b><span>each string is. A sure string is stiff.</span></a
+              >
+            </li>
+            <li>
+              <a href="#loop"
+                ><b>Spot an old place</b><span>and tie a string back to its pin.</span></a
+              >
+            </li>
+            <li>
+              <a href="#cost"><b>Add up the prices</b><span>of all the stretched strings.</span></a>
+            </li>
+            <li>
+              <a href="#solve"><b>Roll downhill</b><span>until the price stops falling.</span></a>
+            </li>
+            <li>
+              <a href="#liar"
+                ><b>Doubt liars</b><span>and keep a cloud of doubt on every pin.</span></a
+              >
+            </li>
+          </ol>
+          <p class="beat__more">
+            Want to see it on a real map?
+            <a href="/projects/mapping.html">Open the mapping demo</a>.
+          </p>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>

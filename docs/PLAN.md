@@ -126,6 +126,25 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 - [x] 11.10 Tracking demo reworked: four scripted scenes (car ahead, oncoming, pedestrians, overtake), steadier output
 - [x] 11.11 CPU pass: hidden demos pause, idle canvases run at 30 frames a second
 
+## Phase 12: Graph SLAM post (`blogs/slam.html`)
+
+Mostly animation, few words, so a child can follow it. Every formula is annotated: each parameter is circled and an arrow points to a note saying what it does and what happens when it goes up or down.
+
+- [x] 12.1 Figure kit: canvas with timeline, play button and sliders, drawing only while on screen
+- [x] 12.2 Annotated formula kit: circle each parameter, arrow to a note (bigger, smaller)
+- [x] 12.3 Scene data for the post: a looping route, noisy odometry, a loop closure, with tests
+- [x] 12.4 Section: why a robot gets lost (drift)
+- [x] 12.5 Section: nodes
+- [x] 12.6 Section: edges and how sure they are
+- [x] 12.7 Section: the cost, and the graph relaxing
+- [x] 12.8 Section: loop closure
+- [x] 12.9 Section: how the solver gets there, step by step
+- [x] 12.10 Section: uncertainty, and a wrong loop closure with a robust kernel
+- [x] 12.11 Contents list, recipe, page descriptions, Lighthouse entry
+- [x] 12.12 Section: why the first pin is nailed down
+- [x] 12.13 Pose graph reports how unsure each pose is; the wrong-loop-closure demo uses a robust price
+- [x] 12.14 e2e tests: every figure draws, interactions work, reduced motion, phone width
+
 ## Target structure
 
 ```

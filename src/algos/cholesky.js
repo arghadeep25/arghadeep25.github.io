@@ -30,3 +30,21 @@ export function choleskySolve(A, b, n) {
   }
   return x;
 }
+
+/**
+ * Inverse of a symmetric positive-definite matrix, one Cholesky factorisation and n solves.
+ * @param {Float64Array | number[]} A row-major n x n matrix
+ * @param {number} n
+ * @returns {Float64Array} row-major n x n inverse
+ */
+export function choleskyInverse(A, n) {
+  const inv = new Float64Array(n * n);
+  const e = new Float64Array(n);
+  for (let c = 0; c < n; c++) {
+    e.fill(0);
+    e[c] = 1;
+    const col = choleskySolve(A, e, n);
+    for (let r = 0; r < n; r++) inv[r * n + c] = col[r];
+  }
+  return inv;
+}

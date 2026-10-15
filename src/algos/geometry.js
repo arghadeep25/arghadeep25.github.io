@@ -16,6 +16,18 @@ export function relativePose(a, b) {
 }
 
 /**
+ * Pose reached by driving the relative motion `d` from pose `a`. The opposite of relativePose.
+ * @param {number[]} a [x, y, heading]
+ * @param {number[]} d [dx, dy, dtheta] in a's frame
+ * @returns {number[]}
+ */
+export function composePose(a, d) {
+  const c = Math.cos(a[2]);
+  const s = Math.sin(a[2]);
+  return [a[0] + c * d[0] - s * d[1], a[1] + s * d[0] + c * d[1], wrapAngle(a[2] + d[2])];
+}
+
+/**
  * Does the segment a to b cross a rotated rectangle? The rectangle has its centre at (cx, cy),
  * its length along `yaw` and its width across. Used for line of sight checks.
  */

@@ -1,0 +1,231 @@
+/* Annotated formulas: the equation, the circle, the arrow and the note. */
+.fm {
+  position: relative;
+  margin: 26px 0 0;
+  padding: clamp(22px, 4vw, 36px) clamp(16px, 3vw, 32px) clamp(18px, 3vw, 26px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--bg-raised);
+}
+
+.fm__eq {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 4px;
+  color: var(--ink);
+  font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', Cambria, Georgia, serif;
+  font-size: clamp(24px, 4.4vw, 38px);
+  line-height: 1.6;
+}
+
+.fm__eq sub,
+.fm__eq sup {
+  font-size: 0.58em;
+  line-height: 0;
+}
+
+.fm__eq i {
+  font-style: italic;
+}
+
+.fm__p {
+  position: relative;
+  padding: 0 7px;
+  border-radius: var(--r-sm);
+  color: inherit;
+  font: inherit;
+  transition: color var(--t-fast);
+}
+
+.fm__p::after {
+  position: absolute;
+  inset: -3px -1px;
+  border: 1px dashed rgba(139, 124, 255, 0.28);
+  border-radius: 999px;
+  content: '';
+}
+
+.fm__p.is-on {
+  color: #fff;
+}
+
+.fm__p.is-on::after {
+  border-color: transparent;
+}
+
+.fm__p.is-blue,
+.fm .is-blue {
+  color: var(--blue);
+}
+
+.fm__p.is-ok,
+.fm .is-ok {
+  color: var(--ok);
+}
+
+.fm__p.is-bad,
+.fm .is-bad {
+  color: var(--bad, #ff6b81);
+}
+
+.fm__p.is-warn,
+.fm .is-warn {
+  color: var(--warn);
+}
+
+.fm__eq + .fm__eq {
+  margin-top: 14px;
+}
+
+.fm__op {
+  padding: 0 12px;
+  color: var(--ink-mute);
+}
+
+/* a column of values between tall brackets */
+.fm__vec {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px 10px;
+  border: 2px solid var(--ink-mute);
+  border-width: 0 2px;
+  border-radius: 12px;
+  line-height: 1.6;
+}
+
+.fm__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fm__ring {
+  fill: rgba(139, 124, 255, 0.1);
+  stroke: var(--accent);
+  stroke-width: 2.2;
+  filter: drop-shadow(0 0 8px rgba(139, 124, 255, 0.55));
+}
+
+.fm__arrow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.fm__head {
+  fill: var(--accent);
+}
+
+.fm__svg.is-drawing .fm__ring {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: fm-draw 0.55s var(--ease-out) forwards;
+}
+
+.fm__svg.is-drawing .fm__arrow {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: fm-draw 0.5s 0.35s var(--ease-out) forwards;
+}
+
+.fm__svg.is-drawing .fm__head {
+  opacity: 0;
+  animation: fm-pop 0.2s 0.8s forwards;
+}
+
+.fm__ring,
+.fm__arrow {
+  pathlength: 1;
+}
+
+@keyframes fm-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fm-pop {
+  to {
+    opacity: 1;
+  }
+}
+
+.fm__notes {
+  display: grid;
+  margin-top: clamp(44px, 7vw, 64px);
+}
+
+.fm__note {
+  grid-area: 1 / 1;
+  padding: 16px 20px 14px;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity var(--t-base);
+}
+
+.fm__note.is-on {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.fm__note b {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.fm__note p {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.fm__note .more,
+.fm__note .less {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.fm__note .more::before,
+.fm__note .less::before {
+  flex: none;
+  width: 1.2em;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.fm__note .more::before {
+  color: var(--ok);
+  content: '▲';
+}
+
+.fm__note .less::before {
+  color: var(--warn);
+  content: '▼';
+}
+
+@media (max-width: 560px) {
+  .fm__note {
+    padding: 14px 16px 12px;
+  }
+}

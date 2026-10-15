@@ -47,3 +47,21 @@ describe('segmentHitsBox', () => {
     expect(segmentHitsBox(0, 0, 9, 9, 0, 0, 0.3, 4, 4)).toBe(true);
   });
 });
+
+describe('composePose', () => {
+  it('undoes relativePose', async () => {
+    const { composePose, relativePose } = await import('../../src/algos/geometry.js');
+    const a = [3, -2, 0.7];
+    const b = [5, 1, -1.9];
+    const back = composePose(a, relativePose(a, b));
+    expect(back[0]).toBeCloseTo(b[0]);
+    expect(back[1]).toBeCloseTo(b[1]);
+    expect(back[2]).toBeCloseTo(b[2]);
+  });
+  it('drives forward along the heading', async () => {
+    const { composePose } = await import('../../src/algos/geometry.js');
+    const p = composePose([0, 0, Math.PI / 2], [2, 0, 0]);
+    expect(p[0]).toBeCloseTo(0);
+    expect(p[1]).toBeCloseTo(2);
+  });
+});

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { relativePose, wrapAngle } from '../../src/algos/geometry.js';
-import { graphCost, solvePoseGraph } from '../../src/algos/pose-graph.js';
+import { graphCost, poseCovariances, solvePoseGraph } from '../../src/algos/pose-graph.js';
 import { mulberry32 } from './helpers.js';
 
 /** Compose pose `a` with a relative motion `d` expressed in a's frame. */
@@ -101,5 +101,28 @@ describe('solvePoseGraph', () => {
     const { odom, edges, priors } = scenario(3);
     const { cost } = solvePoseGraph(odom, edges, priors, 1);
     expect(cost[0]).toBeCloseTo(graphCost(odom, edges, priors), 6);
+  });
+});
+
+describe('poseCovariances', () => {
+  const poses = circle(20, 10);
+  const edges = [];
+  for (let i = 0; i < poses.length - 1; i++) {
+    edges.push({ i, j: i + 1, z: relativePose(poses[i], poses[i + 1]), w: [400, 400, 1600] });
+  }
+  const anchor = [{ i: 0, t: 'anchor', z: poses[0], w: 1e6 }];
+
+  it('is sure about the pinned pin and less sure further along', () => {
+    const c = poseCovariances(poses, edges, anchor);
+    expect(c[0][0] + c[0][2]).toBeLessThan(1e-5);
+    expect(c[19][0] + c[19][2]).toBeGreaterThan(c[5][0] + c[5][2]);
+  });
+
+  it('is surer everywhere once the loop is closed', () => {
+    const loop = { i: 19, j: 0, z: relativePose(poses[19], poses[0]), w: [400, 400, 1600] };
+    const open = poseCovariances(poses, edges, anchor);
+    const closed = poseCovariances(poses, [...edges, loop], anchor);
+    expect(closed[19][0] + closed[19][2]).toBeLessThan(open[19][0] + open[19][2]);
+    expect(closed[10][0] + closed[10][2]).toBeLessThan(open[10][0] + open[10][2]);
   });
 });
