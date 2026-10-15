@@ -359,6 +359,167 @@
             </div>
           </div>
         </section>
+        <section class="beat" id="solve">
+          <div class="beat__text">
+            <h2>Rolling down to the best map</h2>
+            <p>
+              The price is a bowl, and the best map is at the bottom. The computer cannot see the
+              whole bowl, only the bit under its feet. So it looks at the slope here, draws a simple
+              curve that hugs the bowl, jumps to the bottom of that curve, and looks again.
+            </p>
+          </div>
+          <figure class="fig" data-fig="bowl">
+            <div class="fig__stage"></div>
+            <figcaption>
+              One pin and its price. Four jumps are enough. Move the start and see how fast it gets
+              there.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="H"><i>H</i></button>
+              <button type="button" class="fm__p is-ok" data-p="dx">Δ<b>x</b></button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-warn" data-p="b"><i>b</i></button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="H2"><i>H</i></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="sum"><span>Σ</span></button>
+              <button type="button" class="fm__p is-blue" data-p="JT"><i>J</i><sup>T</sup></button>
+              <button type="button" class="fm__p" data-p="W">Ω</button>
+              <button type="button" class="fm__p is-blue" data-p="J"><i>J</i></button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p is-warn" data-p="b2"><i>b</i></button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">Σ</span>
+              <button type="button" class="fm__p is-blue" data-p="JT2"><i>J</i><sup>T</sup></button>
+              <button type="button" class="fm__p" data-p="W2">Ω</button>
+              <button type="button" class="fm__p is-bad" data-p="e">
+                <i>e</i>
+              </button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-ok" data-p="up"><b>x</b></button>
+              <span class="fm__op">←</span>
+              <button type="button" class="fm__p" data-p="x"><b>x</b></button>
+              <span class="fm__op">+</span>
+              <button type="button" class="fm__p is-ok" data-p="dx2">Δ<b>x</b></button>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="H">
+                <b>H: how steep the bowl is here</b>
+                <p>The curve of the bowl. It says how fast the slope itself changes.</p>
+                <p class="more">Bigger: a steep, narrow bowl, so take a short careful jump.</p>
+                <p class="less">Smaller: a wide, flat bowl, so take a long jump.</p>
+              </div>
+              <div class="fm__note" data-for="dx">
+                <b>Δx: the jump</b>
+                <p>How far to slide every pin, all at once, in this step.</p>
+                <p class="more">Bigger: still far from the bottom.</p>
+                <p class="less">Smaller: nearly there. Stop when it is tiny.</p>
+              </div>
+              <div class="fm__note" data-for="b">
+                <b>b: the slope under your feet</b>
+                <p>Which way is downhill, and how steep.</p>
+                <p class="more">Bigger: far up the bowl wall.</p>
+                <p class="less">Zero: you are at the bottom.</p>
+              </div>
+              <div class="fm__note" data-for="H2">
+                <b>H: built from every string</b>
+                <p>Add one piece for each string. Strings we trust make the bowl steeper.</p>
+                <p class="more">More or stiffer strings: a steeper bowl.</p>
+                <p class="less">Fewer or looser strings: a flatter bowl.</p>
+              </div>
+              <div class="fm__note" data-for="sum">
+                <b>Σ: add the strings</b>
+                <p>Each string adds its own piece to H, and its own piece to b.</p>
+                <p class="more">More strings: more pieces to add.</p>
+                <p class="less">Fewer strings: a smaller table.</p>
+              </div>
+              <div class="fm__note" data-for="JT">
+                <b>J<sup>T</sup>: the slope table, turned</b>
+                <p>The same table as J, flipped so it can carry the error back to the pins.</p>
+                <p class="more">Bigger: the pins push the error strongly.</p>
+                <p class="less">Smaller: the pins barely matter to this string.</p>
+              </div>
+              <div class="fm__note" data-for="W">
+                <b>Ω: trust</b>
+                <p>The same stiffness as before. It weighs this string.</p>
+                <p class="more">Bigger: this string counts for more.</p>
+                <p class="less">Smaller: this string counts for less.</p>
+              </div>
+              <div class="fm__note" data-for="J">
+                <b>J: how the error reacts to a nudge</b>
+                <p>
+                  Nudge a pin a tiny bit and see how much the stretch changes. One row per string.
+                </p>
+                <p class="more">Bigger: this pin controls the string a lot.</p>
+                <p class="less">Smaller: moving this pin hardly changes the string.</p>
+              </div>
+              <div class="fm__note" data-for="b2">
+                <b>b: the push on every pin</b>
+                <p>Every string pushes on the pins it is tied to, by its stretch.</p>
+                <p class="more">Bigger: the strings are pulling hard.</p>
+                <p class="less">Zero: the pulls cancel out.</p>
+              </div>
+              <div class="fm__note" data-for="JT2">
+                <b>J<sup>T</sup>: carries the stretch to the pins</b>
+                <p>Turns the stretch of a string into a push on the pins it joins.</p>
+                <p class="more">Bigger: a stronger push.</p>
+                <p class="less">Smaller: a weaker push.</p>
+              </div>
+              <div class="fm__note" data-for="W2">
+                <b>Ω: trust</b>
+                <p>A trusted string pushes harder.</p>
+                <p class="more">Bigger: pushes harder.</p>
+                <p class="less">Smaller: pushes softly.</p>
+              </div>
+              <div class="fm__note" data-for="e">
+                <b>e: the stretch</b>
+                <p>The gap between what the sensor said and what the pins say.</p>
+                <p class="more">Bigger: a bigger push.</p>
+                <p class="less">Zero: no push.</p>
+              </div>
+              <div class="fm__note" data-for="up">
+                <b>x: all the pins, after the jump</b>
+                <p>The new map. Then we measure everything again and repeat.</p>
+                <p class="more">More rounds: closer to the bottom.</p>
+                <p class="less">Fewer rounds: a rougher map.</p>
+              </div>
+              <div class="fm__note" data-for="x">
+                <b>x: all the pins, before the jump</b>
+                <p>The map we have now.</p>
+                <p class="more">Far from the best: expect a big jump.</p>
+                <p class="less">Close to the best: expect a small jump.</p>
+              </div>
+              <div class="fm__note" data-for="dx2">
+                <b>Δx: the jump we just worked out</b>
+                <p>Added to every pin.</p>
+                <p class="more">Bigger: the pins move a lot.</p>
+                <p class="less">Smaller: the pins barely move.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="beat" id="settle">
+          <div class="beat__text">
+            <h2>Watch the lap settle</h2>
+            <p>
+              The same jumps, on the whole lap. The price drops fast at first, then slows down.
+              After a handful of steps the pins stop moving.
+            </p>
+          </div>
+          <figure class="fig" data-fig="steps">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Each step is one jump of every pin. The price on the right is on a log scale: each
+              line down is ten times smaller.
+            </figcaption>
+          </figure>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>
