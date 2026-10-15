@@ -14,20 +14,35 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
     <link rel="apple-touch-icon" href="/logo-180.png" />
-    <script type="module" src="/src/pages/inner.js"></script>
+    <script type="module" src="/src/pages/slam.js"></script>
   </head>
   <body data-section="blogs" id="top">
     <div data-shell="nav"></div>
     <main class="page">
-      <article class="article">
+      <article class="article article--wide">
         <a class="page__back" href="/blogs.html">All posts</a>
         <header class="page__head">
           <h1>Graph SLAM</h1>
           <p>
-            This post is still being written. The mapping demo on the homepage shows the idea live.
+            A robot walks, gets a little lost with every step, then fixes its whole map in one go.
+            Watch how.
           </p>
         </header>
-        <p><a href="/projects/mapping.html">Open the mapping demo</a></p>
+
+        <section class="beat" id="drift">
+          <div class="beat__text">
+            <h2>Walking with your eyes closed</h2>
+            <p>
+              The robot counts its steps. Every count is a tiny bit wrong, and the mistakes add up.
+            </p>
+          </div>
+          <figure class="fig" data-fig="drift">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Slide the wobble. A rougher count drifts further, and the lap never closes.
+            </figcaption>
+          </figure>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>

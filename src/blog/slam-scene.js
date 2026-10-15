@@ -76,3 +76,7 @@ export function makeScene({ n = 36, seed = 5 } = {}) {
 
   return { n, truth, odometry, loop, solve };
 }
+
+let shared;
+/** The one scene all the figures on the page draw from. */
+export const sharedScene = () => (shared ||= makeScene());
