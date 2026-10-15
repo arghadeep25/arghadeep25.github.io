@@ -229,3 +229,153 @@
   display: inline-block;
   padding: 4px 0;
 }
+
+/* Phones: smaller, calmer type so the page reads like a paper, not a poster. */
+@media (max-width: 600px) {
+  .article--wide.article {
+    padding-inline: 20px;
+  }
+
+  .page:has(.article--wide) {
+    padding-top: 92px;
+  }
+
+  .article--wide .page__head {
+    margin-bottom: 28px;
+  }
+
+  .article--wide .page__head h1 {
+    font-size: 26px;
+    letter-spacing: -0.015em;
+  }
+
+  .article--wide .page__head p {
+    margin-top: 10px;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .article--wide .article__toc {
+    padding: 14px 18px;
+  }
+
+  .article--wide .article__toc h1 {
+    margin-bottom: 0.3em;
+    color: var(--ink-dim);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .article--wide .article__toc a {
+    padding: 3px 0;
+    font-size: 13.5px;
+  }
+
+  .beat {
+    margin-top: 44px;
+  }
+
+  .beat h2 {
+    margin: 0 0 0.35em;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .article--wide .beat__text p,
+  .article--wide .beat__more {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .fig {
+    margin-top: 18px;
+  }
+
+  .fig figcaption {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .fig__bar {
+    gap: 8px 14px;
+  }
+
+  .fig__play {
+    min-width: 0;
+    padding: 6px 13px;
+    font-size: 12px;
+  }
+
+  .fig__knob {
+    font-size: 12px;
+  }
+
+  .fm {
+    margin-top: 18px;
+    padding: 18px 14px 14px;
+    border-radius: var(--r-md);
+  }
+
+  .fm__eq {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .fm__p {
+    padding: 0 5px;
+  }
+
+  .fm__op {
+    padding: 0 6px;
+  }
+
+  .fm__notes {
+    margin-top: 40px;
+  }
+
+  .fm__note {
+    padding: 12px 14px 10px;
+  }
+
+  .fm__note b {
+    font-size: 14px;
+  }
+
+  .fm__note p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .fm__note .more,
+  .fm__note .less {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .recipe {
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .recipe a {
+    padding: 14px 16px 14px 54px;
+  }
+
+  .recipe a::before {
+    top: 14px;
+    left: 14px;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .recipe b {
+    font-size: 14px;
+  }
+
+  .recipe span {
+    font-size: 12.5px;
+  }
+}
