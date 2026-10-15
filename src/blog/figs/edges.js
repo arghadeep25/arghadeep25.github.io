@@ -50,6 +50,8 @@ export function edges(root) {
           const X = (p) => v.x(p[0]);
           const Y = (p) => v.y(p[1]);
           const pj = [j.x, j.y, j.th];
+          // where pin j is, as a fraction of the canvas, for the tests
+          root.dataset.pin = `${(v.x(j.x) / w).toFixed(3)},${(v.y(j.y) / h).toFixed(3)}`;
           const h_ = relativePose(XI, pj);
           const e = [Z[0] - h_[0], Z[1] - h_[1], wrapAngle(Z[2] - h_[2])];
           const ex = Math.hypot(e[0], e[1]);
@@ -153,6 +155,7 @@ export function edges(root) {
     if (Math.hypot(px - hx, py - hy) < 16) grab = 'turn';
     else if (Math.hypot(px - view.x(j.x), py - view.y(j.y)) < 22) grab = 'move';
     if (grab) {
+      root.dataset.grab = grab;
       touched = true;
       j.vx = j.vy = j.vth = 0;
       cv.setPointerCapture(ev.pointerId);
@@ -174,6 +177,7 @@ export function edges(root) {
   const drop = () => {
     if (!grab) return;
     grab = null;
+    delete root.dataset.grab;
     cv.style.cursor = '';
     fig.redraw();
   };

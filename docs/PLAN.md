@@ -140,7 +140,10 @@ Mostly animation, few words, so a child can follow it. Every formula is annotate
 - [x] 12.8 Section: loop closure
 - [x] 12.9 Section: how the solver gets there, step by step
 - [x] 12.10 Section: uncertainty, and a wrong loop closure with a robust kernel
-- [-] 12.11 Page text, contents list, tests, Lighthouse entry
+- [x] 12.11 Contents list, recipe, page descriptions, Lighthouse entry
+- [x] 12.12 Section: why the first pin is nailed down
+- [x] 12.13 Pose graph reports how unsure each pose is; the wrong-loop-closure demo uses a robust price
+- [x] 12.14 e2e tests: every figure draws, interactions work, reduced motion, phone width
 
 ## Target structure
 
