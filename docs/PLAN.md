@@ -132,12 +132,12 @@ Mostly animation, few words, so a child can follow it. Every formula is annotate
 
 - [x] 12.1 Figure kit: canvas with timeline, play button and sliders, drawing only while on screen
 - [x] 12.2 Annotated formula kit: circle each parameter, arrow to a note (bigger, smaller)
-- [-] 12.3 Scene data for the post: a looping route, noisy odometry, a loop closure, with tests
-- [-] 12.4 Section: why a robot gets lost (drift)
-- [-] 12.5 Section: nodes
-- [-] 12.6 Section: edges and how sure they are
+- [x] 12.3 Scene data for the post: a looping route, noisy odometry, a loop closure, with tests
+- [x] 12.4 Section: why a robot gets lost (drift)
+- [x] 12.5 Section: nodes
+- [x] 12.6 Section: edges and how sure they are
 - [-] 12.7 Section: the cost, and the graph relaxing
-- [-] 12.8 Section: loop closure
+- [x] 12.8 Section: loop closure
 - [-] 12.9 Section: how the solver gets there, step by step
 - [-] 12.10 Section: uncertainty, and a wrong loop closure with a robust kernel
 - [-] 12.11 Page text, contents list, tests, Lighthouse entry

@@ -74,7 +74,23 @@ export function makeScene({ n = 36, seed = 5 } = {}) {
     return solvePoseGraph(poses, [...edges, ...loops], [anchor], iterations);
   }
 
-  return { n, truth, odometry, loop, solve };
+  const cache = new Map();
+  /**
+   * The solver's frames for a wobble, ready to play back: the start, then the poses after each
+   * iteration, with the cost at each.
+   */
+  function frames(wobble, loops = [loop]) {
+    const key = `${wobble}|${loops.length}`;
+    if (!cache.has(key)) {
+      const start = odometry(wobble).poses;
+      const out = solve(wobble, loops);
+      cache.set(key, { poses: [start, ...out.solutions], cost: out.cost });
+      if (cache.size > 40) cache.delete(cache.keys().next().value);
+    }
+    return cache.get(key);
+  }
+
+  return { n, truth, odometry, loop, solve, frames };
 }
 
 let shared;

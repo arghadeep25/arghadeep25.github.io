@@ -207,3 +207,19 @@ export function stretchColor(s) {
   if (s < 0.08) return alpha(C.mute, 0.7);
   return s < 0.5 ? C.warn : C.bad;
 }
+
+/** Poses part of the way from set `a` to set `b` (u = 0 gives a, u = 1 gives b). */
+export function blendPoses(a, b, u) {
+  return a.map((p, i) => {
+    const q = b[i];
+    const dth = Math.atan2(Math.sin(q[2] - p[2]), Math.cos(q[2] - p[2]));
+    return [p[0] + (q[0] - p[0]) * u, p[1] + (q[1] - p[1]) * u, p[2] + dth * u];
+  });
+}
+
+/** The poses for a fractional step of the solver: frames[0] is the start, then one set per iteration. */
+export function frameAt(frames, q) {
+  const k = clamp(Math.floor(q), 0, frames.length - 1);
+  const k2 = Math.min(k + 1, frames.length - 1);
+  return blendPoses(frames[k], frames[k2], clamp(q - k, 0, 1));
+}
