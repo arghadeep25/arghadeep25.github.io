@@ -1,3 +1,4 @@
+import './gate.js';
 import { TAU, clamp, mix } from '../core/math.js';
 import { relativePose, wrapAngle } from '../algos/geometry.js';
 
