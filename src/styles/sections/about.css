@@ -22,18 +22,54 @@
 }
 
 .about__photo {
+  position: relative;
+  isolation: isolate;
   margin-top: clamp(24px, 4vh, 40px);
   aspect-ratio: 4 / 5;
   max-width: 420px;
-  overflow: hidden;
-  border: 1px solid var(--line);
+}
+
+/* offset outline frame and a soft glow sit behind the photo */
+.about__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translate(16px, 16px);
+  background: linear-gradient(150deg, var(--accent-soft), transparent 70%);
+  border: 1px solid var(--accent-line);
   border-radius: var(--r-lg);
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.about__photo::after {
+  content: '';
+  position: absolute;
+  inset: 12% -8% -10% 12%;
+  z-index: -2;
+  background: radial-gradient(closest-side, var(--accent-soft), transparent);
+  filter: blur(30px);
 }
 
 .about__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+}
+
+@media (hover: hover) {
+  .about__photo:hover::before {
+    transform: translate(8px, 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__photo::before {
+    transition: none;
+  }
 }
 
 .about__quote {
@@ -76,6 +112,6 @@
   }
 
   .about__photo {
-    max-width: 320px;
+    max-width: 300px;
   }
 }
