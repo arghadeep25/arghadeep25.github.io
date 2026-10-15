@@ -173,12 +173,13 @@ export function initPixworm(root, photos) {
       last = now;
       return;
     }
+    tTarget = clamp(-root.getBoundingClientRect().top / innerHeight, 0, N - 1);
+    if (!pointer && Math.abs(tTarget - t) < 0.001 && now - last < 30) return;
     const dt = Math.min(0.033, (now - last) / 1000);
     last = now;
     time += dt;
     if (shownAt < 0) shownAt = time;
 
-    tTarget = clamp(-root.getBoundingClientRect().top / innerHeight, 0, N - 1);
     t += (tTarget - t) * Math.min(1, dt * 7);
 
     const radius = Math.max(80, ph * 0.2);

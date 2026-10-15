@@ -67,6 +67,7 @@ export function initBlogs(root) {
   let last = performance.now();
   function frame(now) {
     requestAnimationFrame(frame);
+    if (now - last < 30 && !tiles.some((tile) => tile.active)) return;
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
     for (const tile of tiles) {

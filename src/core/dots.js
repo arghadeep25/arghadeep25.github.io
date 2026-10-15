@@ -99,6 +99,7 @@ export function createDotField(canvas, options = {}) {
 
   function frame(now) {
     raf = requestAnimationFrame(frame);
+    if (!pointer && now - last < 30) return; // idle: 30 frames a second is enough
     const dt = Math.min(0.033, (now - last) / 1000);
     last = now;
     if (!visible || !width) return;

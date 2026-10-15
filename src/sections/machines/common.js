@@ -135,6 +135,10 @@ export function runScene(canvas, scene, { reduced = false, onFrame } = {}) {
   }
 
   const frame = (now) => {
+    if (now - last < 30) {
+      raf = requestAnimationFrame(frame); // small scenes: 30 frames a second is plenty
+      return;
+    }
     const dt = Math.min(0.05, (now - last) / 1000 || 0);
     last = now;
     scene.update(dt);

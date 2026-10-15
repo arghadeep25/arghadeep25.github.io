@@ -172,6 +172,8 @@ export function initLanding(root) {
 
   function frame(now) {
     requestAnimationFrame(frame);
+    // nothing is being pushed around: 30 frames a second look the same and cost half
+    if (!pointer && Math.abs(target - progress) < 0.0005 && now - last < 30) return;
     const dt = Math.min(0.033, (now - last) / 1000);
     last = now;
     if (!ready || !visible) return;
