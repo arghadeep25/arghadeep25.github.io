@@ -270,6 +270,95 @@
             </figcaption>
           </figure>
         </section>
+        <section class="beat" id="cost">
+          <div class="beat__text">
+            <h2>One price for the whole map</h2>
+            <p>
+              Every string charges a price for being stretched. Add the prices up and you get one
+              number for the whole map. The best map is the one with the lowest total.
+            </p>
+          </div>
+          <figure class="fig" data-fig="sum">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Four pins, four strings. The last string is a little too long, so someone has to give.
+              Try to beat the computer.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="F"><i>F</i>(<b>x</b>)</button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="sum">
+                Σ<sub class="fm__lim">ij</sub>
+              </button>
+              <button type="button" class="fm__p is-bad" data-p="eT">
+                <i>e</i><sub>ij</sub><sup>T</sup>
+              </button>
+              <button type="button" class="fm__p" data-p="W">Ω<sub>ij</sub></button>
+              <button type="button" class="fm__p is-bad" data-p="e"><i>e</i><sub>ij</sub></button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-ok" data-p="best"><b>x</b><sup>*</sup></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="argmin">argmin</button>
+              <span class="fm__op"
+                ><sub><b>x</b></sub></span
+              >
+              <button type="button" class="fm__p is-warn" data-p="F2"><i>F</i>(<b>x</b>)</button>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="F">
+                <b>F(x): the total price of a map</b>
+                <p>x is every pin at once. F says how unhappy all the strings are with it.</p>
+                <p class="more">Bigger: a worse map. Strings are stretched.</p>
+                <p class="less">Smaller: a better map. Strings are relaxed.</p>
+              </div>
+              <div class="fm__note" data-for="sum">
+                <b>Σ: add them all up</b>
+                <p>Go through every string, from pin i to pin j, and add its price.</p>
+                <p class="more">More strings: more facts to respect, and a bigger total.</p>
+                <p class="less">Fewer strings: less to respect, so the map is easier to fool.</p>
+              </div>
+              <div class="fm__note" data-for="eT">
+                <b>e<sup>T</sup>: the stretch, as a row</b>
+                <p>The error from before, turned on its side so it can be multiplied.</p>
+                <p class="more">Bigger stretch: the price grows with its square.</p>
+                <p class="less">Smaller stretch: the price shrinks fast.</p>
+              </div>
+              <div class="fm__note" data-for="W">
+                <b>Ω: how much we trust this string</b>
+                <p>It decides how loudly this string complains.</p>
+                <p class="more">Bigger: even a small stretch costs a lot.</p>
+                <p class="less">Smaller: the string can stretch for free.</p>
+              </div>
+              <div class="fm__note" data-for="e">
+                <b>e: the stretch of this string</b>
+                <p>The gap between what the sensor said and what the pins say.</p>
+                <p class="more">Bigger: the pins disagree more.</p>
+                <p class="less">Smaller: the pins agree.</p>
+              </div>
+              <div class="fm__note" data-for="best">
+                <b>x*: the best map</b>
+                <p>The star means the best one. This is the answer we are after.</p>
+                <p class="more">Higher price at x*: the sensors disagree with each other.</p>
+                <p class="less">Price near zero at x*: every string is happy.</p>
+              </div>
+              <div class="fm__note" data-for="argmin">
+                <b>argmin: the choice that makes it smallest</b>
+                <p>Try every possible map. Keep the one with the lowest price.</p>
+                <p class="more">Bigger search: more pins, more to try.</p>
+                <p class="less">Smaller search: fewer pins, faster.</p>
+              </div>
+              <div class="fm__note" data-for="F2">
+                <b>F(x): the price we are minimising</b>
+                <p>The same total as above. The optimiser slides pins to make it fall.</p>
+                <p class="more">Going up: the last move was a bad one.</p>
+                <p class="less">Going down: the map is getting better.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>
