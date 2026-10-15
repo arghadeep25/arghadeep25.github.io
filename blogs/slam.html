@@ -520,6 +520,78 @@
             </figcaption>
           </figure>
         </section>
+        <section class="beat" id="anchor">
+          <div class="beat__text">
+            <h2>Why we pin the first dot</h2>
+            <p>
+              Every string only knows the gap between two pins. It has no idea where the pins are on
+              the page. So the whole map can slide or spin and the price stays the same. To stop
+              that, we nail the first pin down.
+            </p>
+          </div>
+          <figure class="fig" data-fig="anchor">
+            <div class="fig__stage"></div>
+            <figcaption>Drag the map or turn it. Then pin the first dot and try again.</figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="Fa">
+                <i>F</i><sub>pin</sub>
+              </button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p" data-p="x0"><b>x</b><sub>0</sub></button>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-ok" data-p="xbar"><b>x̄</b><sub>0</sub></button>
+              <span class="fm__op">)</span>
+              <span class="fm__op"><sup>T</sup></span>
+              <button type="button" class="fm__p" data-p="W0">Ω<sub>0</sub></button>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p" data-p="x02"><b>x</b><sub>0</sub></button>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-ok" data-p="xbar2"><b>x̄</b><sub>0</sub></button>
+              <span class="fm__op">)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="Fa">
+                <b>F<sub>pin</sub>: the price of moving the pin</b>
+                <p>One more string. It ties the first pin to the place we say it belongs.</p>
+                <p class="more">Bigger: the first pin has been dragged from its place.</p>
+                <p class="less">Zero: the first pin is where we said it would be.</p>
+              </div>
+              <div class="fm__note" data-for="x0">
+                <b>x<sub>0</sub>: the first pin, as the solver has it</b>
+                <p>The pin the optimiser is allowed to move.</p>
+                <p class="more">Further from x̄: a bigger price.</p>
+                <p class="less">Closer to x̄: a smaller price.</p>
+              </div>
+              <div class="fm__note" data-for="xbar">
+                <b>x̄<sub>0</sub>: where we say it belongs</b>
+                <p>A fixed choice, often the origin. Everything else is measured from here.</p>
+                <p class="more">Moved: the whole map moves with it.</p>
+                <p class="less">Kept: the map stays put.</p>
+              </div>
+              <div class="fm__note" data-for="W0">
+                <b>Ω<sub>0</sub>: how hard it is nailed</b>
+                <p>A huge number, so the first pin cannot really move.</p>
+                <p class="more">Bigger: nailed down. It will not budge.</p>
+                <p class="less">Smaller: a loose nail, and the map can drift again.</p>
+              </div>
+              <div class="fm__note" data-for="x02">
+                <b>x<sub>0</sub>: the first pin, again</b>
+                <p>It appears twice because the price is a square: the gap, times the gap.</p>
+                <p class="more">Bigger gap: the price grows with its square.</p>
+                <p class="less">Smaller gap: the price falls fast.</p>
+              </div>
+              <div class="fm__note" data-for="xbar2">
+                <b>x̄<sub>0</sub>: where we say it belongs</b>
+                <p>The same fixed place as before.</p>
+                <p class="more">Moved: the whole map moves with it.</p>
+                <p class="less">Kept: the map stays put.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>
