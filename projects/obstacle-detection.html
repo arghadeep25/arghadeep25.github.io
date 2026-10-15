@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Obstacle Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="stylesheet" href="/src/styles/demos/obstacle-detection.css" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/demos/obstacle-detection.js"></script>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header class="head">
+      <h1>Obstacle Detection</h1>
+      <p>A corridor that follows the steering wheel.</p>
+      <div class="legend">
+        <span><i style="background: var(--scan)"></i>LiDAR points</span>
+        <span><i style="background: var(--ap)"></i>Ackermann ROI</span>
+        <span><i style="background: #ff6b8b"></i>Obstacle</span>
+        <span><i style="background: #5b6b86"></i>Ignored</span>
+      </div>
+    </header>
+
+    <div class="status panel"><span id="stat">Cruising</span></div>
+
+    <div class="parts" id="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Pipeline stages"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-main">
+        <div class="lab">Nearest obstacle</div>
+        <div class="big" id="dNear">—</div>
+        <div class="rows">
+          <div><span>Obstacles in corridor</span><b id="dCnt">0</b></div>
+          <div><span>Points in corridor</span><b id="dPts">0 / 0</b></div>
+          <div><span>Speed</span><b id="dSp">0 km/h</b></div>
+        </div>
+      </section>
+      <section class="b-view">
+        <div class="top">
+          <span class="lab">Ackermann ROI · vehicle view</span>
+          <span class="key"
+            ><span><i style="background: rgba(62, 155, 255, 0.5)"></i>Corridor</span
+            ><span><i style="background: #ff6b8b"></i>Obstacle</span
+            ><span><i style="background: #5b6b86"></i>Ignored</span></span
+          >
+        </div>
+        <canvas id="mini"></canvas>
+      </section>
+      <section class="b-tiles">
+        <div class="tile" id="t-str">
+          <div class="n"><i></i>Steering</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-la">
+          <div class="n"><i></i>Reach</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-hw">
+          <div class="n"><i></i>Corridor width</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-spd">
+          <div class="n"><i></i>Speed</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-brk">
+          <div class="n"><i></i>Vehicle</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-lock">
+          <div class="n"><i></i>ROI lock</div>
+          <div class="s">—</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Interactive simulation. Telemetry is illustrative. Click a stage to hold it
+    </div>
+  </body>
+</html>

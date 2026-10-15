@@ -1,119 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Pixworm | Arghadeep Mazumder</title>
-    <!-- <link rel="stylesheet" href="./assets/css/pixworm.css"> -->
-    <link rel="stylesheet" href="./assets/css/pixworm_style.css">
+    <meta
+      name="description"
+      content="Pixworm: travel, nature and wildlife photographs by Arghadeep Mazumder."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://lh3.googleusercontent.com/pw/AP1GczN2M1oDCuupFPO33IyhSL8oQswKEZLz8fjj7GyuLJryXeyNNOej-y1juMCvGVNNgCIHhh5KOe9NRXiN38Gy6RWHUaIQRkFtn3XMXl07lbvwUYUg8NZx=w2400"
-        rel="icon">
-</head>
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/pages/pixworm.js"></script>
+  </head>
+  <body data-section="pixworm" id="top">
+    <div data-shell="nav"></div>
 
-<body>
-    <header>
-        <a href="./pixworm.html">
-            <img class="logo"
-                src="https://lh3.googleusercontent.com/pw/AP1GczPMNnmuJKYJJuHsosNs26aOqMWiu1TvroXMmq4uxXXNJsFskg-L7Cx4fvFstjPitv-iw3y64U4SZZXcAhl7iNFbEX1OFFRrVKrFMa8f4RRd2L6orjU=w2400"
-                alt="Logo">
-        </a>
-
-        <nav>
-            <ul>
-                <li><a href="./pixworm.html">Home</a></li>
-                <li>
-                    <a href="./pixworm/gallery.html">Gallery</a>
-                    <ul class="submenu">
-                        <li><a href="./pixworm/nature.html">Nature</a></li>
-                        <li><a href="./pixworm/wildlife.html">Wildlife</a></li>
-                        <li><a href="./pixworm/prague.html">Prague</a></li>
-                        <!-- <li><a href="#">Monochrome</a></li> -->
-                        <li><a href="./pixworm/flowers.html">Flowers</a></li>
-                        <li><a href="./pixworm/sundry.html">Sundry</a></li>
-                        <li><a href="./pixworm/jagadhatripujo.html">Jagadhatri</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="./index.html">About</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="slideshow-container">
-        <!-- template -->
-        <!-- <img src="https://drive.google.com/thumbnail?id=&sz=w1000" alt="" class="masonry-img"> -->
-        <!-- <img class="slides" src="https://drive.google.com/thumbnail?id=12o4KFDmnDxc36jbvYj8axm6q5ePI5IGz&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1PXukBuUDN5iHnhLi9wUwL3JG8zKgKEHW&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1xIrBNWMy9BtrWbDDN9Db36wSj58SFpVd&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1C8HDKgVUT6t3KMdWsX96YSz9-waWKmuw&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1LtiSnqtwY1AwX_tsEkxuSWg6ZQyf4r0O&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1ZdvDc1vl_JZm_SBLqBhUEeLDcRm0tViX&sz=w3200"
-            alt=""> -->
-
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1VVbItoXTsIpLOh-VohGWao1o6ff9ucdy&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1Iv85wsG3ZPX9tKKMhqlIMh6gPG3RO71L&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1hEzlvet4EnRBiyqWNDLDx5H3WXyKNtgC&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=12o4KFDmnDxc36jbvYj8axm6q5ePI5IGz&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1PXukBuUDN5iHnhLi9wUwL3JG8zKgKEHW&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1xIrBNWMy9BtrWbDDN9Db36wSj58SFpVd&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1LtiSnqtwY1AwX_tsEkxuSWg6ZQyf4r0O&sz=w3200"
-            alt="">
-        <img class="slides" src="https://drive.google.com/thumbnail?id=1ZdvDc1vl_JZm_SBLqBhUEeLDcRm0tViX&sz=w3200"
-            alt="">
-
-        <div class="dots">
-            <span class="dot" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-            <span class="dot" data-index="3"></span>
-            <span class="dot" data-index="4"></span>
-            <span class="dot" data-index="5"></span>
-            <span class="dot" data-index="6"></span>
-            <span class="dot" data-index="7"></span>
+    <section class="hall" id="opening" aria-label="Pixworm photographs">
+      <div class="hall__pin">
+        <div class="hall__world"></div>
+        <div class="hall__hud">
+          <span data-group>Pixworm</span>
+          <span class="hall__line"><i></i></span>
+          <a href="#collections">Skip to collections</a>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <!-- <div class="background-shrink" id="background-shrink">
-        <a href="./pixworm/gallery.html" class="gallery-link">GALLERY</a>
-    </div> -->
-    <div class="background-shrink-img-wrapper">
-        <img src="https://drive.google.com/thumbnail?id=12o4KFDmnDxc36jbvYj8axm6q5ePI5IGz&sz=w3200" alt="Background"
-            class="background-image">
-        <a href="./pixworm/gallery.html" class="bg-gallery-link">GALLERY</a>
-    </div>
-
-    <footer>
-        <p>&copy; Arghadeep Mazumder 2025 </p>
-        <div class="social-icons">
-            <a href="https://github.com/arghadeep25" target="_blank" title="GitHub">
-                <img src="https://img.icons8.com/?size=100&id=12599&format=png&color=000000" alt="GitHub">
-            </a>
-            <a href="https://www.facebook.com/amazumder" target="_blank" title="Facebook">
-                <img src="https://img.icons8.com/?size=100&id=118467&format=png&color=000000" alt="Facebook">
-            </a>
-            <a href="https://www.youtube.com/@arghadeepmazumder2133" target="_blank" title="YouTube">
-                <img src="https://img.icons8.com/?size=100&id=37326&format=png&color=000000" alt="YouTube">
-            </a>
-            <a href="https://www.linkedin.com/in/arghadeepmazumder/" target="_blank" title="LinkedIn">
-                <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000" alt="LinkedIn">
-            </a>
+    <main>
+      <section class="pxc" id="collections" aria-labelledby="pxc-title">
+        <div class="pxc__pin">
+          <div class="wrap pxc__head">
+            <h2 id="pxc-title">Collections</h2>
+            <p>Places and subjects, one set each.</p>
+          </div>
+          <div class="pxc__track"></div>
         </div>
-    </footer>
+      </section>
 
-    <script src="./assets/js/pixworm.js"></script>
-</body>
+      <section class="pxs wrap" id="selected" aria-labelledby="pxs-title">
+        <div class="pxs__head">
+          <h2 id="pxs-title">Selected</h2>
+          <p>A few frames I keep coming back to.</p>
+        </div>
+        <div class="mosaic"></div>
+      </section>
+    </main>
 
+    <div data-shell="footer"></div>
+  </body>
 </html>

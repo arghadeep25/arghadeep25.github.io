@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>The autonomy stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demos/stack.css" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/demos/stack.js"></script>
+  </head>
+  <body>
+    <section class="stack-hero" id="hero">
+      <canvas
+        id="scene"
+        aria-label="Interactive simulation of an autonomous driving software stack"
+      ></canvas>
+      <div class="vignette"></div>
+
+      <div class="head">
+        <h1>The stack I worked on</h1>
+        <p class="sub">Drop an obstacle on the road and watch every part react.</p>
+      </div>
+
+      <div class="parts" id="parts">
+        <div class="detail" id="detail">
+          <div class="d-acc"></div>
+          <h2 id="dName"></h2>
+          <p id="dDesc"></p>
+          <div class="metrics" id="dMetrics"></div>
+        </div>
+        <nav class="rail" id="rail" aria-label="System components"></nav>
+      </div>
+
+      <div class="mhud" aria-hidden="true">
+        <div class="lim" id="mLim">40</div>
+        <div><b id="mSpeed">0</b> <span>km/h</span></div>
+        <span class="st" id="mStat">Autonomous</span>
+      </div>
+
+      <aside class="panel dock" aria-label="Vehicle dashboard">
+        <div class="b-speed">
+          <div class="c-top">
+            <div class="gear">
+              <span>P</span><span>R</span><span>N</span><span class="on">D</span>
+            </div>
+            <div class="ap">Autonomous</div>
+          </div>
+          <div class="gauge">
+            <svg viewBox="0 -8 240 180" aria-hidden="true">
+              <g id="gTicks"></g>
+              <path id="gTrack" class="track" pathLength="100" />
+              <path id="gVal" class="val" pathLength="100" stroke-dasharray="0 100" />
+              <path id="gSet" class="set" />
+            </svg>
+            <div class="gv"><b id="dSpeed">0</b><span>km/h</span></div>
+            <div class="lim" id="lim" title="Speed limit">40</div>
+          </div>
+        </div>
+        <div class="vwrap">
+          <canvas id="view"></canvas>
+          <div class="stats">
+            <div><b id="pX">0</b><span>Position X (m)</span></div>
+            <div><b id="pY">0</b><span>Position Y (m)</span></div>
+            <div><b id="pH">0°</b><span>Heading</span></div>
+            <div><b id="oN">0</b><span>Obstacles</span></div>
+            <div><b id="oD">—</b><span>Nearest</span></div>
+            <div><b id="lN">0</b><span>Lane offset (cm)</span></div>
+          </div>
+          <div class="ctl">
+            <div class="meter">
+              <div class="r"><span>Steering</span><b id="tSteer">0°</b></div>
+              <div class="t"><i id="bSteer"></i></div>
+            </div>
+            <div class="meter">
+              <div class="r"><span>Throttle</span><b id="tPedal">0%</b></div>
+              <div class="t"><i id="bPedal"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="adas" id="adas"></div>
+      </aside>
+
+      <div class="bottom">
+        <div class="hint" id="hint"><i></i>Drag an obstacle or click to add one</div>
+        <div class="foot">Interactive simulation. Telemetry is illustrative.</div>
+      </div>
+    </section>
+  </body>
+</html>

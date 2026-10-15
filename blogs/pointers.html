@@ -1,524 +1,508 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Blogs</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Pointers in C++ | Arghadeep Mazumder</title>
+    <meta
+      name="description"
+      content="Raw pointers, smart pointers and how they differ, with C++ snippets."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://lh3.googleusercontent.com/pw/AL9nZEXdP5mQzVZ_3tQ5JoH9t-3Tv_u_3tV2PYUTGhDqsIBLJ2kdDAIRqQuaFHAK1MlPqtehW03mSvCE-hGevl2kbwai87I4SOhnMIbulnE5gDEd427hxYrKG5bkRV8x41-9W-gi82uzzCGGqybxg2qbzoPOSA=s661-no?authuser=0"
-        rel="icon">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/swiper@8.4.3/swiper-bundle.min.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
-    <!-- <link href="../assets/css/blog_style.css" rel="stylesheet"> -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/css/themes/splide-skyblue.min.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/pages/inner.js"></script>
+  </head>
+  <body data-section="blogs" id="top">
+    <div data-shell="nav"></div>
+    <main class="page">
+      <article class="article">
+        <a class="page__back" href="/blogs.html">All posts</a>
+        <header class="page__head"><h1>Pointers in C++</h1></header>
 
-    <link rel="stylesheet" href="./../assets/css/code_style.css">
-    <!-- <link rel="stylesheet" href="./../assets/css/prism-atom-dark.css"> -->
-
-    <!-- Prism.js for Syntax Highlighting -->
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-atom-dark.min.css" rel="stylesheet" /> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-cpp.min.js"></script> -->
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai-sublime.min.css" rel="stylesheet"> -->
-
-
-</head>
-
-<body>
-
-    <!-- ======= Mobile nav toggle button ======= -->
-    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-
-    <!-- ======= Header ======= -->
-    <header id="header">
-        <div class="d-flex flex-column">
-            <div class="profile">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczOpO2LwpkkiEIh-X0qUCwO2Ritg3Y7c8gHbTKIHBMP3XeI7kYxt6CvtRyKpL96LtgYLDDBqDDDZHLDjQ9EDP0THCNsK5bGSMS8SKXB14k45ujKyWrGr=w2400"
-                    alt="" class="img-fluid rounded-circle">
-                <h1 class="text-light text-center"><a href="index.html">Arghadeep Mazumder</a></h1>
-                <div class="social-links mt-3 text-center">
-                    <a href="https://facebook.com/amazumder" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="https://www.instagram.com/pixworm/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                    <a href="https://github.com/arghadeep25" class="github"><i class="bx bxl-github"></i></a>
-                    <a href="https://www.linkedin.com/in/arghadeepmazumder/" class="linkedin"><i
-                            class="bx bxl-linkedin"></i></a>
-                </div>
-            </div>
-
-            <nav id="navbar" class="nav-menu navbar flex-column">
-                <ul>
-                    <li><a href="../index.html" class="nav-link scrollto active"><i
-                                class="bx bx-home"></i><span>Home</span></a></li>
-                    <li><a href="../index.html#about" class="nav-link scrollto"><i
-                                class="bx bx-user"></i><span>About</span></a></li>
-                    <li><a href="../index.html#resume" class="nav-link scrollto"><i
-                                class="bx bx-file-blank"></i><span>Resume</span></a></li>
-                    <li><a href="../pixworm.html" class="nav-link scrollto"><i
-                                class="bx bx-book-content"></i><span>Pixworm</span></a></li>
-                    <li><a href="../blogs.html" class="nav-link scrollto"><i
-                                class="bx bx-server"></i><span>Blogs</span></a></li>
-                    <li><a href="../index.html#contact" class="nav-link scrollto"><i
-                                class="bx bx-envelope"></i><span>Contact</span></a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <!-- End Header -->
-
-    <main id="main">
-        <section id="breadcrumbs" class="breadcrumbs">
-            <div class="header-container clearfix">
-                <h1 class="header-post-title-banner header-subimage">Pointers in C++</h1>
-            </div>
+        <section class="article__toc" id="content-pointer">
+          <header>
+            <h1>Content</h1>
+            <ul>
+              <li><a href="#what-is-a-pointer">What is a Pointer</a></li>
+              <li><a href="#why-pointers">Why Use Pointers</a></li>
+              <li><a href="#types-of-pointers">Types of Pointers</a></li>
+            </ul>
+          </header>
         </section>
 
-        <article class="content">
-            <section class="blog-section" id="content-pointer">
-                <header>
-                    <h1>Content</h1>
-                    <ul>
-                        <li><a href="#what-is-a-pointer">What is a Pointer</a></li>
-                        <li><a href="#why-pointers">Why Use Pointers</a></li>
-                        <li><a href="#types-of-pointers">Types of Pointers</a></li>
-                    </ul>
-                </header>
-            </section>
+        <header>
+          <!-- <h1>Difference Between Different Pointers in C++</h1> -->
+          <p>The first thing comes to mind when we hear about pointers in C++ is</p>
+          <img
+            src="https://i.pinimg.com/originals/af/b4/a8/afb4a86cf357fcbe2a372be2b5e46172.gif"
+            alt=""
+            class="content-image"
+            style="width: 40%; display: block; margin: 0 auto"
+          />
+          <p>
+            In this blog, we will discuss raw pointers, smart pointers, and their differences with
+            C++ code snippets.
+          </p>
+        </header>
 
-            <header>
-                <!-- <h1>Difference Between Different Pointers in C++</h1> -->
-                <p>The first thing comes to mind when we hear about pointers in C++ is</p>
-                <img src="https://i.pinimg.com/originals/af/b4/a8/afb4a86cf357fcbe2a372be2b5e46172.gif" alt=""
-                    class="content-image" style="width: 40%; display: block; margin: 0 auto;">
-                <p>In this blog, we will discuss raw pointers, smart pointers, and their differences with C++ code
-                    snippets.</p>
-            </header>
+        <section class="blog-section" id="what-is-a-pointer">
+          <header>
+            <h1>What is a Pointer?</h1>
+            <p>
+              So according to Wikipedia,
+              <i
+                >"a pointer is an object in many programming languages that stores a memory
+                address"</i
+              >
+            </p>
+            <p>Let's understand it simply with some real world analogy.</p>
 
-            <section class="blog-section" id="what-is-a-pointer">
-                <header>
-                    <h1>What is a Pointer?</h1>
-                    <p>So according to Wikipedia, <i>"a pointer is an object in many programming
-                            languages that stores a memory address"</i></p>
-                    <p>Let's understand it simply with some real world analogy.</p>
+            <p>
+              Imagine you have a house and you want to tell your friend the address of your house.
+              You will simply give him the address, right? Similarly, a pointer is like an address
+              that points to a memory location.
+            </p>
 
-                    <p>Imagine you have a house and you want to tell your friend the address of your house. You will
-                        simply give him the address, right? Similarly, a pointer is like an address that points to a
-                        memory location.</p>
+            <h3>Home Address</h3>
+            <ul>
+              <li><b>House</b>: This is where you live, containing all your belongings</li>
+              <li><b>Address</b>: A unique location that identifies your house</li>
+              <li>
+                <b>Address Note</b>: If you want to tell someone where your home is, you write down
+                your home’s address on a note and hand it to them. This note doesn’t contain your
+                home or belongings but simply the location of your home
+              </li>
+            </ul>
 
-                    <h5>Home Address</h5>
-                    <ul>
-                        <li><b>House</b>: This is where you live, containing all your belongings</li>
-                        <li><b>Address</b>: A unique location that identifies your house</li>
-                        <li><b>Address Note</b>: If you want to tell someone where your home is, you write down your
-                            home’s
-                            address on a note and hand it to them. This note doesn’t contain your home or belongings but
-                            simply the location of your home</Address>
-                        </li>
-                    </ul>
+            <h3>Pointer</h3>
+            <ul>
+              <li>
+                <b>Variable (Home)</b> In C++, a variable holds data, similar to how your home holds
+                belongings. For example, an int x = 5 is like the contents of your home.
+              </li>
+              <li>
+                <b>Memory Address (Home Address)</b>: Every variable in memory has an address. This
+                is like how every home has a unique address.
+              </li>
+              <li>
+                <b>Pointer (Address Note)</b>: A pointer stores the memory address of a variable. It
+                doesn’t hold the actual value of the variable but just its location (just like the
+                note with the home address doesn’t contain the home but shows where to find it).
+              </li>
+            </ul>
 
-                    <h5>Pointer</h5>
-                    <ul>
-                        <li><b>Variable (Home)</b> In C++, a variable holds data, similar to how your home holds
-                            belongings.
-                            For example, an int x = 5 is like the contents of your home.</li>
-                        <li><b>Memory Address (Home Address)</b>: Every variable in memory has an address. This is like
-                            how
-                            every home has a unique address.</li>
-                        <li><b>Pointer (Address Note)</b>: A pointer stores the memory address of a variable. It doesn’t
-                            hold
-                            the actual value of the variable but just its location (just like the note with the home
-                            address doesn’t contain the home but shows where to find it).</li>
-                    </ul>
+            <img
+              src="https://lh3.googleusercontent.com/pw/AP1GczOkTT6vMwqV1vgsFavk2YEvFNt9cDClbBaSDCM182yJ_t5tOMAD0vXjhuZp2maRiadS0zzlLHSA2SEGUueUEmXqD9LMraX01kxP4rw-vdrqUj4gN4yD=w2400"
+              alt=""
+              class="content-image"
+            />
+            <p></p>
 
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOkTT6vMwqV1vgsFavk2YEvFNt9cDClbBaSDCM182yJ_t5tOMAD0vXjhuZp2maRiadS0zzlLHSA2SEGUueUEmXqD9LMraX01kxP4rw-vdrqUj4gN4yD=w2400"
-                        alt="" class="content-image">
-                    <p></p>
+            <p>
+              Just like you can give your home address to multiple friends, you can have multiple
+              pointers pointing to the same memory location. This is useful for sharing data between
+              different parts of a program.
+            </p>
 
-                    <p>Just like you can give your home address to multiple friends, you can have multiple pointers
-                        pointing to the same memory location. This is useful for sharing data between different
-                        parts
-                        of a program.</p>
+            <p>
+              However, if you lose the note with your home address, you won’t be able to find your
+              home. Similarly, if you lose track of a pointer, you won’t be able to access the data
+              it points to.
+            </p>
 
-                    <p>However, if you lose the note with your home address, you won’t be able to find your home.
-                        Similarly, if you lose track of a pointer, you won’t be able to access the data it points
-                        to.
-                    </p>
+            <ul>
+              <li><b>Home = Variable</b></li>
+              <li><b>Address = Memory Address</b></li>
+              <li><b>Address Note = Pointer</b></li>
+              <li><b>Visiting the Home = Dereferencing the Pointer</b></li>
+              <li>
+                <b>Changing Items in the Home = Modifying the Variable through the Pointer</b>
+              </li>
+            </ul>
+            <p></p>
 
-                    <ul>
-                        <b>
-                            <li>Home = Variable</li>
-                            <li>Address = Memory Address</li>
-                            <li>Address Note = Pointer</li>
-                            <li>Visiting the Home = Dereferencing the Pointer</li>
-                            <li>Changing Items in the Home = Modifying the Variable through the Pointer</li>
-                        </b>
-                    </ul>
-                    <p></p>
+            <img
+              src="https://lh3.googleusercontent.com/pw/AP1GczNcSemPoYSAJxj7UnuYTQWXjPsjSCuSGibUhEMh43132LpsEMlN-9YM50Gnws3c4cMIzVgEl0RVKT8lf-bg_lINe8uF47beI2_7yPf26XHSSP9eBncv=w2400"
+              alt=""
+              class="content-image"
+              style="width: 75%; display: block; margin: 0 auto"
+            />
 
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNcSemPoYSAJxj7UnuYTQWXjPsjSCuSGibUhEMh43132LpsEMlN-9YM50Gnws3c4cMIzVgEl0RVKT8lf-bg_lINe8uF47beI2_7yPf26XHSSP9eBncv=w2400"
-                        alt="" class="content-image" style="width: 75%; display: block; margin: 0 auto;">
+            <p>
+              Pointers are a powerful feature of C++ that allow for dynamic memory allocation, data
+              manipulation, and more. However, they require careful handling to avoid memory leaks
+              and undefined behavior.
+            </p>
+          </header>
+        </section>
 
-                    <p>Pointers are a powerful feature of C++ that allow for dynamic memory allocation, data
-                        manipulation, and more. However, they require careful handling to avoid memory leaks and
-                        undefined behavior.</p>
-                </header>
-            </section>
+        <section class="blog-section" id="why-pointers">
+          <header>
+            <h1>Why Use Pointers?</h1>
+            <p>Pointers are a fundamental concept in C++ and are used for various reasons:</p>
+            <ul>
+              <li>
+                <b>Dynamic Memory Allocation</b>: Pointers allow you to allocate memory dynamically
+                at runtime, enabling flexible memory management.
+              </li>
+              <li>
+                <b>Passing Parameters by Reference</b>: Pointers can be used to pass parameters by
+                reference, allowing functions to modify the original data.
+              </li>
+              <li>
+                <b>Efficient Data Access</b>: Pointers provide direct access to memory locations,
+                enabling efficient data manipulation.
+              </li>
+              <li>
+                <b>Pointer Arithmetic</b>: Pointers support arithmetic operations, such as
+                incrementing and decrementing, for navigating through data structures.
+              </li>
+              <li>
+                <b>Function Pointers</b>: Pointers can point to functions, enabling dynamic function
+                calls and callbacks.
+              </li>
+            </ul>
+            <p>
+              While pointers offer powerful capabilities, they also come with risks such as memory
+              leaks, dangling pointers, and undefined behavior. It is essential to use pointers
+              carefully and follow best practices to avoid common pitfalls.
+            </p>
+          </header>
+        </section>
 
-            <section class="blog-section" id="why-pointers">
-                <header>
-                    <h1>Why Use Pointers?</h1>
-                    <p>Pointers are a fundamental concept in C++ and are used for various reasons:</p>
-                    <ul>
-                        <li><b>Dynamic Memory Allocation</b>: Pointers allow you to allocate memory dynamically at
-                            runtime, enabling flexible memory management.</li>
-                        <li><b>Passing Parameters by Reference</b>: Pointers can be used to pass parameters by
-                            reference, allowing functions to modify the original data.</li>
-                        <li><b>Efficient Data Access</b>: Pointers provide direct access to memory locations, enabling
-                            efficient data manipulation.</li>
-                        <li><b>Pointer Arithmetic</b>: Pointers support arithmetic operations, such as incrementing and
-                            decrementing, for navigating through data structures.</li>
-                        <li><b>Function Pointers</b>: Pointers can point to functions, enabling dynamic function calls
-                            and callbacks.</li>
-                    </ul>
-                    <p>While pointers offer powerful capabilities, they also come with risks such as memory leaks,
-                        dangling pointers, and undefined behavior. It is essential to use pointers carefully and
-                        follow best practices to avoid common pitfalls.</p>
-                </header>
-            </section>
+        <section class="blog-section" id="types-of-pointers">
+          <header>
+            <h1>Types of Pointers</h1>
+            <p>
+              Now that we understand the basics of pointers, let’s explore the different types of
+              pointers in C++.
+            </p>
+            <p>The following types of pointers are commonly used in C++:</p>
+            <ul>
+              <li><a href="#null-pointer">Raw Pointer</a></li>
+              <li><a href="#void-pointer">Void Pointer</a></li>
+              <li><a href="#pointer-to-pointer">Pointer to Pointer</a></li>
+              <li><a href="#function-pointer">Function Pointer</a></li>
+              <li><a href="#array-pointer">Array Pointer</a></li>
+              <li><a href="#const-pointer">Const Pointer</a></li>
+              <li><a href="#pointer-to-const">Pointer to Constant</a></li>
+              <li><a href="#smart-pointers">Smart Pointer</a></li>
+            </ul>
+            <img
+              src="https://lh3.googleusercontent.com/pw/AP1GczMO81lOB8lM1APj3qoWipxRbUDti5bCh2TrDRa2L4bG9DOQhSxED7hhe8Dci81NZobkbzY9HN1odxc7ropsLluE9vSK0nVcUySBEL5KEGLbtlTZNLn5=w2400"
+              alt="Address"
+              class="content-image"
+            />
+            <p>
+              In this blog, we will discuss raw pointers, smart pointers, and their differences with
+              C++ code snippets.
+            </p>
+          </header>
+        </section>
 
-            <section class="blog-section" id="types-of-pointers">
-                <header>
-                    <h1>Types of Pointers</h1>
-                    <p>Now that we understand the basics of pointers, let’s explore the different types of pointers
-                        in C++.</p>
-                    <p>The following types of pointers are commonly used in C++:</p>
-                    <ul>
-                        <li><a href="#null-pointer">Raw Pointer</a></li>
-                        <li><a href="#void-pointer">Void Pointer</a></li>
-                        <li><a href="#pointer-to-pointer">Pointer to Pointer</a></li>
-                        <li><a href="#function-pointer">Function Pointer</a></li>
-                        <li><a href="#array-pointer">Array Pointer</a></li>
-                        <li><a href="#const-pointer">Const Pointer</a></li>
-                        <li><a href="#pointer-to-const">Pointer to Constant</a></li>
-                        <li><a href="#smart-pointers">Smart Pointer</a></li>
-                    </ul>
-                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMO81lOB8lM1APj3qoWipxRbUDti5bCh2TrDRa2L4bG9DOQhSxED7hhe8Dci81NZobkbzY9HN1odxc7ropsLluE9vSK0nVcUySBEL5KEGLbtlTZNLn5=w2400"
-                        alt="Address" class="content-image">
-                    <p>In this blog, we will discuss raw pointers, smart pointers, and their differences with C++ code
-                        snippets.</p>
-                </header>
-            </section>
-
-            <section class="blog-section" id="null-pointer">
-                <h2>Null Pointer</h2>
-                <p>A null pointer is a pointer that does not point to any object or function.</p>
-                <div class="code-snippet">
-                    <pre><code class="theme-atom-one-dark">int* p = nullptr; // C++ 11
+        <section class="blog-section" id="null-pointer">
+          <h2>Null Pointer</h2>
+          <p>A null pointer is a pointer that does not point to any object or function.</p>
+          <div class="code-snippet">
+            <pre><code>int* p = nullptr; // C++ 11
 int *p = NULL; // C++ 98</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Easy to check against before dereferencing, preventing accidental access to invalid memory.
-                    </li>
-                    <li>Useful for indicating that a pointer does not point to any valid object.</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>
+              Easy to check against before dereferencing, preventing accidental access to invalid
+              memory.
+            </li>
+            <li>Useful for indicating that a pointer does not point to any valid object.</li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>Dereferencing a null pointer results in undefined behavior.</li>
-                    <li>Requires careful initialization and checking.</li>
-                </ul>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>Dereferencing a null pointer results in undefined behavior.</li>
+            <li>Requires careful initialization and checking.</li>
+          </ul>
 
-                <h5>Use</h5>
-                <ul>
-                    <li>To initialize pointers that are not yet assigned a valid memory address.</li>
-                    <li>To signify the end of a data structure (e.g., linked lists).</li>
-                </ul>
-            </section>
+          <h3>Use</h3>
+          <ul>
+            <li>To initialize pointers that are not yet assigned a valid memory address.</li>
+            <li>To signify the end of a data structure (e.g., linked lists).</li>
+          </ul>
+        </section>
 
-            <section class="blog-section" id="void-pointer">
-                <h2>Void Pointer</h2>
-                <p>A pointer that can point to any data type but cannot be dereferenced directly without casting. It is
-                    often used for generic programming.</p>
-                <div class="code-snippet">
-                    <pre><code class="cpp">void* ptr;
+        <section class="blog-section" id="void-pointer">
+          <h2>Void Pointer</h2>
+          <p>
+            A pointer that can point to any data type but cannot be dereferenced directly without
+            casting. It is often used for generic programming.
+          </p>
+          <div class="code-snippet">
+            <pre><code class="cpp">void* ptr;
 int x = 10;
-ptr = &x; // ptr points to an int</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
+ptr = &amp;x; // ptr points to an int</code></pre>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Can point to any data type, providing flexibility in handling different types.</li>
-                    <li>Useful for implementing generic functions.</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>Can point to any data type, providing flexibility in handling different types.</li>
+            <li>Useful for implementing generic functions.</li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>Cannot be dereferenced directly; requires casting to a specific pointer type first.</li>
-                    <li>Can lead to type safety issues if misused.</li>
-                </ul>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>
+              Cannot be dereferenced directly; requires casting to a specific pointer type first.
+            </li>
+            <li>Can lead to type safety issues if misused.</li>
+          </ul>
 
-                <h5>Use</h5>
-                <ul>
-                    <li>In functions that need to accept parameters of any type (e.g., qsort).</li>
-                    <li>In generic data structures (e.g., linked lists or stacks).</li>
-                </ul>
-            </section>
+          <h3>Use</h3>
+          <ul>
+            <li>In functions that need to accept parameters of any type (e.g., qsort).</li>
+            <li>In generic data structures (e.g., linked lists or stacks).</li>
+          </ul>
+        </section>
 
-            <section class="blog-section" id="pointer-to-pointer">
-                <h2>Pointer to Pointer</h2>
-                <p>A pointer that holds the address of another pointer. This is useful for dynamic memory allocation and
-                    multi-dimensional arrays.</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">int** ptr; // pointer to a pointer of int</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
+        <section class="blog-section" id="pointer-to-pointer">
+          <h2>Pointer to Pointer</h2>
+          <p>
+            A pointer that holds the address of another pointer. This is useful for dynamic memory
+            allocation and multi-dimensional arrays.
+          </p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">int** ptr; // pointer to a pointer of int</code></pre>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Allows for multi-level indirection, useful in dynamic memory management.</li>
-                    <li>Facilitates managing arrays of pointers (e.g., 2D arrays).</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>Allows for multi-level indirection, useful in dynamic memory management.</li>
+            <li>Facilitates managing arrays of pointers (e.g., 2D arrays).</li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>More complex syntax can lead to confusion.</li>
-                    <li>Requires careful memory management to avoid memory leaks.</li>
-                </ul>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>More complex syntax can lead to confusion.</li>
+            <li>Requires careful memory management to avoid memory leaks.</li>
+          </ul>
 
-                <h5>Use</h5>
-                <ul>
-                    <li>When you need to modify a pointer in a function.</li>
-                    <li>In dynamic memory allocation for multi-dimensional arrays.</li>
-                </ul>
-            </section>
+          <h3>Use</h3>
+          <ul>
+            <li>When you need to modify a pointer in a function.</li>
+            <li>In dynamic memory allocation for multi-dimensional arrays.</li>
+          </ul>
+        </section>
 
-            <section class="blog-section" id="function-pointer">
-                <h2>Function Pointer</h2>
-                <p> A pointer that points to a function instead of a variable. It allows you to call functions
-                    dynamically.</p>
-                <div class="code-snippet">
-                    <pre><code class="theme-one-dark-atom language-cpp">void (*funcPtr)(int); // pointer to a function taking an int argument</code></pre>
-                    <button class="copy-button">Copy</button>
-                </div>
+        <section class="blog-section" id="function-pointer">
+          <h2>Function Pointer</h2>
+          <p>
+            A pointer that points to a function instead of a variable. It allows you to call
+            functions dynamically.
+          </p>
+          <div class="code-snippet">
+            <pre><code class="theme-one-dark-atom language-cpp">void (*funcPtr)(int); // pointer to a function taking an int argument</code></pre>
+            <button class="copy-button">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Enables dynamic function calls and callbacks, enhancing flexibility.</li>
-                    <li>Facilitates implementing function tables or dispatch mechanisms.</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>Enables dynamic function calls and callbacks, enhancing flexibility.</li>
+            <li>Facilitates implementing function tables or dispatch mechanisms.</li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>Complexity in managing the function signature and pointer.</li>
-                    <li>Increased risk of runtime errors if the wrong function is called.</li>
-                </ul>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>Complexity in managing the function signature and pointer.</li>
+            <li>Increased risk of runtime errors if the wrong function is called.</li>
+          </ul>
 
-                <h5>Use</h5>
-                <ul>
-                    <li>To implement callbacks or event handling mechanisms.</li>
-                    <li>In situations requiring dynamic function selection at runtime.</li>
-                </ul>
-            </section>
+          <h3>Use</h3>
+          <ul>
+            <li>To implement callbacks or event handling mechanisms.</li>
+            <li>In situations requiring dynamic function selection at runtime.</li>
+          </ul>
+        </section>
 
-            <section class="blog-section" id="array-pointer">
-                <h2>Array Pointer</h2>
-                <p> A pointer that points to the first element of an array. It is commonly used for iterating through
-                    arrays.</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">int arr[5] = {1, 2, 3, 4, 5};
+        <section class="blog-section" id="array-pointer">
+          <h2>Array Pointer</h2>
+          <p>
+            A pointer that points to the first element of an array. It is commonly used for
+            iterating through arrays.
+          </p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">int arr[5] = {1, 2, 3, 4, 5};
 int* ptr = arr; // ptr points to the first element of arr</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Simplifies accessing elements of an array through pointer arithmetic.</li>
-                    <li>Can be used interchangeably with regular array notation.</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>Simplifies accessing elements of an array through pointer arithmetic.</li>
+            <li>Can be used interchangeably with regular array notation.</li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>Can lead to out-of-bounds access if not handled carefully.</li>
-                    <li>Syntax can be confusing for beginners.</li>
-                </ul>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>Can lead to out-of-bounds access if not handled carefully.</li>
+            <li>Syntax can be confusing for beginners.</li>
+          </ul>
 
-                <h5>Use</h5>
-                <ul>
-                    <li>For iterating over arrays and performing operations on their elements.
-                    </li>
-                    <li>In functions where arrays are passed as parameters.</li>
-                </ul>
-            </section>
+          <h3>Use</h3>
+          <ul>
+            <li>For iterating over arrays and performing operations on their elements.</li>
+            <li>In functions where arrays are passed as parameters.</li>
+          </ul>
+        </section>
 
-            <section class="blog-section" id="const-pointer">
-                <h2>Const Pointer</h2>
-                <p> A pointer that points to a constant value. The value it points to cannot be modified through the
-                    pointer.</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">const int* ptr = &x; // ptr points to a constant int</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
+        <section class="blog-section" id="const-pointer">
+          <h2>Const Pointer</h2>
+          <p>
+            A pointer that points to a constant value. The value it points to cannot be modified
+            through the pointer.
+          </p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">const int* ptr = &amp;x; // ptr points to a constant int</code></pre>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Ensures that the value being pointed to cannot be changed through the pointer.</li>
-                    <li>Enhances code safety by preventing unintended modifications.</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>Ensures that the value being pointed to cannot be changed through the pointer.</li>
+            <li>Enhances code safety by preventing unintended modifications.</li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>If the data type changes, the const pointer must be updated to reflect the new type.</li>
-                    <li>Still allows reassignment of the pointer itself unless combined with const.</li>
-                </ul>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>
+              If the data type changes, the const pointer must be updated to reflect the new type.
+            </li>
+            <li>Still allows reassignment of the pointer itself unless combined with const.</li>
+          </ul>
 
-                <h5>Use</h5>
-                <ul>
-                    <li>When passing pointers to functions where the function should not modify the pointed-to value.
-                    </li>
-                    <li>In API design to convey intent of immutability.</li>
-                </ul>
-            </section>
+          <h3>Use</h3>
+          <ul>
+            <li>
+              When passing pointers to functions where the function should not modify the pointed-to
+              value.
+            </li>
+            <li>In API design to convey intent of immutability.</li>
+          </ul>
+        </section>
 
-            <section class="blog-section" id="pointer-to-const">
-                <h2>Pointer to Constant</h2>
-                <p> A constant pointer that cannot be reassigned to point to another memory address after its
-                    initialization.</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">int* const ptr = &x; // ptr cannot be changed to point to another address</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
+        <section class="blog-section" id="pointer-to-const">
+          <h2>Pointer to Constant</h2>
+          <p>
+            A constant pointer that cannot be reassigned to point to another memory address after
+            its initialization.
+          </p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">int* const ptr = &amp;x; // ptr cannot be changed to point to another address</code></pre>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Prevents modification of the pointed-to data, ensuring data integrity.</li>
-                    <li>Useful in function arguments to ensure that the original data remains unchanged.</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>Prevents modification of the pointed-to data, ensuring data integrity.</li>
+            <li>
+              Useful in function arguments to ensure that the original data remains unchanged.
+            </li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>Can cause confusion regarding what is modifiable versus what is not.</li>
-                    <li>Requires more careful design when passing data to functions.
-                    </li>
-                </ul>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>Can cause confusion regarding what is modifiable versus what is not.</li>
+            <li>Requires more careful design when passing data to functions.</li>
+          </ul>
 
-                <h5>Use</h5>
-                <ul>
-                    <li>In function parameters where the original data should remain unchanged.</li>
-                    <li>In contexts where you want to ensure the constancy of the data being accessed.</li>
-                </ul>
-            </section>
+          <h3>Use</h3>
+          <ul>
+            <li>In function parameters where the original data should remain unchanged.</li>
+            <li>In contexts where you want to ensure the constancy of the data being accessed.</li>
+          </ul>
+        </section>
 
-
-            <section class="blog-section" id="raw-pointers">
-                <h2>Raw Pointers</h2>
-                <p>Raw pointers are the simplest form of pointers in C++. Here's an example:</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">// Example of raw pointer in C++
+        <section class="blog-section" id="raw-pointers">
+          <h2>Raw Pointers</h2>
+          <p>Raw pointers are the simplest form of pointers in C++. Here's an example:</p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">// Example of raw pointer in C++
 int a = 10;
-int* p = &a;
-std::cout << "Value of a: " << *p << std::endl;</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
+int* p = &amp;a;
+std::cout &lt;&lt; "Value of a: " &lt;&lt; *p &lt;&lt; std::endl;</code></pre>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
 
-                <h5>Advantages</h5>
-                <ul>
-                    <li>Simple and easy to understand.</li>
-                    <li>Direct access to memory addresses.</li>
-                    <li>Efficient in terms of performance.</li>
-                </ul>
+          <h3>Advantages</h3>
+          <ul>
+            <li>Simple and easy to understand.</li>
+            <li>Direct access to memory addresses.</li>
+            <li>Efficient in terms of performance.</li>
+          </ul>
 
-                <h5>Disadvantages</h5>
-                <ul>
-                    <li>Manual memory management is required, increasing the risk of memory leaks.</li>
-                    <li>Pointer arithmetic can lead to errors.</li>
-                    <li>Accessing uninitialized or dangling pointers can cause undefined behavior.</li>
-                </ul>
-            </section>
+          <h3>Disadvantages</h3>
+          <ul>
+            <li>Manual memory management is required, increasing the risk of memory leaks.</li>
+            <li>Pointer arithmetic can lead to errors.</li>
+            <li>Accessing uninitialized or dangling pointers can cause undefined behavior.</li>
+          </ul>
+        </section>
 
+        <section class="blog-section" id="smart-pointers">
+          <h2>Smart Pointers</h2>
+          <p>
+            Smart pointers are objects that act like pointers but provide automatic memory
+            management.
+          </p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">// Example of smart pointer in C++
+#include &lt;memory&gt;
 
-            <section class="blog-section" id="smart-pointers">
-                <h2>Smart Pointers</h2>
-                <p>Smart pointers are objects that act like pointers but provide automatic memory management.</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">// Example of smart pointer in C++
-#include <memory>
+std::unique_ptr&lt;int&gt; p = std::make_unique&lt;int&gt;(10);
+std::cout &lt;&lt; "Value: " &lt;&lt; *p &lt;&lt; std::endl;</code></pre>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
+        </section>
 
-std::unique_ptr<int> p = std::make_unique<int>(10);
-std::cout << "Value: " << *p << std::endl;</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
-            </section>
+        <section class="blog-section" id="shared-pointers">
+          <h2>Shared Pointers</h2>
+          <p>Shared pointers allow multiple pointers to share ownership of an object.</p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">// Example of shared pointer in C++
+#include &lt;memory&gt;
 
-            <section class="blog-section" id="shared-pointers">
-                <h2>Shared Pointers</h2>
-                <p>Shared pointers allow multiple pointers to share ownership of an object.</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">// Example of shared pointer in C++
-#include <memory>
+std::shared_ptr&lt;int&gt; p1 = std::make_shared&lt;int&gt;(10);
+std::shared_ptr&lt;int&gt; p2 = p1; // p1 and p2 share ownership
+std::cout &lt;&lt; "Value: " &lt;&lt; *p1 &lt;&lt; std::endl;</code></pre>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
+        </section>
 
-std::shared_ptr<int> p1 = std::make_shared<int>(10);
-std::shared_ptr<int> p2 = p1; // p1 and p2 share ownership
-std::cout << "Value: " << *p1 << std::endl;</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
-            </section>
+        <section class="blog-section" id="weak-pointers">
+          <h2>Weak Pointers</h2>
+          <p>Weak pointers provide a way to reference an object without affecting its lifetime.</p>
+          <div class="code-snippet">
+            <pre><code class="language-cpp">// Example of weak pointer in C++
+#include &lt;memory&gt;
 
-            <section class="blog-section" id="weak-pointers">
-                <h2>Weak Pointers</h2>
-                <p>Weak pointers provide a way to reference an object without affecting its lifetime.</p>
-                <div class="code-snippet">
-                    <pre><code class="language-cpp">// Example of weak pointer in C++
-#include <memory>
-
-std::shared_ptr<int> p1 = std::make_shared<int>(10);
-std::weak_ptr<int> p2 = p1; // p2 does not affect the reference count
+std::shared_ptr&lt;int&gt; p1 = std::make_shared&lt;int&gt;(10);
+std::weak_ptr&lt;int&gt; p2 = p1; // p2 does not affect the reference count
 if (auto sp = p2.lock()) { // check if p1 is still valid
-    std::cout << "Value: " << *sp << std::endl;
+    std::cout &lt;&lt; "Value: " &lt;&lt; *sp &lt;&lt; std::endl;
 }</code></pre>
-                    <button class="copy-button" aria-label="Copy code">Copy</button>
-                </div>
-            </section>
-
-        </article>
+            <button class="copy-button" aria-label="Copy code">Copy</button>
+          </div>
+        </section>
+      </article>
     </main>
-
-    <footer id="footer">
-        <div class="container">
-            <div class="copyright">
-                &copy; <strong><span>Arghadeep Mazumder</span></strong>. All Rights Reserved
-            </div>
-        </div>
-    </footer>
-
-    <a href="#" class="back-to-top"><i class="bi bi-arrow-up-short"></i></a>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/glightbox.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8.4.3/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/js/splide.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
-    <script src="../assets/js/main.js"></script>
-    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
-</body>
-
+    <div data-shell="footer"></div>
+  </body>
 </html>

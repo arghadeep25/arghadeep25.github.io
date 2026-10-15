@@ -1,0 +1,34 @@
+/* Pill buttons. Use on <a> or <button>. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 24px;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    transform var(--t-base) var(--ease-out),
+    background var(--t-base);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 14px 44px -12px rgba(139, 124, 255, 0.7);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  border-color: var(--line);
+  background: var(--glass);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

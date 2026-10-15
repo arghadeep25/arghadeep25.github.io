@@ -1,0 +1,162 @@
+.pixworm {
+  position: relative;
+}
+
+.pixworm__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.pixworm__pin canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pixworm__pin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 120% 90% at 50% 50%,
+    transparent 55%,
+    rgba(5, 7, 13, 0.7) 100%
+  );
+}
+
+/* invisible, one viewport tall per photo: gives the pinned stage something to scroll through */
+.pixworm__steps {
+  position: relative;
+  margin-top: -100vh;
+  margin-top: -100svh;
+  pointer-events: none;
+}
+
+.pixworm__steps i {
+  display: block;
+  height: 100vh;
+  height: 100svh;
+}
+
+.pixworm__head {
+  position: absolute;
+  z-index: var(--z-content);
+  left: var(--gut);
+  top: clamp(84px, 13vh, 120px);
+  pointer-events: none;
+}
+
+.pixworm__head h2 {
+  font-size: clamp(40px, 6.2vw, 92px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.pixworm__head p {
+  max-width: 34ch;
+  margin-top: 12px;
+  color: var(--ink-mute);
+  font-size: clamp(13px, 1.15vw, 16px);
+  line-height: 1.5;
+}
+
+.pixworm__head small {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-dim);
+  font-size: 0.85em;
+}
+
+.pixworm__foot {
+  position: absolute;
+  z-index: 3;
+  left: var(--gut);
+  right: var(--gut);
+  bottom: clamp(20px, 4.5vh, 44px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.pixworm__caption strong {
+  display: block;
+  font-size: clamp(18px, 1.8vw, 26px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  animation: pixworm-caption 0.6s var(--ease-out);
+}
+
+.pixworm__caption span {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-dim);
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.pixworm__ticks {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: clamp(26px, 5vh, 52px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.pixworm__ticks button {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.22);
+  transition:
+    width 0.4s var(--ease-out),
+    background 0.3s;
+}
+
+.pixworm__ticks button.is-active {
+  width: 28px;
+  background: var(--accent);
+}
+
+.pixworm__hint {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: clamp(50px, 9.5vh, 86px);
+  color: var(--ink-mute);
+  font-size: 12px;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: opacity 0.5s;
+}
+
+@keyframes pixworm-caption {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (max-width: 700px) {
+  .pixworm__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .pixworm__ticks,
+  .pixworm__hint,
+  .pixworm__head p {
+    display: none;
+  }
+}

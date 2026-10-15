@@ -1,0 +1,400 @@
+/* Projects: the autonomy stack, one chapter per system, each showing its live simulation. */
+.projects {
+  padding-top: clamp(110px, 18vh, 190px);
+}
+
+.projects__intro h2 {
+  max-width: 12ch;
+  font-size: clamp(44px, 8.4vw, 116px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.projects__intro h2 b {
+  font-weight: 600;
+}
+
+.projects__intro p {
+  max-width: 46ch;
+  margin-top: 28px;
+  color: var(--ink-mute);
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.5;
+}
+
+/* a live simulation shown on a "screen": rendered at 1440x900 and scaled to fit */
+.display {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: clamp(14px, 2vw, 26px);
+  background: #04070d;
+  box-shadow:
+    0 60px 120px -40px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 0 90px -30px rgba(62, 155, 255, 0.35);
+}
+
+.display__screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 900px;
+  transform-origin: 0 0;
+}
+
+.display iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #04070d;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s ease;
+}
+
+.display iframe.is-shown {
+  opacity: 1;
+}
+
+.display.is-live iframe {
+  pointer-events: auto;
+}
+
+.display__catch {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.display.is-live .display__catch {
+  display: none;
+}
+
+.display__hint {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+  pointer-events: none;
+  border-radius: var(--r-pill);
+}
+
+.display:hover:not(.is-live) .display__hint,
+.display:focus-within:not(.is-live) .display__hint {
+  opacity: 1;
+  transform: none;
+}
+
+.display__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+  color: var(--ink-dim);
+  font-size: var(--fs-small);
+}
+
+.display__caption a {
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-mute);
+}
+
+.display__caption a:hover {
+  color: var(--ink);
+}
+
+.projects__hero {
+  padding: 56px 0 clamp(80px, 14vh, 160px);
+}
+
+.projects__hero .display {
+  transform: scale(var(--hs, 0.92));
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+/* chapters: the page scrolls, the simulation changes */
+.projects__chapters {
+  position: relative;
+  height: calc(var(--n, 6) * 92vh + 40vh);
+}
+
+.projects__stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.projects__stage .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 20fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: center;
+  width: 100%;
+  max-width: var(--maxw-wide);
+}
+
+.projects__copy {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 26px;
+  min-height: 340px;
+}
+
+.projects__rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.projects__rail::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.projects__fill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 2px;
+  height: calc((100% - 20px) * var(--p, 0));
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.projects__rail button {
+  position: relative;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg);
+  transition:
+    border-color 0.3s,
+    background 0.3s,
+    transform 0.3s;
+}
+
+.projects__rail button.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  transform: scale(1.15);
+}
+
+.projects__rail button.is-done {
+  border-color: var(--accent);
+}
+
+.projects__slides {
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+  pointer-events: none;
+}
+
+.slide.is-active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.slide__kicker {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+.slide h3 {
+  font-size: clamp(32px, 3.9vw, 56px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.slide h3 b {
+  font-weight: 600;
+}
+
+.slide p {
+  max-width: 40ch;
+  margin-top: 18px;
+  color: var(--ink-mute);
+  font-size: clamp(15px, 1.25vw, 17.5px);
+}
+
+.slide__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+  list-style: none;
+}
+
+.slide__open {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 26px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.slide__open:hover {
+  border-color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .projects__chapters {
+    height: calc(var(--n, 6) * 80vh + 30vh);
+  }
+
+  .projects__stage {
+    align-items: flex-start;
+    padding-top: 68px;
+  }
+
+  .projects__stage .wrap {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .projects__stage .display {
+    order: -1;
+    aspect-ratio: 16 / 11;
+  }
+
+  .projects__copy {
+    grid-template-columns: 18px 1fr;
+    gap: 16px;
+    min-height: 290px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects__hero .display {
+    transform: none !important;
+  }
+}
+
+/* More work: preview tiles under the chapters */
+.more {
+  padding-block: clamp(56px, 9vw, 120px);
+}
+
+.more__title {
+  margin-bottom: 28px;
+  font-size: var(--fs-title);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.more__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2.4vw, 32px);
+}
+
+.more__tile {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.more__shot {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: #04070d;
+  transition:
+    border-color 0.25s,
+    transform 0.35s var(--ease-out);
+}
+
+.more__tile:hover .more__shot,
+.more__tile:focus-visible .more__shot {
+  border-color: var(--accent-line);
+  transform: translateY(-4px);
+}
+
+.more__screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 900px;
+  transform-origin: 0 0;
+}
+
+.more__screen iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.more__screen iframe.is-shown {
+  opacity: 1;
+}
+
+.more__tile h4 {
+  margin: 18px 0 6px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.more__tile p {
+  max-width: 46ch;
+  color: var(--ink-mute);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .more__grid {
+    grid-template-columns: 1fr;
+  }
+}

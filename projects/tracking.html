@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Object Tracking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="stylesheet" href="/src/styles/demos/tracking.css" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/demos/tracking.js"></script>
+  </head>
+  <body>
+    <canvas
+      id="scene"
+      aria-label="Simulation of detecting and tracking road users from a moving vehicle"
+    ></canvas>
+
+    <header class="head">
+      <h1>Object Tracking</h1>
+      <p>Detect it. Follow it. Predict where it goes.</p>
+      <div class="legend">
+        <span><i class="ring"></i>Detection</span>
+        <span><i class="box"></i>Tracked object</span>
+        <span><i class="el"></i>Uncertainty</span>
+        <span><i class="ds"></i>Predicted path</span>
+      </div>
+    </header>
+
+    <div class="status panel"><span id="stat">Tracking</span></div>
+
+    <div class="parts" id="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Stages"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-main">
+        <div class="lab">Tracked objects</div>
+        <div class="big" id="dN">0</div>
+        <div class="rows">
+          <div><span>Detections this scan</span><b id="dDet">0</b></div>
+          <div><span>False alarms rejected</span><b id="dGh">0</b></div>
+          <div><span>Found again after a blind spot</span><b id="dRec">0</b></div>
+        </div>
+      </section>
+      <section class="b-view">
+        <div class="charts">
+          <div class="ch">
+            <div class="top">
+              <span class="lab">Position error · last 20 s</span>
+              <span class="key"
+                ><span><i style="background: #8fa0bd"></i>Raw detection</span
+                ><span><i style="background: var(--tr)"></i>Tracked</span></span
+              >
+            </div>
+            <canvas id="chE"></canvas>
+          </div>
+          <div class="ch">
+            <div class="top">
+              <span class="lab" id="chSName">Speed of the nearest object</span>
+              <span class="key"
+                ><span><i style="background: #8fa0bd"></i>Actual</span
+                ><span><i style="background: var(--tr)"></i>Estimated</span></span
+              >
+            </div>
+            <canvas id="chS"></canvas>
+          </div>
+        </div>
+      </section>
+      <section class="b-tiles">
+        <div class="tile" id="t-det">
+          <div class="n"><i></i>Detector</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-asc">
+          <div class="n"><i></i>Association</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-mod">
+          <div class="n"><i></i>Motion model</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-prd">
+          <div class="n"><i></i>Prediction</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-occ">
+          <div class="n"><i></i>Blind spots</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-ego">
+          <div class="n"><i></i>Own vehicle</div>
+          <div class="s">—</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Interactive simulation. Telemetry is illustrative. Click a stage to hold it
+    </div>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Mapping Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/demos/mapping.js"></script>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header class="head">
+      <h1>Mapping Service</h1>
+      <p>Many scans, one consistent map.</p>
+      <div class="legend">
+        <span><i style="background: #7fd6ff"></i>Map</span>
+        <span><i class="ln" style="background: #3e9bff"></i>Optimised path</span>
+        <span><i class="ds"></i>Odometry only</span>
+        <span><i class="ring"></i>Real position</span>
+        <span><i class="ln" style="background: rgba(170, 190, 225, 0.5)"></i>Real environment</span>
+      </div>
+    </header>
+
+    <div class="status panel"><span id="stat">Mapping</span></div>
+
+    <div class="speed panel" id="speed" role="group" aria-label="Playback speed"></div>
+
+    <div class="parts" id="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Pipeline stages"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-main">
+        <div class="lab">Position drift</div>
+        <div class="big" id="dDrift">0.0<small>m</small></div>
+        <div class="rows">
+          <div><span>Vehicle speed</span><b id="dSp">0 km/h</b></div>
+          <div><span>Keyframes</span><b id="dKf">0</b></div>
+          <div><span>Loop closures</span><b id="dLc">0</b></div>
+          <div><span>Map points</span><b id="dPts">0</b></div>
+        </div>
+      </section>
+      <section class="b-view">
+        <div class="top"><span class="lab" id="vLab">Sensors</span></div>
+        <canvas id="mini"></canvas>
+      </section>
+      <section class="b-tiles">
+        <div class="tile" id="t-lid">
+          <div class="n"><i></i>LiDAR</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-imu">
+          <div class="n"><i></i>IMU</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-gps">
+          <div class="n"><i></i>GPS</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-reg">
+          <div class="n"><i></i>Registration</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-gra">
+          <div class="n"><i></i>Graph</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-loo">
+          <div class="n"><i></i>Loop closure</div>
+          <div class="s">—</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Interactive simulation. Telemetry is illustrative. Click a stage to hold it. + / − changes
+      playback speed
+    </div>
+  </body>
+</html>

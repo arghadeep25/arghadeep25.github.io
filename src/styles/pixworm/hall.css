@@ -1,0 +1,219 @@
+/* The opening: photographs hanging in depth, flown through by scrolling. */
+.hall {
+  position: relative;
+  background: #04070d;
+}
+
+.hall__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  perspective: 900px;
+  perspective-origin: 50% 50%;
+}
+
+/* a faint vignette keeps the eye on the middle and the nav readable */
+.hall__pin::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 85% 75% at 50% 50%, transparent 55%, rgba(4, 7, 13, 0.85)),
+    linear-gradient(to bottom, rgba(4, 7, 13, 0.55), transparent 18%);
+}
+
+.hall__world {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hall__mark,
+.hall__title,
+.hall__frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  visibility: hidden;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.hall__mark,
+.hall__title {
+  width: min(92vw, 1100px);
+  text-align: center;
+  pointer-events: none;
+}
+
+.hall__mark h1 {
+  font-size: clamp(64px, 15vw, 220px);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.hall__mark p {
+  margin-top: 20px;
+  color: var(--ink-mute);
+  font-size: var(--fs-lede);
+}
+
+.hall__title h2 {
+  font-size: clamp(52px, 11vw, 170px);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.hall__title a {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 9px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: var(--glass);
+  color: var(--ink-mute);
+  font-size: var(--fs-small);
+  pointer-events: auto;
+  transition:
+    color var(--t-fast),
+    border-color var(--t-fast);
+}
+
+.hall__title a:hover {
+  border-color: var(--accent-line);
+  color: var(--ink);
+}
+
+.hall__frame {
+  --fw: clamp(220px, 32vw, 560px);
+  --shape: 1;
+  width: calc(var(--fw) * var(--shape));
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--bg-raised);
+  box-shadow:
+    0 40px 90px -30px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+}
+
+.hall__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hall__frame.is-ready img {
+  opacity: 1;
+}
+
+.hall__frame:hover {
+  box-shadow:
+    0 40px 90px -30px rgba(0, 0, 0, 0.9),
+    0 0 0 1px var(--accent-line);
+}
+
+/* the line at the bottom: where you are, and a way out */
+.hall__hud {
+  position: absolute;
+  right: var(--gut);
+  bottom: clamp(24px, 4.5vh, 44px);
+  left: var(--gut);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  color: var(--ink-mute);
+  font-size: var(--fs-small);
+}
+
+.hall__hud [data-group] {
+  min-width: 9ch;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.hall__line {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.hall__line i {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.hall__hud a {
+  transition: color var(--t-fast);
+}
+
+.hall__hud a:hover {
+  color: var(--ink);
+}
+
+/* reduced motion: the same photographs as a plain list */
+.hall--flat .hall__pin {
+  position: static;
+  height: auto;
+  overflow: visible;
+  perspective: none;
+  padding: 120px var(--gut) 40px;
+}
+
+.hall--flat .hall__pin::after,
+.hall--flat .hall__hud {
+  display: none;
+}
+
+.hall--flat .hall__world {
+  position: static;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+  transform: none !important;
+}
+
+.hall--flat .hall__mark,
+.hall--flat .hall__title,
+.hall--flat .hall__frame {
+  position: static;
+  visibility: visible;
+  width: auto;
+  transform: none;
+}
+
+.hall--flat .hall__mark,
+.hall--flat .hall__title {
+  grid-column: 1 / -1;
+  text-align: left;
+}
+
+.hall--flat .hall__frame {
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 700px) {
+  .hall__frame {
+    --fw: 54vw;
+  }
+
+  .hall__hud a {
+    display: none;
+  }
+}

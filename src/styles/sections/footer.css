@@ -1,0 +1,32 @@
+.footer {
+  padding: 40px 0 48px;
+  border-top: 1px solid var(--line);
+}
+
+.footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+  color: var(--ink-dim);
+  font-size: var(--fs-small);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  list-style: none;
+}
+
+.footer__links a,
+.footer__top {
+  color: var(--ink-mute);
+  transition: color var(--t-fast);
+}
+
+.footer__links a:hover,
+.footer__top:hover {
+  color: var(--ink);
+}

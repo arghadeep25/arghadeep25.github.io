@@ -1,0 +1,90 @@
+:root {
+  --tr: #2dd4bf;
+}
+.legend i.box {
+  width: 12px;
+  height: 9px;
+  border-radius: 2px;
+  background: none;
+  border: 1.5px solid var(--tr);
+}
+.legend i.el {
+  width: 14px;
+  height: 9px;
+  border-radius: 50%;
+  background: none;
+  border: 1.5px solid rgba(45, 212, 191, 0.7);
+}
+.legend i.ring {
+  border-color: var(--scan);
+}
+.legend i.ds {
+  border-top-color: var(--tr);
+}
+.chip .bar {
+  background: linear-gradient(90deg, var(--tr), var(--scan));
+}
+.b-main .big {
+  font-size: 52px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.charts {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 22px;
+}
+.ch {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.ch .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.ch canvas {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  margin-top: 8px;
+}
+.key {
+  display: flex;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--mute);
+}
+.key i {
+  display: inline-block;
+  width: 10px;
+  height: 3px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: 2px;
+}
+.tile.hot {
+  background: rgba(45, 212, 191, 0.12);
+  border-color: rgba(45, 212, 191, 0.4);
+}
+@media (max-width: 1100px) {
+  .key {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  .ch + .ch {
+    display: none;
+  }
+  .rows div:nth-child(n + 2) {
+    display: none;
+  }
+}

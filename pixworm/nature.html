@@ -1,79 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature | Gallery | Pixworm</title>
-    <link rel="stylesheet" href="../assets/css/gallery.css">
-    <link rel="stylesheet" href="../assets/css/lightbox.css">
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Nature | Pixworm | Arghadeep Mazumder</title>
+    <meta name="description" content="Nature: photographs by Arghadeep Mazumder." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://lh3.googleusercontent.com/pw/AP1GczN2M1oDCuupFPO33IyhSL8oQswKEZLz8fjj7GyuLJryXeyNNOej-y1juMCvGVNNgCIHhh5KOe9NRXiN38Gy6RWHUaIQRkFtn3XMXl07lbvwUYUg8NZx=w2400"
-        rel="icon">
-</head>
-
-<body>
-
-    <div id="header-container"></div>
-
-    <script>
-        fetch("./gallery_menu_header.html")
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById("header-container").innerHTML = data;
-            });
-    </script>
-
-    <section class="banner"
-        style="background-image: url('https://drive.google.com/thumbnail?id=1dHBnjkO06iwM1lRwsfBaHq4oIzxOkBOn&sz=w3600');">
-        <div class="banner-text">NATURE</div>
-    </section>
-
-    <section class="masonry-grid">
-        <img src="https://drive.google.com/thumbnail?id=1z4sGktjQ5W5sZRhPjO_CfqJKzEjRADHh&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1kS4MMwbh6RKFpAlS3dVRBYlF6noHsbiQ&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1OBQmKPHWjGRQd4T5mvutZPSpX5Unsu83&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1hA2x1gwbwoPAoVCXg3vU-KCQhg5-NcnO&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1JxS-MXTsjj2dZf7lboWzjFzDjlALsp7a&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1WcbOrR32VOOpAL3j_em1viRTZqaNDwih&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1z0KGO7IBaasX0wEXR5c7N7um3LR-HTvs&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1-1oIB4IdLmohzJelA69FcVWLoq2FXcAR&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1MW9HH658bkKpDJ51c56v8KofpsOGsTi9&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1FXUgXnLPWr6e409asRPE8_V4PWxw92ks&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1S1eKmepHaHk6Xa4GB2InETITOstV5iO9&sz=w1000" class="masonry-img">
-        <img src="https://drive.google.com/thumbnail?id=1j6_U9-28S0H8SbVxUcjFHDVDTnS4ioHS&sz=w1000" class="masonry-img">
-
-        <!-- Add more images -->
-    </section>
-
-    <div id="lightbox" class="lightbox">
-        <span class="close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
-    </div>
-
-    <footer>
-        <p>&copy; Arghadeep Mazumder 2025 </p>
-        <div class="social-icons">
-            <a href="https://github.com/arghadeep25" target="_blank" title="GitHub">
-                <img src="https://img.icons8.com/?size=100&id=12599&format=png&color=000000" alt="GitHub">
-            </a>
-            <a href="https://www.facebook.com/amazumder" target="_blank" title="Facebook">
-                <img src="https://img.icons8.com/?size=100&id=118467&format=png&color=000000" alt="Facebook">
-            </a>
-            <a href="https://www.youtube.com/@arghadeepmazumder2133" target="_blank" title="YouTube">
-                <img src="https://img.icons8.com/?size=100&id=37326&format=png&color=000000" alt="YouTube">
-            </a>
-            <a href="https://www.linkedin.com/in/arghadeepmazumder/" target="_blank" title="LinkedIn">
-                <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=000000" alt="LinkedIn">
-            </a>
-        </div>
-    </footer>
-
-    <script src="../assets/js/lightbox.js"></script>
-
-</body>
-
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/pages/collection.js"></script>
+  </head>
+  <body data-section="pixworm" data-collection="nature" id="top">
+    <div data-shell="nav"></div>
+    <main class="pxk wrap">
+      <header class="pxk__head">
+        <a class="pxk__back" href="/pixworm.html#collections">All collections</a>
+        <h1 data-title>Nature</h1>
+        <p data-blurb></p>
+        <p class="pxk__count" data-count></p>
+      </header>
+      <div class="mosaic"></div>
+      <p class="pxk__next">Next collection <a data-next href="/pixworm.html"></a></p>
+    </main>
+    <div data-shell="footer"></div>
+  </body>
 </html>

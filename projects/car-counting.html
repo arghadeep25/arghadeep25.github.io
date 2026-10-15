@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Car counting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/demo.css" />
+    <link rel="stylesheet" href="/src/styles/demos/car-counting.css" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <link rel="apple-touch-icon" href="/logo-180.png" />
+    <script type="module" src="/src/demos/car-counting.js"></script>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header class="head">
+      <h1>Car Counting</h1>
+      <p>One camera. Every car in, every car out.</p>
+      <div class="legend">
+        <span><i style="background: #3e9bff"></i>Entering</span>
+        <span><i style="background: #ffb547"></i>Leaving</span>
+        <span><i style="background: #eaf1ff"></i>Detected car</span>
+        <span><i style="background: #34d399"></i>Counting line</span>
+      </div>
+    </header>
+
+    <div class="status panel"><span id="stat">One camera at the gate</span></div>
+
+    <div class="parts">
+      <div class="detail">
+        <h2 id="dName"></h2>
+        <p id="dDesc"></p>
+        <div class="metrics" id="dMetrics"></div>
+      </div>
+      <nav class="rail panel" id="rail" aria-label="Pipeline stages"></nav>
+    </div>
+
+    <aside class="dock panel">
+      <section class="b-main">
+        <div class="lab">Free spaces</div>
+        <div class="big" id="dFree">0</div>
+        <div class="rows">
+          <div><span>In the car park</span><b id="dOcc">0</b></div>
+          <div><span>Entered</span><b id="dIn">0</b></div>
+          <div><span>Left</span><b id="dOut">0</b></div>
+        </div>
+      </section>
+      <section class="b-view">
+        <div class="lab" id="vLab">Camera</div>
+        <canvas id="mini"></canvas>
+      </section>
+      <section class="b-tiles">
+        <div class="tile" id="t-cam">
+          <div class="n"><i></i>Camera</div>
+          <div class="s">1 · gate lane</div>
+        </div>
+        <div class="tile" id="t-cpu">
+          <div class="n"><i></i>Computer</div>
+          <div class="s">Raspberry Pi 3</div>
+        </div>
+        <div class="tile" id="t-fps">
+          <div class="n"><i></i>Speed</div>
+          <div class="s">17 FPS</div>
+        </div>
+        <div class="tile" id="t-trk">
+          <div class="n"><i></i>Tracking</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-dir">
+          <div class="n"><i></i>Last car</div>
+          <div class="s">—</div>
+        </div>
+        <div class="tile" id="t-dat">
+          <div class="n"><i></i>Live data</div>
+          <div class="s">—</div>
+        </div>
+      </section>
+    </aside>
+
+    <div class="foot">
+      Interactive simulation. Telemetry is illustrative. Click a stage to hold it
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+/* Floating pill navigation. Combine with .glass. */
+.nav-pill {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  z-index: var(--z-nav);
+  display: flex;
+  gap: 2px;
+  padding: 6px;
+  border-radius: var(--r-pill);
+  transform: translateX(-50%);
+}
+
+.nav-pill a {
+  padding: 9px 16px;
+  border-radius: var(--r-pill);
+  color: var(--ink-mute);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  transition:
+    color var(--t-fast),
+    background var(--t-fast);
+}
+
+.nav-pill a:hover,
+.nav-pill a[aria-current='page'],
+.nav-pill a[aria-current='location'] {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+}
+
+@media (max-width: 700px) {
+  .nav-pill a {
+    padding: 8px 11px;
+    font-size: 12px;
+  }
+
+  .nav-pill a:nth-child(n + 5):not([aria-current]) {
+    display: none;
+  }
+}
