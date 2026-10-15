@@ -319,16 +319,16 @@
   }
 
   .fm__eq {
-    font-size: 20px;
+    font-size: calc(20px * var(--fit, 1));
     line-height: 1.5;
   }
 
   .fm__p {
-    padding: 0 5px;
+    padding: 0 0.12em;
   }
 
   .fm__op {
-    padding: 0 6px;
+    padding: 0 0.16em;
   }
 
   .fm__notes {
@@ -340,17 +340,17 @@
   }
 
   .fm__note b {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .fm__note p {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.5;
   }
 
   .fm__note .more,
   .fm__note .less {
-    font-size: 12.5px;
+    font-size: 11.5px;
     line-height: 1.45;
   }
 
