@@ -592,6 +592,50 @@
             </div>
           </div>
         </section>
+        <section class="beat" id="fog">
+          <div class="beat__text">
+            <h2>How sure is each pin?</h2>
+            <p>
+              A good map says more than where things are. It also says how sure it is. Each pin
+              wears a cloud: the place it might really be. The cloud grows with every step of
+              counting, and shrinks when a loop closure ties the ends together.
+            </p>
+          </div>
+          <figure class="fig" data-fig="fog">
+            <div class="fig__stage"></div>
+            <figcaption>
+              The clouds come from the same strings as the map, just read the other way round.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-blue" data-p="S">Σ</button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p" data-p="H"><i>H</i></button>
+              <button type="button" class="fm__p is-bad" data-p="inv"><sup>−1</sup></button>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="S">
+                <b>Σ: the size of the cloud</b>
+                <p>How far from its guess a pin might really be. One cloud per pin.</p>
+                <p class="more">Bigger: a bigger cloud, so the pin is less sure.</p>
+                <p class="less">Smaller: a tight cloud, so the pin is sure.</p>
+              </div>
+              <div class="fm__note" data-for="H">
+                <b>H: all the strings together</b>
+                <p>The same table as before. It measures how firmly the strings hold each pin.</p>
+                <p class="more">Bigger: more or stiffer strings hold the pin.</p>
+                <p class="less">Smaller: few or loose strings hold the pin.</p>
+              </div>
+              <div class="fm__note" data-for="inv">
+                <b>−1: flip it over</b>
+                <p>Held firmly means a small cloud. Held loosely means a big cloud.</p>
+                <p class="more">Bigger H: the flip makes the cloud smaller.</p>
+                <p class="less">Smaller H: the flip makes the cloud bigger.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>
