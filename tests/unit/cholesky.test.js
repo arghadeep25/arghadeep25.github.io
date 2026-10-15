@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { choleskySolve } from '../../src/algos/cholesky.js';
+import { choleskyInverse, choleskySolve } from '../../src/algos/cholesky.js';
 import { mulberry32 } from './helpers.js';
 
 describe('choleskySolve', () => {
@@ -29,5 +29,19 @@ describe('choleskySolve', () => {
     );
     const x = choleskySolve(A, b, n);
     truth.forEach((t, i) => expect(x[i]).toBeCloseTo(t, 6));
+  });
+});
+
+describe('choleskyInverse', () => {
+  it('gives a matrix that multiplies back to the identity', () => {
+    const A = [4, 1, 0, 1, 3, 1, 0, 1, 2];
+    const inv = choleskyInverse(A, 3);
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        let s = 0;
+        for (let k = 0; k < 3; k++) s += A[r * 3 + k] * inv[k * 3 + c];
+        expect(s).toBeCloseTo(r === c ? 1 : 0, 9);
+      }
+    }
   });
 });
