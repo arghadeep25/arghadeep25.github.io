@@ -10,25 +10,50 @@ const watchErrors = (page) => {
 };
 
 test.describe('object tracking demo', () => {
-  test('follows several objects, rejects false alarms and keeps the vehicle moving', async ({
-    page,
-  }) => {
+  test('tracks the car ahead, oncoming traffic and pedestrians', async ({ page }) => {
     const errors = watchErrors(page);
     await page.goto('/projects/tracking.html?debug');
-    await page.evaluate(() => window.__sim(40));
-    const d = await page.evaluate(() => window.__dbg());
-    expect(d.tracks.filter((t) => t.state !== 'tentative').length).toBeGreaterThanOrEqual(2);
-    expect(d.rejected).toBeGreaterThan(0);
-    expect(d.egoV).toBeGreaterThanOrEqual(0);
+    for (const [scene, cls] of [
+      [0, 'car'],
+      [1, 'car'],
+      [2, 'pedestrian'],
+    ]) {
+      await page.evaluate((i) => window.__go(i), scene);
+      let found = false;
+      for (let t = 0; t < 14 && !found; t++) {
+        await page.evaluate(() => window.__sim(1));
+        const d = await page.evaluate(() => window.__dbg());
+        found = d.tracks.some((k) => k.cls === cls && k.state !== 'tentative' && k.hits >= 6);
+      }
+      expect(found).toBe(true);
+    }
     expect(errors).toEqual([]);
   });
 
-  test('has four stages, and clicking one holds it', async ({ page }) => {
+  test('waits for the left lane, overtakes the slow car and returns', async ({ page }) => {
+    const errors = watchErrors(page);
+    await page.goto('/projects/tracking.html?debug');
+    await page.evaluate(() => window.__go(3));
+    const seen = new Set();
+    let maxY = -9;
+    for (let i = 0; i < 40; i++) {
+      await page.evaluate(() => window.__sim(1));
+      const d = await page.evaluate(() => window.__dbg());
+      seen.add(d.why);
+      maxY = Math.max(maxY, d.egoY);
+    }
+    expect(seen.has('Waiting for a gap')).toBe(true);
+    expect(seen.has('Overtaking')).toBe(true);
+    expect(maxY).toBeGreaterThan(1.5);
+    expect(errors).toEqual([]);
+  });
+
+  test('has four scenes, and clicking one holds it', async ({ page }) => {
     await page.goto('/projects/tracking.html');
     const chips = page.locator('.rail .chip');
-    await expect(chips).toHaveText(['Detect', 'Associate', 'Predict', 'Blind spots']);
+    await expect(chips).toHaveText(['Car ahead', 'Oncoming', 'Pedestrians', 'Overtake']);
     await chips.nth(2).click();
-    await expect(page.locator('#dName')).toHaveText('Following and predicting');
+    await expect(page.locator('#dName')).toHaveText('People on the pavement');
   });
 });
 

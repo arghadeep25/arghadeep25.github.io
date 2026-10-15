@@ -123,6 +123,7 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 - [x] 11.7 Seven chapters on the home page and in the stack overview, named the same everywhere
 - [x] 11.8 "One stack, three machines": forklift in a warehouse, drone, sidewalk delivery robot
 - [x] 11.9 Smoke and e2e tests for the new pages and band
+- [x] 11.10 Tracking demo reworked: four scripted scenes (car ahead, oncoming, pedestrians, overtake), steadier output
 
 ## Target structure
 
