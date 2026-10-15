@@ -10,13 +10,13 @@
 
 .fm__eq {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 6px 4px;
+  gap: 0.15em;
   color: var(--ink);
   font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', Cambria, Georgia, serif;
-  font-size: clamp(24px, 4.4vw, 38px);
+  font-size: calc(clamp(24px, 4.4vw, 38px) * var(--fit, 1));
   line-height: 1.6;
 }
 
@@ -32,7 +32,8 @@
 
 .fm__p {
   position: relative;
-  padding: 0 7px;
+  padding: 0 0.18em;
+  flex: none;
   border-radius: var(--r-sm);
   color: inherit;
   font: inherit;
@@ -80,7 +81,8 @@
 }
 
 .fm__op {
-  padding: 0 12px;
+  flex: none;
+  padding: 0 0.3em;
   color: var(--ink-mute);
 }
 

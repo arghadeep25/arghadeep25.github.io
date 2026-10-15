@@ -126,7 +126,22 @@ export function initFormula(root) {
     });
   });
 
-  new ResizeObserver(place).observe(root);
+  // every equation row stays on one line: shrink the row's type until it fits
+  const rows = [...root.querySelectorAll('.fm__eq')];
+  function fit() {
+    for (const row of rows) {
+      row.style.setProperty('--fit', '1');
+      for (let i = 0; i < 6 && row.scrollWidth > row.clientWidth + 1; i++) {
+        const cur = +row.style.getPropertyValue('--fit');
+        row.style.setProperty(
+          '--fit',
+          ((cur * row.clientWidth * 0.985) / row.scrollWidth).toFixed(3),
+        );
+      }
+    }
+    place();
+  }
+  new ResizeObserver(fit).observe(root);
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
     if (visible) {
