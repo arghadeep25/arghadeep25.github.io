@@ -212,3 +212,20 @@
 .beat__more {
   margin-top: 22px;
 }
+
+/* A long contents list sits in columns so it does not push the first figure off the screen. */
+.article--wide .article__toc ul {
+  columns: 2 260px;
+  column-gap: 32px;
+}
+
+.article--wide .article__toc li {
+  margin: 0;
+  break-inside: avoid;
+  line-height: 1.5;
+}
+
+.article--wide .article__toc a {
+  display: inline-block;
+  padding: 4px 0;
+}
