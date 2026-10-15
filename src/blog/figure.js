@@ -21,11 +21,12 @@ const FRAME_MS = 33;
 
 /**
  * @typedef {{ id: string, label: string, min: number, max: number, step: number, value: number }} Knob
- * @typedef {{ draw(g: CanvasRenderingContext2D, w: number, h: number, t: number, k: Record<string, number>): void }} Scene
+ * @typedef {{ draw(g: CanvasRenderingContext2D, w: number, h: number, t: number, k: Record<string, number>): boolean | void }} Scene
  * @param {HTMLElement} root the `<figure>`; it must contain a `.fig__stage` element
  * @param {{
  *   aspect?: number, tall?: number, length?: number, loop?: boolean, rest?: number,
- *   knobs?: Knob[], timeline?: boolean, make(api: { redraw(): void, knobs: Record<string, number> }): Scene
+
+ *   knobs?: Knob[], timeline?: boolean, controls?: boolean, make(api: { redraw(): void, knobs: Record<string, number> }): Scene
  * }} spec
  *   aspect: width / height on wide screens, tall: the same on narrow screens;
  *   length: seconds of animation, loop: wrap or stop and offer replay,
@@ -55,7 +56,13 @@ export function mountFigure(root, spec) {
   let raf = 0;
   let dirty = true;
 
-  const api = { redraw: () => (dirty = true), knobs: k };
+  const api = {
+    redraw: () => {
+      dirty = true;
+      kick();
+    },
+    knobs: k,
+  };
   const scene = spec.make(api);
 
   // controls
@@ -68,9 +75,9 @@ export function mountFigure(root, spec) {
     play.textContent = playing ? 'Pause' : t >= length && !loop ? 'Replay' : 'Play';
     play.setAttribute('aria-pressed', String(playing));
   };
-  bar.appendChild(play);
+  if (spec.controls !== false) bar.appendChild(play);
   let scrub = null;
-  if (spec.timeline !== false) {
+  if (spec.timeline !== false && spec.controls !== false) {
     scrub = document.createElement('input');
     scrub.type = 'range';
     scrub.className = 'fig__scrub';
@@ -137,11 +144,13 @@ export function mountFigure(root, spec) {
     dirty = true;
   }
 
+  /** Draw one frame. A scene that returns true is still moving and wants the next frame. */
   function paint() {
     g.setTransform(size.dpr, 0, 0, size.dpr, 0, 0);
     g.clearRect(0, 0, size.w, size.h);
-    scene.draw(g, size.w, size.h, t, k);
+    const again = scene.draw(g, size.w, size.h, t, k);
     if (scrub) scrub.value = String(t);
+    return !!again;
   }
 
   function frame(now) {
@@ -158,11 +167,13 @@ export function mountFigure(root, spec) {
       dirty = true;
     }
     last = now;
+    let again = false;
     if (dirty) {
       dirty = false;
-      paint();
+      again = paint();
     }
-    if (playing) raf = requestAnimationFrame(next);
+    if (again) dirty = true;
+    if (playing || again) raf = requestAnimationFrame(next);
   }
   // keep to roughly 30 frames a second
   function next(now) {

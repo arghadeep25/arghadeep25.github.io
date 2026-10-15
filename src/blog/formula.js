@@ -18,7 +18,7 @@ export const TOUR_MS = 5200;
 export const nextIndex = (i, n) => (i + 1) % n;
 
 /** An ellipse that goes round a box, with some room to spare. */
-export function ringFor(box, pad = 7) {
+export function ringFor(box, pad = 5) {
   return {
     cx: box.x + box.w / 2,
     cy: box.y + box.h / 2,
@@ -83,7 +83,7 @@ export function initFormula(root) {
       nb.left - base.left + 28,
       Math.min(nb.right - base.left - 28, box.x + box.w / 2),
     );
-    const a = arrowFrom(r, { x: nx, y: nb.top - base.top + 2 });
+    const a = arrowFrom(r, { x: nx, y: nb.top - base.top - 3 });
     arrow.setAttribute('d', a.d);
     head.setAttribute(
       'transform',
