@@ -131,7 +131,7 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 Mostly animation, few words, so a child can follow it. Every formula is annotated: each parameter is circled and an arrow points to a note saying what it does and what happens when it goes up or down.
 
 - [x] 12.1 Figure kit: canvas with timeline, play button and sliders, drawing only while on screen
-- [-] 12.2 Annotated formula kit: circle each parameter, arrow to a note (bigger, smaller)
+- [x] 12.2 Annotated formula kit: circle each parameter, arrow to a note (bigger, smaller)
 - [-] 12.3 Scene data for the post: a looping route, noisy odometry, a loop closure, with tests
 - [-] 12.4 Section: why a robot gets lost (drift)
 - [-] 12.5 Section: nodes
