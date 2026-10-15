@@ -43,6 +43,216 @@
             </figcaption>
           </figure>
         </section>
+
+        <section class="beat" id="nodes">
+          <div class="beat__text">
+            <h2>Nodes: a pin for every step</h2>
+            <p>
+              Each time the robot moves, it drops a pin. A pin is a guess: where am I, and which way
+              am I facing?
+            </p>
+          </div>
+          <figure class="fig" data-fig="nodes">
+            <div class="fig__stage"></div>
+            <figcaption>
+              The first pin is the start of the map. Every other pin is measured from it.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="node"><b>x</b><sub>i</sub></button>
+              <span class="fm__op">=</span>
+              <span class="fm__vec">
+                <button type="button" class="fm__p" data-p="x"><i>x</i><sub>i</sub></button>
+                <button type="button" class="fm__p" data-p="y"><i>y</i><sub>i</sub></button>
+                <button type="button" class="fm__p" data-p="th"><i>θ</i><sub>i</sub></button>
+              </span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="node">
+                <b>x<sub>i</sub>: pin number i</b>
+                <p>One node of the graph. It holds the robot's guess for step i.</p>
+                <p class="more">Bigger i: later in the trip.</p>
+                <p class="less">Smaller i: earlier in the trip.</p>
+              </div>
+              <div class="fm__note" data-for="x">
+                <b>x: how far along</b>
+                <p>Distance from the start, sideways on the map.</p>
+                <p class="more">Bigger x: further to the right.</p>
+                <p class="less">Smaller x: further to the left.</p>
+              </div>
+              <div class="fm__note" data-for="y">
+                <b>y: how far up</b>
+                <p>Distance from the start, up the map.</p>
+                <p class="more">Bigger y: further up.</p>
+                <p class="less">Smaller y: further down.</p>
+              </div>
+              <div class="fm__note" data-for="th">
+                <b>θ: which way it faces</b>
+                <p>The heading, as an angle.</p>
+                <p class="more">Bigger θ: turned more to the left.</p>
+                <p class="less">Smaller θ: turned more to the right.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="beat" id="edges">
+          <div class="beat__text">
+            <h2>Edges: a string between two pins</h2>
+            <p>
+              The odometer says what happened between two steps. Tie a string between the pins to
+              hold that fact. If the pins drift away from what the sensor said, the string stretches
+              and pulls them back.
+            </p>
+          </div>
+          <figure class="fig" data-fig="edges">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Blue is what the sensor said. Green is what the pins say now. Red is the gap between
+              them.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-bad" data-p="e"><i>e</i><sub>ij</sub></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p is-blue" data-p="z"><i>z</i><sub>ij</sub></button>
+              <span class="fm__op">−</span>
+              <button type="button" class="fm__p is-ok" data-p="h"><i>h</i></button>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p" data-p="xi"><b>x</b><sub>i</sub></button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p" data-p="xj"><b>x</b><sub>j</sub></button>
+              <span class="fm__op">)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="e">
+                <b>e<sub>ij</sub>: the error</b>
+                <p>How far the string is stretched. Zero means the pins agree with the sensor.</p>
+                <p class="more">Bigger: the pins disagree with the sensor more.</p>
+                <p class="less">Smaller: the string is more relaxed.</p>
+              </div>
+              <div class="fm__note" data-for="z">
+                <b>z<sub>ij</sub>: what the sensor said</b>
+                <p>The measured move from pin i to pin j: how far, and how much it turned.</p>
+                <p class="more">Bigger: the sensor says the robot moved further.</p>
+                <p class="less">Smaller: the sensor says it barely moved.</p>
+              </div>
+              <div class="fm__note" data-for="h">
+                <b>h: what the pins say</b>
+                <p>The move from i to j that you get from where the two pins sit right now.</p>
+                <p class="more">Bigger: the pins are further apart.</p>
+                <p class="less">Smaller: the pins are closer together.</p>
+              </div>
+              <div class="fm__note" data-for="xi">
+                <b>x<sub>i</sub>: the first pin</b>
+                <p>Where the move started. Move this pin and h changes.</p>
+                <p class="more">Shifted: the whole string moves with it.</p>
+                <p class="less">Held still: only pin j can ease the stretch.</p>
+              </div>
+              <div class="fm__note" data-for="xj">
+                <b>x<sub>j</sub>: the second pin</b>
+                <p>Where the move ended. The optimiser slides this pin until e shrinks.</p>
+                <p class="more">Further from the sensor's answer: e grows.</p>
+                <p class="less">Closer to the sensor's answer: e shrinks.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="beat" id="trust">
+          <div class="beat__text">
+            <h2>How sure is each string?</h2>
+            <p>
+              Two strings can disagree. The pin goes nearer the string we trust more. That trust is
+              called <b>information</b>, and it is the second part of every edge.
+            </p>
+          </div>
+          <figure class="fig" data-fig="tug">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Strings 1 and 2 disagree by a metre. Slide the trust and watch where the pin settles.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="F"><i>F</i><sub>ij</sub></button>
+              <span class="fm__op">=</span>
+              <button type="button" class="fm__p is-bad" data-p="eT">
+                <i>e</i><sub>ij</sub><sup>T</sup>
+              </button>
+              <button type="button" class="fm__p" data-p="W">Ω<sub>ij</sub></button>
+              <button type="button" class="fm__p is-bad" data-p="e2"><i>e</i><sub>ij</sub></button>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="W2">Ω</button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">diag(</span>
+              <button type="button" class="fm__p" data-p="sx">
+                1 / <i>σ</i><sub>x</sub><sup>2</sup>
+              </button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p" data-p="sy">
+                1 / <i>σ</i><sub>y</sub><sup>2</sup>
+              </button>
+              <span class="fm__op">,</span>
+              <button type="button" class="fm__p" data-p="st">
+                1 / <i>σ</i><sub>θ</sub><sup>2</sup>
+              </button>
+              <span class="fm__op">)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="F">
+                <b>F<sub>ij</sub>: the price of this string</b>
+                <p>One number: how unhappy this string is.</p>
+                <p class="more">Bigger: the string is stretched, or we trust it a lot.</p>
+                <p class="less">Smaller: the string is relaxed, or we barely trust it.</p>
+              </div>
+              <div class="fm__note" data-for="eT">
+                <b>e<sup>T</sup>: the error, lying down</b>
+                <p>The same error as before, written as a row so it can be multiplied.</p>
+                <p class="more">Bigger error: the price grows with its square.</p>
+                <p class="less">Smaller error: the price falls fast.</p>
+              </div>
+              <div class="fm__note" data-for="W">
+                <b>Ω: how much we trust the string</b>
+                <p>Stiffness. It weighs the error before it is added to the price.</p>
+                <p class="more">Bigger: a stiff string. It wins the tug of war.</p>
+                <p class="less">Smaller: a loose string. It gives way.</p>
+              </div>
+              <div class="fm__note" data-for="e2">
+                <b>e: the error</b>
+                <p>The stretch from the last page, multiplied by itself and by Ω.</p>
+                <p class="more">Bigger: the price grows with its square.</p>
+                <p class="less">Smaller: the price falls fast.</p>
+              </div>
+              <div class="fm__note" data-for="W2">
+                <b>Ω: a table of three trusts</b>
+                <p>One trust for each thing a pin holds: x, y and the heading.</p>
+                <p class="more">Bigger numbers: a sharper, more trusted sensor.</p>
+                <p class="less">Smaller numbers: a noisy sensor.</p>
+              </div>
+              <div class="fm__note" data-for="sx">
+                <b>σ<sub>x</sub>: the sensor's usual miss in x</b>
+                <p>How wrong the sensor tends to be sideways, in metres.</p>
+                <p class="more">Bigger σ: a sloppier sensor, so 1/σ² is small and Ω is loose.</p>
+                <p class="less">Smaller σ: a precise sensor, so Ω is stiff.</p>
+              </div>
+              <div class="fm__note" data-for="sy">
+                <b>σ<sub>y</sub>: the usual miss in y</b>
+                <p>The same, for the other direction.</p>
+                <p class="more">Bigger σ: loose in y.</p>
+                <p class="less">Smaller σ: stiff in y.</p>
+              </div>
+              <div class="fm__note" data-for="st">
+                <b>σ<sub>θ</sub>: the usual miss in heading</b>
+                <p>How wrong the sensor tends to be about which way it faces, in radians.</p>
+                <p class="more">Bigger σ: loose in heading.</p>
+                <p class="less">Smaller σ: stiff in heading.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>
