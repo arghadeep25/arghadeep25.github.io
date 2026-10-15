@@ -26,7 +26,7 @@
   aspect-ratio: 4 / 5;
   max-width: 420px;
   overflow: hidden;
-  border: 1px solid var(--accent-line);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow:
     0 0 28px var(--accent-soft),
