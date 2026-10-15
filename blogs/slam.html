@@ -636,6 +636,72 @@
             </div>
           </div>
         </section>
+        <section class="beat" id="liar">
+          <div class="beat__text">
+            <h2>When a string lies</h2>
+            <p>
+              Sometimes the robot is fooled. Two corridors look the same, so it ties a string
+              between two places that are far apart. One liar can crush the whole map. The fix: a
+              string that is stretched far too much is probably lying, so listen to it less and
+              less.
+            </p>
+          </div>
+          <figure class="fig" data-fig="outlier">
+            <div class="fig__stage"></div>
+            <figcaption>Press the buttons. Each one plays the fix again from the start.</figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="rho"><i>ρ</i>(<i>e</i>)</button>
+              <span class="fm__op">=</span>
+              <span class="fm__op">½</span>
+              <button type="button" class="fm__p is-ok" data-p="d"><i>δ</i><sup>2</sup></button>
+              <button type="button" class="fm__p" data-p="ln">ln</button>
+              <span class="fm__op">(</span>
+              <span class="fm__op">1 +</span>
+              <span class="fm__op">(</span>
+              <button type="button" class="fm__p is-bad" data-p="e"><i>e</i></button>
+              <span class="fm__op">/</span>
+              <button type="button" class="fm__p is-ok" data-p="d2"><i>δ</i></button>
+              <span class="fm__op">)<sup>2</sup>)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="rho">
+                <b>ρ(e): the robust price of a string</b>
+                <p>
+                  It replaces the plain price e². For small stretches it is almost the same. For
+                  huge ones it hardly grows.
+                </p>
+                <p class="more">Bigger stretch: the price rises, but more and more slowly.</p>
+                <p class="less">Smaller stretch: the same as the plain price.</p>
+              </div>
+              <div class="fm__note" data-for="d">
+                <b>δ²: the scale of the price</b>
+                <p>Sets how big the price can be before it flattens.</p>
+                <p class="more">Bigger: the price keeps rising for longer.</p>
+                <p class="less">Smaller: it flattens quickly, so everything is cheap.</p>
+              </div>
+              <div class="fm__note" data-for="ln">
+                <b>ln: the flattener</b>
+                <p>The log curve rises fast, then bends over. That is what stops a liar winning.</p>
+                <p class="more">Bigger input: only a small rise in price.</p>
+                <p class="less">Smaller input: close to a straight line.</p>
+              </div>
+              <div class="fm__note" data-for="e">
+                <b>e: how stretched the string is</b>
+                <p>Measured in how many "usual misses" it is off.</p>
+                <p class="more">Bigger: the string is probably lying.</p>
+                <p class="less">Smaller: the string is probably honest.</p>
+              </div>
+              <div class="fm__note" data-for="d2">
+                <b>δ: how patient we are</b>
+                <p>A stretch about this big is where we start to doubt a string.</p>
+                <p class="more">Bigger: more patient. Even odd strings are believed.</p>
+                <p class="less">Smaller: quick to doubt. Good strings may be ignored too.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </article>
     </main>
     <div data-shell="footer"></div>

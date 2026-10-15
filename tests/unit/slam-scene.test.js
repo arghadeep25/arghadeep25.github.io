@@ -44,3 +44,18 @@ describe('scene', () => {
     expect(out.cost[out.cost.length - 1]).toBeLessThan(out.cost[0]);
   });
 });
+
+describe('wrong loop closure', () => {
+  const s = makeScene();
+  const err = (r) => meanError(r.frames[r.frames.length - 1], s.truth);
+  it('ruins the map when everything is trusted', () => {
+    expect(err(s.withWrong(0.5, false))).toBeGreaterThan(2);
+  });
+  it('is mostly ignored with the robust weighting, and the real closure is kept', () => {
+    const r = s.withWrong(0.5, true);
+    expect(err(r)).toBeLessThan(0.8);
+    const n = r.trust.length;
+    expect(r.trust[n - 1]).toBeLessThan(0.05); // the wrong one
+    expect(r.trust[n - 2]).toBeGreaterThan(0.8); // the real one
+  });
+});

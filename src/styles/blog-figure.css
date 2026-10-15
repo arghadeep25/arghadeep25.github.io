@@ -73,6 +73,11 @@
   background: var(--accent-soft);
 }
 
+.fig__toggle[aria-pressed='true'] {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
 .fig__scrub {
   flex: 1 1 160px;
   min-width: 120px;

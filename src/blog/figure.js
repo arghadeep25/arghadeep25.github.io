@@ -213,6 +213,14 @@ export function mountFigure(root, spec) {
       dirty = true;
       kick();
     },
+    /** Start the animation again from the beginning. */
+    restart() {
+      t = 0;
+      playing = true;
+      setPlayLabel();
+      dirty = true;
+      kick();
+    },
     get canvas() {
       return cv;
     },

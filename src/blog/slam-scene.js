@@ -1,4 +1,4 @@
-import { composePose, relativePose } from '../algos/geometry.js';
+import { composePose, relativePose, wrapAngle } from '../algos/geometry.js';
 import { solvePoseGraph } from '../algos/pose-graph.js';
 import { TAU } from '../core/math.js';
 import { gaussian, mulberry32 } from '../core/random.js';
@@ -90,7 +90,66 @@ export function makeScene({ n = 36, seed = 5 } = {}) {
     return cache.get(key);
   }
 
-  return { n, truth, odometry, loop, solve, frames };
+  /** A wrong loop closure: it says pin 26 is the very same place as pin 8, but they are far apart. */
+  const wrong = { i: 8, j: 26, z: [0, 0, 0], w: INFO.slice() };
+
+  /** The graph with the wrong closure added, solved with or without the robust weighting. */
+  const wrongCache = new Map();
+  function withWrong(wobble, robust) {
+    const key = `${wobble}|${robust}`;
+    if (!wrongCache.has(key)) {
+      const { edges, poses } = odometry(wobble);
+      const all = [...edges, loop, wrong];
+      const anchor = [{ i: 0, t: 'anchor', z: truth[0], w: 1e6 }];
+      if (robust) {
+        wrongCache.set(key, solveRobust(poses, all, anchor));
+      } else {
+        const out = solvePoseGraph(poses, all, anchor, 12);
+        wrongCache.set(key, { frames: [poses, ...out.solutions], trust: all.map(() => 1) });
+      }
+    }
+    return wrongCache.get(key);
+  }
+
+  return { n, truth, odometry, loop, wrong, solve, frames, withWrong };
+}
+
+/**
+ * How much to trust an edge that misses by `chi` standard deviations. Cauchy weighting: close to 1
+ * for a small miss, then falling towards 0, so one wild edge is all but ignored.
+ */
+export const robustWeight = (chi, delta = 12) => 1 / (1 + (chi / delta) ** 2);
+
+/** Size of an edge's miss, in standard deviations. */
+export function chiOf(poses, e) {
+  const r = relativePose(poses[e.i], poses[e.j]);
+  const d = [r[0] - e.z[0], r[1] - e.z[1], wrapAngle(r[2] - e.z[2])];
+  return Math.sqrt(d.reduce((s, v, k) => s + e.w[k] * v * v, 0));
+}
+
+/**
+ * Solve a graph that may hold a wrong edge, trusting each edge less the more it disagrees with the
+ * rest (iteratively reweighted least squares, so nothing is thrown away until it is clear it is wrong). Returns the frames to play back, and the final trust
+ * in each edge.
+ */
+export function solveRobust(
+  initial,
+  edges,
+  priors,
+  { delta = 12, rounds = 8, iterations = 8 } = {},
+) {
+  let X = initial;
+  const frames = [initial];
+  let trust = edges.map((e) => robustWeight(chiOf(X, e), delta));
+  for (let r = 0; r < rounds; r++) {
+    const scaled = edges.map((e, k) => ({ ...e, w: e.w.map((v) => v * trust[k]) }));
+    const out = solvePoseGraph(X, scaled, priors, iterations);
+    if (!out.solutions.length) break;
+    frames.push(...out.solutions);
+    X = out.solutions[out.solutions.length - 1];
+    trust = edges.map((e) => robustWeight(chiOf(X, e), delta));
+  }
+  return { frames, trust };
 }
 
 let shared;
