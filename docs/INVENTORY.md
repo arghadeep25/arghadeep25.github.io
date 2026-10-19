@@ -6,7 +6,7 @@ Snapshot of the site before restructuring.
 
 - `blogs.html`
 - `blogs/pointers.html`
-- `blogs/slam.html`
+- `blogs/graph_slam_basics.html`
 - `google51222984f7f233a7.html`
 - `index.html`
 - `pixworm.html`
@@ -40,14 +40,14 @@ Snapshot of the site before restructuring.
 | `assets/css/projects.css`        | 553   | `index.html`                                                                                                                                                                                                                                         |
 | `assets/css/resume.css`          | 135   | **unused**                                                                                                                                                                                                                                           |
 | `assets/css/skills.css`          | 285   | `index.html`                                                                                                                                                                                                                                         |
-| `assets/css/style.css`           | 204   | `blogs.html`, `blogs/pointers.html`, `blogs/slam.html`, `index.html`, `pixworm/auschwitz.html`                                                                                                                                                       |
+| `assets/css/style.css`           | 204   | `blogs.html`, `blogs/pointers.html`, `blogs/graph_slam_basics.html`, `index.html`, `pixworm/auschwitz.html`                                                                                                                                          |
 | `assets/css/test.css`            | 1385  | `pixworm/auschwitz.html`                                                                                                                                                                                                                             |
 | `assets/js/canvas.js`            | 116   | `index.html`                                                                                                                                                                                                                                         |
 | `assets/js/copy_code.js`         | 10    | **unused**                                                                                                                                                                                                                                           |
 | `assets/js/dots.js`              | 13    | `index.html`                                                                                                                                                                                                                                         |
 | `assets/js/enlarge.js`           | 58    | `pixworm/auschwitz.html`                                                                                                                                                                                                                             |
 | `assets/js/lightbox.js`          | 48    | `pixworm/cologne.html`, `pixworm/flowers.html`, `pixworm/gdansk.html`, `pixworm/jagadhatripujo.html`, `pixworm/nature.html`, `pixworm/prague.html`, `pixworm/stockholm.html`, `pixworm/sundry.html`, `pixworm/wildlife.html`                         |
-| `assets/js/main.js`              | 207   | `blogs.html`, `blogs/pointers.html`, `blogs/slam.html`, `pixworm/auschwitz.html`                                                                                                                                                                     |
+| `assets/js/main.js`              | 207   | `blogs.html`, `blogs/pointers.html`, `blogs/graph_slam_basics.html`, `pixworm/auschwitz.html`                                                                                                                                                        |
 | `assets/js/pixworm.js`           | 85    | `pixworm.html`, `pixworm/gallery.html`                                                                                                                                                                                                               |
 | `assets/js/projects.js`          | 0     | **unused**                                                                                                                                                                                                                                           |
 | `assets/js/script.js`            | 143   | `index.html`                                                                                                                                                                                                                                         |

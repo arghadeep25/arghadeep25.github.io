@@ -126,7 +126,7 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 - [x] 11.10 Tracking demo reworked: four scripted scenes (car ahead, oncoming, pedestrians, overtake), steadier output
 - [x] 11.11 CPU pass: hidden demos pause, idle canvases run at 30 frames a second
 
-## Phase 12: Graph SLAM post (`blogs/slam.html`)
+## Phase 12: Graph SLAM post (`blogs/graph_slam_basics.html`)
 
 Mostly animation, few words, so a child can follow it. Every formula is annotated: each parameter is circled and an arrow points to a note saying what it does and what happens when it goes up or down.
 
@@ -144,6 +144,7 @@ Mostly animation, few words, so a child can follow it. Every formula is annotate
 - [x] 12.12 Section: why the first pin is nailed down
 - [x] 12.13 Pose graph reports how unsure each pose is; the wrong-loop-closure demo uses a robust price
 - [x] 12.14 e2e tests: every figure draws, interactions work, reduced motion, phone width
+- [x] 12.15 Graph SLAM basics: what SLAM is, the graph in one picture, frontend and backend, landmarks, from likely to cheap
 
 ## Target structure
 
