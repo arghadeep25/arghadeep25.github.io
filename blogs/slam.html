@@ -36,11 +36,16 @@
           <header>
             <h1>In this post</h1>
             <ul>
+              <li><a href="#what">What is SLAM?</a></li>
+              <li><a href="#overview">Graph SLAM in one picture</a></li>
+              <li><a href="#frontback">Frontend and backend</a></li>
               <li><a href="#drift">Walking with your eyes closed</a></li>
               <li><a href="#nodes">Nodes: a pin for every step</a></li>
               <li><a href="#edges">Edges: a string between two pins</a></li>
+              <li><a href="#landmark">Landmarks</a></li>
               <li><a href="#trust">How sure is each string?</a></li>
               <li><a href="#loop">Loop closure</a></li>
+              <li><a href="#map">From likely to cheap</a></li>
               <li><a href="#cost">One price for the whole map</a></li>
               <li><a href="#solve">Rolling down to the best map</a></li>
               <li><a href="#settle">Watch the lap settle</a></li>
@@ -51,6 +56,162 @@
             </ul>
           </header>
         </nav>
+
+        <section class="beat" id="what">
+          <div class="beat__text">
+            <h2>What is SLAM?</h2>
+            <p>
+              Drop a robot in a room it has never seen. To draw a map it must know where it is. To
+              know where it is, it needs a map. <b>SLAM</b> means <b>S</b>imultaneous
+              <b>L</b>ocalisation <b>A</b>nd <b>M</b>apping: solve both together, because neither
+              can wait for the other. It is a chicken-and-egg problem.
+            </p>
+          </div>
+          <figure class="fig" data-fig="chicken">
+            <div class="fig__stage"></div>
+            <figcaption>
+              The laser sees the same room every time. The map is built from where the robot
+              believes it stood. Slide the pose error and watch the walls smear.
+            </figcaption>
+          </figure>
+          <div class="beat__text">
+            <p>
+              Why not use GPS? Indoors, underground and between tall buildings there is none. The
+              robot only has its own senses: wheels that count turns, and a camera or laser that
+              sees what is around.
+            </p>
+          </div>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-ok" data-p="best">
+                (<b>x</b><sup>*</sup>, <b>m</b><sup>*</sup>)</button
+              ><span class="fm__op">=</span
+              ><button type="button" class="fm__p" data-p="argmax">argmax</button
+              ><button type="button" class="fm__p" data-p="p"><i>p</i>(</button
+              ><button type="button" class="fm__p" data-p="x"><b>x</b></button
+              ><span class="fm__op">,</span
+              ><button type="button" class="fm__p" data-p="m"><b>m</b></button
+              ><button type="button" class="fm__p" data-p="given">|</button
+              ><button type="button" class="fm__p is-blue" data-p="z"><b>z</b></button
+              ><span class="fm__op">,</span
+              ><button type="button" class="fm__p is-blue" data-p="u"><b>u</b></button
+              ><span class="fm__op">)</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="best">
+                <b>x*, m*: the answer</b>
+                <p>The best path <b>x</b> and the best map <b>m</b>, found together.</p>
+                <p class="more">Higher quality sensors: the answer sits closer to the truth.</p>
+                <p class="less">Poorer sensors: the answer is a rougher guess.</p>
+              </div>
+              <div class="fm__note" data-for="argmax">
+                <b>argmax: pick the winner</b>
+                <p>Try every possible path and map. Keep the one that is most probable.</p>
+                <p class="more">Bigger search: more poses and landmarks to try.</p>
+                <p class="less">Smaller search: a short trip is easy.</p>
+              </div>
+              <div class="fm__note" data-for="p">
+                <b>p: how probable</b>
+                <p>A number between 0 and 1. How believable is this path and map?</p>
+                <p class="more">Bigger: this story fits the evidence well.</p>
+                <p class="less">Smaller: this story is unlikely.</p>
+              </div>
+              <div class="fm__note" data-for="x">
+                <b>x: the path</b>
+                <p>Every pin the robot dropped: x₀, x₁, x₂ and so on.</p>
+                <p class="more">Longer trip: more pins to place.</p>
+                <p class="less">Shorter trip: fewer pins.</p>
+              </div>
+              <div class="fm__note" data-for="m">
+                <b>m: the map</b>
+                <p>Where each landmark sits: trees, doors, corners.</p>
+                <p class="more">More landmarks: a richer map.</p>
+                <p class="less">Fewer landmarks: a sparse map.</p>
+              </div>
+              <div class="fm__note" data-for="given">
+                <b>|: given that</b>
+                <p>Read it as "given that we saw". What we know comes after the bar.</p>
+                <p class="more">More evidence after it: a sharper answer.</p>
+                <p class="less">Less evidence: a vaguer answer.</p>
+              </div>
+              <div class="fm__note" data-for="z">
+                <b>z: what it saw</b>
+                <p>Every sensor reading, such as the range and bearing to a tree.</p>
+                <p class="more">More readings: more facts to match.</p>
+                <p class="less">Fewer readings: less to go on.</p>
+              </div>
+              <div class="fm__note" data-for="u">
+                <b>u: what it did</b>
+                <p>Every move command or wheel count: drive 1 m, turn 10°.</p>
+                <p class="more">Cleaner counts: pins sit nearer the truth.</p>
+                <p class="less">Rougher counts: pins drift.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="beat" id="overview">
+          <div class="beat__text">
+            <h2>Graph SLAM in one picture</h2>
+            <p>
+              Graph SLAM turns that chicken-and-egg problem into a drawing. Every place the robot
+              stood becomes a <b>node</b>. Every fact it measured becomes an <b>edge</b>, a string
+              between two nodes. Then one question is left: slide the nodes until all the strings
+              are as relaxed as they can be.
+            </p>
+          </div>
+          <figure class="fig" data-fig="overview">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Four ingredients, added one at a time. Nodes first, then three kinds of edge.
+            </figcaption>
+          </figure>
+          <dl class="kinds">
+            <div>
+              <dt class="is-accent">Node</dt>
+              <dd>a pose x = (x, y, θ), or a landmark position m = (x, y)</dd>
+            </div>
+            <div>
+              <dt class="is-blue">Odometry edge</dt>
+              <dd>the move u between two poses: how far, how much it turned</dd>
+            </div>
+            <div>
+              <dt class="is-warn">Landmark edge</dt>
+              <dd>an observation z: range r and bearing φ from a pose to a landmark</dd>
+            </div>
+            <div>
+              <dt class="is-ok">Loop closure edge</dt>
+              <dd>a pose that matches an old pose, so the lap is shut</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="beat" id="frontback">
+          <div class="beat__text">
+            <h2>Frontend and backend</h2>
+            <p>
+              A SLAM system has two halves. Think of a kitchen. The <b>frontend</b> is the prep
+              cook: fast, always chopping, sometimes sloppy. It reads sensors, finds features,
+              guesses which ones match, and builds the graph. The <b>backend</b> is the chef who
+              tastes everything: slow, careful, and fixing the whole dish at once. It takes the
+              graph and finds the pins that make the strings happiest.
+            </p>
+          </div>
+          <figure class="fig" data-fig="pipeline">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Follow the dot. The frontend never fixes old mistakes. The backend never touches the
+              sensors. Each does one job well.
+            </figcaption>
+          </figure>
+          <div class="beat__text">
+            <p>
+              Keeping them apart pays off. You can swap a camera for a lidar and only the frontend
+              changes. You can swap in a faster solver and only the backend changes. The graph in
+              the middle is the handshake.
+            </p>
+          </div>
+        </section>
 
         <section class="beat" id="drift">
           <div class="beat__text">
@@ -183,6 +344,106 @@
           </div>
         </section>
 
+        <section class="beat" id="landmark">
+          <div class="beat__text">
+            <h2>Landmarks: a string to a tree</h2>
+            <p>
+              Pins can also be tied to things the robot sees: a tree, a door, a corner. From each
+              pin the robot measures two numbers. <b>How far</b> is it (range r)? <b>Which way</b>
+              (bearing φ, measured from where the robot faces)? Both are a little noisy, so the tree
+              is never pinned exactly.
+            </p>
+          </div>
+          <figure class="fig" data-fig="landmark">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Each blue dot is one reading turned into a guess of where the tree is. Raise the noise
+              and the guesses spread out.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="r"><i>r</i></button
+              ><span class="fm__op">=</span
+              ><button type="button" class="fm__p" data-p="root">√</button
+              ><span class="fm__op">(</span
+              ><button type="button" class="fm__p" data-p="dx">Δ<i>x</i><sup>2</sup></button
+              ><span class="fm__op">+</span
+              ><button type="button" class="fm__p" data-p="dy">Δ<i>y</i><sup>2</sup></button
+              ><span class="fm__op">)</span>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-ok" data-p="phi"><i>φ</i></button
+              ><span class="fm__op">=</span
+              ><button type="button" class="fm__p" data-p="atan">atan2</button
+              ><span class="fm__op">(</span
+              ><button type="button" class="fm__p" data-p="dy2">Δ<i>y</i></button
+              ><span class="fm__op">,</span
+              ><button type="button" class="fm__p" data-p="dx2">Δ<i>x</i></button
+              ><span class="fm__op">)</span><span class="fm__op">−</span
+              ><button type="button" class="fm__p" data-p="th"><i>θ</i></button>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="r">
+                <b>r: range</b>
+                <p>The straight-line distance from the robot to the landmark.</p>
+                <p class="more">Bigger: the tree is further away. Range readings get noisier.</p>
+                <p class="less">Smaller: the tree is close and the reading is sharper.</p>
+              </div>
+              <div class="fm__note" data-for="root">
+                <b>√: the distance rule</b>
+                <p>Pythagoras: the long side of the right triangle made by Δx and Δy.</p>
+                <p class="more">Longer sides: a longer distance.</p>
+                <p class="less">Shorter sides: a shorter distance.</p>
+              </div>
+              <div class="fm__note" data-for="dx">
+                <b>Δx: sideways gap</b>
+                <p>Landmark x minus robot x.</p>
+                <p class="more">Bigger: the tree is further right.</p>
+                <p class="less">Smaller: the tree is nearer in x.</p>
+              </div>
+              <div class="fm__note" data-for="dy">
+                <b>Δy: upward gap</b>
+                <p>Landmark y minus robot y.</p>
+                <p class="more">Bigger: the tree is further up.</p>
+                <p class="less">Smaller: the tree is nearer in y.</p>
+              </div>
+              <div class="fm__note" data-for="phi">
+                <b>φ: bearing</b>
+                <p>The angle from where the robot faces to the line of sight.</p>
+                <p class="more">Bigger: the tree is further to the left of the nose.</p>
+                <p class="less">Smaller: the tree is nearer straight ahead.</p>
+              </div>
+              <div class="fm__note" data-for="atan">
+                <b>atan2: the angle of the line</b>
+                <p>Turns the gaps Δx and Δy into the angle of the line of sight on the map.</p>
+                <p class="more">Bigger Δy for the same Δx: a steeper line.</p>
+                <p class="less">Smaller Δy: a flatter line.</p>
+              </div>
+              <div class="fm__note" data-for="dy2">
+                <b>Δy</b>
+                <p>The same upward gap as above.</p>
+                <p class="more">Bigger: line tilts up.</p>
+                <p class="less">Smaller: line flattens.</p>
+              </div>
+              <div class="fm__note" data-for="dx2">
+                <b>Δx</b>
+                <p>The same sideways gap as above.</p>
+                <p class="more">Bigger: line points right.</p>
+                <p class="less">Smaller: line points up or down.</p>
+              </div>
+              <div class="fm__note" data-for="th">
+                <b>θ: where the robot faces</b>
+                <p>
+                  Subtract it, so φ is measured from the nose of the robot and not from the map.
+                </p>
+                <p class="more">Bigger θ: the same tree appears further right of the nose.</p>
+                <p class="less">Smaller θ: the tree appears further left.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="beat" id="trust">
           <div class="beat__text">
             <h2>How sure is each string?</h2>
@@ -293,6 +554,115 @@
             </figcaption>
           </figure>
         </section>
+        <section class="beat" id="map">
+          <div class="beat__text">
+            <h2>From "likely" to "cheap"</h2>
+            <p>
+              Why add up squared errors? Because sensor noise is bell-shaped: small errors are
+              common, big errors are rare. Ask for the <b>most likely</b> map and, with a little
+              algebra, you are asking for the map with the <b>lowest total price</b>. Flip the bell
+              upside down with a logarithm and it becomes the bowl we roll down.
+            </p>
+          </div>
+          <figure class="fig" data-fig="bell">
+            <div class="fig__stage"></div>
+            <figcaption>
+              Watch the bell turn into a bowl. A bigger trust σ means a wider bell and a gentler
+              bowl.
+            </figcaption>
+          </figure>
+          <div class="fm">
+            <div class="fm__eq">
+              <button type="button" class="fm__p" data-p="p"><i>p</i>(<i>e</i>)</button
+              ><span class="fm__op">∝</span
+              ><button type="button" class="fm__p" data-p="exp">exp</button
+              ><span class="fm__op">(</span
+              ><button type="button" class="fm__p" data-p="neg">−½</button
+              ><button type="button" class="fm__p" data-p="eT"><i>e</i><sup>T</sup></button
+              ><button type="button" class="fm__p" data-p="W">Ω</button
+              ><button type="button" class="fm__p is-bad" data-p="e"><i>e</i></button
+              ><span class="fm__op">)</span>
+            </div>
+            <div class="fm__eq">
+              <button type="button" class="fm__p is-warn" data-p="nl">−log <i>p</i></button
+              ><span class="fm__op">=</span
+              ><button type="button" class="fm__p" data-p="half">½</button
+              ><button type="button" class="fm__p" data-p="eT2"><i>e</i><sup>T</sup></button
+              ><button type="button" class="fm__p" data-p="W2">Ω</button
+              ><button type="button" class="fm__p is-bad" data-p="e2"><i>e</i></button
+              ><span class="fm__op">+ const</span>
+            </div>
+            <div class="fm__notes">
+              <div class="fm__note" data-for="p">
+                <b>p(e): how likely this error is</b>
+                <p>The probability of seeing an error of size e.</p>
+                <p class="more">Bigger: this error is common.</p>
+                <p class="less">Smaller: this error is rare.</p>
+              </div>
+              <div class="fm__note" data-for="exp">
+                <b>exp: the bell shape</b>
+                <p>Turns a growing penalty into a shrinking likelihood.</p>
+                <p class="more">Bigger penalty inside: the likelihood falls faster.</p>
+                <p class="less">Smaller penalty: the likelihood stays high.</p>
+              </div>
+              <div class="fm__note" data-for="neg">
+                <b>−½: the minus sign</b>
+                <p>Makes the likelihood fall as the error grows. The ½ is just tidy maths.</p>
+                <p class="more">Always negative: errors only lower the likelihood.</p>
+                <p class="less">Never positive: no error ever helps.</p>
+              </div>
+              <div class="fm__note" data-for="eT">
+                <b>eᵀ</b>
+                <p>The error turned on its side so it can be squared.</p>
+                <p class="more">Bigger e: a bigger square.</p>
+                <p class="less">Smaller e: a tiny square.</p>
+              </div>
+              <div class="fm__note" data-for="W">
+                <b>Ω: trust</b>
+                <p>Information, 1/σ². It sets how narrow the bell is.</p>
+                <p class="more">Bigger: a narrow bell. Even small errors are unlikely.</p>
+                <p class="less">Smaller: a wide bell. Errors are forgiven.</p>
+              </div>
+              <div class="fm__note" data-for="e">
+                <b>e: the error</b>
+                <p>The gap between what the sensor said and what the map says.</p>
+                <p class="more">Bigger: further out on the bell, so less likely.</p>
+                <p class="less">Smaller: near the peak, so more likely.</p>
+              </div>
+              <div class="fm__note" data-for="nl">
+                <b>−log p: the price</b>
+                <p>Take the log and flip it. A very unlikely error becomes a very high price.</p>
+                <p class="more">Bigger: the map is harder to believe.</p>
+                <p class="less">Smaller: the map is easy to believe.</p>
+              </div>
+              <div class="fm__note" data-for="half">
+                <b>½</b>
+                <p>Same ½ as above. It carries over from the bell.</p>
+                <p class="more">Constant: it does not change which map wins.</p>
+                <p class="less">Constant: it does not change which map wins.</p>
+              </div>
+              <div class="fm__note" data-for="eT2">
+                <b>eᵀ</b>
+                <p>The same transposed error.</p>
+                <p class="more">Bigger: a higher price.</p>
+                <p class="less">Smaller: a lower price.</p>
+              </div>
+              <div class="fm__note" data-for="W2">
+                <b>Ω: trust</b>
+                <p>The same trust. It now scales the price.</p>
+                <p class="more">Bigger: stretching is costly.</p>
+                <p class="less">Smaller: stretching is cheap.</p>
+              </div>
+              <div class="fm__note" data-for="e2">
+                <b>e: the error</b>
+                <p>The same error. The price grows with its square.</p>
+                <p class="more">Double the error: four times the price.</p>
+                <p class="less">Half the error: a quarter of the price.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="beat" id="cost">
           <div class="beat__text">
             <h2>One price for the whole map</h2>

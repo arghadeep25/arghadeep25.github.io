@@ -379,3 +379,51 @@
     font-size: 12.5px;
   }
 }
+
+/* The four ingredients of a graph, one line each, coloured like the figure above. */
+.kinds {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  max-width: 700px;
+}
+
+.kinds > div {
+  display: grid;
+  grid-template-columns: 9.5em 1fr;
+  gap: 4px 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md, 12px);
+  background: var(--bg-raised);
+}
+
+.kinds dt {
+  font-weight: 600;
+}
+
+.kinds dd {
+  margin: 0;
+  color: var(--ink-dim);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.kinds .is-accent {
+  color: #8b7cff;
+}
+.kinds .is-blue {
+  color: #3e9bff;
+}
+.kinds .is-warn {
+  color: #ffb547;
+}
+.kinds .is-ok {
+  color: #34d399;
+}
+
+@media (max-width: 600px) {
+  .kinds > div {
+    grid-template-columns: 1fr;
+  }
+}
