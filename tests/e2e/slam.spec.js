@@ -1,6 +1,11 @@
 import { expect, test } from '@playwright/test';
 
 const FIGURES = [
+  'chicken',
+  'overview',
+  'pipeline',
+  'landmark',
+  'bell',
   'drift',
   'nodes',
   'edges',
@@ -40,6 +45,23 @@ test.describe('Graph SLAM post', () => {
       await expect(page.locator(`[data-fig="${name}"] canvas`)).toHaveCount(1);
       await bring(page, name);
       expect(await inked(page, name), `${name} is blank`).toBeGreaterThan(500);
+    }
+  });
+
+  test('a worse pose makes a smeared map, and the trust slider reshapes the bell', async ({
+    page,
+  }) => {
+    await page.goto('/blogs/slam.html');
+    for (const [name, knob] of [
+      ['chicken', '0'],
+      ['bell', '1.6'],
+    ]) {
+      await bring(page, name);
+      await page.locator(`[data-fig="${name}"] .fig__play`).click(); // pause
+      const before = await shot(page, name);
+      await page.locator(`[data-fig="${name}"] .fig__knob input`).first().fill(knob);
+      await page.waitForTimeout(200);
+      expect(await shot(page, name), `${name} ignores its slider`).not.toBe(before);
     }
   });
 

@@ -144,6 +144,7 @@ Mostly animation, few words, so a child can follow it. Every formula is annotate
 - [x] 12.12 Section: why the first pin is nailed down
 - [x] 12.13 Pose graph reports how unsure each pose is; the wrong-loop-closure demo uses a robust price
 - [x] 12.14 e2e tests: every figure draws, interactions work, reduced motion, phone width
+- [x] 12.15 Graph SLAM basics: what SLAM is, the graph in one picture, frontend and backend, landmarks, from likely to cheap
 
 ## Target structure
 
