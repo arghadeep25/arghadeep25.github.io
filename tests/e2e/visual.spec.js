@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 // Static pages only: the homepage and demos animate, so they are covered by home.spec.js.
 // Every request to another host (web fonts, remote photos) is blocked so every machine renders
 // the same fallback.
-const STATIC = ['/blogs.html', '/blogs/pointers.html', '/blogs/slam.html'];
+const STATIC = ['/blogs.html', '/blogs/pointers.html', '/blogs/graph_slam_basics.html'];
 
 test.beforeEach(async ({ page }) => {
   await page.route(

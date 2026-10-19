@@ -126,7 +126,7 @@ One stack, seven systems, each with its own demo. Wording says "I worked on", no
 - [x] 11.10 Tracking demo reworked: four scripted scenes (car ahead, oncoming, pedestrians, overtake), steadier output
 - [x] 11.11 CPU pass: hidden demos pause, idle canvases run at 30 frames a second
 
-## Phase 12: Graph SLAM post (`blogs/slam.html`)
+## Phase 12: Graph SLAM post (`blogs/graph_slam_basics.html`)
 
 Mostly animation, few words, so a child can follow it. Every formula is annotated: each parameter is circled and an arrow points to a note saying what it does and what happens when it goes up or down.
 

@@ -40,7 +40,7 @@ const bring = async (page, name) => {
 
 test.describe('Graph SLAM post', () => {
   test('has every figure drawn on a canvas', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     for (const name of FIGURES) {
       await expect(page.locator(`[data-fig="${name}"] canvas`)).toHaveCount(1);
       await bring(page, name);
@@ -51,7 +51,7 @@ test.describe('Graph SLAM post', () => {
   test('a worse pose makes a smeared map, and the trust slider reshapes the bell', async ({
     page,
   }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     for (const [name, knob] of [
       ['chicken', '0'],
       ['bell', '1.6'],
@@ -66,7 +66,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('lists its sections and each link goes somewhere', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     const links = page.locator('.article__toc a');
     expect(await links.count()).toBeGreaterThanOrEqual(10);
     for (const href of await links.evaluateAll((a) => a.map((x) => x.getAttribute('href')))) {
@@ -75,7 +75,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('a figure only moves while it is on screen', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     await bring(page, 'drift');
     const read = () => page.locator('[data-fig="drift"] .fig__scrub').inputValue();
     const a = +(await read());
@@ -90,7 +90,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('sliding the wobble changes the picture', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     await bring(page, 'drift');
     await page.locator('[data-fig="drift"] .fig__play').click(); // pause
     const before = await shot(page, 'drift');
@@ -100,7 +100,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('the formula circles a parameter and explains it', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     const fm = page.locator('#edges .fm');
     await fm.scrollIntoViewIfNeeded();
     await fm.locator('[data-p="h"]').click();
@@ -115,7 +115,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('every formula parameter has a note with a bigger and a smaller line', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     const bad = await page.evaluate(() =>
       [...document.querySelectorAll('.fm')].flatMap((fm) =>
         [...fm.querySelectorAll('.fm__p')]
@@ -132,7 +132,7 @@ test.describe('Graph SLAM post', () => {
   test('pin j can be dragged away in the edge figure, and the string pulls it back', async ({
     page,
   }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     await bring(page, 'edges');
     const fig = page.locator('[data-fig="edges"]');
     const box = await fig.locator('canvas').boundingBox();
@@ -156,7 +156,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('the cost figure lowers its price when it relaxes', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     await bring(page, 'sum');
     const before = await shot(page, 'sum');
     await page.getByRole('button', { name: 'Let it relax' }).click();
@@ -168,7 +168,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('the wrong string can be added and the robust price switched on', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     await bring(page, 'outlier');
     const toggles = page.locator('#liar .fig__toggle');
     await expect(toggles).toHaveCount(2);
@@ -183,7 +183,7 @@ test.describe('Graph SLAM post', () => {
   });
 
   test('the pin-the-first-dot figure holds the map still once pinned', async ({ page }) => {
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     await bring(page, 'anchor');
     const cv = page.locator('[data-fig="anchor"] canvas');
     const box = await cv.boundingBox();
@@ -211,7 +211,7 @@ test.describe('Graph SLAM post', () => {
       viewport: { width: 1440, height: 900 },
     });
     const page = await ctx.newPage();
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     await bring(page, 'loop');
     const play = page.locator('[data-fig="loop"] .fig__play');
     await expect(play).toHaveText('Play');
@@ -223,7 +223,7 @@ test.describe('Graph SLAM post', () => {
   test('fits a phone without sideways scrolling', async ({ browser }) => {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
     const page = await ctx.newPage();
-    await page.goto('/blogs/slam.html');
+    await page.goto('/blogs/graph_slam_basics.html');
     for (const name of FIGURES) await bring(page, name);
     const [sw, iw] = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth]);
     expect(sw).toBeLessThanOrEqual(iw);
