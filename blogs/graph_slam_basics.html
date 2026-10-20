@@ -147,6 +147,23 @@
                 <p class="less">Rougher counts: pins drift.</p>
               </div>
             </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  We never see the true path or the true map. We only get noisy evidence.
+                  Probability lets us ask the one question that makes sense: which path and map are
+                  the most believable, given everything the robot saw and did?
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  It turns "where am I, and what is around me?" into a single, well-posed question.
+                  Everything else in this post is a way of answering it.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -278,6 +295,24 @@
                 <p class="less">Smaller θ: turned more to the right.</p>
               </div>
             </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  To solve for the robot's path we need something small to solve for. On a flat
+                  floor, three numbers are enough to place a rigid robot: where it is (x, y) and
+                  which way it faces (θ).
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  These are the unknowns. A trip of N pins is 3N numbers to find. The heading
+                  matters most: a small turn error at pin 5 swings every later pin far off its
+                  place.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
         <section class="beat" id="edges">
@@ -339,6 +374,24 @@
                 <p>Where the move ended. The optimiser slides this pin until e shrinks.</p>
                 <p class="more">Further from the sensor's answer: e grows.</p>
                 <p class="less">Closer to the sensor's answer: e shrinks.</p>
+              </div>
+            </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  A sensor never says "you are here". It only says how things changed between two
+                  places. So we predict that change from the pins (h), compare it with what the
+                  sensor said (z), and keep the difference.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  Every kind of fact becomes the same thing: an error that is zero when the pins
+                  agree. Odometry, landmarks and loop closures differ only in h and z, so one solver
+                  can handle all of them.
+                </p>
               </div>
             </div>
           </div>
@@ -441,6 +494,24 @@
                 <p class="less">Smaller θ: the tree appears further left.</p>
               </div>
             </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  Lidars and cameras naturally report how far and in which direction. Pythagoras and
+                  atan2 are the geometry that predicts those two numbers from where the robot and
+                  the tree sit.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  This is how landmarks are tied to the pins: a prediction we can compare with a
+                  reading. Subtracting θ makes the bearing relative to the robot's nose, which is
+                  why a heading error corrupts every landmark seen from that pin.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -533,6 +604,25 @@
                 <p>How wrong the sensor tends to be about which way it faces, in radians.</p>
                 <p class="more">Bigger σ: loose in heading.</p>
                 <p class="less">Smaller σ: stiff in heading.</p>
+              </div>
+            </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  A plain sum would treat every string alike, but a precise sensor deserves a louder
+                  voice. Multiplying the error by Ω weights it by trust. Squaring means a stretch in
+                  either direction costs the same, and big stretches cost much more. The weight is
+                  1/σ²: a sensor twice as precise counts four times as much.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  Metres and radians cannot be added raw. Ω puts them on one scale. It also comes
+                  straight from the sensor's spec sheet, so a wrong σ gives a map that is either
+                  blurry (too little trust) or overconfident (too much).
+                </p>
               </div>
             </div>
           </div>
@@ -660,6 +750,24 @@
                 <p class="less">Half the error: a quarter of the price.</p>
               </div>
             </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  Sensor noise is bell-shaped, and a bell has the form exp(−½ e² Ω). The whole
+                  trip's likelihood is a product of many bells. Taking −log turns that product into
+                  a plain sum of squares.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  This is why we minimise squared errors. It is not a habit. It is the most likely
+                  map when noise is bell-shaped. Sums are also easy to optimise, while a product of
+                  thousands of tiny numbers just underflows to zero.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -748,6 +856,24 @@
                 <p>The same total as above. The optimiser slides pins to make it fall.</p>
                 <p class="more">Going up: the last move was a bad one.</p>
                 <p class="less">Going down: the map is getting better.</p>
+              </div>
+            </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  Each string is an independent piece of evidence, so their likelihoods multiply and
+                  their prices add. The best map is the one where that total is lowest, which is
+                  what argmin picks.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  All of SLAM becomes one number to push down. And because every pin shares that
+                  number, one new loop-closure string changes the price everywhere, which is why it
+                  corrects the whole lap and not only the last few pins.
+                </p>
               </div>
             </div>
           </div>
@@ -895,6 +1021,25 @@
                 <p class="less">Smaller: the pins barely move.</p>
               </div>
             </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  F bends with the turning angles, so we cannot jump to the answer. Near the current
+                  guess we can straighten it out: J says how each error changes when a pin moves.
+                  That gives an exact bowl, solved by H Δx = −b. H adds up how stiff each string is,
+                  b adds up how hard each one pulls. Step, then repeat. This is Gauss-Newton.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  A few cheap linear solves beat blind guessing. H is sparse, because a pin only
+                  touches its neighbours, so thousands of pins solve in milliseconds. It needs a
+                  decent starting guess, which is why the frontend's odometry matters.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -984,6 +1129,23 @@
                 <p class="less">Kept: the map stays put.</p>
               </div>
             </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  The strings only fix pins relative to each other. Slide or spin the whole map and
+                  every string stays just as happy. Adding a strong prior on the first pin nails the
+                  map to a place.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  Without it H cannot be inverted and the solver wanders or blows up. Choosing x̄₀ is
+                  also choosing the map's origin, so every other pin is measured from the start.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
         <section class="beat" id="fog">
@@ -1026,6 +1188,23 @@
                 <p>Held firmly means a small cloud. Held loosely means a big cloud.</p>
                 <p class="more">Bigger H: the flip makes the cloud smaller.</p>
                 <p class="less">Smaller H: the flip makes the cloud bigger.</p>
+              </div>
+            </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  H tells how stiff the graph is around each pin. A stiff pin has little room to
+                  move. Its inverse flips that into how much room each pin still has.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  It gives an honest "how sure" for every pin. The doubt grows with distance from
+                  the anchor and shrinks after a loop closure. Planners and loop-closure checks use
+                  it to know when not to trust a pin.
+                </p>
               </div>
             </div>
           </div>
@@ -1092,6 +1271,23 @@
                 <p>A stretch about this big is where we start to doubt a string.</p>
                 <p class="more">Bigger: more patient. Even odd strings are believed.</p>
                 <p class="less">Smaller: quick to doubt. Good strings may be ignored too.</p>
+              </div>
+            </div>
+            <div class="fm__why">
+              <div>
+                <h4>Why this formula</h4>
+                <p>
+                  The squared price lets one wrong string shout so loud it drags the whole map with
+                  it. This price grows only like a log: past δ, extra stretch costs little more.
+                </p>
+              </div>
+              <div>
+                <h4>Why it matters</h4>
+                <p>
+                  Real loop closures are sometimes wrong, such as two corridors that look the same.
+                  A robust price lets the solver outvote a liar instead of warping the map. δ sets
+                  how much stretch still counts as reasonable.
+                </p>
               </div>
             </div>
           </div>

@@ -231,3 +231,39 @@
     padding: 14px 16px 12px;
   }
 }
+
+/* Under each formula: why it is written that way, and why that is worth knowing. */
+.fm__why {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 28px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.fm__why h4 {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fm__why p {
+  margin: 0;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .fm__why {
+    grid-template-columns: 1fr;
+  }
+
+  .fm__why p {
+    font-size: 14px;
+  }
+}
