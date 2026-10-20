@@ -65,11 +65,11 @@ test.describe('Graph SLAM post', () => {
     }
   });
 
-  test('every formula says why it is written that way and why it matters', async ({ page }) => {
+  test('every formula says what it means, why it is used and why it matters', async ({ page }) => {
     await page.goto('/blogs/graph_slam_basics.html');
     const missing = await page.evaluate(() =>
       [...document.querySelectorAll('.fm')]
-        .filter((fm) => fm.querySelectorAll('.fm__why h4').length !== 2)
+        .filter((fm) => fm.querySelectorAll('.fm__why h4').length !== 3)
         .map((fm) => fm.closest('section').id),
     );
     expect(missing).toEqual([]);

@@ -148,8 +148,15 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>
+                  Out of every path and map we could imagine, pick the one that best explains what
+                  the robot did and saw.
+                </p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   We never see the true path or the true map. We only get noisy evidence.
                   Probability lets us ask the one question that makes sense: which path and map are
@@ -296,8 +303,12 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>Each pin is one answer to: where was the robot, and which way was it facing?</p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   To solve for the robot's path we need something small to solve for. On a flat
                   floor, three numbers are enough to place a rigid robot: where it is (x, y) and
@@ -377,8 +388,12 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>The error is how far the pins' idea of the move is from what the sensor said.</p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   A sensor never says "you are here". It only says how things changed between two
                   places. So we predict that change from the pins (h), compare it with what the
@@ -495,8 +510,15 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>
+                  From where the robot stands, the tree is this far away and this many degrees off
+                  its nose.
+                </p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   Lidars and cameras naturally report how far and in which direction. Pythagoras and
                   atan2 are the geometry that predicts those two numbers from where the robot and
@@ -607,8 +629,15 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>
+                  Every string charges the stretch squared as its price, and charges more when we
+                  trust it more.
+                </p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   A plain sum would treat every string alike, but a precise sensor deserves a louder
                   voice. Multiplying the error by Ω weights it by trust. Squaring means a stretch in
@@ -751,8 +780,15 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>
+                  Small errors are common and big ones are rare, so likelihood falls off like a bell
+                  and price rises like a bowl.
+                </p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   Sensor noise is bell-shaped, and a bell has the form exp(−½ e² Ω). The whole
                   trip's likelihood is a product of many bells. Taking −log turns that product into
@@ -859,8 +895,12 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>Add up every string's price, then pick the map where that total is smallest.</p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   Each string is an independent piece of evidence, so their likelihoods multiply and
                   their prices add. The best map is the one where that total is lowest, which is
@@ -1022,8 +1062,12 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>Look at the bowl around the current guess, jump to its bottom, and repeat.</p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   F bends with the turning angles, so we cannot jump to the answer. Near the current
                   guess we can straighten it out: J says how each error changes when a pin moves.
@@ -1130,8 +1174,12 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>Nail the first pin to one spot so the whole map cannot slide or spin.</p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   The strings only fix pins relative to each other. Slide or spin the whole map and
                   every string stays just as happy. Adding a strong prior on the first pin nails the
@@ -1191,8 +1239,15 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>
+                  Where the graph is stiff a pin is sure, and where it is loose the pin could be
+                  anywhere nearby.
+                </p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   H tells how stiff the graph is around each pin. A stiff pin has little room to
                   move. Its inverse flips that into how much room each pin still has.
@@ -1274,8 +1329,15 @@
               </div>
             </div>
             <div class="fm__why">
+              <div class="fm__what">
+                <h4>Physical interpretation</h4>
+                <p>
+                  Past a certain stretch a string stops getting louder, so one liar cannot drag the
+                  whole map.
+                </p>
+              </div>
               <div>
-                <h4>Why this formula</h4>
+                <h4>Why this</h4>
                 <p>
                   The squared price lets one wrong string shout so loud it drags the whole map with
                   it. This price grows only like a log: past δ, extra stretch costs little more.

@@ -242,6 +242,19 @@
   border-top: 1px solid var(--line);
 }
 
+.fm__what {
+  grid-column: 1 / -1;
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+}
+
+.fm__why .fm__what p {
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
 .fm__why h4 {
   margin: 0 0 6px;
   color: var(--accent);
@@ -265,5 +278,9 @@
 
   .fm__why p {
     font-size: 14px;
+  }
+
+  .fm__why .fm__what p {
+    font-size: 15px;
   }
 }
